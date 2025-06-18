@@ -1,0 +1,74 @@
+/* src/components/Steps/styles.module.css */
+.steps {
+    margin: 2rem 0;
+  }
+  
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .step:last-child {
+    margin-bottom: 0;
+  }
+  
+  .step:last-child .step__line {
+    display: none;
+  }
+  
+  .step__indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .step__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--ifm-background-surface-color);
+    color: var(--ifm-color-content);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--ifm-color-emphasis-200);
+  }
+  
+  .step__line {
+    width: 2px;
+    background-color: var(--ifm-color-emphasis-200);
+    margin-top: 0.5rem;
+    height: calc(100% - 1rem);
+  }
+  
+  .step__content {
+    flex: 1;
+    padding-top: 0.25rem;
+  }
+  
+  .step__title {
+    color: var(--ifm-color-content);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+  }
+  
+  .step__body {
+    color: var(--ifm-color-content-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .step__custom_icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    color: var(--ifm-color-content-secondary);
+  }

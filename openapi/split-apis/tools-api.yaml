@@ -1,0 +1,354 @@
+openapi: 3.0.0
+info:
+  version: 0.9.0
+  title: Tools
+  description: Tools operations for Glean API
+  x-logo:
+    url: https://app.glean.com/images/glean-text2.svg
+  x-speakeasy-name: Glean API
+servers:
+  - url: https://{instance}-be.glean.com
+    variables:
+      instance:
+        default: instance-name
+        description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
+tags:
+  - name: Tools
+    description: Tools
+paths:
+  /rest/api/v1/tools/list:
+    get:
+      summary: List available tools
+      description: Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+      x-visibility: Preview
+      parameters:
+        - in: query
+          name: toolNames
+          description: Optional array of tool names to filter by
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolsListResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      tags:
+        - Tools
+      x-speakeasy-name-override: list
+      x-speakeasy-group: client.tools
+      x-codeSamples:
+        - lang: python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as g_client:
+
+                res = g_client.client.tools.list()
+
+                # Handle response
+                print(res)
+        - lang: typescript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.tools.list();
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Tools.List(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ToolsListResponse != nil {\n        // handle response\n    }\n}"
+        - lang: java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.operations.GetRestApiV1ToolsListResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    GetRestApiV1ToolsListResponse res = sdk.client().tools().list()
+                            .call();
+
+                    if (res.toolsListResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  /rest/api/v1/tools/call:
+    post:
+      summary: Execute the specified tool
+      description: Execute the specified tool with provided parameters
+      x-visibility: Preview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToolsCallRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolsCallResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      tags:
+        - Tools
+      x-speakeasy-name-override: run
+      x-speakeasy-group: client.tools
+      x-codeSamples:
+        - lang: python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as g_client:
+
+                res = g_client.client.tools.run(name="<value>", parameters={
+
+                })
+
+                # Handle response
+                print(res)
+        - lang: typescript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.tools.run({
+                name: "<value>",
+                parameters: {
+                  "key": {
+                    name: "<value>",
+                    value: "<value>",
+                  },
+                },
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Tools.Run(ctx, components.ToolsCallRequest{\n        Name: \"<value>\",\n        Parameters: map[string]components.ToolsCallParameter{\n\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ToolsCallResponse != nil {\n        // handle response\n    }\n}"
+        - lang: java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import java.util.Map;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.components.ToolsCallRequest;
+            import org.openapis.openapi.models.operations.PostRestApiV1ToolsCallResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    ToolsCallRequest req = ToolsCallRequest.builder()
+                            .name("<value>")
+                            .parameters(Map.ofEntries(
+                            ))
+                            .build();
+
+                    PostRestApiV1ToolsCallResponse res = sdk.client().tools().run()
+                            .request(req)
+                            .call();
+
+                    if (res.toolsCallResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+components:
+  schemas:
+    ToolsListResponse:
+      type: object
+      properties:
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+    ToolsCallRequest:
+      type: object
+      required:
+        - name
+        - parameters
+      properties:
+        name:
+          type: string
+          description: Required name of the tool to execute
+        parameters:
+          type: object
+          description: The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+          additionalProperties:
+            $ref: '#/components/schemas/ToolsCallParameter'
+    ToolsCallResponse:
+      type: object
+      properties:
+        rawResponse:
+          additionalProperties: true
+          type: object
+          description: The raw response from the tool
+        error:
+          type: string
+          description: The error message if applicable
+    Tool:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of tool (READ, WRITE)
+          enum:
+            - READ
+            - WRITE
+        name:
+          type: string
+          description: Unique identifier for the tool
+        displayName:
+          type: string
+          description: Human-readable name
+        description:
+          type: string
+          description: LLM friendly description of the tool
+        parameters:
+          type: object
+          description: The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+          additionalProperties:
+            $ref: '#/components/schemas/ToolParameter'
+    ToolsCallParameter:
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          description: The name of the parameter
+        value:
+          type: string
+          description: The value of the parameter (for primitive types)
+        items:
+          type: array
+          description: The value of the parameter (for array types)
+          items:
+            $ref: '#/components/schemas/ToolsCallParameter'
+        properties:
+          type: object
+          description: The value of the parameter (for object types)
+          additionalProperties:
+            $ref: '#/components/schemas/ToolsCallParameter'
+    ToolParameter:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Parameter type (string, number, boolean, object, array)
+          enum:
+            - string
+            - number
+            - boolean
+            - object
+            - array
+        name:
+          type: string
+          description: The name of the parameter
+        description:
+          type: string
+          description: The description of the parameter
+        isRequired:
+          type: boolean
+          description: Whether the parameter is required
+        possibleValues:
+          type: array
+          description: The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+          items:
+            type: string
+        items:
+          type: object
+          description: When type is 'array', this describes the structure of the item in the array.
+          $ref: '#/components/schemas/ToolParameter'
+        properties:
+          type: object
+          description: When type is 'object', this describes the structure of the object.
+          additionalProperties:
+            $ref: '#/components/schemas/ToolParameter'
+  parameters:
+    timezoneOffset:
+      name: timezoneOffset
+      in: query
+      description: The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+      schema:
+        type: integer
+  securitySchemes:
+    APIToken:
+      scheme: bearer
+      type: http

@@ -1,0 +1,160 @@
+---
+id: bulk-index-users
+title: "Bulk index users"
+description: "Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints."
+sidebar_label: "Bulk index users"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/indexing-api/glean-api
+custom_edit_url: null
+---
+
+# Bulk index users
+
+Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+
+
+## Code Samples
+
+### Python (API Client)
+
+```python
+from glean.api_client import Glean
+import os
+
+
+with Glean(
+    api_token=os.getenv("GLEAN_API_TOKEN", ""),
+    instance=os.getenv("GLEAN_INSTANCE", ""),
+) as glean:
+
+    glean.indexing.permissions.bulk_index_users(upload_id="<id>", datasource="<value>", users=[
+        {
+            "email": "Ivory_Cummerata@hotmail.com",
+            "name": "<value>",
+        },
+    ])
+
+    # Use the SDK ...
+```
+
+### Typescript (API Client)
+
+```typescript
+import { Glean } from "@gleanwork/api-client";
+
+const glean = new Glean({
+  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+  instance: process.env["GLEAN_INSTANCE"] ?? "",
+});
+
+async function run() {
+  await glean.indexing.permissions.bulkIndexUsers({
+    uploadId: "<id>",
+    datasource: "<value>",
+    users: [
+      {
+        email: "Ivory_Cummerata@hotmail.com",
+        name: "<value>",
+      },
+      {
+        email: "Ivory_Cummerata@hotmail.com",
+        name: "<value>",
+      },
+      {
+        email: "Ivory_Cummerata@hotmail.com",
+        name: "<value>",
+      },
+    ],
+  });
+
+
+}
+
+run();
+```
+
+### Java (API Client)
+
+```java
+package hello.world;
+
+import java.lang.Exception;
+import java.util.List;
+import org.openapis.openapi.Glean;
+import org.openapis.openapi.models.components.BulkIndexUsersRequest;
+import org.openapis.openapi.models.components.DatasourceUserDefinition;
+import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexusersResponse;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+            .build();
+
+        BulkIndexUsersRequest req = BulkIndexUsersRequest.builder()
+                .uploadId("<id>")
+                .datasource("<value>")
+                .users(List.of(
+                    DatasourceUserDefinition.builder()
+                        .email("Ivory_Cummerata@hotmail.com")
+                        .name("<value>")
+                        .build()))
+                .build();
+
+        PostApiIndexV1BulkindexusersResponse res = sdk.indexing().permissions().bulkIndexUsers()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Go (API Client)
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	apiclientgo "github.com/gleanwork/api-client-go"
+	"github.com/gleanwork/api-client-go/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := apiclientgo.New(
+        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
+        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
+    )
+
+    res, err := s.Indexing.Permissions.BulkIndexUsers(ctx, components.BulkIndexUsersRequest{
+        UploadID: "<id>",
+        Datasource: "<value>",
+        Users: []components.DatasourceUserDefinition{
+            components.DatasourceUserDefinition{
+                Email: "Ivory_Cummerata@hotmail.com",
+                Name: "<value>",
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+undefined
+      

@@ -1,0 +1,118 @@
+---
+id: rotate-token
+title: "Rotate token"
+description: "Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/docs/indexing_api_token_rotation/) documentation for more information."
+sidebar_label: "Rotate token"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/indexing-api/glean-api
+custom_edit_url: null
+---
+
+# Rotate token
+
+Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/docs/indexing_api_token_rotation/) documentation for more information.
+
+
+## Code Samples
+
+### Python (API Client)
+
+```python
+from glean.api_client import Glean
+import os
+
+
+with Glean(
+    api_token=os.getenv("GLEAN_API_TOKEN", ""),
+    instance=os.getenv("GLEAN_INSTANCE", ""),
+) as glean:
+
+    res = glean.indexing.authentication.rotate_token()
+
+    # Handle response
+    print(res)
+```
+
+### Typescript (API Client)
+
+```typescript
+import { Glean } from "@gleanwork/api-client";
+
+const glean = new Glean({
+  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+  instance: process.env["GLEAN_INSTANCE"] ?? "",
+});
+
+async function run() {
+  const result = await glean.indexing.authentication.rotateToken();
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Java (API Client)
+
+```java
+package hello.world;
+
+import java.lang.Exception;
+import org.openapis.openapi.Glean;
+import org.openapis.openapi.models.operations.PostApiIndexV1RotatetokenResponse;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+            .build();
+
+        PostApiIndexV1RotatetokenResponse res = sdk.indexing().authentication().rotateToken()
+                .call();
+
+        if (res.rotateTokenResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Go (API Client)
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	apiclientgo "github.com/gleanwork/api-client-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := apiclientgo.New(
+        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
+        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
+    )
+
+    res, err := s.Indexing.Authentication.RotateToken(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.RotateTokenResponse != nil {
+        // handle response
+    }
+}
+```
+
+undefined
+      

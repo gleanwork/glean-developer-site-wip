@@ -1,0 +1,167 @@
+---
+id: add-or-update-datasource
+title: "Add or update datasource"
+description: "Add or update a custom datasource and its schema."
+sidebar_label: "Add or update datasource"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/indexing-api/glean-api
+custom_edit_url: null
+---
+
+# Add or update datasource
+
+Add or update a custom datasource and its schema.
+
+
+## Code Samples
+
+### Python (API Client)
+
+```python
+from glean.api_client import Glean, models
+import os
+
+
+with Glean(
+    api_token=os.getenv("GLEAN_API_TOKEN", ""),
+    instance=os.getenv("GLEAN_INSTANCE", ""),
+) as glean:
+
+    glean.indexing.datasources.add(name="<value>", datasource_category=models.DatasourceCategory.UNCATEGORIZED, url_regex="https://example-company.datasource.com/.*", quicklinks=[
+        {
+            "icon_config": {
+                "color": "#343CED",
+                "key": "person_icon",
+                "icon_type": models.IconType.GLYPH,
+                "name": "user",
+            },
+        },
+    ], trust_url_regex_for_view_activity=True, strip_fragment_in_canonical_url=True, is_entity_datasource=False, is_test_datasource=False)
+
+    # Use the SDK ...
+```
+
+### Typescript (API Client)
+
+```typescript
+import { Glean } from "@gleanwork/api-client";
+
+const glean = new Glean({
+  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+  instance: process.env["GLEAN_INSTANCE"] ?? "",
+});
+
+async function run() {
+  await glean.indexing.datasources.add({
+    name: "<value>",
+    urlRegex: "https://example-company.datasource.com/.*",
+    quicklinks: [
+      {
+        iconConfig: {
+          color: "#343CED",
+          key: "person_icon",
+          iconType: "GLYPH",
+          name: "user",
+        },
+      },
+    ],
+  });
+
+
+}
+
+run();
+```
+
+### Java (API Client)
+
+```java
+package hello.world;
+
+import java.lang.Exception;
+import java.util.List;
+import org.openapis.openapi.Glean;
+import org.openapis.openapi.models.components.*;
+import org.openapis.openapi.models.operations.PostApiIndexV1AdddatasourceResponse;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+            .build();
+
+        CustomDatasourceConfig req = CustomDatasourceConfig.builder()
+                .name("<value>")
+                .urlRegex("https://example-company.datasource.com/.*")
+                .quicklinks(List.of(
+                    Quicklink.builder()
+                        .iconConfig(IconConfig.builder()
+                            .color("#343CED")
+                            .key("person_icon")
+                            .iconType(IconType.GLYPH)
+                            .name("user")
+                            .build())
+                        .build()))
+                .build();
+
+        PostApiIndexV1AdddatasourceResponse res = sdk.indexing().datasources().add()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Go (API Client)
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	apiclientgo "github.com/gleanwork/api-client-go"
+	"github.com/gleanwork/api-client-go/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := apiclientgo.New(
+        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
+        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
+    )
+
+    res, err := s.Indexing.Datasources.Add(ctx, components.CustomDatasourceConfig{
+        Name: "<value>",
+        URLRegex: apiclientgo.String("https://example-company.datasource.com/.*"),
+        Quicklinks: []components.Quicklink{
+            components.Quicklink{
+                IconConfig: &components.IconConfig{
+                    Color: apiclientgo.String("#343CED"),
+                    Key: apiclientgo.String("person_icon"),
+                    IconType: components.IconTypeGlyph.ToPointer(),
+                    Name: apiclientgo.String("user"),
+                },
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+undefined
+      

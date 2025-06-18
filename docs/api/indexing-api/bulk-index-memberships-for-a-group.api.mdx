@@ -1,0 +1,143 @@
+---
+id: bulk-index-memberships-for-a-group
+title: "Bulk index memberships for a group"
+description: "Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints."
+sidebar_label: "Bulk index memberships for a group"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/indexing-api/glean-api
+custom_edit_url: null
+---
+
+# Bulk index memberships for a group
+
+Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+
+
+## Code Samples
+
+### Python (API Client)
+
+```python
+from glean.api_client import Glean
+import os
+
+
+with Glean(
+    api_token=os.getenv("GLEAN_API_TOKEN", ""),
+    instance=os.getenv("GLEAN_INSTANCE", ""),
+) as glean:
+
+    glean.indexing.permissions.bulk_index_memberships(upload_id="<id>", datasource="<value>", memberships=[
+        {},
+    ])
+
+    # Use the SDK ...
+```
+
+### Typescript (API Client)
+
+```typescript
+import { Glean } from "@gleanwork/api-client";
+
+const glean = new Glean({
+  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+  instance: process.env["GLEAN_INSTANCE"] ?? "",
+});
+
+async function run() {
+  await glean.indexing.permissions.bulkIndexMemberships({
+    uploadId: "<id>",
+    datasource: "<value>",
+    memberships: [
+      {},
+      {},
+      {},
+    ],
+  });
+
+
+}
+
+run();
+```
+
+### Java (API Client)
+
+```java
+package hello.world;
+
+import java.lang.Exception;
+import java.util.List;
+import org.openapis.openapi.Glean;
+import org.openapis.openapi.models.components.BulkIndexMembershipsRequest;
+import org.openapis.openapi.models.components.DatasourceBulkMembershipDefinition;
+import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexmembershipsResponse;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+            .build();
+
+        BulkIndexMembershipsRequest req = BulkIndexMembershipsRequest.builder()
+                .uploadId("<id>")
+                .datasource("<value>")
+                .memberships(List.of(
+                    DatasourceBulkMembershipDefinition.builder()
+                        .build()))
+                .build();
+
+        PostApiIndexV1BulkindexmembershipsResponse res = sdk.indexing().permissions().bulkIndexMemberships()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Go (API Client)
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	apiclientgo "github.com/gleanwork/api-client-go"
+	"github.com/gleanwork/api-client-go/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := apiclientgo.New(
+        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
+        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
+    )
+
+    res, err := s.Indexing.Permissions.BulkIndexMemberships(ctx, components.BulkIndexMembershipsRequest{
+        UploadID: "<id>",
+        Datasource: "<value>",
+        Memberships: []components.DatasourceBulkMembershipDefinition{
+            components.DatasourceBulkMembershipDefinition{},
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+undefined
+      

@@ -1,0 +1,60 @@
+{
+  "name": "glean-developer-site-revamp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.8.0",
+    "@docusaurus/plugin-content-blog": "^3.8.0",
+    "@docusaurus/plugin-content-docs": "^3.8.0",
+    "@docusaurus/preset-classic": "3.8.0",
+    "@docusaurus/theme-classic": "^3.8.1",
+    "@docusaurus/theme-common": "^3.8.0",
+    "@docusaurus/theme-search-algolia": "^3.8.1",
+    "@docusaurus/utils": "^3.8.0",
+    "@docusaurus/utils-validation": "^3.8.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.1.1",
+    "docusaurus-plugin-openapi-docs": "^4.4.0",
+    "docusaurus-theme-openapi-docs": "^4.4.0",
+    "js-yaml": "^4.1.0",
+    "lucide-react": "^0.513.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.8.0",
+    "@docusaurus/tsconfig": "3.8.0",
+    "@docusaurus/types": "3.8.0",
+    "sass": "^1.89.1",
+    "sass-loader": "^16.0.5",
+    "typescript": "~5.6.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}

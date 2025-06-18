@@ -1,0 +1,71 @@
+---
+id: create-and-stream-run
+title: "Create an agent run and stream the response"
+description: "Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE)."
+sidebar_label: "Create an agent run and stream the response"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/client-api/agents
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create an agent run and stream the response"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/rest/api/v1/agents/runs/stream"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"description":"Payload for creating a run.","type":"object","required":["agent_id"],"properties":{"agent_id":{"type":"string","title":"Agent Id","description":"The ID of the agent to run."},"input":{"type":"object","title":"Input","description":"The input to the agent.","additionalProperties":true},"messages":{"type":"array","items":{"type":"object","properties":{"role":{"type":"string","title":"Role","description":"The role of the message."},"content":{"title":"Content","description":"The content of the message.","type":"array","items":{"type":"object","properties":{"text":{"type":"string"},"type":{"type":"string","enum":["text"],"title":"ContentType"}},"required":["text","type"],"title":"MessageTextBlock"}}},"title":"Message"},"title":"Messages","description":"The messages to pass an input to the agent."}},"title":"AgentRunCreate"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Success","content":{"text/event-stream":{"schema":{"type":"string","description":"The server will send a stream of events in server-sent events (SSE) format.","example":"id: 1\nevent: message\ndata: {\"messages\":[{\"role\":\"GLEAN_AI\",\"content\":[{\"text\":\"Hello\",\"type\":\"text\"}]}]}\n\nid: 2\nevent: message\ndata: {\"messages\":[{\"role\":\"GLEAN_AI\",\"content\":[{\"text\":\",\",\"type\":\"text\"}]}]}\n\nid: 3\nevent: message\ndata: {\"messages\":[{\"role\":\"GLEAN_AI\",\"content\":[{\"text\":\" I'm\",\"type\":\"text\"}]}]}\n\nid: 4\nevent: message\ndata: {\"messages\":[{\"role\":\"GLEAN_AI\",\"content\":[{\"text\":\" your\",\"type\":\"text\"}]}]}\n"}}}},"400":{"description":"Bad request"},"403":{"description":"Forbidden"},"404":{"description":"Not Found","content":{"application/json":{"schema":{"type":"string","title":"ErrorResponse","description":"Error message returned from the server"}}}},"409":{"description":"Conflict","content":{"application/json":{"schema":{"type":"string","title":"ErrorResponse","description":"Error message returned from the server"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"type":"string","title":"ErrorResponse","description":"Error message returned from the server"}}}},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

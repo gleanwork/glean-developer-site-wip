@@ -1,0 +1,132 @@
+---
+id: bulk-index-documents
+title: "Bulk index documents"
+description: "Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints."
+sidebar_label: "Bulk index documents"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/indexing-api/glean-api
+custom_edit_url: null
+---
+
+# Bulk index documents
+
+Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+
+
+## Code Samples
+
+### Python (API Client)
+
+```python
+from glean.api_client import Glean
+import os
+
+
+with Glean(
+    api_token=os.getenv("GLEAN_API_TOKEN", ""),
+    instance=os.getenv("GLEAN_INSTANCE", ""),
+) as glean:
+
+    glean.indexing.documents.bulk_index(upload_id="<id>", datasource="<value>", documents=[])
+
+    # Use the SDK ...
+```
+
+### Typescript (API Client)
+
+```typescript
+import { Glean } from "@gleanwork/api-client";
+
+const glean = new Glean({
+  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+  instance: process.env["GLEAN_INSTANCE"] ?? "",
+});
+
+async function run() {
+  await glean.indexing.documents.bulkIndex({
+    uploadId: "<id>",
+    datasource: "<value>",
+    documents: [],
+  });
+
+
+}
+
+run();
+```
+
+### Java (API Client)
+
+```java
+package hello.world;
+
+import java.lang.Exception;
+import java.util.List;
+import org.openapis.openapi.Glean;
+import org.openapis.openapi.models.components.BulkIndexDocumentsRequest;
+import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexdocumentsResponse;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+            .build();
+
+        BulkIndexDocumentsRequest req = BulkIndexDocumentsRequest.builder()
+                .uploadId("<id>")
+                .datasource("<value>")
+                .documents(List.of())
+                .build();
+
+        PostApiIndexV1BulkindexdocumentsResponse res = sdk.indexing().documents().bulkIndex()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Go (API Client)
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	apiclientgo "github.com/gleanwork/api-client-go"
+	"github.com/gleanwork/api-client-go/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := apiclientgo.New(
+        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
+        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
+    )
+
+    res, err := s.Indexing.Documents.BulkIndex(ctx, components.BulkIndexDocumentsRequest{
+        UploadID: "<id>",
+        Datasource: "<value>",
+        Documents: []components.DocumentDefinition{},
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+undefined
+      

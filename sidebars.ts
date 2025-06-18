@@ -15,6 +15,11 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   guides: [
     {
+      type: "doc",
+      id: "guides/getting-started",
+      label: "Getting Started",
+    },
+    {
       type: "category",
       label: "Index Data",
       collapsible: false,

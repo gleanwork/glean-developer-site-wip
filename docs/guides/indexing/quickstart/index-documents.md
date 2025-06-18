@@ -96,13 +96,13 @@ To learn about more document customization options
 
 To learn more about how to set up user identities, and more complex permissions,
 read [Setting
-permissions](/indexing/documents/permissions)
+permissions](../documents/permissions)
 
 To index documents in bulk, you can use [Bulk
-indexing](/indexing/documents/bulk-indexing)
+indexing](../documents/bulk-indexing)
 
 For helpful troubleshooting tips, read
-[Troubleshooting](/indexing/debugging)
+[Troubleshooting](../debugging/datasource-config)
 
 ## Enable search results for the datasource
 

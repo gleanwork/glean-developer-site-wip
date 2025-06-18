@@ -44,6 +44,10 @@
   --ifm-heading-font-family: 'Polysans Neutral', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
   --ifm-font-weight-base: 400;
   --ifm-heading-font-weight: 400;
+
+  --ifm-link-color: #0066cc;
+  --ifm-link-hover-color: #0052a3;
+  --ifm-link-decoration: underline;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -82,14 +86,41 @@
   --docusaurus-highlighted-code-line-bg: rgba(216, 253, 73, 0.3);
 }
 
-/* Links */
-a {
-  color: var(--ifm-color-primary);
-  text-decoration: none;
+/* Links - but exclude navigation elements */
+article a,
+.markdown a {
+  color: var(--ifm-link-color);
+  text-decoration: var(--ifm-link-decoration);
   transition: color 0.2s ease;
 }
 
-a:hover {
+article a:hover,
+.markdown a:hover {
+  color: var(--ifm-link-hover-color);
+  text-decoration: var(--ifm-link-decoration);
+}
+
+/* Keep navbar and sidebar links unchanged */
+.navbar a,
+.navbar__link,
+.navbar__items a,
+.navbar__brand,
+.menu a,
+.footer a,
+.pagination-nav a,
+.table-of-contents a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar__link:hover,
+.navbar__items a:hover,
+.navbar__brand:hover,
+.menu a:hover,
+.footer a:hover,
+.pagination-nav a:hover,
+.table-of-contents a:hover {
   color: var(--ifm-color-primary-darker);
   text-decoration: none;
 }

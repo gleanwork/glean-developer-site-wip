@@ -3,7 +3,7 @@ title: 'Making Requests'
 icon: 'send-backward'
 ---
 
-Kindly read the [Authentication](/client/authentication) page to know about the host url, token generation, token permissions and scopes before moving to further sections.
+Kindly read the [Authentication](./authentication/glean-issued) page to know about the host url, token generation, token permissions and scopes before moving to further sections.
 
 Let's walk through some sample requests to get familiar with the general usage of the developer-ready endpoints!
 

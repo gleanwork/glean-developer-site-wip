@@ -54,7 +54,7 @@ Glean's official LangChain integration enables you to build powerful AI agents t
 
 #### API Tokens
 
-You'll need Glean [API credentials](/client/authentication#glean-issued-tokens), and specifically a [user-scoped API token](client/authentication#user). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
+You'll need Glean [API credentials](/docs/guides/client/authentication/glean-issued), and specifically a [user-scoped API token](docs/guides/client/authentication/glean-issued#selecting-permissions-and-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
 
 #### Configure Environment Variables
 

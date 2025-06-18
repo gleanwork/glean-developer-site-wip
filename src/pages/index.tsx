@@ -32,7 +32,7 @@ function HomepageCards() {
   return (
     <div className="container margin-top--lg">
       <div className="text-center margin-bottom--lg">
-        <h2>Choose a topic below or <Link to="/docs/getting-started">Get Started</Link></h2>
+        <h2>Choose a topic below or <Link to="/docs/guides/getting-started">Get Started</Link></h2>
       </div>
       <CardGroup cols={3}>
         <Card
@@ -73,7 +73,7 @@ function HomepageCards() {
         <Card
           title="Solutions"
           icon="agents"
-          href="/docs/solutions"
+          href="https://glean.com/solutions"
           arrow={true}
         >
           Prebuilt Glean Solutions for Enterprise

@@ -1,6 +1,6 @@
 # Website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator. To see locally, first clone the repository.
 
 ## Installation
 
@@ -11,7 +11,7 @@ yarn
 ## Local Development
 
 ```bash
-yarn start
+yarn start -- --host 127.0.0.1 --port 8888
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.

@@ -21,6 +21,82 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Search & Chat",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "guides/client/overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
+          id: "guides/client/quickstart",
+          label: "Quickstart",
+        },
+        {
+          type: "category",
+          label: "Authentication",
+          items: [
+            {
+              type: "doc",
+              id: "guides/client/authentication/overview",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "guides/client/authentication/glean-issued",
+              label: "Glean Issued Tokens",
+            },
+            {
+              type: "doc",
+              id: "guides/client/authentication/oauth",
+              label: "OAuth",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Examples",
+          items: [
+            {
+              type: "doc",
+              id: "guides/client/examples/chatbot",
+              label: "Chatbot",
+            },
+            {
+              type: "doc",
+              id: "guides/client/examples/nvidia-enterprise-kb-chatbot",
+              label: "Agentic AI With NVIDIA NIM",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Search",
+          items: [
+            {
+              type: "doc",
+              id: "guides/client/search/filtering-results",
+              label: "Filtering Results",
+            },
+            {
+              type: "doc",
+              id: "guides/client/search/datasource-filters",
+              label: "Datasource Filters",
+            },
+            {
+              type: "doc",
+              id: "guides/client/search/faceted-filters",
+              label: "Faceted Filtering",
+            }
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Index Data",
       collapsible: false,
       collapsed: false,
@@ -163,82 +239,6 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
-      type: "category",
-      label: "Search & Chat",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          id: "guides/client/overview",
-          label: "Overview",
-        },
-        {
-          type: "doc",
-          id: "guides/client/quickstart",
-          label: "Quickstart",
-        },
-        {
-          type: "category",
-          label: "Authentication",
-          items: [
-            {
-              type: "doc",
-              id: "guides/client/authentication/overview",
-              label: "Overview",
-            },
-            {
-              type: "doc",
-              id: "guides/client/authentication/glean-issued",
-              label: "Glean Issued Tokens",
-            },
-            {
-              type: "doc",
-              id: "guides/client/authentication/oauth",
-              label: "OAuth",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Examples",
-          items: [
-            {
-              type: "doc",
-              id: "guides/client/examples/chatbot",
-              label: "Chatbot",
-            },
-            {
-              type: "doc",
-              id: "guides/client/examples/nvidia-enterprise-kb-chatbot",
-              label: "Agentic AI With NVIDIA NIM",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Search",
-          items: [
-            {
-              type: "doc",
-              id: "guides/client/search/filtering-results",
-              label: "Filtering Results",
-            },
-            {
-              type: "doc",
-              id: "guides/client/search/datasource-filters",
-              label: "Datasource Filters",
-            },
-            {
-              type: "doc",
-              id: "guides/client/search/faceted-filters",
-              label: "Faceted Filtering",
-            }
-          ],
-        },
-      ],
-    },
-    {
       type: "doc",
       id: "guides/client/governance",
       label: "Governance APIs",
@@ -325,6 +325,204 @@ const sidebars: SidebarsConfig = {
     },
   ],
   apiReference: [
+    {
+      type: "category",
+      label: "Client API",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "api/client-api/glean-api",
+        },
+        {
+          type: "category",
+          label: "Activity",
+          link: {
+            type: "doc",
+            id: "api/client-api/activity"
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/report-document-activity",
+              label: "Report document activity",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/report-client-activity",
+              label: "Report client activity",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Authentication",
+          link: {
+            type: "doc",
+            id: "api/client-api/authentication",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/create-auth-token",
+              label: "Create authentication token",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Agents",
+          link: {
+            type: "doc",
+            id: "api/client-api/agents",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/get-agent",
+              label: "Retrieve an agent",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/get-agent-schemas",
+              label: "List an agent's schemas",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/search-agents",
+              label: "Search agents",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/create-and-stream-run",
+              label: "Create an agent run and stream the response",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/create-and-wait-run",
+              label: "Create an agent run and wait for the response",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Governance",
+          link: {
+            type: "doc",
+            id: "api/client-api/governance",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/get-policy",
+              label: "Gets specified policy",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/update-policy",
+              label: "Updates an existing policy",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/list-policies",
+              label: "Lists policies",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/create-policy",
+              label: "Creates new policy",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/download-policy-csv",
+              label: "Downloads violations CSV for policy",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/create-report",
+              label: "Creates new one-time report",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/download-report-csv",
+              label: "Downloads violations CSV for report",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/get-report-status",
+              label: "Fetches report run status",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/get-doc-visibility",
+              label: "Fetches documents visibility",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/set-doc-visibility",
+              label: "Hide or unhide docs",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Summarize",
+          link: {
+            type: "doc",
+            id: "api/client-api/summarize",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/summarize-documents",
+              label: "Summarize documents",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Tools",
+          link: {
+            type: "doc",
+            id: "api/client-api/tools",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/list-available-tools",
+              label: "List available tools",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/execute-the-specified-tool",
+              label: "Execute the specified tool",
+              className: "api-method post",
+            },
+          ],
+        },
+      ],
+    },
     {
       type: "category",
       label: "Indexing API",
@@ -623,204 +821,6 @@ const sidebars: SidebarsConfig = {
           type: "link",
           href: "https://developers.glean.com/oas/indexing",
           label: "OpenAPI Spec",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Client API",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          id: "api/client-api/glean-api",
-        },
-        {
-          type: "category",
-          label: "Activity",
-          link: {
-            type: "doc",
-            id: "api/client-api/activity"
-          },
-          items: [
-            {
-              type: "doc",
-              id: "api/client-api/report-document-activity",
-              label: "Report document activity",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/report-client-activity",
-              label: "Report client activity",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Authentication",
-          link: {
-            type: "doc",
-            id: "api/client-api/authentication",
-          },
-          items: [
-            {
-              type: "doc",
-              id: "api/client-api/create-auth-token",
-              label: "Create authentication token",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Agents",
-          link: {
-            type: "doc",
-            id: "api/client-api/agents",
-          },
-          items: [
-            {
-              type: "doc",
-              id: "api/client-api/get-agent",
-              label: "Retrieve an agent",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/get-agent-schemas",
-              label: "List an agent's schemas",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/search-agents",
-              label: "Search agents",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/create-and-stream-run",
-              label: "Create an agent run and stream the response",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/create-and-wait-run",
-              label: "Create an agent run and wait for the response",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Governance",
-          link: {
-            type: "doc",
-            id: "api/client-api/governance",
-          },
-          items: [
-            {
-              type: "doc",
-              id: "api/client-api/get-policy",
-              label: "Gets specified policy",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/update-policy",
-              label: "Updates an existing policy",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/list-policies",
-              label: "Lists policies",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/create-policy",
-              label: "Creates new policy",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/download-policy-csv",
-              label: "Downloads violations CSV for policy",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/create-report",
-              label: "Creates new one-time report",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/download-report-csv",
-              label: "Downloads violations CSV for report",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/get-report-status",
-              label: "Fetches report run status",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/get-doc-visibility",
-              label: "Fetches documents visibility",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/set-doc-visibility",
-              label: "Hide or unhide docs",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Summarize",
-          link: {
-            type: "doc",
-            id: "api/client-api/summarize",
-          },
-          items: [
-            {
-              type: "doc",
-              id: "api/client-api/summarize-documents",
-              label: "Summarize documents",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Tools",
-          link: {
-            type: "doc",
-            id: "api/client-api/tools",
-          },
-          items: [
-            {
-              type: "doc",
-              id: "api/client-api/list-available-tools",
-              label: "List available tools",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/execute-the-specified-tool",
-              label: "Execute the specified tool",
-              className: "api-method post",
-            },
-          ],
         },
       ],
     },

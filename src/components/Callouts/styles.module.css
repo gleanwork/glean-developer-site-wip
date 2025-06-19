@@ -37,6 +37,7 @@
 .callout--note {
   background-color: #f5f8ff;
   border: 1px solid #e1e6ff;
+  color: #2327a1;
 }
 
 .callout--note .callout__icon {
@@ -47,6 +48,7 @@
 .callout--warning {
   background-color: #fffbf0;
   border: 1px solid #ffeeba;
+  color: #866400;
 }
 
 .callout--warning .callout__icon {
@@ -67,6 +69,7 @@
 .callout--tip {
   background-color: #f0fff4;
   border: 1px solid #c6f6d5;
+  color: #215a3b;
 }
 
 .callout--tip .callout__icon {
@@ -77,6 +80,7 @@
 .callout--check {
   background-color: #f0fff4;
   border: 1px solid #c6f6d5;
+  color: #215a3b;
 }
 
 .callout--check .callout__icon {
@@ -87,6 +91,7 @@
 .callout--danger {
   background-color: #fff5f5;
   border: 1px solid #fed7d7;
+  color: #541818;
 }
 
 .callout--danger .callout__icon {

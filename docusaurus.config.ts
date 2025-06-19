@@ -121,23 +121,27 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Discussions',
+              href: 'https://github.com/gleanwork/glean-developer-site/discussions',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Report a Bug',
+              href: 'https://github.com/gleanwork/glean-developer-site/issues/new?template=bug_report.md',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Request a Feature',
+              href: 'https://github.com/gleanwork/glean-developer-site/issues/new?template=feature_request.md',
             },
+            {
+              label: 'Support',
+              href: 'https://support.glean.com/hc/en-us',
+            }
           ],
         },
         {
@@ -273,6 +277,14 @@ const config: Config = {
           } satisfies OpenApiPlugin.Options,
           tools: {
             specPath: "./openapi/split-apis/tools-api.yaml",
+            outputDir: "docs/api/test",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          collections: {
+            specPath: "./openapi/split-apis/collections-api.yaml",
             outputDir: "docs/api/test",
             sidebarOptions: {
               groupPathsBy: "tag",

@@ -18,6 +18,11 @@
   border-color: var(--card-color);
 }
 
+.cardLink:hover .ctaArrow,
+.cardLink:hover .arrow {
+  color: var(--card-color);
+}
+
 .imageWrapper {
   margin: -1.5rem -1.5rem 1rem -1.5rem;
 }
@@ -87,10 +92,6 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-}
-
-.ctaText:hover {
-  color: var(--ifm-color-emphasis-900);
 }
 
 .ctaArrow {

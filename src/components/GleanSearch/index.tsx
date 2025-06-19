@@ -417,6 +417,8 @@ function GleanSearchClient(): ReactElement {
         }
       };
 
+      console.log('config', config);
+
       // Use attach method for modal search
       await window.GleanWebSDK.attach(searchContainerRef.current, config);
       
@@ -450,7 +452,7 @@ function GleanSearchClient(): ReactElement {
       
       script.onerror = () => {
         console.error('Failed to load Glean SDK');
-      };
+      }; 
 
       document.head.appendChild(script);
 

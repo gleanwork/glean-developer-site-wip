@@ -1,3 +1,7 @@
+---
+title: Agents API
+---
+
 # Agents API
 
 Glean agents enable you to build, deploy, and manage AI agents across your organization. The Agents API provides programmatic control over these agents.

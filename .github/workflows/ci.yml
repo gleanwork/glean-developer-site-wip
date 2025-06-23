@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, add-actions-workflows]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up mise
+        uses: jdx/mise-action@v2
+        with:
+          cache: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Type check
+        run: yarn typecheck
+
+      - name: Test build website
+        run: yarn build 

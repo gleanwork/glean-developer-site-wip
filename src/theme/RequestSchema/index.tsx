@@ -3,12 +3,6 @@
 import React from "react"
 
 import BrowserOnly from "@docusaurus/BrowserOnly"
-import Details from "@theme/Details"
-import Markdown from "@theme/Markdown"
-import MimeTabs from "@theme/MimeTabs"
-import SchemaNode from "@theme/Schema"
-import SkeletonLoader from "@theme/SkeletonLoader"
-import TabItem from "@theme/TabItem"
 import { MediaTypeObject } from "docusaurus-plugin-openapi-docs/lib/openapi/types"
 import styles from "./styles.module.css"
 
@@ -96,6 +90,10 @@ const RequestSchemaComponent: React.FC<Props> = ({ title, body, style }) => {
   };
 
   if (mimeTypes.length > 1) {
+    const schema = body.content['application/json']?.schema;
+    const hasProperties = schema && typeof schema === 'object' && 'properties' in schema && schema.properties;
+    const requiredArray = schema && typeof schema === 'object' && 'required' in schema && Array.isArray(schema.required) ? schema.required : [];
+    
     return (
       <div className={styles.container}>
         <div className={styles.header}>
@@ -108,11 +106,11 @@ const RequestSchemaComponent: React.FC<Props> = ({ title, body, style }) => {
           <span className={styles.requiredLabel}>REQUIRED</span>
                       </div>
 
-        {Object.entries(body.content['application/json'].schema.properties).map(
+        {hasProperties && Object.entries(schema.properties).map(
           ([propName, propSchema]: [string, any]) => renderProperty(
             propName,
             propSchema,
-            body.content['application/json'].schema.required?.includes(propName)
+            requiredArray.includes(propName)
           )
         )}
       </div>
@@ -127,6 +125,9 @@ const RequestSchemaComponent: React.FC<Props> = ({ title, body, style }) => {
     return null
   }
 
+  const hasProperties = firstBody && typeof firstBody === 'object' && 'properties' in firstBody && firstBody.properties;
+  const requiredArray = firstBody && typeof firstBody === 'object' && 'required' in firstBody && Array.isArray(firstBody.required) ? firstBody.required : [];
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -139,11 +140,11 @@ const RequestSchemaComponent: React.FC<Props> = ({ title, body, style }) => {
         <span className={styles.requiredLabel}>REQUIRED</span>
       </div>
 
-      {Object.entries(firstBody.properties).map(
+      {hasProperties && Object.entries(firstBody.properties).map(
         ([propName, propSchema]: [string, any]) => renderProperty(
           propName,
           propSchema,
-          firstBody.required?.includes(propName)
+          requiredArray.includes(propName)
         )
       )}
     </div>
@@ -152,7 +153,7 @@ const RequestSchemaComponent: React.FC<Props> = ({ title, body, style }) => {
 
 const RequestSchema: React.FC<Props> = (props) => {
   return (
-    <BrowserOnly fallback={<SkeletonLoader size="sm" />}>
+    <BrowserOnly fallback={<div>Loading...</div>}>
       {() => {
         return <RequestSchemaComponent {...props} />
       }}

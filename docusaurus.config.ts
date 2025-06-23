@@ -2,7 +2,6 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
-import type { ApiPageMetadata } from "docusaurus-plugin-openapi-docs";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -19,7 +18,7 @@ const config: Config = {
   url: 'https://aureliawang-glean.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/glean-developer-site-revamp/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -45,6 +44,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          routeBasePath: '/',
           docItemComponent: "@theme/ApiItem",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -83,30 +83,9 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'guides',
+          sidebarId: 'docSidebar',
           position: 'left',
-          label: 'Guides',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'apiReference',
-          position: 'left',
-          label: 'API Reference',
-        },
-        {
-          to: '/api-clients',
-          position: 'left',
-          label: 'API Clients',
-        },
-        {
-          to: '/agents',
-          position: 'left',
-          label: 'Agents',
-        },
-        {
-          to: '/mcp',
-          position: 'left',
-          label: 'MCP',
+          label: 'Documentation',
         },
         {
           to: '/changelog',
@@ -147,6 +126,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
+            {
+              label: 'Community',
+              to: '/community',
+            },
             {
               label: 'Changelog',
               to: '/changelog',
@@ -212,28 +195,28 @@ const config: Config = {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
             },
-            markdownGenerators: {
-              createApiPageMD: (pageData: ApiPageMetadata) => {
-                const { api, title, description } = pageData;
+            // markdownGenerators: {
+            //   createApiPageMD: (pageData: ApiPageMetadata) => {
+            //     const { api, title, description } = pageData;
                 
-                // Check for both x-codeSamples and x-code-samples
-                const samples = api['x-codeSamples'] || api['x-code-samples'];
+            //     // Check for both x-codeSamples and x-code-samples
+            //     const samples = api['x-codeSamples'] || api['x-code-samples'];
                 
-                // Generate code samples section if samples exist
-                const codeSamples = samples
-                  ? `\n## Code Samples\n\n${samples
-                      .map(sample => (
-                        `### ${sample.label || sample.lang}\n\n\`\`\`${sample.lang}\n${sample.source}\n\`\`\``
-                      ))
-                      .join('\n\n')}`
-                  : '';
+            //     // Generate code samples section if samples exist
+            //     const codeSamples = samples
+            //       ? `\n## Code Samples\n\n${samples
+            //           .map(sample => (
+            //             `### ${sample.label || sample.lang}\n\n\`\`\`${sample.lang}\n${sample.source}\n\`\`\``
+            //           ))
+            //           .join('\n\n')}`
+            //       : '';
 
-                return `# ${title}
-                          ${description}
-                          ${codeSamples}
-                          ${pageData.apiDemoPanel}`;
-              }
-            }
+            //     return `# ${title}
+            //               ${description}
+            //               ${codeSamples}
+            //               ${pageData.apiDemoPanel}`;
+            //   }
+            // }
           } satisfies OpenApiPlugin.Options,
           activity: {
             specPath: "./openapi/split-apis/activity-api.yaml",
@@ -283,8 +266,8 @@ const config: Config = {
               categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
-          collections: {
-            specPath: "./openapi/split-apis/collections-api.yaml",
+          announcements: {
+            specPath: "./openapi/split-apis/announcements-api.yaml",
             outputDir: "docs/api/test",
             sidebarOptions: {
               groupPathsBy: "tag",

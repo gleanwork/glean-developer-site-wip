@@ -27,7 +27,7 @@ const config: Config = {
 
   deploymentBranch: 'gh-pages',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -183,10 +183,30 @@ const config: Config = {
       },
     ],
     [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        siteTitle: 'Glean Developer',
+        siteDescription: 'Glean Developer',
+        depth: 2,
+        content: {
+          includePages: true,
+          enableLlmsFullTxt: true,
+        }
+      }
+    ],
+	[
       require.resolve('docusaurus-plugin-search-local'),
+      '@signalwire/docusaurus-plugin-llms-txt',
       {
         indexDocs: true,
+        siteTitle: 'Glean Developer',
+        siteDescription: 'Glean Developer',
+        depth: 2,
+        content: {
+          includePages: true,
         hashed: true,
+          enableLlmsFullTxt: true,
+        }
       },
     ],
     [

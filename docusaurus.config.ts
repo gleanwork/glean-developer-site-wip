@@ -183,6 +183,13 @@ const config: Config = {
       },
     ],
     [
+      require.resolve('docusaurus-plugin-search-local'),
+      {
+        indexDocs: true,
+        hashed: true,
+      },
+    ],
+    [
       'docusaurus-plugin-openapi-docs',
       {
         id: "api", // plugin id

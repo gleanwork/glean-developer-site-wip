@@ -11862,9 +11862,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postman-code-generators@npm:1.12.0":
-  version: 1.12.0
-  resolution: "postman-code-generators@npm:1.12.0"
+"postman-code-generators@npm:^1.10.1":
+  version: 1.14.2
+  resolution: "postman-code-generators@npm:1.14.2"
   dependencies:
     async: "npm:3.2.2"
     detect-package-manager: "npm:3.0.2"
@@ -11872,7 +11872,7 @@ __metadata:
     path: "npm:0.12.7"
     postman-collection: "npm:^4.4.0"
     shelljs: "npm:0.8.5"
-  checksum: 10/4c7875d42af11762e83ae57736aec87e71424e8556fe32316aa5a909f37d374d8b25741489cca8204888c66d39fbd279c360f7f6f5e54f8b7b4acc0eaec13954
+  checksum: 10/f83a523fe67219b69c46dd8cc259bec0eca0734af800fd8593b459e6c1f7a2a3577e4d3969f0e896f438e6d22c9bac7631d041e63a298c427b6466f0db1db024
   languageName: node
   linkType: hard
 

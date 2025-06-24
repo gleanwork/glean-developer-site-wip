@@ -40,7 +40,7 @@ const config: Config = {
 
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       {
         docs: {
           sidebarPath: './sidebars.ts',
@@ -81,12 +81,6 @@ const config: Config = {
         src: 'img/glean-developer-logo-light.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'docSidebar',
-          position: 'left',
-          label: 'Documentation',
-        },
         {
           to: '/changelog',
           label: 'Changelog',

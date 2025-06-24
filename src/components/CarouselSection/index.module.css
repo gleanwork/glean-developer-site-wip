@@ -1,0 +1,79 @@
+/* WIDE CONTAINER FOR HOMEPAGE */
+.wideContainer {
+  max-width: 1300px !important;
+}
+
+/* CAROUSEL STYLING */
+.carousel {
+  padding-bottom: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel .swiper-wrapper {
+  border: none !important;
+}
+
+.carousel .swiper-slide {
+  border: none !important;
+}
+
+.carousel .swiper-pagination {
+  position: absolute !important;
+  bottom: -3rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+  text-align: center;
+}
+
+/* PAGINATION BULLETS */
+.paginationBullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-300);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 6px;
+  display: inline-block;
+}
+
+.paginationBulletActive {
+  background: var(--ifm-color-primary);
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Dark mode pagination bullets */
+[data-theme='dark'] .paginationBullet {
+  background: var(--ifm-color-emphasis-400);
+}
+
+[data-theme='dark'] .paginationBulletActive {
+  background: var(--ifm-color-primary-light);
+}
+
+/* CODE BLOCK STYLING */
+.codeWrap {
+  margin: 2rem 0;
+  max-width: 100%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .carousel {
+    padding-bottom: 2.5rem;
+  }
+  
+  .carousel .swiper-pagination {
+    bottom: -2.5rem !important;
+  }
+  
+  .paginationBullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+  }
+} 

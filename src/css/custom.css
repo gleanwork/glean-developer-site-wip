@@ -4,7 +4,9 @@
  * work well for content-centric websites.
  */
 
-/* Import Polysans Neutral font */
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @font-face {
   font-family: 'Polysans Neutral';
   font-weight: 400;
@@ -20,7 +22,13 @@
   --ifm-heading-color: #1c1e21; /* heading color */
   --ifm-color-content-secondary: #1c1e21; /* secondary content color like small text */
 
-  --ifm-color-primary: #1c1e21; /* sidebar and top bar colors */
+  --ifm-color-primary: #343ced;
+  --ifm-color-primary-dark: #1922eb;
+  --ifm-color-primary-darker: #141de2;
+  --ifm-color-primary-darkest: #1018ba;
+  --ifm-color-primary-light: #4f55ef;
+  --ifm-color-primary-lighter: #5c62f1;
+  --ifm-color-primary-lightest: #8488f4;
   
   /* Accent color (light yellow/green) */
   --ifm-color-accent: #d8fd49; /* hover highlight color */
@@ -42,27 +50,47 @@
   --ifm-heading-font-family: 'Polysans Neutral', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
   --ifm-font-weight-base: 400;
   --ifm-heading-font-weight: 400;
+  
+  /* Custom font variables */
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --ifm-link-color: #000000; /* black text color */
+  --ifm-link-decoration: underline 1px #343CED; /* thin colored underline by default */
+  --ifm-link-hover-decoration: underline 2px #343CED; /* thicker colored underline on hover */
+  
+  /* Custom font variables */
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --ifm-link-color: #000000; /* black text color */
+  --ifm-link-decoration: underline 1px #343CED; /* thin colored underline by default */
+  --ifm-link-hover-decoration: underline 2px #343CED; /* thicker colored underline on hover */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /* Primary color in dark mode */
-  --ifm-color-primary: #818384;
-  --ifm-color-content: #818384; /* content color */
-  --ifm-heading-color: #818384;
+  /* Primary color in dark mode - sophisticated grey palette */
+  --ifm-color-primary: #d1d5db;
+  --ifm-color-primary-dark: #9ca3af;
+  --ifm-color-primary-darker: #6b7280;
+  --ifm-color-primary-darkest: #4b5563;
+  --ifm-color-primary-light: #e5e7eb;
+  --ifm-color-primary-lighter: #f3f4f6;
+  --ifm-color-primary-lightest: #f9fafb;
+  --ifm-color-content: #d1d5db; /* content color - readable grey */
+  --ifm-heading-color: #f9fafb; /* headings - bright white */
   
-  /* Dark mode specific colors */
-  --ifm-background-color: #0a0a0a;
-  --ifm-navbar-background-color: #0a0a0a;
-  --ifm-color-emphasis-100: #1a1a1a;
-  --ifm-color-emphasis-200: #2a2a2a;
-  --ifm-color-emphasis-300: #3a3a3a;
-  --ifm-color-emphasis-400: #4a4a4a;
-  --ifm-color-emphasis-500: #5a5a5a;
-  --ifm-color-emphasis-600: #6a6a6a;
-  --ifm-color-emphasis-700: #7a7a7a;
-  --ifm-color-emphasis-800: #8a8a8a;
-  --ifm-color-emphasis-900: #9a9a9a;
+  /* Dark mode specific colors - lighter and more readable */
+  --ifm-background-color: #111827; /* lighter than before */
+  --ifm-navbar-background-color: #111827;
+  --ifm-color-emphasis-100: #1f2937;
+  --ifm-color-emphasis-200: #374151;
+  --ifm-color-emphasis-300: #4b5563;
+  --ifm-color-emphasis-400: #6b7280;
+  --ifm-color-emphasis-500: #9ca3af;
+  --ifm-color-emphasis-600: #d1d5db;
+  --ifm-color-emphasis-700: #e5e7eb;
+  --ifm-color-emphasis-800: #f3f4f6;
+  --ifm-color-emphasis-900: #f9fafb;
   
   /* Accent color in dark mode (brighter for contrast) */
   --ifm-color-accent: #d8fd49;
@@ -74,25 +102,43 @@
   --ifm-color-accent-lightest: #edfdab;
   
   --docusaurus-highlighted-code-line-bg: rgba(216, 253, 73, 0.3);
+  
+  /* Dark mode link colors */
+  --ifm-link-color: #e5e7eb;
+  --ifm-link-hover-color: #f9fafb;
+  
+  /* Blue accent overrides for dark mode */
+  --ifm-color-info: #6366F1;
+  --ifm-color-info-dark: #4F46E5;
+  --ifm-color-info-darker: #4338CA;
 }
 
-/* Links - only in main content paragraphs */
+/* Links - only in main content paragraphs and content areas */
 article p a,
-article ul a,
-article li a,
 .markdown p a,
-.theme-doc-markdown p a {
-  color: #000000;
-  text-decoration: underline 1px #343CED;
+.theme-doc-markdown p a,
+article li a,
+.markdown li a,
+.theme-doc-markdown li a,
+article td a,
+.markdown td a,
+.theme-doc-markdown td a {
+  color: var(--ifm-link-color);
+  text-decoration: var(--ifm-link-decoration);
   transition: color 0.2s ease;
 }
 
 article p a:hover,
-article ul a:hover,
-article li a:hover,
 .markdown p a:hover,
-.theme-doc-markdown p a:hover {
-  text-decoration: underline 2px #343CED;
+.theme-doc-markdown p a:hover,
+article li a:hover,
+.markdown li a:hover,
+.theme-doc-markdown li a:hover,
+article td a:hover,
+.markdown td a:hover,
+.theme-doc-markdown td a:hover {
+  color: var(--ifm-link-hover-color);
+  text-decoration: var(--ifm-link-hover-decoration);
 }
 
 /* Keep navbar links unchanged */
@@ -128,6 +174,19 @@ article li a:hover,
   border-color: var(--ifm-color-primary-darker);
 }
 
+/* Dark mode button improvements */
+[data-theme='dark'] .button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #111827; /* dark text on light grey */
+}
+
+[data-theme='dark'] .button--primary:hover {
+  background-color: var(--ifm-color-primary-lighter);
+  border-color: var(--ifm-color-primary-lighter);
+  color: #111827;
+}
+
 .button--secondary {
   background-color: var(--ifm-color-accent);
   border-color: var(--ifm-color-accent);
@@ -161,11 +220,41 @@ h1, h2, h3, h4, h5, h6 {
 .card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   border: 1px solid var(--ifm-color-emphasis-200);
+  background-color: var(--ifm-background-color);
 }
 
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--ifm-color-primary);
+}
+
+/* Dark mode card improvements */
+[data-theme='dark'] .card {
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .card:hover {
+  border-color: #6366F1; /* Light blue for dark mode */
+}
+
+/* Dark mode FontAwesome icon colors */
+[data-theme='dark'] .card svg[data-icon] {
+  color: #6366F1 !important; /* Light blue for FontAwesome icons */
+}
+
+/* Dark mode blue element overrides */
+[data-theme='dark'] .tabs__item--active {
+  border-bottom-color: #6366F1;
+  color: #6366F1;
+}
+
+[data-theme='dark'] .navbar__link--active {
+  color: #6366F1;
+}
+
+[data-theme='dark'] .menu__link--active {
+  color: #6366F1 !important;
 }
 
 .card__image {
@@ -321,6 +410,25 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
+.font-mono {
+  font-family: var(--font-jetbrains-mono);
+  font-variant-ligatures: none;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 /* Responsive breakpoints */
 @media (min-width: 768px) {
   .md\:grid-cols-2 {
@@ -433,20 +541,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-.menu__list-item-collapsible:hover,
-.menu__list-item-collapsible:active,
-.menu__list-item-collapsible:focus-within,
-.menu__list-item-collapsible.menu__list-item-collapsible--active {
-  background: transparent;
-}
-
-.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link,
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link.menu__link--active {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: .5px;
   line-height: 16px;
   text-transform: uppercase;
   font-size: 12px;
+  color: var(--ifm-color-emphasis-900) !important;
 }
 
 /* Remove background on hover, only darken text */

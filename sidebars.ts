@@ -22,8 +22,8 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "get-started/overview",
-          label: "Overview",
+          id: "get-started/home",
+          label: "Home",
         },
         {
           type: "doc",

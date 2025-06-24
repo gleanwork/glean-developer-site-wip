@@ -94,48 +94,182 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'light',
       links: [
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discussions',
-              href: 'https://github.com/gleanwork/glean-developer-site/discussions',
-            },
-            {
-              label: 'Report a Bug',
-              href: 'https://github.com/gleanwork/glean-developer-site/issues/new?template=bug_report.md',
-            },
-            {
-              label: 'Request a Feature',
-              href: 'https://github.com/gleanwork/glean-developer-site/issues/new?template=feature_request.md',
-            },
-            {
-              label: 'Support',
-              href: 'https://support.glean.com/hc/en-us',
-            }
-          ],
-        },
         {
           title: 'More',
           items: [
             {
-              label: 'Community',
-              to: '/community',
+              label: "GitHub",
+              href: "https://github.com/gleanwork/glean-developer-site"
             },
             {
-              label: 'Changelog',
-              to: '/changelog',
+              "label": "Status",
+              "href": "https://status.glean.com"
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              "label": "Support",
+              "href": "https://support.glean.com"
             },
+            {
+              "label": "Open Glean",
+              "href": "https://app.glean.com"
+            }
           ],
         },
+        {
+          title: "Product",
+          items: [
+            {
+              label: "Work AI Platform",
+              href: "https://www.glean.com/product/overview"
+            },
+            {
+              label: "Workplace Search",
+              href: "https://www.glean.com/product/workplace-search-ai"
+            },
+            {
+              label: "Assistant",
+              href: "https://www.glean.com/product/assistant"
+            },
+            {
+              label: "Agents",
+              href: "https://www.glean.com/product/ai-agents"
+            },
+            {
+              label: "Data Analysis",
+              href: "https://www.glean.com/product/data-analysis"
+            },
+            {
+              label: "AI Governance",
+              href: "https://www.glean.com/product/governance"
+            },
+            {
+              label: "Prompt Library",
+              href: "https://www.glean.com/prompt-library"
+            },
+            {
+              label: "Knowledge Management",
+              href: "https://www.glean.com/product/knowledge-management"
+            },
+            {
+              label: "Work Hub",
+              href: "https://www.glean.com/product/work-hub"
+            },
+            {
+              label: "Connectors",
+              href: "https://www.glean.com/connectors"
+            },
+            {
+              label: "Security",
+              href: "https://www.glean.com/security"
+            }
+          ]
+        },
+        {
+          title: "Solutions",
+          items: [
+            {
+              label: "All Teams",
+              href: "https://www.glean.com/solutions/all-teams"
+            },
+            {
+              label: "Engineering",
+              href: "https://www.glean.com/solutions/engineering"
+            },
+            {
+              label: "Sales",
+              href: "https://www.glean.com/solutions/sales"
+            },
+            {
+              label: "Support",
+              href: "https://www.glean.com/solutions/support"
+            },
+            {
+              label: "People",
+              href: "https://www.glean.com/solutions/people"
+            },
+            {
+              label: "Knowledge Management",
+              href: "https://www.glean.com/solutions/knowledge-management"
+            },
+            {
+              label: "Retail",
+              href: "https://www.glean.com/industries/retail"
+            },
+            {
+              label: "Financial Services",
+              href: "https://www.glean.com/industries/financial-services"
+            },
+            {
+              label: "Enterprise Search Software",
+              href: "https://www.glean.com/enterprise-search-software"
+            }
+          ]
+        },
+        {
+          title: "Resources",
+          items: [
+            {
+              label: "Resources Center",
+              href: "https://www.glean.com/resources"
+            },
+            {
+              label: "Product Videos",
+              href: "https://www.glean.com/resources/product-videos"
+            },
+            {
+              label: "Guides",
+              href: "https://www.glean.com/resources/guides"
+            },
+            {
+              label: "Customer Stories",
+              href: "https://www.glean.com/resources/customer-stories"
+            },
+            {
+              label: "Blog",
+              href: "https://www.glean.com/blog"
+            },
+            {
+              label: "Webinars",
+              href: "https://www.glean.com/webinars"
+            },
+            {
+              label: "Developers",
+              href: "https://developers.glean.com/"
+            },
+            {
+              label: "Help Center",
+              href: "https://help.glean.com/en/"
+            }
+          ]
+        },
+        {
+          title: "Company",
+          items: [
+            {
+              label: "About",
+              href: "https://www.glean.com/about"
+            },
+            {
+              label: "Careers",
+              href: "https://www.glean.com/careers"
+            },
+            {
+              label: "Newsroom",
+              href: "https://www.glean.com/press"
+            },
+            {
+              label: "Referrals",
+              href: "https://www.glean.com/refer-friend"
+            },
+            {
+              label: "Partners",
+              href: "https://www.glean.com/partners"
+            }
+          ]
+        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Glean, Inc.`,
     },
     prism: {
       theme: prismThemes.github,

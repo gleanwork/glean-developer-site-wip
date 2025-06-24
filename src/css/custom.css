@@ -25,7 +25,16 @@
   /* Accent color (light yellow/green) */
   --ifm-color-accent: #d8fd49; /* hover highlight color */
   
-  --ifm-code-font-size: 95%;
+  --ifm-font-size-base: 87.5%;
+  --ifm-code-font-size: 85%;
+  
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.6rem;
+  --ifm-h3-font-size: 1.3rem;
+  --ifm-h4-font-size: 1.1rem;
+  --ifm-h5-font-size: 1rem;
+  --ifm-h6-font-size: 0.9rem;
+
   --docusaurus-highlighted-code-line-bg: rgba(216, 253, 73, 0.15); /* code block highlight color */
   
   /* Font family overrides */
@@ -422,11 +431,28 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
+.menu__list .menu__list {
+  padding-left: 0;
+}
 /* Sidebar Styling */
 /* Menu links should not have underlines */
 .menu__link {
   text-decoration: none !important;
-  color: rgb(var(--gray-700));
+  color: var(--ifm-color-emphasis-700);
+}
+
+.theme-doc-sidebar-item-category-level-1 {
+  margin-bottom: 1rem;
+}
+
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .5px;
+  line-height: 16px;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 /* Remove background on hover, only darken text */
@@ -450,7 +476,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent !important;
 }
 
-/* Add vertical line for nested menu items */
+/* Add vertical line for nested menu items
 .menu__list .menu__list {
   position: relative;
 }
@@ -463,7 +489,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   width: 1px;
   background-color: var(--ifm-color-emphasis-300);
-}
+} */
 
 .menu__link--sublist-caret:after,
 .menu__caret::before {
@@ -501,7 +527,8 @@ h1, h2, h3, h4, h5, h6 {
 .markdown h1,
 article h1,
 .main-wrapper h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  letter-spacing: 0.025em;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;

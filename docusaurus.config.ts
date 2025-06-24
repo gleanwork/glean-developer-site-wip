@@ -142,10 +142,6 @@ const config: Config = {
               href: "https://www.glean.com/product/ai-agents"
             },
             {
-              label: "Apps",
-              href: "https://www.glean.com/product/apps"
-            },
-            {
               label: "Data Analysis",
               href: "https://www.glean.com/product/data-analysis"
             },

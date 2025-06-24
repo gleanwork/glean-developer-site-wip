@@ -1,10 +1,10 @@
-<!-- ---
+---
 title: 'Model Context Protocol'
 description: 'Connect Glean to AI models with MCP'
 icon: 'link'
 ---
 
-import { MCPIcon } from './snippets/agents/icons.mdx';
+import { MCPIcon } from './snippets/mcp/icons.mdx';
 
 # <MCPIcon className="inline" height="1.4rem" /> Glean MCP Integration
 
@@ -557,4 +557,4 @@ You'll need Glean [API credentials](/docs/guides/client/authentication/glean-iss
 
   </Tab>
 </Tabs>
-</Accordion> -->
+</Accordion>

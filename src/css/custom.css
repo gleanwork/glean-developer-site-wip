@@ -78,6 +78,8 @@
 
 /* Links - only in main content paragraphs */
 article p a,
+article ul a,
+article li a,
 .markdown p a,
 .theme-doc-markdown p a {
   color: #000000;
@@ -86,6 +88,8 @@ article p a,
 }
 
 article p a:hover,
+article ul a:hover,
+article li a:hover,
 .markdown p a:hover,
 .theme-doc-markdown p a:hover {
   text-decoration: underline 2px #343CED;

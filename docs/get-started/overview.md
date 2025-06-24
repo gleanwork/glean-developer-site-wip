@@ -1,3 +1,4 @@
 ---
 slug: /
+title: Overview
 ---

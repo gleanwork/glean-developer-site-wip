@@ -1,3 +1,7 @@
+---
+title: API Clients
+---
+
 # Glean API Clients
 
 Glean offers official API clients for several popular programming languages to help developers integrate Glean's powerful search and knowledge capabilities into their applications. These clients provide language-specific interfaces to Glean's APIs, making it easier to build custom solutions without having to handle the low-level HTTP requests.

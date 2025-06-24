@@ -446,6 +446,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
+.menu__list-item-collapsible:hover,
+.menu__list-item-collapsible:active,
+.menu__list-item-collapsible:focus-within,
+.menu__list-item-collapsible.menu__list-item-collapsible--active {
+  background: transparent;
+}
+
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
   text-transform: uppercase;
   font-weight: bold;

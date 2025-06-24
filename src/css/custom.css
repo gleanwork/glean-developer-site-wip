@@ -42,10 +42,6 @@
   --ifm-heading-font-family: 'Polysans Neutral', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
   --ifm-font-weight-base: 400;
   --ifm-heading-font-weight: 400;
-
-  --ifm-link-color: #000000; /* black text color */
-  --ifm-link-decoration: underline 1px #343CED; /* thin colored underline by default */
-  --ifm-link-hover-decoration: underline 2px #343CED; /* thicker colored underline on hover */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -80,32 +76,19 @@
   --docusaurus-highlighted-code-line-bg: rgba(216, 253, 73, 0.3);
 }
 
-/* Links - only in main content paragraphs and content areas */
+/* Links - only in main content paragraphs */
 article p a,
 .markdown p a,
-.theme-doc-markdown p a,
-article li a,
-.markdown li a,
-.theme-doc-markdown li a,
-article td a,
-.markdown td a,
-.theme-doc-markdown td a {
-  color: var(--ifm-link-color);
-  text-decoration: var(--ifm-link-decoration);
+.theme-doc-markdown p a {
+  color: #000000;
+  text-decoration: underline 1px #343CED;
   transition: color 0.2s ease;
 }
 
 article p a:hover,
 .markdown p a:hover,
-.theme-doc-markdown p a:hover,
-article li a:hover,
-.markdown li a:hover,
-.theme-doc-markdown li a:hover,
-article td a:hover,
-.markdown td a:hover,
-.theme-doc-markdown td a:hover {
-  color: var(--ifm-link-hover-color);
-  text-decoration: var(--ifm-link-hover-decoration);
+.theme-doc-markdown p a:hover {
+  text-decoration: underline 2px #343CED;
 }
 
 /* Keep navbar links unchanged */

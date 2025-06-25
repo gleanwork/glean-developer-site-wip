@@ -3,6 +3,10 @@
   max-width: 1300px !important;
 }
 
+:root {
+  --swiper-pagination-bottom: -1px !important;
+}
+
 /* CAROUSEL STYLING */
 .carousel {
   padding-bottom: 3rem;
@@ -10,21 +14,12 @@
   position: relative;
 }
 
-.carousel .swiper-wrapper {
+:global(.swiper-wrapper) {
   border: none !important;
 }
 
-.carousel .swiper-slide {
+:global(.swiper-slide) {
   border: none !important;
-}
-
-.carousel .swiper-pagination {
-  position: absolute !important;
-  bottom: -3rem !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: auto !important;
-  text-align: center;
 }
 
 /* PAGINATION BULLETS */
@@ -67,7 +62,7 @@
     padding-bottom: 2.5rem;
   }
   
-  .carousel .swiper-pagination {
+  .carousel :global(.swiper-pagination) {
     bottom: -2.5rem !important;
   }
   

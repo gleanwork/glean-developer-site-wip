@@ -50,6 +50,11 @@ const sidebars: SidebarsConfig = {
           id: "get-started/api-versions",
           label: "API Versions",
         },
+        {
+          type: "link",
+          href: "/changelog",
+          label: "Changelog",
+        },
       ],
     },
     {

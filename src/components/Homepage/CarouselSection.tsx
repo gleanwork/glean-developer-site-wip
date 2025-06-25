@@ -120,6 +120,7 @@ export default function CarouselSection() {
         autoplay={{
           delay: 6000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
         pagination={{
           clickable: true,

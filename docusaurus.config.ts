@@ -82,11 +82,6 @@ const config: Config = {
       },
       items: [
         {
-          to: '/changelog',
-          label: 'Changelog',
-          position: 'right',
-        },
-        {
           to: '/community',
           label: 'Community',
           position: 'right',

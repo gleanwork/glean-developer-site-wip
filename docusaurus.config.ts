@@ -80,18 +80,6 @@ const config: Config = {
         alt: 'Glean Developer Logo',
         src: 'img/glean-developer-logo-light.svg',
       },
-      items: [
-        {
-          to: '/changelog',
-          label: 'Changelog',
-          position: 'right',
-        },
-        {
-          to: '/community',
-          label: 'Community',
-          position: 'right',
-        }
-      ],
     },
     footer: {
       links: [

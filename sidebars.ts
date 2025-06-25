@@ -22,8 +22,8 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "get-started/overview",
-          label: "Overview",
+          id: "get-started/home",
+          label: "Home",
         },
         {
           type: "doc",
@@ -50,6 +50,16 @@ const sidebars: SidebarsConfig = {
           id: "get-started/api-versions",
           label: "API Versions",
         },
+        {
+          type: "link",
+          href: "/changelog",
+          label: "Changelog",
+        },
+        {
+          type: "link",
+          href: "https://community.glean.com",
+          label: "Community",
+        }
       ],
     },
     {

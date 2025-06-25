@@ -528,7 +528,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .menu__list .menu__list {
-  padding-left: 0;
+  padding-left: 10px;
 }
 /* Sidebar Styling */
 /* Menu links should not have underlines */

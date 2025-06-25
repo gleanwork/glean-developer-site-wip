@@ -55,6 +55,11 @@ const sidebars: SidebarsConfig = {
           href: "/changelog",
           label: "Changelog",
         },
+        {
+          type: "link",
+          href: "https://community.glean.com",
+          label: "Community",
+        }
       ],
     },
     {

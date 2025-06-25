@@ -64,6 +64,8 @@
   --ifm-link-color: #000000; /* black text color */
   --ifm-link-decoration: underline 1px #343CED; /* thin colored underline by default */
   --ifm-link-hover-decoration: underline 2px #343CED; /* thicker colored underline on hover */
+
+  --ifm-hr-background-color: var(--ifm-color-emphasis-200);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import CodeBlock from '@theme/CodeBlock';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
-import styles from './index.module.css';
+import styles from './CarouselSection.module.css';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -112,7 +112,7 @@ with Glean(
 
 export default function CarouselSection() {
   return (
-    <section className={clsx('container', styles.wideContainer, 'margin-vert--xl')}>
+    <section className={clsx('container', styles.wideContainer, 'margin-vert--l')}>
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={0}

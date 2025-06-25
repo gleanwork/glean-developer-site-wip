@@ -2,7 +2,6 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './index.module.css';
-import CodeBlock from '@theme/CodeBlock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faRobot, 
@@ -17,7 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import McpIcon from '../Icons/McpIcon';
 import Card from '../Card';
-import CarouselSection from '../CarouselSection';
+import CarouselSection from './CarouselSection';
 import { GLEAN_BRAND_COLORS } from '../../utils/brandColors';
 
 type Feature = {
@@ -102,20 +101,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Top Banner */}
-      <section className={styles.topBanner}>
-        <div className={clsx('container', styles.wideContainer)}>
-          <div className='row'>
-            <div className='col'>
-              <h3 className={clsx(styles.bannerTitle, 'text-white', 'font-mono', 'font-bold', 'text-lg')}>Work AI for all</h3>
-              <p className={styles.bannerSubtitle}>
-                Build on the Work AI platform connected to all your data. Find, create, and automate anything.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Dynamic Carousel Section */}
       <CarouselSection />
 

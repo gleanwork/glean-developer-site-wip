@@ -25,7 +25,7 @@ Auth:
 
 API Clients:
   label: API Clients
-  permalink: /sdk/api-clients
+  permalink: /libraries/api-clients
   description: API Clients tag
 
 Governance API:

@@ -29,7 +29,7 @@ const slides: CarouselSlide[] = [
       'API Clients for Python, TypeScript, Go, and Java'
     ],
     ctaText: 'Jump to the Chat API',
-    ctaHref: '/api/client-api/chat',
+    ctaHref: '/api/client-api/chat/overview',
     codeLanguage: 'python',
     codeContent: `import os
 from glean import Glean, models
@@ -59,7 +59,7 @@ with Glean(
       'Automate complex business processes'
     ],
     ctaText: 'Explore Agent APIs',
-    ctaHref: '/api/client-api/agents',
+    ctaHref: '/api/client-api/agents/overview',
     codeLanguage: 'python',
     codeContent: `import os
 from glean import Glean, models
@@ -90,7 +90,7 @@ with Glean(
       'Custom properties and metadata'
     ],
     ctaText: 'View Indexing APIs',
-    ctaHref: '/api/indexing-api',
+    ctaHref: '/api/indexing-api/datasources-overview',
     codeLanguage: 'python',
     codeContent: `import os
 from glean import Glean, models

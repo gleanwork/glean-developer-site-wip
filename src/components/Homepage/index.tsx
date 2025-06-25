@@ -4,15 +4,9 @@ import clsx from 'clsx';
 import styles from './index.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faRobot, 
-  faCode, 
-  faDatabase, 
-  faRocket, 
-  faPuzzlePiece, 
-  faBook,
-  faPlay,
-  faGears,
-  faLifeRing
+  faRobot,
+  faCode,
+  faDatabase,
 } from '@fortawesome/free-solid-svg-icons';
 import McpIcon from '../Icons/McpIcon';
 import Card from '../Card';
@@ -33,7 +27,7 @@ export default function Home() {
       title: 'Build AI Agents',
       body:
         'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
-      href: '/agents/overview',
+      href: 'api/client-api/agents/agents',
       icon: <FontAwesomeIcon icon={faRobot} />,
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
     },
@@ -41,63 +35,18 @@ export default function Home() {
       title: 'Leverage Your Data',
       body:
         'Use Glean\'s APIs and client libraries to search, chat, and embed Work AI in your own apps.',
-      href: '/guides/data',
+      href: 'guides/client/overview',
       icon: <FontAwesomeIcon icon={faCode} />,
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
     },
     {
       title: 'Create Connectors',
       body: 'Bring any source into Glean with our connector framework and indexing API.',
-      href: '/connectors/overview',
+      href: 'guides/indexing/overview',
       icon: <FontAwesomeIcon icon={faDatabase} />,
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
     }
   ];
-
-  // const exploreFeatures: Feature[] = [
-  //   {
-  //     title: 'Quick-start Guides',
-  //     body: 'Short tutorials to get you building in minutes.',
-  //     href: '/get-started/quickstart',
-  //     icon: <FontAwesomeIcon icon={faRocket} />,
-  //     color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-  //   },
-  //   {
-  //     title: 'Sample Agents',
-  //     body: 'Explore ready-made agents you can adapt for your organization.',
-  //     href: '/agents/examples',
-  //     icon: <FontAwesomeIcon icon={faPuzzlePiece} />,
-  //     color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-  //   },
-  //   {
-  //     title: 'SDK Reference',
-  //     body: 'Embed search and chat components in any web app.',
-  //     href: '/web-sdk/overview',
-  //     icon: <FontAwesomeIcon icon={faBook} />,
-  //     color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-  //   },
-  //   {
-  //     title: 'API Documentation',
-  //     body: 'Complete reference for all Glean APIs and endpoints.',
-  //     href: '/api/client-api',
-  //     icon: <FontAwesomeIcon icon={faGears} />,
-  //     color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-  //   },
-  //   {
-  //     title: 'Live Examples',
-  //     body: 'Interactive demos and code samples you can run immediately.',
-  //     href: '/guides/examples',
-  //     icon: <FontAwesomeIcon icon={faPlay} />,
-  //     color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-  //   },
-  //   {
-  //     title: 'Support',
-  //     body: 'Get help from our team and community resources.',
-  //     href: '/support',
-  //     icon: <FontAwesomeIcon icon={faLifeRing} />,
-  //     color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-  //   }
-  // ];
 
   return (
     <>
@@ -125,30 +74,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* Get started, learn, and explore */}
-      {/* <section className={clsx('container', styles.wideContainer, 'margin-vert--l')}>
-        <h2>Get started, learn, and explore</h2>
-        <p className='margin-bottom--lg'>
-          Essential resources to help you prototype quickly, study working examples, and embed Glean wherever you build.
-        </p>
-        <div className='row'>
-          {exploreFeatures.map((f) => (
-            <div key={f.title} className='col col--4 margin-vert--md'>
-              <div className={styles.featureCard}>
-                <Card
-                  title={f.title}
-                  icon={f.icon}
-                  href={f.href}
-                  color={f.color}
-                >
-                  {f.body}
-                </Card>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section> */}
 
       {/* MCP highlight */}
       <section className={clsx('margin-vert--l', styles.mcpSection)}>

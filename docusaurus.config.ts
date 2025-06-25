@@ -77,6 +77,7 @@ const config: Config = {
       logo: {
         alt: 'Glean Developer Logo',
         src: 'img/glean-developer-logo-light.svg',
+        srcDark: 'img/glean-developer-logo-dark.svg',
       },
     },
     footer: {

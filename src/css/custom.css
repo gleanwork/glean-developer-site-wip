@@ -53,18 +53,7 @@
   
   /* Custom font variables */
   --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-  --ifm-link-color: #000000; /* black text color */
-  --ifm-link-decoration: underline 1px #343CED; /* thin colored underline by default */
-  --ifm-link-hover-decoration: underline 2px #343CED; /* thicker colored underline on hover */
   
-  /* Custom font variables */
-  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-  --ifm-link-color: #000000; /* black text color */
-  --ifm-link-decoration: underline 1px #343CED; /* thin colored underline by default */
-  --ifm-link-hover-decoration: underline 2px #343CED; /* thicker colored underline on hover */
-
   --ifm-hr-background-color: var(--ifm-color-emphasis-200);
 }
 
@@ -117,41 +106,21 @@
 
 /* Links - only in main content paragraphs and content areas */
 article p a,
-.markdown p a,
-.theme-doc-markdown p a,
+article ul a,
 article li a,
-.markdown li a,
-.theme-doc-markdown li a,
-article td a,
-.markdown td a,
-.theme-doc-markdown td a {
-  color: var(--ifm-link-color);
-  text-decoration: var(--ifm-link-decoration);
+.markdown p a,
+.theme-doc-markdown p a {
+  color: #000000;
+  text-decoration: underline 1px #343CED;
   transition: color 0.2s ease;
 }
 
 article p a:hover,
-.markdown p a:hover,
-.theme-doc-markdown p a:hover,
+article ul a:hover,
 article li a:hover,
-.markdown li a:hover,
-.theme-doc-markdown li a:hover,
-article td a:hover,
-.markdown td a:hover,
-.theme-doc-markdown td a:hover {
-  color: var(--ifm-link-hover-color);
-  text-decoration: var(--ifm-link-hover-decoration);
-}
-
-/* Keep navbar links unchanged */
-.navbar a,
-.navbar__link,
-.navbar__items a,
-.navbar__brand,
-.footer a,
-.pagination-nav a {
-  color: var(--ifm-color-primary);
-  text-decoration: none;
+.markdown p a:hover,
+.theme-doc-markdown p a:hover {
+  text-decoration: underline 2px #343CED;
 }
 
 .navbar a:hover,

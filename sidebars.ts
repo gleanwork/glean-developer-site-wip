@@ -150,11 +150,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Activity",
-          link: {
-            type: "doc",
-            id: "api/client-api/activity/activity"
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/activity/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/activity/report-document-activity",
@@ -172,11 +173,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Authentication",
-          link: {
-            type: "doc",
-            id: "api/client-api/authentication/authentication",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/authentication/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/authentication/create-auth-token",
@@ -188,11 +190,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Agents",
-          link: {
-            type: "doc",
-            id: "api/client-api/agents/agents",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/agents/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/agents/get-agent",
@@ -228,11 +231,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Answers",
-          link: {
-            type: "doc",
-            id: "api/client-api/answers/answers",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/answers/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/answers/listanswers",
@@ -268,11 +272,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Announcements",
-          link: {
-            type: "doc",
-            id: "api/client-api/announcements/announcements",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/announcements/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/announcements/createannouncement",
@@ -296,11 +301,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Chat",
-          link: {
-            type: "doc",
-            id: "api/client-api/chat/chat",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/chat/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/chat/chat",
@@ -366,11 +372,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Collections",
-          link: {
-            type: "doc",
-            id: "api/client-api/collections/collections",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/collections/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/collections/listcollections",
@@ -424,11 +431,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Entities",
-          link: {
-            type: "doc",
-            id: "api/client-api/entities/entities",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/entities/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/entities/listentities",
@@ -446,11 +454,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Governance",
-          link: {
-            type: "doc",
-            id: "api/client-api/governance/governance",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/governance/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/governance/get-policy",
@@ -516,11 +525,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Summarize",
-          link: {
-            type: "doc",
-            id: "api/client-api/summarize/summarize",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/summarize/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/summarize/summarize-documents",
@@ -532,11 +542,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Tools",
-          link: {
-            type: "doc",
-            id: "api/client-api/tools/tools",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/client-api/tools/overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/client-api/tools/list-available-tools",
@@ -705,11 +716,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Datasources",
-          link: {
-            type: "doc",
-            id: "api/indexing-api/datasources",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/datasources-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/add-or-update-datasource",
@@ -727,11 +739,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Documents",
-          link: {
-            type: "doc",
-            id: "api/indexing-api/documents",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/documents-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/index-document",
@@ -773,11 +786,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "People",
-          link: {
-            type: "doc",
-            id: "api/indexing-api/people",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/people-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/index-employee",
@@ -825,11 +839,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Permissions",
-          link: {
-            type: "doc",
-            id: "api/indexing-api/permissions",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/permissions-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/index-user",
@@ -901,11 +916,12 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Authentication",
-          link: {
-            type: "doc",
-            id: "api/indexing-api/authentication",
-          },
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/authentication-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/rotate-token",
@@ -918,6 +934,11 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Troubleshooting",
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/troubleshooting-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/beta-get-datasource-status",
@@ -972,6 +993,11 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Shortcuts",
           items: [
+            {
+              type: "doc",
+              id: "api/indexing-api/shortcuts-overview",
+              label: "Overview",
+            },
             {
               type: "doc",
               id: "api/indexing-api/bulk-index-external-shortcuts",

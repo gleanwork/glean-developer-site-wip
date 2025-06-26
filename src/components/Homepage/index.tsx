@@ -27,7 +27,7 @@ export default function Home() {
       title: 'Build AI Agents',
       body:
         'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
-      href: 'api/client-api/agents/agents',
+      href: 'api/client-api/agents/overview',
       icon: <FontAwesomeIcon icon={faRobot} />,
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
     },
@@ -35,14 +35,14 @@ export default function Home() {
       title: 'Leverage Your Data',
       body:
         'Use Glean\'s APIs and client libraries to search, chat, and embed Work AI in your own apps.',
-      href: 'guides/client/overview',
+      href: 'api-info/client/getting-started',
       icon: <FontAwesomeIcon icon={faCode} />,
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
     },
     {
       title: 'Create Connectors',
       body: 'Bring any source into Glean with our connector framework and indexing API.',
-      href: 'guides/indexing/overview',
+      href: 'api-info/indexing/getting-started/setup-datasource',
       icon: <FontAwesomeIcon icon={faDatabase} />,
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
     }
@@ -101,7 +101,7 @@ export default function Home() {
 
               <Link
                 className='button button--primary button--lg'
-                to='/mcp/overview'
+                to='guides/mcp/mcp'
               >
                 Learn more about Glean's MCP integration
               </Link>

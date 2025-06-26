@@ -55,7 +55,7 @@ Search Glean's People directory to find employee information.
 
 ### API Tokens
 
-You'll need Glean [API credentials](/guides/client/authentication/glean-issued), and specifically a [user-scoped API token](/guides/client/authentication/glean-issued#selecting-permissions-and-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
+You'll need Glean [API credentials](/api-info/client/authentication/glean-issued), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#selecting-permissions-and-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
 
 <Warning>
   Currently, our MCP implementation uses API tokens for authentication. While

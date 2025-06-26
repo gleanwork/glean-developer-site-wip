@@ -217,7 +217,7 @@
 // // Search Results Component
 // class SearchResultsComponent extends BaseSearchComponent {
 //     private searchBoxElement: HTMLElement | null;
-    
+
 //     constructor(elementId: string, searchBoxId: string) {
 //         super(elementId);
 //         this.searchBoxElement = document.getElementById(searchBoxId);
@@ -342,7 +342,7 @@
 //         placeholder={"Search for answers..."}
 //     />
 //   );
-// } 
+// }
 
 import React, { useEffect, useRef, type ReactElement } from 'react';
 import clsx from 'clsx';
@@ -356,27 +356,27 @@ declare global {
 }
 
 const CONFIG = {
-    BACKEND_URL: 'https://glean-public-external-be.glean.com',
-    THEME: {
-        COMPACT: {
-            placeholderText: "Search...",
-            borderRadius: '.3125rem',
-            border: '1px solid rgba(33, 50, 91, .1)',
-            boxShadow: '0 .375rem 1.5rem 0 rgba(140, 152, 164, .125)',
-        },
-        HERO: {
-            placeholderText: "Search for answers...",
-            borderRadius: '.3125rem',
-            border: '1px solid rgba(33, 50, 91, .1)',
-            boxShadow: '0 .375rem 1.5rem 0 rgba(140, 152, 164, .125)',
-        }
+  BACKEND_URL: 'https://glean-public-external-be.glean.com',
+  THEME: {
+    COMPACT: {
+      placeholderText: 'Search...',
+      borderRadius: '.3125rem',
+      border: '1px solid rgba(33, 50, 91, .1)',
+      boxShadow: '0 .375rem 1.5rem 0 rgba(140, 152, 164, .125)',
     },
-    ELEMENTS: {
-        SEARCH_BOX: 'glean-search-box',
-        SEARCH_RESULTS: 'glean-search-results',
-        SEARCH_BOX_RESULTS: 'glean-search-box--results'
+    HERO: {
+      placeholderText: 'Search for answers...',
+      borderRadius: '.3125rem',
+      border: '1px solid rgba(33, 50, 91, .1)',
+      boxShadow: '0 .375rem 1.5rem 0 rgba(140, 152, 164, .125)',
     },
-    SEARCH_TYPE: 'modal' as const
+  },
+  ELEMENTS: {
+    SEARCH_BOX: 'glean-search-box',
+    SEARCH_RESULTS: 'glean-search-results',
+    SEARCH_BOX_RESULTS: 'glean-search-box--results',
+  },
+  SEARCH_TYPE: 'modal' as const,
 };
 
 // Client-only Glean Search implementation
@@ -385,47 +385,51 @@ function GleanSearchClient(): ReactElement {
   const isInitialized = useRef(false);
 
   const initializeGlean = async () => {
-    if (isInitialized.current || !window.GleanWebSDK || !searchContainerRef.current) {
+    if (
+      isInitialized.current ||
+      !window.GleanWebSDK ||
+      !searchContainerRef.current
+    ) {
       return;
     }
 
     try {
-      console.log("Initializing Glean Search...");
-      
+      console.log('Initializing Glean Search...');
+
       // Create auth provider
       const authProvider = window.GleanWebSDK.createGuestAuthProvider({
-        backend: CONFIG.BACKEND_URL
+        backend: CONFIG.BACKEND_URL,
       });
 
       const authToken = await authProvider.getAuthToken();
-      
+
       if (!authToken) {
         throw new Error('Failed to get auth token');
       }
 
       const config = {
-        authMethod: "token" as const,
+        authMethod: 'token' as const,
         authToken: authToken,
         onAuthTokenRequired: () => authProvider.getAuthToken(),
         backend: CONFIG.BACKEND_URL,
         enableActivityLogging: false,
         themeVariant: 'auto' as const,
-        webAppUrl: "https://glean-public-external.glean.com",
+        webAppUrl: 'https://glean-public-external.glean.com',
         searchBoxCustomizations: CONFIG.THEME.HERO,
         onSearch: (query: string) => {
           console.log('Search triggered with query:', query);
-        }
+        },
       };
 
       console.log('config', config);
 
       // Use attach method for modal search
       await window.GleanWebSDK.attach(searchContainerRef.current, config);
-      
+
       isInitialized.current = true;
-      console.log("Glean Search initialized successfully");
+      console.log('Glean Search initialized successfully');
     } catch (error) {
-      console.error("Failed to initialize Glean Search:", error);
+      console.error('Failed to initialize Glean Search:', error);
     }
   };
 
@@ -442,17 +446,18 @@ function GleanSearchClient(): ReactElement {
 
       // Load Glean SDK
       const script = document.createElement('script');
-      script.src = 'https://glean-public-external.glean.com/embedded-search-latest.min.js';
+      script.src =
+        'https://glean-public-external.glean.com/embedded-search-latest.min.js';
       script.defer = true;
-      
+
       script.onload = () => {
         // Small delay to ensure SDK is fully initialized
         setTimeout(initializeGlean, 100);
       };
-      
+
       script.onerror = () => {
         console.error('Failed to load Glean SDK');
-      }; 
+      };
 
       document.head.appendChild(script);
 
@@ -479,7 +484,7 @@ function GleanSearchClient(): ReactElement {
         position: 'relative',
         display: 'block',
         minHeight: '50px',
-        width: '100%'
+        width: '100%',
       }}
     />
   );
@@ -500,7 +505,7 @@ export default function GleanSearch(): ReactElement {
             style={{
               minHeight: '50px',
               width: '100%',
-              opacity: 0.7
+              opacity: 0.7,
             }}
           />
         }

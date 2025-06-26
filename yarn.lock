@@ -6937,6 +6937,7 @@ __metadata:
     docusaurus-theme-openapi-docs: "npm:^4.4.0"
     js-yaml: "npm:^4.1.0"
     lucide-react: "npm:^0.513.0"
+    prettier: "npm:^3.6.1"
     prism-react-renderer: "npm:^2.3.0"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -11942,6 +11943,15 @@ __metadata:
   dependencies:
     punycode: "npm:^2.1.1"
   checksum: 10/e4bb3698c9e19cccc33d249b0f45e93645cab043b7a56590f3a25f5c2daf3caa99fdae7801cc12d60e1ec6158ddd75a31c16834a3b4a03d5784f1768f8cfd026
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "prettier@npm:3.6.1"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10/e2c4b47bf1bda4f932143e52e0f57239dd60cfef08296b56d4073426e2d310edc353a7daa5285a546bd3c1619c76894759cc98d82d4ac710f72a711ae2899bcc
   languageName: node
   linkType: hard
 

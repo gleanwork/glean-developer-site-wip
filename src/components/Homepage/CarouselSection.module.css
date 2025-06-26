@@ -61,14 +61,14 @@
   .carousel {
     padding-bottom: 2.5rem;
   }
-  
+
   .carousel :global(.swiper-pagination) {
     bottom: -2.5rem !important;
   }
-  
+
   .paginationBullet {
     width: 10px;
     height: 10px;
     margin: 0 4px;
   }
-} 
+}

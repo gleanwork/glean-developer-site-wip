@@ -3,11 +3,7 @@ import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './index.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faRobot,
-  faCode,
-  faDatabase,
-} from '@fortawesome/free-solid-svg-icons';
+import { faRobot, faCode, faDatabase } from '@fortawesome/free-solid-svg-icons';
 import McpIcon from '../Icons/McpIcon';
 import Card from '../Card';
 import CarouselSection from './CarouselSection';
@@ -25,27 +21,25 @@ export default function Home() {
   const features: Feature[] = [
     {
       title: 'Build AI Agents',
-      body:
-        'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
+      body: 'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
       href: 'api/client-api/agents/overview',
       icon: <FontAwesomeIcon icon={faRobot} />,
-      color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
+      color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {
       title: 'Leverage Your Data',
-      body:
-        'Use Glean\'s APIs and client libraries to search, chat, and embed Work AI in your own apps.',
+      body: "Use Glean's APIs and client libraries to search, chat, and embed Work AI in your own apps.",
       href: 'api-info/client/getting-started',
       icon: <FontAwesomeIcon icon={faCode} />,
-      color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
+      color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {
       title: 'Create Connectors',
       body: 'Bring any source into Glean with our connector framework and indexing API.',
       href: 'api-info/indexing/getting-started/setup-datasource',
       icon: <FontAwesomeIcon icon={faDatabase} />,
-      color: GLEAN_BRAND_COLORS.PRIMARY_BLUE
-    }
+      color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
+    },
   ];
 
   return (
@@ -56,10 +50,12 @@ export default function Home() {
       <hr />
 
       {/* Feature Cards */}
-      <section className={clsx('container', styles.wideContainer, 'margin-vert--l')}>
-        <div className='row'>
+      <section
+        className={clsx('container', styles.wideContainer, 'margin-vert--l')}
+      >
+        <div className="row">
           {features.map((f) => (
-            <div key={f.title} className='col col--4 margin-vert--md'>
+            <div key={f.title} className="col col--4 margin-vert--md">
               <div className={styles.featureCard}>
                 <Card
                   title={f.title}
@@ -78,8 +74,8 @@ export default function Home() {
       {/* MCP highlight */}
       <section className={clsx('margin-vert--l', styles.mcpSection)}>
         <div className={clsx('container', styles.wideContainer)}>
-          <div className='row'>
-            <div className='col col--6'>
+          <div className="row">
+            <div className="col col--6">
               <h2>Model Context Protocol (MCP)</h2>
 
               <p>
@@ -88,20 +84,22 @@ export default function Home() {
               </p>
 
               <ul>
-                <li>Expose Glean search capabilities directly to AI assistants.</li>
+                <li>
+                  Expose Glean search capabilities directly to AI assistants.
+                </li>
                 <li>
                   Build agents that can safely reason over your organization's
                   knowledge.
                 </li>
                 <li>
-                  Create seamless workflows between Glean and other MCP‑compatible
-                  tools.
+                  Create seamless workflows between Glean and other
+                  MCP‑compatible tools.
                 </li>
               </ul>
 
               <Link
-                className='button button--primary button--lg'
-                to='guides/mcp/mcp'
+                className="button button--primary button--lg"
+                to="guides/mcp/mcp"
               >
                 Learn more about Glean's MCP integration
               </Link>

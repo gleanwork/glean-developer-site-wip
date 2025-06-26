@@ -83,6 +83,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['go', 'java'],
     },
     headTags: [
       {
@@ -141,8 +142,8 @@ const config: Config = {
     [
       'docusaurus-plugin-openapi-docs',
       {
-        id: 'api', // plugin id
-        docsPluginId: 'classic', // configured for preset-classic
+        id: 'api',
+        docsPluginId: 'classic',
         config: {
           indexing: {
             specPath:
@@ -152,28 +153,6 @@ const config: Config = {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
-            // markdownGenerators: {
-            //   createApiPageMD: (pageData: ApiPageMetadata) => {
-            //     const { api, title, description } = pageData;
-
-            //     // Check for both x-codeSamples and x-code-samples
-            //     const samples = api['x-codeSamples'] || api['x-code-samples'];
-
-            //     // Generate code samples section if samples exist
-            //     const codeSamples = samples
-            //       ? `\n## Code Samples\n\n${samples
-            //           .map(sample => (
-            //             `### ${sample.label || sample.lang}\n\n\`\`\`${sample.lang}\n${sample.source}\n\`\`\``
-            //           ))
-            //           .join('\n\n')}`
-            //       : '';
-
-            //     return `# ${title}
-            //               ${description}
-            //               ${codeSamples}
-            //               ${pageData.apiDemoPanel}`;
-            //   }
-            // }
           } satisfies OpenApiPlugin.Options,
           activity: {
             specPath: './openapi/split-apis/activity-api.yaml',

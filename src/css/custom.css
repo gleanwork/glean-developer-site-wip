@@ -631,22 +631,6 @@ article h1,
   color: var(--ifm-heading-color);
 }
 
-.markdown h2,
-article h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.markdown h3,
-article h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
 /* Sidebar Method labels */
 .api-method > .menu__link,
 .schema > .menu__link {

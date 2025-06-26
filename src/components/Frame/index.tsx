@@ -18,14 +18,8 @@ const Frame: React.FC<FrameProps> = ({
 }) => {
   return (
     <div className={styles.frameWrapper} style={style}>
-      <div className={`${styles.frame} ${className}`}>
-        {children}
-      </div>
-      {caption && (
-        <p className={styles.caption}>
-          {caption}
-        </p>
-      )}
+      <div className={`${styles.frame} ${className}`}>{children}</div>
+      {caption && <p className={styles.caption}>{caption}</p>}
     </div>
   );
 };

@@ -1,10 +1,10 @@
-import React, {type ReactNode} from 'react';
+import React, { type ReactNode } from 'react';
 import DocSidebarItemCategory from '@theme/DocSidebarItem/Category';
 import DocSidebarItemLink from '@theme/DocSidebarItem/Link';
 import DocSidebarItemHtml from '@theme/DocSidebarItem/Html';
-import type {Props} from '@theme/DocSidebarItem';
+import type { Props } from '@theme/DocSidebarItem';
 
-export default function DocSidebarItem({item, ...props}: Props): ReactNode {
+export default function DocSidebarItem({ item, ...props }: Props): ReactNode {
   switch (item.type) {
     case 'category':
       return <DocSidebarItemCategory item={item} {...props} />;

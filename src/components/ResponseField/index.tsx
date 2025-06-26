@@ -1,15 +1,15 @@
-import type { ReactNode } from "react"
-import styles from "./styles.module.css"
+import type { ReactNode } from 'react';
+import styles from './styles.module.css';
 
 interface ResponseFieldProps {
-  name: string
-  type: string
-  default?: string
-  required?: boolean
-  deprecated?: boolean
-  pre?: string[]
-  post?: string[]
-  children: ReactNode
+  name: string;
+  type: string;
+  default?: string;
+  required?: boolean;
+  deprecated?: boolean;
+  pre?: string[];
+  post?: string[];
+  children: ReactNode;
 }
 
 export function ResponseField({
@@ -30,7 +30,11 @@ export function ResponseField({
             {label}
           </span>
         ))}
-        <span className={`${styles.fieldName} ${deprecated ? styles.deprecated : ""}`}>{name}</span>
+        <span
+          className={`${styles.fieldName} ${deprecated ? styles.deprecated : ''}`}
+        >
+          {name}
+        </span>
         {post.map((label, index) => (
           <span key={index} className={styles.postLabel}>
             {label}
@@ -38,10 +42,14 @@ export function ResponseField({
         ))}
         <span className={styles.fieldType}>{type}</span>
         {required && <span className={styles.requiredLabel}>required</span>}
-        {deprecated && <span className={styles.deprecatedLabel}>deprecated</span>}
-        {defaultValue && <span className={styles.defaultLabel}>default: {defaultValue}</span>}
+        {deprecated && (
+          <span className={styles.deprecatedLabel}>deprecated</span>
+        )}
+        {defaultValue && (
+          <span className={styles.defaultLabel}>default: {defaultValue}</span>
+        )}
       </div>
       <div className={styles.fieldDescription}>{children}</div>
     </div>
-  )
+  );
 }

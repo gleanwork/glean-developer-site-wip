@@ -1,5 +1,5 @@
 :root {
-  --glean-gradient: linear-gradient(135deg, #343CED 0%, #D8FD49 100%);
+  --glean-gradient: linear-gradient(135deg, #343ced 0%, #d8fd49 100%);
   --glean-code-bg: #0f172a;
   --glean-code-radius: 0.75rem;
 }
@@ -118,7 +118,7 @@ h3.bannerTitle {
   .bannerTitle {
     font-size: 1.75rem;
   }
-  
+
   .bannerSubtitle {
     font-size: 0.9rem;
   }
@@ -134,7 +134,7 @@ h3.bannerTitle {
   .bannerTitle {
     font-size: 1.5rem;
   }
-  
+
   .bannerSubtitle {
     font-size: 0.875rem;
   }

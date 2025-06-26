@@ -7,4 +7,5 @@ export const GLEAN_BRAND_COLORS = {
   WHITE: '#FFFFFF',
 } as const;
 
-export type GleanBrandColor = typeof GLEAN_BRAND_COLORS[keyof typeof GLEAN_BRAND_COLORS]; 
+export type GleanBrandColor =
+  (typeof GLEAN_BRAND_COLORS)[keyof typeof GLEAN_BRAND_COLORS];

@@ -1,7 +1,7 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
+import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -43,7 +43,7 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
-          docItemComponent: "@theme/ApiItem",
+          docItemComponent: '@theme/ApiItem',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -128,36 +128,37 @@ const config: Config = {
         content: {
           includePages: true,
           enableLlmsFullTxt: true,
-        }
-      }
+        },
+      },
     ],
     [
       require.resolve('docusaurus-plugin-search-local'),
       {
         indexDocs: true,
-        hashed: true
-      }
+        hashed: true,
+      },
     ],
     [
       'docusaurus-plugin-openapi-docs',
       {
-        id: "api", // plugin id
-        docsPluginId: "classic", // configured for preset-classic
+        id: 'api', // plugin id
+        docsPluginId: 'classic', // configured for preset-classic
         config: {
           indexing: {
-            specPath: "https://gleanwork.github.io/open-api/specs/final/indexing.yaml",
-            outputDir: "docs/api/indexing-api",
+            specPath:
+              'https://gleanwork.github.io/open-api/specs/final/indexing.yaml',
+            outputDir: 'docs/api/indexing-api',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
             // markdownGenerators: {
             //   createApiPageMD: (pageData: ApiPageMetadata) => {
             //     const { api, title, description } = pageData;
-                
+
             //     // Check for both x-codeSamples and x-code-samples
             //     const samples = api['x-codeSamples'] || api['x-code-samples'];
-                
+
             //     // Generate code samples section if samples exist
             //     const codeSamples = samples
             //       ? `\n## Code Samples\n\n${samples
@@ -175,66 +176,66 @@ const config: Config = {
             // }
           } satisfies OpenApiPlugin.Options,
           activity: {
-            specPath: "./openapi/split-apis/activity-api.yaml",
-            outputDir: "docs/api/client-api",
+            specPath: './openapi/split-apis/activity-api.yaml',
+            outputDir: 'docs/api/client-api',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
           authentication: {
-            specPath: "./openapi/split-apis/authentication-api.yaml",
-            outputDir: "docs/api/client-api",
+            specPath: './openapi/split-apis/authentication-api.yaml',
+            outputDir: 'docs/api/client-api',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
           agents: {
-            specPath: "./openapi/split-apis/agents-api.yaml",
-            outputDir: "docs/api/client-api",
+            specPath: './openapi/split-apis/agents-api.yaml',
+            outputDir: 'docs/api/client-api',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
           governance: {
-            specPath: "./openapi/split-apis/governance-api.yaml",
-            outputDir: "docs/api/client-api",
+            specPath: './openapi/split-apis/governance-api.yaml',
+            outputDir: 'docs/api/client-api',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
           summarize: {
-            specPath: "./openapi/split-apis/summarize-api.yaml",
-            outputDir: "docs/api/test",
+            specPath: './openapi/split-apis/summarize-api.yaml',
+            outputDir: 'docs/api/test',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
           tools: {
-            specPath: "./openapi/split-apis/tools-api.yaml",
-            outputDir: "docs/api/test",
+            specPath: './openapi/split-apis/tools-api.yaml',
+            outputDir: 'docs/api/test',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
           announcements: {
-            specPath: "./openapi/split-apis/announcements-api.yaml",
-            outputDir: "docs/api/test",
+            specPath: './openapi/split-apis/announcements-api.yaml',
+            outputDir: 'docs/api/test',
             sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-        }
+        },
       },
-    ]
+    ],
   ],
-  themes: ["docusaurus-theme-openapi-docs"],
+  themes: ['docusaurus-theme-openapi-docs'],
 };
 
 export default config;

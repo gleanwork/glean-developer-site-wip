@@ -5,9 +5,9 @@
 
 .header {
   margin-bottom: 1rem;
-  }
-  
-  .mimeType {
+}
+
+.mimeType {
   display: inline-block;
   padding: 4px 12px;
   border: 1px solid var(--ifm-color-emphasis-300);
@@ -15,16 +15,16 @@
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--ifm-color-emphasis-700);
-  }
-  
+}
+
 .bodyLabel {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 1rem 0;
   font-weight: 600;
-  }
-  
+}
+
 .requiredLabel {
   color: #ff4d4f;
   font-size: 0.75rem;
@@ -33,21 +33,21 @@
 
 .propertyContainer {
   margin-bottom: 1.5rem;
-  }
-  
+}
+
 .propertyName {
-    font-family: var(--ifm-font-family-monospace);
-    font-size: 0.875rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
   font-weight: 600;
-  }
-  
+}
+
 .propertyType {
   color: var(--ifm-color-emphasis-600);
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.875rem;
-    margin-left: 0.5rem;
-  }
-  
+  margin-left: 0.5rem;
+}
+
 .propertyRequired {
   background-color: rgba(255, 77, 77, 0.1);
   color: #ff4d4f;
@@ -59,20 +59,20 @@
 }
 
 .propertyDescription {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
   color: var(--ifm-color-emphasis-700);
   font-size: 0.875rem;
-    line-height: 1.5;
-  }
-  
+  line-height: 1.5;
+}
+
 .enumContainer {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .enumLabel {
-    font-size: 0.875rem;
+  font-size: 0.875rem;
   color: var(--ifm-color-emphasis-700);
-    margin-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .enumValues {
@@ -82,39 +82,39 @@
 }
 
 .enumValue {
-    font-family: var(--ifm-font-family-monospace);
+  font-family: var(--ifm-font-family-monospace);
   font-size: 0.8125rem;
   padding: 2px 8px;
   background: var(--ifm-color-emphasis-100);
   border-radius: 4px;
   color: var(--ifm-color-emphasis-800);
-  }
-  
+}
+
 .defaultValue {
-    margin-top: 0.5rem;
-    font-family: var(--ifm-font-family-monospace);
-    font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
   color: var(--ifm-color-emphasis-700);
 }
 
 .example {
   margin-top: 0.5rem;
-    padding: 0.5rem;
-    background: var(--ifm-color-emphasis-100);
+  padding: 0.5rem;
+  background: var(--ifm-color-emphasis-100);
   border-radius: 4px;
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.875rem;
   color: var(--ifm-color-emphasis-800);
-  }
-  
+}
+
 /* Nested properties styling */
 .propertyContainer .propertyContainer {
   margin-left: 1.5rem;
   padding-left: 1rem;
   border-left: 2px solid var(--ifm-color-emphasis-200);
-  }
-  
-  /* Dark mode adjustments */
+}
+
+/* Dark mode adjustments */
 [data-theme='dark'] .propertyRequired {
   background-color: rgba(255, 77, 77, 0.2);
 }
@@ -125,4 +125,4 @@
 
 [data-theme='dark'] .example {
   background: var(--ifm-color-emphasis-200);
-  }
+}

@@ -5,7 +5,14 @@ import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
 import Frame from '@site/src/components/Frame';
 import PageHeader from '@site/src/components/PageHeader';
-import { Note, Warning, Info, Tip, Check, Danger } from '@site/src/components/Callouts';
+import {
+  Note,
+  Warning,
+  Info,
+  Tip,
+  Check,
+  Danger,
+} from '@site/src/components/Callouts';
 import { Tab, Tabs } from '@site/src/components/Tabs';
 import { Step, Steps } from '@site/src/components/Steps';
 import { AccordionGroup } from '@site/src/components/AccordionGroup';
@@ -33,5 +40,5 @@ export default {
   AccordionGroup,
   Accordion,
   CodeGroup,
-  ResponseField
-}; 
+  ResponseField,
+};

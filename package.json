@@ -12,7 +12,9 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",
@@ -44,6 +46,7 @@
     "@docusaurus/module-type-aliases": "^3.8.1",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "^3.8.1",
+    "prettier": "^3.6.1",
     "sass": "^1.89.1",
     "sass-loader": "^16.0.5",
     "typescript": "~5.6.2"

@@ -575,6 +575,13 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent !important;
 }
 
+.menu__list-item-collapsible:hover,
+.menu__list-item-collapsible:active,
+.menu__list-item-collapsible:focus-within,
+.menu__list-item-collapsible.menu__list-item-collapsible--active {
+  background: transparent;
+}
+
 /* Add vertical line for nested menu items
 .menu__list .menu__list {
   position: relative;

@@ -27,28 +27,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "get-started/quickstart",
-          label: "Quickstart",
-        },
-        {
-          type: "doc",
-          id: "get-started/rate-limits",
-          label: "Rate Limits",
-        },
-        {
-          type: "doc",
           id: "get-started/key-terms",
           label: "Key Terms",
         },
         {
           type: "doc",
-          id: "get-started/error-codes",
-          label: "Error Codes",
-        },
-        {
-          type: "doc",
-          id: "get-started/api-versions",
-          label: "API Versions",
+          id: "get-started/rate-limits",
+          label: "Rate Limits",
         },
         {
           type: "link",
@@ -64,495 +49,515 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Guides",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "guides/agents/agents",
+          label: "Agents",
+        },
+        {
+          type: "doc",
+          id: "guides/mcp/mcp",
+          label: "MCP",
+        },
+        {
+          type: "doc",
+          id: "guides/langchain/langchain",
+          label: "LangChain",
+        }
+      ]
+    },
+    {
+      type: "category",
       label: "Client API",
-        collapsible: false,
-        collapsed: false,
-        items: [
-          {
-            type: "category",
-            label: "About Client API",
-            items: [
-              {
-                type: "doc",
-                id: "guides/client/overview",
-                label: "Overview",
-              },
-              {
-                type: "doc",
-                id: "guides/client/getting-started",
-                label: "Getting Started",
-              },
-              {
-                type: "category",
-                label: "Authentication",
-                items: [
-                  {
-                    type: "doc",
-                    id: "guides/client/authentication/overview",
-                    label: "Overview",
-                  },
-                  {
-                    type: "doc",
-                    id: "guides/client/authentication/glean-issued",
-                    label: "Glean Issued Tokens",
-                  },
-                  {
-                    type: "doc",
-                    id: "guides/client/authentication/oauth",
-                    label: "OAuth",
-                  },
-                ],
-              },
-              {
-                type: "category",
-                label: "Examples",
-                items: [
-                  {
-                    type: "doc",
-                    id: "guides/client/examples/chatbot",
-                    label: "Chatbot",
-                  },
-                  {
-                    type: "doc",
-                    id: "guides/client/examples/nvidia-enterprise-kb-chatbot",
-                    label: "Agentic AI With NVIDIA NIM",
-                  },
-                ],
-              },
-              {
-                type: "category",
-                label: "Search",
-                items: [
-                  {
-                    type: "doc",
-                    id: "guides/client/search/filtering-results",
-                    label: "Filtering Results",
-                  },
-                  {
-                    type: "doc",
-                    id: "guides/client/search/datasource-filters",
-                    label: "Datasource Filters",
-                  },
-                  {
-                    type: "doc",
-                    id: "guides/client/search/faceted-filters",
-                    label: "Faceted Filtering",
-                  }
-                ],
-              },
-            ]
-          },
-          {
-            type: "category",
-            label: "Activity",
-            link: {
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "api-info/client/getting-started",
+          label: "Getting Started",
+        },
+        {
+          type: "category",
+          label: "Authentication",
+          items: [
+            {
               type: "doc",
-              id: "api/client-api/activity/activity"
+              id: "api-info/client/authentication/overview",
+              label: "Overview",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/activity/report-document-activity",
-                label: "Report document activity",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/activity/report-client-activity",
-                label: "Report client activity",
-                className: "api-method post",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Authentication",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/authentication/authentication",
+              id: "api-info/client/authentication/glean-issued",
+              label: "Glean Issued Tokens",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/authentication/create-auth-token",
-                label: "Create authentication token",
-                className: "api-method post",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Agents",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/agents/agents",
+              id: "api-info/client/authentication/oauth",
+              label: "OAuth",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/agents/get-agent",
-                label: "Retrieve an agent",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/agents/get-agent-schemas",
-                label: "List an agent's schemas",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/agents/search-agents",
-                label: "Search agents",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/agents/create-and-stream-run",
-                label: "Create an agent run and stream the response",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/agents/create-and-wait-run",
-                label: "Create an agent run and wait for the response",
-                className: "api-method post",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Answers",
-            link: {
+          ],
+        },
+        {
+          type: "category",
+          label: "Examples",
+          items: [
+            {
               type: "doc",
-              id: "api/client-api/answers/answers",
+              id: "api-info/client/examples/chatbot",
+              label: "Chatbot",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/answers/listanswers",
-                label: "List answers",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/answers/createanswer",
-                label: "Create answer",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/answers/getanswer",
-                label: "Get answer",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/answers/editanswer",
-                label: "Edit answer",
-                className: "api-method put",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/answers/deleteanswer",
-                label: "Delete answer",
-                className: "api-method delete",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Announcements",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/announcements/announcements",
+              id: "api-info/client/examples/nvidia-enterprise-kb-chatbot",
+              label: "Agentic AI With NVIDIA NIM",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/announcements/createannouncement",
-                label: "Create announcement",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/announcements/updateannouncement",
-                label: "Update announcement",
-                className: "api-method put",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/announcements/deleteannouncement",
-                label: "Delete announcement",
-                className: "api-method delete",
-              },
-            ],
+          ],
+        },
+        {
+          type: "category",
+          label: "Search",
+          items: [
+            {
+              type: "doc",
+              id: "api-info/client/search/filtering-results",
+              label: "Filtering Results",
+            },
+            {
+              type: "doc",
+              id: "api-info/client/search/datasource-filters",
+              label: "Datasource Filters",
+            },
+            {
+              type: "doc",
+              id: "api-info/client/search/faceted-filters",
+              label: "Faceted Filtering",
+            }
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Client API Reference",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "category",
+          label: "Activity",
+          link: {
+            type: "doc",
+            id: "api/client-api/activity/activity"
           },
-          {
-            type: "category",
-            label: "Chat",
-            link: {
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/activity/report-document-activity",
+              label: "Report document activity",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/activity/report-client-activity",
+              label: "Report client activity",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Authentication",
+          link: {
+            type: "doc",
+            id: "api/client-api/authentication/authentication",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/authentication/create-auth-token",
+              label: "Create authentication token",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Agents",
+          link: {
+            type: "doc",
+            id: "api/client-api/agents/agents",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/agents/get-agent",
+              label: "Retrieve an agent",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/agents/get-agent-schemas",
+              label: "List an agent's schemas",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/agents/search-agents",
+              label: "Search agents",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/agents/create-and-stream-run",
+              label: "Create an agent run and stream the response",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/agents/create-and-wait-run",
+              label: "Create an agent run and wait for the response",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Answers",
+          link: {
+            type: "doc",
+            id: "api/client-api/answers/answers",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/answers/listanswers",
+              label: "List answers",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/answers/createanswer",
+              label: "Create answer",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/answers/getanswer",
+              label: "Get answer",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/answers/editanswer",
+              label: "Edit answer",
+              className: "api-method put",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/answers/deleteanswer",
+              label: "Delete answer",
+              className: "api-method delete",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Announcements",
+          link: {
+            type: "doc",
+            id: "api/client-api/announcements/announcements",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/announcements/createannouncement",
+              label: "Create announcement",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/announcements/updateannouncement",
+              label: "Update announcement",
+              className: "api-method put",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/announcements/deleteannouncement",
+              label: "Delete announcement",
+              className: "api-method delete",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Chat",
+          link: {
+            type: "doc",
+            id: "api/client-api/chat/chat",
+          },
+          items: [
+            {
               type: "doc",
               id: "api/client-api/chat/chat",
+              label: "Create chat",
+              className: "api-method post",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/chat/chat",
-                label: "Create chat",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/chat-stream",
-                label: "Stream chat",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/listchats",
-                label: "List chats",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/getchat",
-                label: "Get chat",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/deletechats",
-                label: "Delete chats",
-                className: "api-method delete",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/deleteallchats",
-                label: "Delete all chats",
-                className: "api-method delete",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/getchatapplication",
-                label: "Get chat application",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/uploadchatfiles",
-                label: "Upload chat files",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/getchatfiles",
-                label: "Get chat files",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/chat/deletechatfiles",
-                label: "Delete chat files",
-                className: "api-method delete",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Collections",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/collections/collections",
+              id: "api/client-api/chat/chat-stream",
+              label: "Stream chat",
+              className: "api-method post",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/collections/listcollections",
-                label: "List collections",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/createcollection",
-                label: "Create collection",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/getcollection",
-                label: "Get collection",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/editcollection",
-                label: "Edit collection",
-                className: "api-method put",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/deletecollection",
-                label: "Delete collection",
-                className: "api-method delete",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/addcollectionitems",
-                label: "Add collection items",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/editcollectionitem",
-                label: "Edit collection item",
-                className: "api-method put",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/collections/deletecollectionitem",
-                label: "Delete collection item",
-                className: "api-method delete",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Entities",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/entities/entities",
+              id: "api/client-api/chat/listchats",
+              label: "List chats",
+              className: "api-method get",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/entities/listentities",
-                label: "List entities",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/entities/people",
-                label: "Get people",
-                className: "api-method get",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Governance",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/governance/governance",
+              id: "api/client-api/chat/getchat",
+              label: "Get chat",
+              className: "api-method get",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/governance/get-policy",
-                label: "Gets specified policy",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/update-policy",
-                label: "Updates an existing policy",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/list-policies",
-                label: "Lists policies",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/create-policy",
-                label: "Creates new policy",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/download-policy-csv",
-                label: "Downloads violations CSV for policy",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/create-report",
-                label: "Creates new one-time report",
-                className: "api-method post",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/download-report-csv",
-                label: "Downloads violations CSV for report",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/get-report-status",
-                label: "Fetches report run status",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/get-doc-visibility",
-                label: "Fetches documents visibility",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/governance/set-doc-visibility",
-                label: "Hide or unhide docs",
-                className: "api-method post",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Summarize",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/summarize/summarize",
+              id: "api/client-api/chat/deletechats",
+              label: "Delete chats",
+              className: "api-method delete",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/summarize/summarize-documents",
-                label: "Summarize documents",
-                className: "api-method post",
-              },
-            ],
-          },
-          {
-            type: "category",
-            label: "Tools",
-            link: {
+            {
               type: "doc",
-              id: "api/client-api/tools/tools",
+              id: "api/client-api/chat/deleteallchats",
+              label: "Delete all chats",
+              className: "api-method delete",
             },
-            items: [
-              {
-                type: "doc",
-                id: "api/client-api/tools/list-available-tools",
-                label: "List available tools",
-                className: "api-method get",
-              },
-              {
-                type: "doc",
-                id: "api/client-api/tools/execute-the-specified-tool",
-                label: "Execute the specified tool",
-                className: "api-method post",
-              },
-            ],
+            {
+              type: "doc",
+              id: "api/client-api/chat/getchatapplication",
+              label: "Get chat application",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/chat/uploadchatfiles",
+              label: "Upload chat files",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/chat/getchatfiles",
+              label: "Get chat files",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/chat/deletechatfiles",
+              label: "Delete chat files",
+              className: "api-method delete",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Collections",
+          link: {
+            type: "doc",
+            id: "api/client-api/collections/collections",
           },
-          {
-            type: "link",
-            href: "https://developers.glean.com/oas/indexing",
-            label: "OpenAPI Spec",
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/collections/listcollections",
+              label: "List collections",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/createcollection",
+              label: "Create collection",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/getcollection",
+              label: "Get collection",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/editcollection",
+              label: "Edit collection",
+              className: "api-method put",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/deletecollection",
+              label: "Delete collection",
+              className: "api-method delete",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/addcollectionitems",
+              label: "Add collection items",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/editcollectionitem",
+              label: "Edit collection item",
+              className: "api-method put",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/collections/deletecollectionitem",
+              label: "Delete collection item",
+              className: "api-method delete",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Entities",
+          link: {
+            type: "doc",
+            id: "api/client-api/entities/entities",
           },
-        ],
-      },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/entities/listentities",
+              label: "List entities",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/entities/people",
+              label: "Get people",
+              className: "api-method get",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Governance",
+          link: {
+            type: "doc",
+            id: "api/client-api/governance/governance",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/governance/get-policy",
+              label: "Gets specified policy",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/update-policy",
+              label: "Updates an existing policy",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/list-policies",
+              label: "Lists policies",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/create-policy",
+              label: "Creates new policy",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/download-policy-csv",
+              label: "Downloads violations CSV for policy",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/create-report",
+              label: "Creates new one-time report",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/download-report-csv",
+              label: "Downloads violations CSV for report",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/get-report-status",
+              label: "Fetches report run status",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/get-doc-visibility",
+              label: "Fetches documents visibility",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/set-doc-visibility",
+              label: "Hide or unhide docs",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Summarize",
+          link: {
+            type: "doc",
+            id: "api/client-api/summarize/summarize",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/summarize/summarize-documents",
+              label: "Summarize documents",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Tools",
+          link: {
+            type: "doc",
+            id: "api/client-api/tools/tools",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "api/client-api/tools/list-available-tools",
+              label: "List available tools",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/tools/execute-the-specified-tool",
+              label: "Execute the specified tool",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: "link",
+          href: "https://developers.glean.com/oas/indexing",
+          label: "OpenAPI Spec",
+        },
+      ]
+    },
     {
       type: "category",
       label: "Indexing API",
@@ -561,145 +566,142 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "category",
-          label: "About Indexing API",
+          label: "Getting Started",
           items: [
             {
               type: "doc",
-              id: "guides/indexing/overview",
-              label: "Overview",
+              id: "api-info/indexing/getting-started/setup-datasource",
+              label: "Setup Datasource",
             },
             {
-              type: "category",
-              label: "Quickstart",
-              items: [
-                {
-                  type: "doc",
-                  id: "guides/indexing/getting-started/setup-datasource",
-                  label: "Setup Datasource",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/getting-started/index-documents",
-                  label: "Index Documents",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Authentication",
-              items: [
-                {
-                  type: "doc",
-                  id: "guides/indexing/authentication/managing-tokens",
-                  label: "Managing Tokens",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/authentication/token-rotation",
-                  label: "Token Rotation",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Datasource",
-              items: [
-                {
-                  type: "doc",
-                  id: "guides/indexing/datasource/custom-properties",
-                  label: "Custom Properties",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/datasource/test-datasource",
-                  label: "Test Datasource",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/datasource/category",
-                  label: "Category",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/datasource/rendering-search-results",
-                  label: "Rendering Search Results",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Documents",
-              items: [
-                {
-                  type: "doc",
-                  id: "guides/indexing/documents/activity",
-                  label: "Activity",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/documents/permissions",
-                  label: "Permissions",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/documents/bulk-indexing",
-                  label: "Bulk Indexing",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/documents/bulk-upload-model",
-                  label: "Bulk Upload Model",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/documents/document-model",
-                  label: "Document Model",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/documents/supported-mimetypes",
-                  label: "Supported MIME Types",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Debugging",
-              items: [
-                {
-                  type: "doc",
-                  id: "guides/indexing/debugging/datasource-config",
-                  label: "Datasource Config",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/debugging/datasource-status",
-                  label: "Datasource Status",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/debugging/datasource-document",
-                  label: "Datasource Document",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/debugging/datasource-user",
-                  label: "Datasource User",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/debugging/document-access",
-                  label: "Document Access",
-                },
-                {
-                  type: "doc",
-                  id: "guides/indexing/debugging/document-count",
-                  label: "Document Count",
-                },
-              ],
+              type: "doc",
+              id: "api-info/indexing/getting-started/index-documents",
+              label: "Index Documents",
             },
           ],
         },
+        {
+          type: "category",
+          label: "Authentication",
+          items: [
+            {
+              type: "doc",
+              id: "api-info/indexing/authentication/managing-tokens",
+              label: "Managing Tokens",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/authentication/token-rotation",
+              label: "Token Rotation",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Datasource",
+          items: [
+            {
+              type: "doc",
+              id: "api-info/indexing/datasource/custom-properties",
+              label: "Custom Properties",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/datasource/test-datasource",
+              label: "Test Datasource",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/datasource/category",
+              label: "Category",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/datasource/rendering-search-results",
+              label: "Rendering Search Results",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Documents",
+          items: [
+            {
+              type: "doc",
+              id: "api-info/indexing/documents/activity",
+              label: "Activity",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/documents/permissions",
+              label: "Permissions",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/documents/bulk-indexing",
+              label: "Bulk Indexing",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/documents/bulk-upload-model",
+              label: "Bulk Upload Model",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/documents/document-model",
+              label: "Document Model",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/documents/supported-mimetypes",
+              label: "Supported MIME Types",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Debugging",
+          items: [
+            {
+              type: "doc",
+              id: "api-info/indexing/debugging/datasource-config",
+              label: "Datasource Config",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/debugging/datasource-status",
+              label: "Datasource Status",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/debugging/datasource-document",
+              label: "Datasource Document",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/debugging/datasource-user",
+              label: "Datasource User",
+            },
+            {
+              type: "doc",
+              id: "api-info/indexing/debugging/document-access",
+              label: "Document Access",
+            },
+            {
+              type: "doc",
+                id: "api-info/indexing/debugging/document-count",
+              label: "Document Count",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Indexing API Reference",
+      collapsible: false,
+      collapsed: false,
+      items: [
         {
           type: "category",
           label: "Datasources",
@@ -989,11 +991,11 @@ const sidebars: SidebarsConfig = {
           href: "https://developers.glean.com/oas/indexing",
           label: "OpenAPI Spec",
         },
-      ],
+      ]
     },
     {
       type: "category",
-      label: "SDKs",
+      label: "Libraries",
       collapsible: false,
       collapsed: false,
       items: [
@@ -1003,12 +1005,12 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: "doc",
-              id: "sdk/web-sdk/overview",
+              id: "libraries/web-sdk/overview",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "sdk/web-sdk/3rd-party-cookies",
+              id: "libraries/web-sdk/3rd-party-cookies",
               label: "Third-Party Cookie Management",
             },
             {
@@ -1017,27 +1019,27 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/components/chat",
+                  id: "libraries/web-sdk/components/chat",
                   label: "Glean Chat",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/components/autocomplete",
+                  id: "libraries/web-sdk/components/autocomplete",
                   label: "Autocomplete",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/components/modal-search",
+                  id: "libraries/web-sdk/components/modal-search",
                   label: "Modal Search",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/components/sidebar",
+                  id: "libraries/web-sdk/components/sidebar",
                   label: "Sidebar",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/components/recommendations",
+                  id: "libraries/web-sdk/components/recommendations",
                   label: "Recommendations",
                 },
               ],
@@ -1048,22 +1050,22 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/guides/react",
+                  id: "libraries/web-sdk/guides/react",
                   label: "React",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/guides/zendesk",
+                  id: "libraries/web-sdk/guides/zendesk",
                   label: "Zendesk",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/guides/lumapps",
+                  id: "libraries/web-sdk/guides/lumapps",
                   label: "Lumapps",
                 },
                 {
                   type: "doc",
-                  id: "sdk/web-sdk/guides/brightspot",
+                  id: "libraries/web-sdk/guides/brightspot",
                   label: "Brightspot",
                 },
               ],
@@ -1077,20 +1079,43 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "sdk/api-clients",
-          label: "Client SDKs",
+          id: "libraries/api-clients",
+          label: "API Clients",
         },
       ],
     },
     {
-      type: "doc",
-      id: "agents/agents",
-      label: "Agents",
-    },
-    {
-      type: "doc",
-      id: "mcp/mcp",
-      label: "MCP",
+      type: "category",
+      label: "Resources",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "link",
+          href: "https://github.com/gleanwork/glean-developer-site/discussions",
+          label: "Discussions",
+        },
+        {
+          type: "link",
+          href: "https://github.com/gleanwork/glean-developer-site/issues/new?template=bug_report.md",
+          label: "Bug Report",
+        },
+        {
+          type: "link",
+          href: "https://github.com/gleanwork/glean-developer-site/issues/new?template=feature_request.md",
+          label: "Request a Feature",
+        },
+        {
+          type: "link",
+          href: "https://support.glean.com/hc/en-us",
+          label: "Support",
+        },
+        {
+          type: "link",
+          href: "https://status.glean.com/",
+          label: "Status",
+        },
+      ],
     },
   ],
 };

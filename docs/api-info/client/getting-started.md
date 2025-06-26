@@ -1,7 +1,13 @@
 ---
-title: 'Making Requests'
+title: 'Getting Started'
 icon: 'send-backward'
 ---
+
+# Overview
+
+The Glean Client API lets organizations build custom apps and interfaces that harness Glean’s search and generative AI. It exposes key functionality—like search, chat, document retrieval, and analytics—while enforcing Glean’s permission model for secure, permissions-aware access. The API supports embedding Glean-powered experiences into internal tools or creating tailored workflows using SDKs for languages like Python, Java, NodeJS, and Go. Authentication uses OAuth or Glean-issued tokens with granular scopes for strong governance. Glean provides advance notice and a deprecation period for any backwards-incompatible changes.
+
+# Making Requests
 
 Kindly read the [Authentication](./authentication/glean-issued) page to know about the host url, token generation, token permissions and scopes before moving to further sections.
 

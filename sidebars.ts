@@ -36,8 +36,8 @@ const sidebars: SidebarsConfig = {
           label: 'Rate Limits',
         },
         {
-          type: 'link',
-          href: '/changelog',
+          type: 'doc',
+          id: 'changelog/index',
           label: 'Changelog',
         },
         {

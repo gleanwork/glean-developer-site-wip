@@ -98,29 +98,6 @@ const config: Config = {
 
   plugins: [
     [
-      '@docusaurus/plugin-content-blog',
-      {
-        /**
-         * Required for any multi-instance plugin
-         */
-        id: 'changelog',
-        /**
-         * URL route for the blog section of your site.
-         * *DO NOT* include a trailing slash.
-         */
-        routeBasePath: 'changelog',
-        /**
-         * Path to data on filesystem relative to site dir.
-         */
-        path: './changelog',
-        blogTitle: 'Changelog',
-        blogDescription: 'Keep up with our latest changes',
-        showReadingTime: false,
-        blogSidebarCount: 'ALL',
-        blogSidebarTitle: 'Recent Changes',
-      },
-    ],
-    [
       '@signalwire/docusaurus-plugin-llms-txt',
       {
         siteTitle: 'Glean Developer',

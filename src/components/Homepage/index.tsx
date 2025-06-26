@@ -101,7 +101,7 @@ export default function Home() {
 
               <Link
                 className='button button--primary button--lg'
-                to='/guides/mcp'
+                to='guides/mcp/mcp'
               >
                 Learn more about Glean's MCP integration
               </Link>

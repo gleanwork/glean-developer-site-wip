@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
+import { getIcon } from '../Icons';
 import styles from './styles.module.css';
 import './fontawesome';
 
@@ -9,6 +8,7 @@ interface CardProps {
   title: string;
   icon?: string | React.ReactNode;
   iconStyle?: 'solid' | 'regular' | 'brands';
+  iconSet?: 'fontawesome' | 'glean';
   color?: string;
   href?: string;
   horizontal?: boolean;
@@ -22,6 +22,7 @@ export default function Card({
   title,
   icon,
   iconStyle = 'solid',
+  iconSet = 'fontawesome',
   color = '#343CED',
   href,
   horizontal = false,
@@ -34,17 +35,11 @@ export default function Card({
     if (!icon) return null;
 
     if (typeof icon === 'string') {
-      const prefixMap = {
-        solid: 'fas' as IconPrefix,
-        regular: 'far' as IconPrefix,
-        brands: 'fab' as IconPrefix,
-      };
-
-      const prefix = prefixMap[iconStyle];
+      const iconElement = getIcon(icon, iconSet, iconStyle, { color });
 
       return (
         <div className={styles.icon} style={{ color }}>
-          <FontAwesomeIcon icon={[prefix, icon as IconName]} />
+          {iconElement}
         </div>
       );
     }

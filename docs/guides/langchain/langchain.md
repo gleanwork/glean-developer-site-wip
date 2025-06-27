@@ -10,6 +10,7 @@ Glean's official LangChain integration enables you to build powerful AI agents t
 <Card
   title="langchain-glean"
   icon="github"
+  iconStyle="brands"
   href="https://github.com/gleanwork/langchain-glean"
 >
   Official LangChain integration for Glean's search and chat capabilities

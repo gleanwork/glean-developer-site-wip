@@ -21,16 +21,27 @@ export interface ChangelogData {
 
 // Map tags to semantic categories
 export const TAG_TO_CATEGORY_MAP: Record<string, string> = {
+  // Primary component tags
+  'Client API': 'API',
   'Indexing API': 'API',
-  'Client API': 'API', 
+  'API Clients': 'SDK',
+  'Agent Interop Toolkit': 'SDK',
+  'Glean Indexing SDK': 'SDK',
+  'langchain-glean': 'SDK',
+  'MCP': 'SDK',
+  
+  // Legacy mappings for backward compatibility
   'SDK': 'SDK',
   'Developer Site': 'Documentation',
-  'Breaking': 'Breaking',
-  'Security': 'Security',
+  
+  // Change type tags
+  'Feature': 'Feature',
   'Enhancement': 'Enhancement',
   'Bug Fix': 'Bug Fix',
-  'Feature': 'Feature',
-  'Deprecation': 'Deprecation'
+  'Breaking': 'Breaking',
+  'Security': 'Security',
+  'Deprecation': 'Deprecation',
+  'Documentation': 'Documentation'
 }
 
 export const CATEGORY_COLORS: Record<string, string> = {

@@ -7,7 +7,6 @@ icon: key
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { Note } from '@site/src/components/Callouts';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
@@ -17,9 +16,9 @@ import TabItem from '@theme/TabItem';
 
 This guide covers implementing authentication for Glean's **Indexing API**, which powers document indexing, datasource management, and administrative operations. The Indexing API **only supports Glean-issued tokens** - OAuth authentication is not available.
 
-<Warning>
+:::warning
   **Critical**: The Indexing API does **NOT support OAuth authentication**. You must use Glean-issued tokens for all Indexing API operations.
-</Warning>
+:::
 
 <CardGroup cols={1}>
   <Card title="Glean-Issued Tokens (Only Option)" icon="key" color="#8b5cf6">
@@ -49,9 +48,9 @@ Authorization: Bearer <indexing_api_token>
 |--------|----------|-------------|---------------|
 | `Authorization` | Always | Bearer token with your Indexing API token | `Bearer glean_XYZ123...` |
 
-<Note>
+:::note
   Unlike the Client API, Indexing API tokens do **not** require additional headers like `X-Glean-Auth-Type` or `X-Glean-ActAs`.
-</Note>
+:::
 
 ---
 
@@ -113,9 +112,9 @@ Authorization: Bearer <indexing_api_token>
   </Step>
 
   <Step title="Save Token Securely">
-    <Warning>
+    :::warning
       The token is only displayed once after creation. Save it securely - you cannot retrieve it again.
-    </Warning>
+    :::
     
     <ThemedImage
       alt="Token creation success"

@@ -6,7 +6,6 @@ description: Complete guide to creating and using Glean-issued tokens for Client
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { Warning } from '@site/src/components/Callouts';
 import { Steps, Step } from '@site/src/components/Steps';
 import { Accordion } from '@site/src/components/Accordion';
 import Tabs from '@theme/Tabs';
@@ -23,9 +22,9 @@ Glean-issued tokens provide an alternative to OAuth when you need granular scope
   - **Flexible expiration** - Set custom expiry dates
 </Card>
 
-<Warning>
+:::warning
   Glean tokens work with **both Client API and Indexing API**, but this guide focuses on Client API usage. For Indexing API, see the [Indexing API Authentication](/api-info/indexing/authentication/overview) guide.
-</Warning>
+:::
 
 ---
 
@@ -99,9 +98,9 @@ curl -X POST https://instance-be.glean.com/rest/api/v1/search \
   -d '{"query": "quarterly reports"}'
 ```
 
-<Warning>
+:::warning
   The `X-Glean-ActAs` header is **required** for global tokens. Requests without this header will fail.
-</Warning>
+:::
 
 </TabItem>
 </Tabs>
@@ -128,9 +127,9 @@ Follow these steps to create Glean-issued tokens:
   </Step>
 
   <Step title="Save Token Securely">
-    <Warning>
+    :::warning
       The token secret is only shown once after creation. Save it securely - you cannot retrieve it again.
-    </Warning>
+    :::
   </Step>
 </Steps>
 
@@ -164,9 +163,9 @@ Scopes control which Client API endpoints your token can access:
 
 </Accordion>
 
-<Warning>
+:::warning
   Token permissions and scopes **cannot be changed** after creation. Plan carefully when creating tokens.
-</Warning>
+:::
 
 ---
 

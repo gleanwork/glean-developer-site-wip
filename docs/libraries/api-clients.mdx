@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 Glean offers official API clients for several popular programming languages to help developers integrate Glean's powerful search and knowledge capabilities into their applications. These clients provide language-specific interfaces to Glean's APIs, making it easier to build custom solutions without having to handle the low-level HTTP requests.
 
-<Info>
+:::info
   **Before you start**: You'll need a Client API token to use these libraries. See the [Authentication Guide](/api-info/client/authentication/overview) for complete setup instructions.
-</Info>
+:::
 
-<Warning>
+:::warning
   **Important**: These API clients are designed for the **Client API only**. For the Indexing API, you'll need to use HTTP requests directly with [Indexing API tokens](/api-info/indexing/authentication/overview).
-</Warning>
+:::
 
 ## Official API Clients
 
@@ -271,9 +271,9 @@ Glean provides official API clients for the following languages:
 
 The API clients support both Client API authentication methods:
 
-<Warning>
+:::warning
   **OAuth limitation**: OAuth authentication only works with Client API endpoints. These API clients are designed for Client API only, so OAuth will work. For Indexing API operations, use direct HTTP requests with [Indexing API tokens](/api-info/indexing/authentication/overview).
-</Warning>
+:::
 
 ### Using User-Scoped Tokens (Recommended)
 ```python

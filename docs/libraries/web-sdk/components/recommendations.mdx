@@ -20,10 +20,10 @@ The Recommendations component provides intelligent, context-aware content sugges
 
 Include the JavaScript library in your page's `<head>` section. Replace `GLEAN_APP_DOMAIN` with your company's Glean web app domain (typically `app.glean.com` or `your-company.glean.com` for custom subdomains).
 
-<Info>
+:::info
   The Glean web app domain differs from your company's Glean backend domain
   (which typically follows the format `your-company-be.glean.com`).
-</Info>
+:::
 
 <Tabs>
 <TabItem value="html" label="HTML">
@@ -117,18 +117,18 @@ The component's dimensions can be customized in the following ways:
 
 The component's appearance can be refined using [RecommendationsBoxCustomizations](https://app.glean.com/meta/browser_api/interfaces/RecommendationsBoxCustomizations.html):
 
-<Note>
+:::note
   When implementing visual customizations: - Box-shadow visibility requires
   appropriate verticalMargin and horizontalMargin settings - Margin values must
   be positive and are applied to both sides of the component
-</Note>
+:::
 
 ## Authentication
 
-<Note>
+:::note
   Authentication involves two default steps that users must complete upon first
   usage. However, both steps can be optimized for a smoother user experience.
-</Note>
+:::
 
 ### Default Authentication Flow
 
@@ -143,10 +143,10 @@ You can streamline the authentication process in two ways:
 
 2. **Skip SSO Authentication**: Configure a [server-to-server handshake](https://docs.google.com/document/d/12q1oQWwhkLQyIHXKE7OF6XtvJZ5av50Wd_NKUbRh5u4/edit) and provide the user's auth token via [Options.authToken](https://app.glean.com/meta/browser_api/interfaces/Options.html#authToken).
 
-<Warning>
+:::warning
   When implementing auth token authentication: - You must configure an
   [onAuthTokenRequired](https://app.glean.com/meta/browser_api/interfaces/Options.html#onAuthTokenRequired)
   callback - This callback handles token refresh when expiration approaches -
   Server-to-server authentication becomes mandatory if third-party cookies are
   blocked in the user's browser
-</Warning>
+:::

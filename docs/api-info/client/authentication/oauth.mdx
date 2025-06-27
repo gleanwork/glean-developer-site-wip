@@ -6,7 +6,6 @@ description: Complete OAuth setup guide for Client API authentication with provi
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { Warning } from '@site/src/components/Callouts';
 import { Steps, Step } from '@site/src/components/Steps';
 import { Accordion } from '@site/src/components/Accordion';
 import Tabs from '@theme/Tabs';
@@ -23,9 +22,9 @@ OAuth is the **recommended authentication method** for Client API integrations. 
   - **Enterprise security** - Leverages your existing auth infrastructure
 </Card>
 
-<Warning>
+:::warning
   OAuth authentication is **only supported for Client API**. Indexing API operations require Glean-issued tokens.
-</Warning>
+:::
 
 ---
 

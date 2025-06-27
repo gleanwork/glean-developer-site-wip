@@ -1,6 +1,6 @@
 ---
-slug: mdx-blog-post
-title: MDX Blog Post
+slug: langchain-sdk-release
+title: LangChain SDK Release
 tags: [SDK]
 ---
 

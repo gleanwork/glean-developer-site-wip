@@ -1,0 +1,141 @@
+.changelogEntry {
+  display: flex;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.changelogEntry:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 170px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.entryDate {
+  width: 140px;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 0.25rem;
+}
+
+.entryDate time {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+  line-height: 1.2;
+  display: block;
+}
+
+.monthDay {
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+
+.year {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.contentWrapper {
+  flex: 1;
+  position: relative;
+  padding-left: 30px;
+}
+
+.entryDot {
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 8px;
+  height: 8px;
+  background: var(--ifm-color-primary);
+  border-radius: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.entryContent {
+  background: var(--ifm-background-color);
+  padding: 0.3rem 1.5rem;
+}
+
+.entryHeader h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.entryCategories {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.entryBody {
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.6;
+}
+
+.entryBody p {
+  margin-bottom: 1rem;
+}
+
+.entryBody p:last-child {
+  margin-bottom: 0;
+}
+
+.entryDetails {
+  margin-top: 1rem;
+}
+
+.entryDetails summary {
+  cursor: pointer;
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  list-style: none;
+  user-select: none;
+}
+
+.entryDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+.entryDetails summary:hover {
+  color: var(--ifm-color-primary-dark);
+}
+
+.fullContent {
+  margin-top: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .changelogEntry {
+    flex-direction: column;
+  }
+  
+  .entryDate {
+    width: auto;
+    text-align: left;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    margin-left: 30px;
+  }
+  
+  .contentWrapper {
+    padding-left: 30px;
+  }
+  
+  .entryDot {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+} 

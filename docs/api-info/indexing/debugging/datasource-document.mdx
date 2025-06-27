@@ -3,13 +3,18 @@ title: Datasource Document
 icon: file
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Gives various information that would help in debugging issues related to a particular document. For example, it gives information about the document's upload and indexing status, the document's permissions, etc.
 
 ### Sample Request
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/debug/{datasource}/document
   -H 'Authorization : Bearer <token>' \
   -H 'Content-Type : application/json' \
@@ -19,7 +24,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/debug/{datasource}/docum
       }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import troubleshooting_api
 from glean_indexing_api_client.model.debug_document_request import DebugDocumentRequest
 from glean_indexing_api_client.model.debug_document_response import DebugDocumentResponse
@@ -38,7 +46,8 @@ except glean_indexing_api_client.ApiException as e:
     print("Exception when calling TroubleshootingApi->debug_datasource_document_post: %s\n" % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### Sample Response
 

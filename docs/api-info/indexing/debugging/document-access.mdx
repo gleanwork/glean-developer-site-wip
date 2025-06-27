@@ -3,13 +3,18 @@ title: Document Access
 icon: lock
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Check if a user has access to a document.
 
 ### Sample Request
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/checkdocumentaccess
   -H 'Authorization : Bearer <token>' \
   -H 'Content-Type : application/json' \
@@ -21,7 +26,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/checkdocumentaccess
       }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import troubleshooting_api
 from glean_indexing_api_client.model.check_document_access_request import CheckDocumentAccessRequest
 from glean_indexing_api_client.model.check_document_access_response import CheckDocumentAccessResponse
@@ -41,7 +49,8 @@ except glean_indexing_api_client.ApiException as e:
     print("Exception when calling TroubleshootingApi->checkdocumentaccess_post: %s\n" % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### Sample Response
 

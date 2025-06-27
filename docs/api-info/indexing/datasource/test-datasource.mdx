@@ -3,6 +3,10 @@ title: Test Datasource
 icon: database
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Before going live with a production datasource you might want to set up a test/staging datasource. You can use a test datasource to experiment with the indexing API, or to stage your changes. This test datasource lives in the production environment but doesn’t affect it. You can do this by ensuring that:
 
 1. All ranking signals are turned off from a test datasource. This ensures that the production is not affected by a test datasource.
@@ -14,9 +18,10 @@ Setting up a test datasource is quite easy, you have to go through almost the sa
 
 When setting up the datasource using `/adddatasource` ([link](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/)), remember to set the isTestDatasource field to true.
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="curl">
 
-```bash curl
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource \
 ...
 	"isTestDatasource" : "true”
@@ -24,7 +29,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource \
 }
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import datasources_api
 from glean_indexing_api_client.model.custom_datasource_config import CustomDatasourceConfig
 # Please refer to the Getting Started page for more details on how to setup api_client
@@ -40,7 +48,8 @@ except indexing_api.ApiException as e:
   print('Exception when calling DatasourcesApi->adddatasource_post: %s\\n' % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 Glean turns off ranking signals from a test datasource. For example, Glean uses document references(link to a document) as one of its ranking signals. A document that is referenced more in other documents will be given more importance then a less referenced one. Glean stops all such signals for a test datasource so that it does not pollute production rankings.
 
@@ -48,9 +57,10 @@ Glean turns off ranking signals from a test datasource. For example, Glean uses 
 
 At this stage your test datasource is not affecting the production and it is neither visible to anyone. Now you would like to give selective visibility to it. This can be done using the `/betausers`([link](https://developers.glean.com/indexing/tag/Permissions/paths/~1betausers/post/)) endpoint. This endpoint allows you to control the people who can have visibility to the test datasource. An example command would look like :
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="curl">
 
-```bash curl
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/betausers \
 -H 'Authorization: Bearer <token>' \
 -H 'Content-Type : application/json' \
@@ -64,7 +74,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/betausers \
 }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import permissions_api
 from glean_indexing_api_client.model.greenlist_users_request import GreenlistUsersRequest
 # Please refer to the Getting Started page for more details on how to setup api_client
@@ -83,7 +96,8 @@ except glean_indexing_api_client.ApiException as e:
     print("Exception when calling PermissionsApi->betausers_post: %s\n" % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 This command would give visibility of the test datasource to user1 and user2. This would allow you to test your custom datasource among a small number of users.
 

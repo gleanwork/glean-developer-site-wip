@@ -4,6 +4,9 @@ description: 'Integrate contextual search, chat, and recommendations in a conven
 icon: 'sidebar'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The Glean Sidebar provides a unified interface that combines search capabilities, chat functionality, and contextual recommendations, all accessible from a slide-out panel on your page.
 
 <Frame>
@@ -24,22 +27,32 @@ Include the JavaScript library in your page's `<head>` section. Replace `GLEAN_A
   (which typically follows the format `your-company-be.glean.com`).
 </Info>
 
-<CodeGroup>
-  ```html HTML
-  <script
+<Tabs>
+<TabItem value="html" label="HTML">
+
+```html
+<script
     defer
     src="https://{GLEAN_APP_DOMAIN}/embedded-search-latest.min.js"
   ></script>
-  ```
-</CodeGroup>
+```
+
+</TabItem>
+</Tabs>
 
 ### Basic Setup
 
 Implementing the Sidebar requires a single method call to [openSidebar](https://app.glean.com/meta/browser_api/interfaces/GleanWebSDK.html#openSidebar). You can trigger this method in response to user actions, such as clicking a button:
 
-<CodeGroup>
-  ```javascript Implementation GleanWebSDK.openSidebar() ```
-</CodeGroup>
+<Tabs>
+<TabItem value="javascript" label="JavaScript">
+
+```javascript
+GleanWebSDK.openSidebar()
+```
+
+</TabItem>
+</Tabs>
 
 ## Customization Options
 

@@ -2,6 +2,10 @@
 title: MCP Server
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 <div class="flex gap-2">
   <img src="https://badge.mcpx.dev?type=server" alt="MCP Server" />
   <img
@@ -22,9 +26,9 @@ A Model Context Protocol (MCP) server implementation for Glean's search and chat
 
 ## Features
 
-- 🔍 **Search Integration**: Access Glean's powerful content search capabilities
-- 💬 **Chat Interface**: Interact with Glean's AI assistant
-- 🔄 **MCP Compliant**: Implements the Model Context Protocol specification
+- **Search Integration**: Access Glean's powerful content search capabilities
+- **Chat Interface**: Interact with Glean's AI assistant
+- **MCP Compliant**: Implements the Model Context Protocol specification
 
 ## Prerequisites
 
@@ -33,21 +37,29 @@ A Model Context Protocol (MCP) server implementation for Glean's search and chat
 
 ## Installation
 
-<CodeGroup>
+<Tabs>
+<TabItem value="npm" label="npm">
 
-```bash npm
+```bash
 npm install @gleanwork/mcp-server
 ```
 
-```bash pnpm
+</TabItem>
+<TabItem value="pnpm" label="pnpm">
+
+```bash
 pnpm install @gleanwork/mcp-server
 ```
 
-```bash yarn
+</TabItem>
+<TabItem value="yarn" label="yarn">
+
+```bash
 yarn add @gleanwork/mcp-server
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ## Configuration
 

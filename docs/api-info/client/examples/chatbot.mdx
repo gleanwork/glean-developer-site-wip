@@ -3,6 +3,10 @@ title: Simple Chatbot
 icon: message-bot
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Warning } from '@site/src/components/Callouts';
+
 The Glean Chat API is a powerful tool for integrating conversational AI into your products. It allows you to create custom conversational interfaces that leverage Glean's AI capabilities. This page provides examples of how to use the Chat API to integrate conversational AI into your products.
 
 ## Example Conversational Flow Diagram
@@ -13,8 +17,10 @@ The following diagram illustrates a multi-message conversation flow between an e
 
 ## cURL Example
 
-<CodeGroup>
-```bash User Token
+<Tabs>
+<TabItem value="user-token" label="User Token">
+
+```bash
 curl 'https://<instance-name>-be.glean.com/rest/api/v1/chat' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <TOKEN>' \
@@ -33,7 +39,10 @@ curl 'https://<instance-name>-be.glean.com/rest/api/v1/chat' \
     }'
 ```
 
-```bash Global Token
+</TabItem>
+<TabItem value="global-token" label="Global Token">
+
+```bash
 curl 'https://<instance-name>-be.glean.com/rest/api/v1/chat' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <TOKEN>' \
@@ -53,7 +62,8 @@ curl 'https://<instance-name>-be.glean.com/rest/api/v1/chat' \
     }'
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ## Python Example
 
@@ -69,8 +79,10 @@ _Note: The following example streams the output as it becomes available, wheneve
   times, although each duplicated citation should have a different `endIndex`.
 </Warning>
 
-<CodeGroup>
-```python Single Conversation
+<Tabs>
+<TabItem value="single-conversation" label="Single Conversation">
+
+```python
 import requests
 import json
 
@@ -137,10 +149,12 @@ data = {
 
 if **name** == '**main**':
 main()
+```
 
-````
+</TabItem>
+<TabItem value="multiple-conversations" label="Multiple Conversations">
 
-```python Multiple Conversations
+```python
 import requests
 import json
 from typing import List, Dict
@@ -259,9 +273,12 @@ def main():
 
 if __name__ == '__main__':
     main()
-````
+```
 
-```python DEPRECATED
+</TabItem>
+<TabItem value="deprecated" label="DEPRECATED">
+
+```python
 import requests
 import json
 from typing import List, Dict
@@ -379,4 +396,5 @@ if __name__ == '__main__':
     main()
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>

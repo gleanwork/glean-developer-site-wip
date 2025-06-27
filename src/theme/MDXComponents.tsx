@@ -17,7 +17,7 @@ import { Tab, Tabs } from '@site/src/components/Tabs';
 import { Step, Steps } from '@site/src/components/Steps';
 import { AccordionGroup } from '@site/src/components/AccordionGroup';
 import { Accordion } from '@site/src/components/Accordion';
-import { CodeGroup } from '@site/src/components/CodeGroup';
+
 import { ResponseField } from '@site/src/components/ResponseField';
 
 export default {
@@ -39,6 +39,6 @@ export default {
   Steps,
   AccordionGroup,
   Accordion,
-  CodeGroup,
+
   ResponseField,
 };

@@ -69,6 +69,23 @@
     'Liberation Mono', 'Courier New', monospace;
 
   --ifm-hr-background-color: var(--ifm-color-emphasis-200);
+
+  /* Badge color overrides - using Glean brand colors */
+  --ifm-color-success: #343ced; /* Client API - Glean blue */
+  --ifm-color-success-dark: #1922eb;
+  --ifm-color-success-darker: #141de2;
+  --ifm-color-success-darkest: #1018ba;
+  --ifm-color-success-light: #4f55ef;
+  --ifm-color-success-lighter: #5c62f1;
+  --ifm-color-success-lightest: #8488f4;
+
+  --ifm-color-warning: #d8fd49; /* Indexing API - Glean green */
+  --ifm-color-warning-dark: #d0fc25;
+  --ifm-color-warning-darker: #ccfc12;
+  --ifm-color-warning-darkest: #a9d805;
+  --ifm-color-warning-light: #e0fd6d;
+  --ifm-color-warning-lighter: #e4fd80;
+  --ifm-color-warning-lightest: #edfdab;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -112,10 +129,22 @@
   --ifm-link-color: #e5e7eb;
   --ifm-link-hover-color: #f9fafb;
 
-  /* Blue accent overrides for dark mode */
-  --ifm-color-info: #6366f1;
-  --ifm-color-info-dark: #4f46e5;
-  --ifm-color-info-darker: #4338ca;
+  /* Badge color overrides for dark mode - using Glean brand colors */
+  --ifm-color-success: #5c62f1; /* Client API - lighter Glean blue for dark mode */
+  --ifm-color-success-dark: #4f55ef;
+  --ifm-color-success-darker: #343ced;
+  --ifm-color-success-darkest: #1922eb;
+  --ifm-color-success-light: #8488f4;
+  --ifm-color-success-lighter: #9ca0f6;
+  --ifm-color-success-lightest: #b4b7f8;
+
+  --ifm-color-warning: #e0fd6d; /* Indexing API - lighter Glean green for dark mode */
+  --ifm-color-warning-dark: #d8fd49;
+  --ifm-color-warning-darker: #d0fc25;
+  --ifm-color-warning-darkest: #ccfc12;
+  --ifm-color-warning-light: #e4fd80;
+  --ifm-color-warning-lighter: #edfdab;
+  --ifm-color-warning-lightest: #f1fdc5;
 }
 
 /* Links - only in main content paragraphs and content areas */
@@ -733,4 +762,21 @@ article h1,
 [data-theme='dark'] .delete > .menu__link--active::before {
   background-color: #ef4444;
   color: #ffffff;
+}
+
+/* Badge text color overrides for better contrast */
+.badge--warning {
+  color: #1c1e21; /* Dark text on bright green background */
+}
+
+.badge--success {
+  color: white; /* White text on blue background */
+}
+
+[data-theme='dark'] .badge--warning {
+  color: #1c1e21; /* Dark text on bright green in dark mode too */
+}
+
+[data-theme='dark'] .badge--success {
+  color: white; /* White text on blue in dark mode */
 }

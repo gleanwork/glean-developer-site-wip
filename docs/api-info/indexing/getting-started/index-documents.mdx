@@ -1,7 +1,10 @@
 ---
-title: Indexing Documents
+title: Index Documents
 icon: file-import
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 This guide will help you quickly get familiar with the basics of using the Indexing API by configuring a datasource, indexing a document, and enabling the datasource to show up in search.
 
@@ -35,9 +38,10 @@ This can be used to control visibility of the document in search results for
 different Glean users. For simplicity, in this tutorial, we will only index a
 document with anonymous access using `permissions.allowAnonymousAccess`.
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
+```bash
 curl -X POST   https://customer-be.glean.com/api/index/v1/indexdocument \
   -H 'Authorization: Bearer <token>' \
   -H 'Content-Type : application/json' \
@@ -59,7 +63,10 @@ curl -X POST   https://customer-be.glean.com/api/index/v1/indexdocument \
     }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean.api_client import Glean
 import os
 
@@ -89,7 +96,8 @@ with Glean(
         print(f"Exception when indexing document: {e}")
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 To learn about more document customization options
 [here](http://developers.glean.com/indexing/tag/Documents/paths/~1indexdocument/post/)

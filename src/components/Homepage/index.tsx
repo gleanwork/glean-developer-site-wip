@@ -2,8 +2,6 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './index.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRobot, faCode, faDatabase } from '@fortawesome/free-solid-svg-icons';
 import McpIcon from '../Icons/McpIcon';
 import Card from '../Card';
 import CarouselSection from './CarouselSection';
@@ -13,7 +11,8 @@ type Feature = {
   title: string;
   body: string;
   href: string;
-  icon: React.ReactNode;
+  icon: string;
+  iconStyle?: 'solid' | 'regular' | 'brands';
   color?: string;
 };
 
@@ -23,21 +22,24 @@ export default function Home() {
       title: 'Build AI Agents',
       body: 'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
       href: 'api/client-api/agents/overview',
-      icon: <FontAwesomeIcon icon={faRobot} />,
+      icon: 'robot',
+      iconStyle: 'solid',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {
       title: 'Leverage Your Data',
       body: "Use Glean's APIs and client libraries to search, chat, and embed Work AI in your own apps.",
-      href: 'api-info/client/getting-started',
-      icon: <FontAwesomeIcon icon={faCode} />,
+      href: 'api-info/client/getting-started/overview',
+      icon: 'code',
+      iconStyle: 'solid',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {
       title: 'Create Connectors',
       body: 'Bring any source into Glean with our connector framework and indexing API.',
       href: 'api-info/indexing/getting-started/setup-datasource',
-      icon: <FontAwesomeIcon icon={faDatabase} />,
+      icon: 'database',
+      iconStyle: 'solid',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
   ];
@@ -60,6 +62,7 @@ export default function Home() {
                 <Card
                   title={f.title}
                   icon={f.icon}
+                  iconStyle={f.iconStyle}
                   href={f.href}
                   color={f.color}
                 >

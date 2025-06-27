@@ -4,6 +4,10 @@ description: "Build a custom search interface by combining Glean's Autocomplete 
 icon: 'magnifying-glass'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Create a full-featured search experience by integrating Glean's Autocomplete and Search Results components. This approach enables deep UI customization while maintaining straightforward implementation.
 
 <Frame>
@@ -24,14 +28,18 @@ Include the JavaScript library in your page's `<head>` section. Replace `GLEAN_A
   (which typically follows the format `your-company-be.glean.com`).
 </Info>
 
-<CodeGroup>
-  ```html HTML
-  <script
+<Tabs>
+<TabItem value="html" label="HTML">
+
+```html
+<script
     defer
     src="https://{GLEAN_APP_DOMAIN}/embedded-search-latest.min.js"
   ></script>
-  ```
-</CodeGroup>
+```
+
+</TabItem>
+</Tabs>
 
 ### Component Setup
 
@@ -45,8 +53,10 @@ The implementation requires two container elements with specific CSS properties 
 
 2. Implement the search functionality with event handling:
 
-<CodeGroup>
-```javascript Search Implementation
+<Tabs>
+<TabItem value="search-implementation" label="Search Implementation">
+
+```javascript
 let currentQuery = undefined
 
 function renderSearchResults() {
@@ -72,9 +82,10 @@ query: currentQuery
 }
 
 renderSearchBox()
-
 ```
-</CodeGroup>
+
+</TabItem>
+</Tabs>
 
 ## Customization Options
 

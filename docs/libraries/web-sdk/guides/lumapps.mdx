@@ -4,6 +4,10 @@ description: "Instructions for replacing LumApps' native search functionality wi
 icon: network-wired
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 To integrate Glean's modal search interface into your LumApps environment, you'll need to add custom code to your site's header. This can be done using LumApps' [custom code feature](https://docs.lumapps.com/docs/explore-l02754686794778971?contentV1Fallback=true#l02584482917705644).
 
 <Note>
@@ -11,8 +15,10 @@ To integrate Glean's modal search interface into your LumApps environment, you'l
   domain (e.g., app.glean.com, company.glean.com)
 </Note>
 
-<CodeGroup>
-```html HTML Integration Code
+<Tabs>
+<TabItem value="html-integration-code" label="HTML Integration Code">
+
+```html
 <style>
   .searchbox__suggestions {
     display: none !important;
@@ -31,9 +37,10 @@ To integrate Glean's modal search interface into your LumApps environment, you'l
     window.GleanWebSDK.attach(getSearchBox())
   })
 </script>
-
 ```
-</CodeGroup>
+
+</TabItem>
+</Tabs>
 
 The integration code performs three key functions:
 1. Disables LumApps' native search suggestions using CSS

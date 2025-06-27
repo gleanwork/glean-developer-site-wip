@@ -21,6 +21,8 @@ const PRIMARY_TAGS = [
   'Glean Indexing SDK',
   'langchain-glean',
   'MCP',
+  'Website',
+  'SDK', 
 ];
 
 const SECONDARY_TAGS = [

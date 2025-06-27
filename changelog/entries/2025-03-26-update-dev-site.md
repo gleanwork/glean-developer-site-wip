@@ -1,7 +1,7 @@
 ---
 slug: update-dev-site
 title: Update Developer Site
-tags: [Developer Site]
+tags: [Website]
 ---
 
 The developer site has been updated with a new look, content, and features. Some new features include:

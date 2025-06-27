@@ -23,10 +23,11 @@ All changelog entries are stored in the `changelog/entries/` directory as Markdo
 ### File Naming Convention
 
 Use the following naming pattern for changelog files:
-```YYYY-MM-DD-descriptive-slug.md
-```
+
+```YYYY-MM-DD-descriptive-slug.md```
 
 **Examples:**
+
 - `2025-06-27-oauth-remote-mcp.md`
 - `2025-05-31-api-reference-updates.md`
 - `2025-04-15-new-governance-endpoints.md`
@@ -61,6 +62,7 @@ You can include:
 ## Available Tags
 
 ### Primary Component Tags
+
 Choose **one** primary component that this change affects:
 
 - **Client API** - REST API for search, chat, etc.
@@ -72,6 +74,7 @@ Choose **one** primary component that this change affects:
 - **MCP** - Model Context Protocol server
 
 ### Change Type Tags (Optional)
+
 Add **one or more** change type tags as needed:
 
 - **Feature** - New functionality
@@ -83,7 +86,9 @@ Add **one or more** change type tags as needed:
 - **Documentation** - Documentation updates
 
 ### Category Mapping
+
 Tags are automatically mapped to semantic categories for filtering:
+
 - **API** ← Client API, Indexing API
 - **SDK** ← API Clients, Agent Interop Toolkit, Glean Indexing SDK, langchain-glean, MCP
 - **Feature/Enhancement/Bug Fix/etc.** ← Change type tags
@@ -91,6 +96,7 @@ Tags are automatically mapped to semantic categories for filtering:
 ## Truncation
 
 Use one of the following markers to separate content:
+
 - `{/* truncate */}` (recommended for MDX compatibility)
 - `<!-- truncate -->`
 - `<!-- more -->`
@@ -98,6 +104,7 @@ Use one of the following markers to separate content:
 Content **before** the marker appears on the main changelog page, while content **after** the marker only appears on individual entry pages.
 
 If no truncate marker exists, the system will automatically truncate content using these fallback rules:
+
 1. First paragraph only (if multiple paragraphs exist)
 2. First 200 characters with word boundary truncation (if content is very long)
 
@@ -130,4 +137,4 @@ See the existing entries in `changelog/entries/` for examples of well-formatted 
 
 ## Publishing
 
-Once you create a new changelog entry (either via generator or manually) and run the build command, it will automatically appear on the changelog page with proper categorization and timeline formatting. 
+Once you create a new changelog entry (either via generator or manually) and run the build command, it will automatically appear on the changelog page with proper categorization and timeline formatting.

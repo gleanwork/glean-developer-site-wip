@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 import inquirer from 'inquirer';
 import slugify from 'slugify';
 import chalk from 'chalk';
-import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,22 +15,22 @@ const TEMPLATE_FILE = path.join(__dirname, 'templates', 'changelog-entry.md');
 
 const PRIMARY_TAGS = [
   'Client API',
-  'Indexing API', 
+  'Indexing API',
   'API Clients',
   'Agent Interop Toolkit',
   'Glean Indexing SDK',
   'langchain-glean',
-  'MCP'
+  'MCP',
 ];
 
 const SECONDARY_TAGS = [
   'Feature',
-  'Enhancement', 
+  'Enhancement',
   'Bug Fix',
   'Breaking',
   'Security',
   'Deprecation',
-  'Documentation'
+  'Documentation',
 ];
 
 function getCurrentDate() {
@@ -46,7 +45,7 @@ function createSlug(title) {
   return slugify(title, {
     lower: true,
     strict: true,
-    remove: /[*+~.()'"!:@]/g
+    remove: /[*+~.()'"!:@]/g,
   });
 }
 
@@ -55,18 +54,18 @@ function generateFilename(title) {
   const slug = createSlug(title);
   let filename = `${date}-${slug}.md`;
   let counter = 1;
-  
+
   while (fs.existsSync(path.join(CHANGELOG_DIR, filename))) {
     filename = `${date}-${slug}-${counter}.md`;
     counter++;
   }
-  
+
   return filename;
 }
 
 function formatTags(primaryTag, secondaryTags) {
   const allTags = [primaryTag, ...secondaryTags];
-  return allTags.map(tag => `"${tag}"`).join(', ');
+  return allTags.map((tag) => `"${tag}"`).join(', ');
 }
 
 function replaceTemplateVariables(template, variables) {
@@ -94,19 +93,19 @@ async function promptUser() {
           return 'Title should be less than 100 characters';
         }
         return true;
-      }
+      },
     },
     {
       type: 'list',
       name: 'primaryTag',
       message: 'Select primary component:',
-      choices: PRIMARY_TAGS
+      choices: PRIMARY_TAGS,
     },
     {
       type: 'checkbox',
       name: 'secondaryTags',
       message: 'Select change types (space to select, enter to continue):',
-      choices: SECONDARY_TAGS
+      choices: SECONDARY_TAGS,
     },
     {
       type: 'editor',
@@ -117,14 +116,14 @@ async function promptUser() {
           return 'Summary is required';
         }
         return true;
-      }
+      },
     },
     {
       type: 'confirm',
       name: 'addDetailedContent',
       message: 'Add detailed content?',
-      default: false
-    }
+      default: false,
+    },
   ]);
 
   if (answers.addDetailedContent) {
@@ -139,8 +138,8 @@ Add more detailed information here, such as:
 - Code examples
 - Migration guides  
 - Links to documentation
-- Breaking change details`
-      }
+- Breaking change details`,
+      },
     ]);
     answers.detailedContent = detailedAnswer.detailedContent;
   } else {
@@ -158,11 +157,9 @@ Add more detailed information here, such as:
 
 async function createChangelogEntry() {
   try {
-    // Ensure directories exist
     fs.mkdirSync(CHANGELOG_DIR, { recursive: true });
     fs.mkdirSync(path.dirname(TEMPLATE_FILE), { recursive: true });
 
-    // Create template if it doesn't exist
     if (!fs.existsSync(TEMPLATE_FILE)) {
       const defaultTemplate = `---
 title: "{{TITLE}}"
@@ -177,38 +174,36 @@ tags: [{{TAGS}}]
       fs.writeFileSync(TEMPLATE_FILE, defaultTemplate);
     }
 
-    // Get user input
     const answers = await promptUser();
-    
-    // Generate filename
+
     const filename = generateFilename(answers.title);
     const filepath = path.join(CHANGELOG_DIR, filename);
-    
-    // Read template
+
     const template = fs.readFileSync(TEMPLATE_FILE, 'utf-8');
-    
-    // Replace template variables
+
     const variables = {
       TITLE: answers.title,
       TAGS: formatTags(answers.primaryTag, answers.secondaryTags),
       SUMMARY: answers.summary.trim(),
-      DETAILED_CONTENT: answers.detailedContent.trim()
+      DETAILED_CONTENT: answers.detailedContent.trim(),
     };
-    
+
     const content = replaceTemplateVariables(template, variables);
-    
-    // Write file
+
     fs.writeFileSync(filepath, content);
-    
-    console.log(chalk.green(`\n✅ Created: ${path.relative(process.cwd(), filepath)}`));
+
+    console.log(
+      chalk.green(`\n✅ Created: ${path.relative(process.cwd(), filepath)}`),
+    );
     console.log(chalk.yellow('📝 Next steps:'));
-    console.log(chalk.yellow('  • Run: yarn generate:changelog (to update data)'));
     console.log(chalk.yellow('  • Run: yarn start (to see changes locally)'));
-    
   } catch (error) {
-    console.error(chalk.red('❌ Error creating changelog entry:'), error.message);
+    console.error(
+      chalk.red('❌ Error creating changelog entry:'),
+      error.message,
+    );
     process.exit(1);
   }
 }
 
-createChangelogEntry(); 
+createChangelogEntry();

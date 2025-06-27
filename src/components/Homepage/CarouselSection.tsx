@@ -137,7 +137,7 @@ with Glean(
   },
 ];
 
-export default function CarouselSection() {  
+export default function CarouselSection() {
   return (
     <section
       className={clsx('container', styles.wideContainer, 'margin-vert--l')}
@@ -179,10 +179,14 @@ export default function CarouselSection() {
               <div className="col col--7">
                 {slide.imageUrl ? (
                   <div className={styles.imageWrap}>
-                    <ThemedImage alt={slide.imageAlt} sources={{
-                      light: useBaseUrl(slide.imageUrl.light),
-                      dark: useBaseUrl(slide.imageUrl.dark),
-                    }} className={styles.carouselImage} />
+                    <ThemedImage
+                      alt={slide.imageAlt}
+                      sources={{
+                        light: useBaseUrl(slide.imageUrl.light),
+                        dark: useBaseUrl(slide.imageUrl.dark),
+                      }}
+                      className={styles.carouselImage}
+                    />
                   </div>
                 ) : (
                   <div className={styles.codeWrap}>

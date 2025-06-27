@@ -45,11 +45,6 @@ const sidebars: SidebarsConfig = {
           id: 'changelog/index',
           label: 'Changelog',
         },
-        {
-          type: 'link',
-          href: 'https://community.glean.com',
-          label: 'Community',
-        },
       ],
     },
     {
@@ -1161,6 +1156,11 @@ const sidebars: SidebarsConfig = {
           type: 'link',
           href: 'https://status.glean.com/',
           label: 'Status',
+        },
+        {
+          type: 'link',
+          href: 'https://community.glean.com',
+          label: 'Community',
         },
       ],
     },

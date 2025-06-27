@@ -14,6 +14,7 @@ import {
   IntegrationIcon,
   AnalyticsIcon,
   McpIcon,
+  LangchainIcon,
 } from './GleanIcons';
 
 interface IconProps {
@@ -36,6 +37,7 @@ export const GleanIconRegistry = {
   integration: IntegrationIcon,
   analytics: AnalyticsIcon,
   mcp: McpIcon,
+  langchain: LangchainIcon,
 } as const;
 
 export type GleanIconName = keyof typeof GleanIconRegistry;

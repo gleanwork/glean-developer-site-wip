@@ -4,6 +4,10 @@ description: 'Display contextual recommendations and search functionality based 
 icon: 'lightbulb'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 The Recommendations component provides intelligent, context-aware content suggestions while incorporating search capabilities. This component analyzes the current page content to surface relevant recommendations and enables users to perform manual searches when needed.
 
 <Frame>
@@ -21,14 +25,18 @@ Include the JavaScript library in your page's `<head>` section. Replace `GLEAN_A
   (which typically follows the format `your-company-be.glean.com`).
 </Info>
 
-<CodeGroup>
-  ```html HTML
-  <script
+<Tabs>
+<TabItem value="html" label="HTML">
+
+```html
+<script
     defer
     src="https://{GLEAN_APP_DOMAIN}/embedded-search-latest.min.js"
   ></script>
-  ```
-</CodeGroup>
+```
+
+</TabItem>
+</Tabs>
 
 ### Component Setup
 
@@ -40,13 +48,18 @@ The Recommendations component requires three key implementation elements:
 
 Here's a complete implementation example:
 
-<CodeGroup>
-```html HTML Structure
+<Tabs>
+<TabItem value="html-structure" label="HTML Structure">
+
+```html
 <h2>Glean Recommendations Component</h2>
 <div id="recommendations"></div>
 ```
 
-```css Component Styling
+</TabItem>
+<TabItem value="component-styling" label="Component Styling">
+
+```css
 #recommendations {
   display: block;
   position: relative;
@@ -54,7 +67,10 @@ Here's a complete implementation example:
 }
 ```
 
-```javascript Implementation
+</TabItem>
+<TabItem value="implementation" label="Implementation">
+
+```javascript
 addEventListener('DOMContentLoaded', () => {
   const recommendationsContainer = document.getElementById('recommendations');
   GleanWebSDK.renderRecommendations(recommendationsContainer, {
@@ -74,7 +90,8 @@ addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ## Customization Options
 

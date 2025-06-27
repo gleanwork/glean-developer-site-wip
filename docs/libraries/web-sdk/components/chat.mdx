@@ -4,6 +4,9 @@ description: "Implement AI-powered chat functionality that leverages your compan
 icon: 'message-bot'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Glean Chat delivers personalized answers by integrating deep understanding of your company's content, employees, activities, and their interconnections. The system automatically tailors responses to each individual user's context and needs.
 
 <Frame>
@@ -21,14 +24,18 @@ First, include the JavaScript library in the `<head>` section of your page. Repl
   (which typically follows the format `your-company-be.glean.com`).
 </Info>
 
-<CodeGroup>
-  ```html HTML
-  <script
+<Tabs>
+<TabItem value="html" label="HTML">
+
+```html
+<script
     defer
     src="https://{GLEAN_APP_DOMAIN}/embedded-search-latest.min.js"
   ></script>
-  ```
-</CodeGroup>
+```
+
+</TabItem>
+</Tabs>
 
 ### Configuration and Setup
 
@@ -40,9 +47,15 @@ First, include the JavaScript library in the `<head>` section of your page. Repl
 
 2. Render Glean Chat into your container:
 
-<CodeGroup>
-  ```javascript window.EmbeddedSearch.renderChat(containerElement) ```
-</CodeGroup>
+<Tabs>
+<TabItem value="javascript" label="JavaScript">
+
+```javascript
+window.EmbeddedSearch.renderChat(containerElement)
+```
+
+</TabItem>
+</Tabs>
 
 For detailed configuration options and customizations, refer to our [renderChat API documentation](https://app.glean.com/meta/browser_api/interfaces/GleanWebSDK.html#renderChat).
 

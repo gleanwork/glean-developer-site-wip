@@ -4,6 +4,10 @@ description: 'Add a powerful search modal dialog to your application with minima
 icon: 'window-maximize'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Glean's Modal Search provides a seamless search experience by overlaying a search interface on your existing page. This solution requires minimal implementation effort - just a single line of code to get started.
 
 <Frame>
@@ -25,27 +29,35 @@ Include the JavaScript library in your page's `<head>` section. Replace `GLEAN_A
   (which typically follows the format `your-company-be.glean.com`).
 </Info>
 
-<CodeGroup>
-  ```html HTML
-  <script
+<Tabs>
+<TabItem value="html" label="HTML">
+
+```html
+<script
     defer
     src="https://{GLEAN_APP_DOMAIN}/embedded-search-latest.min.js"
   ></script>
-  ```
-</CodeGroup>
+```
+
+</TabItem>
+</Tabs>
 
 ### Basic Setup
 
 To implement Modal Search, use the [attach](https://app.glean.com/meta/browser_api/interfaces/GleanWebSDK.html#attach) method to connect the Glean SDK to a search input element on your page:
 
-<CodeGroup>
-  ```html Implementation
-  <script>
+<Tabs>
+<TabItem value="implementation" label="Implementation">
+
+```html
+<script>
     addEventListener('DOMContentLoaded', () =>{' '}
     {GleanWebSDK.attach(document.getElementById('search-box'))})
   </script>
-  ```
-</CodeGroup>
+```
+
+</TabItem>
+</Tabs>
 
 ## Customization Options
 

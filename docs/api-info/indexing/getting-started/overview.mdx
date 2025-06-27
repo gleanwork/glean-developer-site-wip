@@ -1,0 +1,163 @@
+---
+title: 'Getting Started'
+icon: 'database'
+---
+
+import ApiSupport from '@site/src/components/ApiSupport';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Indexing API Overview
+
+The Glean Indexing API enables organizations to make their custom content searchable and accessible through Glean's search and AI capabilities. This API is designed for pushing content from internal tools, on-premises systems, and applications that Glean doesn't natively support into Glean's search index, making it discoverable alongside your organization's other content.
+
+## Key Capabilities
+
+<CardGroup cols={2}>
+  <Card title="Document Indexing" icon="file-import" color="#06B6D4">
+    Index documents with full-text content, metadata, and permissions to make them searchable through Glean
+  </Card>
+
+  <Card title="Custom Datasources" icon="database" color="#8B5CF6">
+    Create and manage custom datasources to organize and categorize your indexed content
+  </Card>
+
+  <Card title="Structured Entities" icon="grid-3x3" color="#10B981">
+    Index structured key-value content for applications requiring schema-based data representation
+  </Card>
+
+  <Card title="Permission Management" icon="shield-check" color="#F59E0B">
+    Enforce fine-grained access controls ensuring users only see content they're authorized to access
+  </Card>
+</CardGroup>
+
+## Common Use Cases
+
+- **Internal Tool Integration**: Make content from proprietary or on-premises tools searchable in Glean
+- **Legacy System Modernization**: Bring content from older systems into modern search and AI workflows  
+- **Custom Application Data**: Index structured data from internal applications and databases
+- **Document Repositories**: Make file servers, wikis, and document management systems searchable
+- **Organizational Data**: Push people information, team structures, and organizational knowledge into Glean
+
+## How It Works
+
+The Indexing API follows a straightforward workflow:
+
+<Steps>
+<Step title="Create Datasource">
+Set up a custom datasource to hold your content. This defines how your content appears in search results and provides organizational structure.
+</Step>
+
+<Step title="Index Content">
+Push documents, structured data, and metadata to your datasource using the indexing endpoints. Content can be indexed individually or in bulk.
+</Step>
+
+<Step title="Manage Permissions">
+Configure access controls to ensure users only see content they're authorized to access, respecting your organization's security policies.
+</Step>
+
+<Step title="Enable Discovery">
+Activate your datasource in Glean's admin console to make the indexed content discoverable through search and AI features.
+</Step>
+</Steps>
+
+## Content Types
+
+The Indexing API supports various types of content:
+
+- **Documents**: Full-text content with titles, bodies, metadata, and view URLs
+- **Custom Entities**: Structured key-value data for applications requiring schema-based representation
+- **User Information**: Employee profiles, organizational structures, and team data
+- **Groups & Teams**: Organizational units and membership information
+- **External Shortcuts**: Quick access links to frequently used external resources
+
+## Quick Example
+
+Here's how to create a datasource and index your first document:
+
+<Tabs>
+<TabItem value="create-datasource" label="Create Datasource">
+
+```bash
+curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource \
+  -H 'Authorization: Bearer <your_indexing_token>' \
+  -d '{
+    "name": "internal-docs",
+    "displayName": "Internal Documentation",
+    "datasourceCategory": "PUBLISHED_CONTENT",
+    "urlRegex": "^https://internal.company.com/docs.*",
+    "isUserReferencedByEmail": true
+  }'
+```
+
+</TabItem>
+<TabItem value="index-document" label="Index Document">
+
+```bash
+curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
+  -H 'Authorization: Bearer <your_indexing_token>' \
+  -d '{
+    "document": {
+      "datasource": "internal-docs",
+      "objectType": "Document",
+      "id": "getting-started-guide",
+      "title": "Getting Started Guide",
+      "body": {
+        "mimeType": "text/plain",
+        "textContent": "This guide helps new employees get up to speed quickly..."
+      },
+      "permissions": {
+        "allowAnonymousAccess": false,
+        "allowedUsers": ["employee@company.com"]
+      },
+      "viewURL": "https://internal.company.com/docs/getting-started"
+    }
+  }'
+```
+
+</TabItem>
+</Tabs>
+
+## Authentication & Permissions
+
+<ApiSupport
+  clientApi={false}
+  indexingApi={true}
+  authMethods={["Glean Tokens"]}
+/>
+
+The Indexing API uses Glean-issued tokens for authentication. Only users with appropriate permissions can create and manage indexing tokens:
+
+- **Super Admins**: Can create all types of tokens
+- **Admins**: Can create user-scoped tokens  
+- **API Token Creators**: Can create user-scoped tokens
+
+Learn more in our [Authentication Guide](../authentication/overview).
+
+## Next Steps
+
+<CardGroup cols={1}>
+<Card title="Setup Your First Datasource" icon="database" href="setup-datasource">
+  Learn how to create and configure a custom datasource for your content
+</Card>
+
+<Card title="Index Your First Document" icon="file-import" href="index-documents">
+  Follow our step-by-step guide to index content and make it searchable
+</Card>
+
+<Card title="Manage Authentication" icon="key" href="../authentication/overview">
+  Set up indexing API tokens with proper permissions and security
+</Card>
+
+<Card title="API Reference" icon="book" href="../../../api/indexing-api/documents-overview">
+  Browse complete API documentation with all available endpoints
+</Card>
+</CardGroup>
+
+## Important Considerations
+
+- **Permissions**: Always configure appropriate permissions to maintain security
+- **Rate Limits**: Review our [rate limiting policies](../../../get-started/rate-limits) for bulk operations
+- **Data Freshness**: Content typically appears in search within a few minutes of indexing
+- **Backwards Compatibility**: Glean provides advance notice and deprecation periods for any breaking changes
+- **Testing**: Use test groups to validate content before making it visible to all users 

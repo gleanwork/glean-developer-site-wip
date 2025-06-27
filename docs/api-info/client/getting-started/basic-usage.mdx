@@ -1,0 +1,424 @@
+---
+title: 'Basic Usage'
+icon: 'code'
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+import { Steps, Step } from '@site/src/components/Steps';
+import { Warning } from '@site/src/components/Callouts';
+
+# Basic Usage Guide
+
+Once you have authentication configured, you can start making API calls to interact with Glean's search and AI capabilities. This guide covers the most common API operations to get you started.
+
+## Your First API Call
+
+Start with a simple search to verify your setup and understand the API response format:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+
+  ```bash
+  curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
+    -H 'Authorization: Bearer <your_token>' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "query": "quarterly planning",
+      "requestOptions": {
+        "maxResults": 10
+      }
+    }'
+  ```
+
+  </TabItem>
+  <TabItem value="python" label="Python SDK">
+
+  ```python
+  from glean.api_client import Glean
+  import os
+
+  with Glean(
+      api_token=os.getenv("GLEAN_CLIENT_API_TOKEN"),
+      instance=os.getenv("GLEAN_INSTANCE")
+  ) as client:
+      response = client.client.search.search(request={
+          "query": "quarterly planning",
+          "requestOptions": {
+              "maxResults": 10
+          }
+      })
+      print(f"Found {len(response.results)} results")
+      for result in response.results:
+          print(f"- {result.title}: {result.url}")
+  ```
+
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js SDK">
+
+  ```javascript
+  import { Glean } from '@gleanwork/client-api';
+
+  const client = new Glean({
+    apiToken: process.env.GLEAN_CLIENT_API_TOKEN,
+    instance: process.env.GLEAN_INSTANCE
+  });
+
+  const response = await client.search({
+    query: "quarterly planning",
+    requestOptions: {
+      maxResults: 10
+    }
+  });
+
+  console.log(`Found ${response.results.length} results`);
+  response.results.forEach(result => {
+    console.log(`- ${result.title}: ${result.url}`);
+  });
+  ```
+
+  </TabItem>
+</Tabs>
+
+## Core API Operations
+
+### 1. Search for Content
+
+Search is the foundation of most Client API integrations:
+
+<Tabs>
+  <TabItem value="basic-search" label="Basic Search">
+
+  ```bash
+  curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
+    -H 'Authorization: Bearer <your_token>' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "query": "employee handbook",
+      "requestOptions": {
+        "maxResults": 5
+      }
+    }'
+  ```
+
+  </TabItem>
+  <TabItem value="filtered-search" label="Filtered Search">
+
+  ```bash
+  curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
+    -H 'Authorization: Bearer <your_token>' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "query": "quarterly report",
+      "requestOptions": {
+        "maxResults": 5,
+        "filters": {
+          "datasource": ["confluence", "gdrive"]
+        }
+      }
+    }'
+  ```
+
+  </TabItem>
+</Tabs>
+
+### 2. Start a Chat Conversation
+
+Use Glean's AI to have conversations about your organization's content:
+
+<Tabs>
+  <TabItem value="simple-chat" label="Simple Chat">
+
+  ```bash
+  curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+    -H 'Authorization: Bearer <your_token>' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "stream": false,
+      "messages": [
+        {
+          "author": "USER",
+          "fragments": [
+            {
+              "text": "What are our vacation policies?"
+            }
+          ]
+        }
+      ]
+    }'
+  ```
+
+  </TabItem>
+  <TabItem value="streaming-chat" label="Streaming Chat">
+
+  ```bash
+  curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+    -H 'Authorization: Bearer <your_token>' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "stream": true,
+      "messages": [
+        {
+          "author": "USER",
+          "fragments": [
+            {
+              "text": "Summarize our Q3 results"
+            }
+          ]
+        }
+      ]
+    }'
+  ```
+
+  </TabItem>
+</Tabs>
+
+### 3. Get Document Content
+
+Retrieve specific documents and their metadata:
+
+```bash
+curl -X GET https://your-instance-be.glean.com/rest/api/v1/documents/{document_id} \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json'
+```
+
+### 4. List People and Entities
+
+Access organizational information:
+
+```bash
+curl -X GET https://your-instance-be.glean.com/rest/api/v1/entities/people \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json'
+```
+
+## Understanding API Responses
+
+### Search Response Structure
+
+```json
+{
+  "results": [
+    {
+      "id": "doc123",
+      "title": "Employee Handbook",
+      "url": "https://company.com/handbook",
+      "snippet": "Our comprehensive guide to company policies...",
+      "datasource": "confluence",
+      "lastModified": "2024-01-15T10:30:00Z",
+      "permissions": {
+        "canView": true,
+        "canEdit": false
+      }
+    }
+  ],
+  "facets": {
+    "datasource": [
+      {"value": "confluence", "count": 15},
+      {"value": "gdrive", "count": 8}
+    ]
+  },
+  "requestId": "req_abc123"
+}
+```
+
+### Chat Response Structure
+
+```json
+{
+  "messages": [
+    {
+      "messageType": "CONTENT",
+      "author": "ASSISTANT",
+      "fragments": [
+        {
+          "text": "Based on our vacation policy document, employees receive..."
+        },
+        {
+          "citation": {
+            "sourceDocument": {
+              "title": "Employee Handbook",
+              "url": "https://company.com/handbook"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conversationId": "conv_xyz789"
+}
+```
+
+## Common Patterns
+
+<Steps>
+<Step title="Search then Chat">
+A common pattern is to first search for relevant content, then use chat to ask specific questions about the results:
+
+1. Search for documents related to your query
+2. Use the search results to inform a more specific chat question
+3. Reference specific documents in your chat prompt
+</Step>
+
+<Step title="Progressive Conversations">
+Build multi-turn conversations by maintaining conversation state:
+
+1. Start with an initial question
+2. Include the `conversationId` in follow-up messages
+3. Reference previous context in subsequent questions
+</Step>
+
+<Step title="Error Handling">
+Implement robust error handling for production applications:
+
+1. Handle authentication errors (401, 403)
+2. Implement retry logic for temporary failures (5xx)
+3. Respect rate limits and implement backoff strategies
+4. Log request IDs for troubleshooting
+</Step>
+</Steps>
+
+## Testing Your Integration
+
+<Warning>
+**Rate Limits**: Be mindful of [rate limits](../../../get-started/rate-limits) when testing. Use reasonable delays between requests to avoid hitting limits.
+</Warning>
+
+### Quick Test Script
+
+Here's a simple script to test your basic integration:
+
+<Tabs>
+<TabItem value="python-test" label="Python Test">
+
+```python
+import os
+import requests
+import json
+
+# Configuration
+instance = os.getenv("GLEAN_INSTANCE")
+token = os.getenv("GLEAN_CLIENT_API_TOKEN")
+base_url = f"https://{instance}-be.glean.com/rest/api/v1"
+
+headers = {
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json"
+}
+
+def test_search():
+    """Test basic search functionality"""
+    response = requests.post(
+        f"{base_url}/search",
+        headers=headers,
+        json={
+            "query": "test",
+            "requestOptions": {"maxResults": 3}
+        }
+    )
+    print(f"Search status: {response.status_code}")
+    if response.status_code == 200:
+        results = response.json()
+        print(f"Found {len(results.get('results', []))} results")
+    return response.status_code == 200
+
+def test_chat():
+    """Test basic chat functionality"""
+    response = requests.post(
+        f"{base_url}/chat",
+        headers=headers,
+        json={
+            "stream": False,
+            "messages": [
+                {
+                    "author": "USER",
+                    "fragments": [{"text": "Hello, can you help me?"}]
+                }
+            ]
+        }
+    )
+    print(f"Chat status: {response.status_code}")
+    return response.status_code == 200
+
+# Run tests
+if test_search() and test_chat():
+    print("✅ Basic integration tests passed!")
+else:
+    print("❌ Integration tests failed. Check your configuration.")
+```
+
+</TabItem>
+<TabItem value="curl-test" label="cURL Test">
+
+```bash
+#!/bin/bash
+
+# Configuration
+INSTANCE="your-instance"
+TOKEN="your-token"
+BASE_URL="https://${INSTANCE}-be.glean.com/rest/api/v1"
+
+# Test search
+echo "Testing search..."
+SEARCH_RESPONSE=$(curl -s -w "%{http_code}" -X POST "${BASE_URL}/search" \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "test", "requestOptions": {"maxResults": 3}}')
+
+SEARCH_STATUS="${SEARCH_RESPONSE: -3}"
+if [ "$SEARCH_STATUS" = "200" ]; then
+    echo "✅ Search test passed"
+else
+    echo "❌ Search test failed with status: $SEARCH_STATUS"
+fi
+
+# Test chat
+echo "Testing chat..."
+CHAT_RESPONSE=$(curl -s -w "%{http_code}" -X POST "${BASE_URL}/chat" \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{"stream": false, "messages": [{"author": "USER", "fragments": [{"text": "Hello"}]}]}')
+
+CHAT_STATUS="${CHAT_RESPONSE: -3}"
+if [ "$CHAT_STATUS" = "200" ]; then
+    echo "✅ Chat test passed"
+else
+    echo "❌ Chat test failed with status: $CHAT_STATUS"
+fi
+```
+
+</TabItem>
+</Tabs>
+
+## Next Steps
+
+<CardGroup cols={1}>
+  <Card title="Explore Advanced Examples" icon="lightbulb" href="../examples/chatbot">
+    Build complete applications with step-by-step tutorials
+  </Card>
+
+  <Card title="Learn About SDKs" icon="box" href="../../../libraries/api-clients">
+    Use official client libraries for easier development
+  </Card>
+
+  <Card title="Learn About Search" icon="magnifying-glass" href="../search/filtering-results">
+    Master advanced search techniques and filtering options
+  </Card>
+
+  <Card title="Production Best Practices" icon="settings" href="../../../get-started/rate-limits">
+    Learn about scaling, monitoring, and production considerations
+  </Card>
+</CardGroup>
+
+## Troubleshooting Common Issues
+
+| Issue | Symptoms | Solution |
+|-------|----------|----------|
+| **Authentication Failed** | 401 or 403 errors | Verify token is correct and has required scopes |
+| **No Results Returned** | Empty search results | Check if user has access to content, try broader queries |
+| **Rate Limit Exceeded** | 429 errors | Implement exponential backoff, reduce request frequency |
+| **Invalid Request Format** | 400 errors | Verify JSON structure matches API documentation |
+| **Connection Timeout** | Network errors | Check instance URL, implement retry logic | 

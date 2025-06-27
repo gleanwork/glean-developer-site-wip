@@ -32,6 +32,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
+          id: 'get-started/authentication',
+          label: 'Authentication Overview',
+        },
+        {
+          type: 'doc',
           id: 'get-started/rate-limits',
           label: 'Rate Limits',
         },
@@ -77,9 +82,20 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'api-info/client/getting-started',
+          type: 'category',
           label: 'Getting Started',
+          items: [
+            {
+              type: 'doc',
+              id: 'api-info/client/getting-started/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'api-info/client/getting-started/basic-usage',
+              label: 'Basic Usage',
+            },
+          ],
         },
         {
           type: 'category',
@@ -88,12 +104,12 @@ const sidebars: SidebarsConfig = {
             {
               type: 'doc',
               id: 'api-info/client/authentication/overview',
-              label: 'Overview',
+              label: 'Implementation Guide',
             },
             {
               type: 'doc',
               id: 'api-info/client/authentication/glean-issued',
-              label: 'Glean Issued Tokens',
+              label: 'Glean Tokens',
             },
             {
               type: 'doc',
@@ -172,23 +188,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Authentication',
-          items: [
-            {
-              type: 'doc',
-              id: 'api/client-api/authentication/overview',
-              label: 'Overview',
-            },
-            {
-              type: 'doc',
-              id: 'api/client-api/authentication/create-auth-token',
-              label: 'Create authentication token',
-              className: 'api-method post',
-            },
-          ],
-        },
-        {
-          type: 'category',
           label: 'Agents',
           items: [
             {
@@ -225,6 +224,35 @@ const sidebars: SidebarsConfig = {
               id: 'api/client-api/agents/create-and-wait-run',
               label: 'Create an agent run and wait for the response',
               className: 'api-method post',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Announcements',
+          items: [
+            {
+              type: 'doc',
+              id: 'api/client-api/announcements/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'api/client-api/announcements/createannouncement',
+              label: 'Create announcement',
+              className: 'api-method post',
+            },
+            {
+              type: 'doc',
+              id: 'api/client-api/announcements/updateannouncement',
+              label: 'Update announcement',
+              className: 'api-method put',
+            },
+            {
+              type: 'doc',
+              id: 'api/client-api/announcements/deleteannouncement',
+              label: 'Delete announcement',
+              className: 'api-method delete',
             },
           ],
         },
@@ -271,30 +299,18 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Announcements',
+          label: 'Authentication',
           items: [
             {
               type: 'doc',
-              id: 'api/client-api/announcements/overview',
+              id: 'api/client-api/authentication/overview',
               label: 'Overview',
             },
             {
               type: 'doc',
-              id: 'api/client-api/announcements/createannouncement',
-              label: 'Create announcement',
+              id: 'api/client-api/authentication/create-auth-token',
+              label: 'Create authentication token',
               className: 'api-method post',
-            },
-            {
-              type: 'doc',
-              id: 'api/client-api/announcements/updateannouncement',
-              label: 'Update announcement',
-              className: 'api-method put',
-            },
-            {
-              type: 'doc',
-              id: 'api/client-api/announcements/deleteannouncement',
-              label: 'Delete announcement',
-              className: 'api-method delete',
             },
           ],
         },
@@ -581,8 +597,13 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'doc',
+              id: 'api-info/indexing/getting-started/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
               id: 'api-info/indexing/getting-started/setup-datasource',
-              label: 'Setup Datasource',
+              label: 'Setup Datasources',
             },
             {
               type: 'doc',
@@ -597,8 +618,8 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'doc',
-              id: 'api-info/indexing/authentication/managing-tokens',
-              label: 'Managing Tokens',
+              id: 'api-info/indexing/authentication/overview',
+              label: 'Implementation Guide',
             },
             {
               type: 'doc',
@@ -630,42 +651,6 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'api-info/indexing/datasource/rendering-search-results',
               label: 'Rendering Search Results',
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Documents',
-          items: [
-            {
-              type: 'doc',
-              id: 'api-info/indexing/documents/activity',
-              label: 'Activity',
-            },
-            {
-              type: 'doc',
-              id: 'api-info/indexing/documents/permissions',
-              label: 'Permissions',
-            },
-            {
-              type: 'doc',
-              id: 'api-info/indexing/documents/bulk-indexing',
-              label: 'Bulk Indexing',
-            },
-            {
-              type: 'doc',
-              id: 'api-info/indexing/documents/bulk-upload-model',
-              label: 'Bulk Upload Model',
-            },
-            {
-              type: 'doc',
-              id: 'api-info/indexing/documents/document-model',
-              label: 'Document Model',
-            },
-            {
-              type: 'doc',
-              id: 'api-info/indexing/documents/supported-mimetypes',
-              label: 'Supported MIME Types',
             },
           ],
         },
@@ -705,6 +690,42 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
+        {
+          type: 'category',
+          label: 'Documents',
+          items: [
+            {
+              type: 'doc',
+              id: 'api-info/indexing/documents/activity',
+              label: 'Activity',
+            },
+            {
+              type: 'doc',
+              id: 'api-info/indexing/documents/permissions',
+              label: 'Permissions',
+            },
+            {
+              type: 'doc',
+              id: 'api-info/indexing/documents/bulk-indexing',
+              label: 'Bulk Indexing',
+            },
+            {
+              type: 'doc',
+              id: 'api-info/indexing/documents/bulk-upload-model',
+              label: 'Bulk Upload Model',
+            },
+            {
+              type: 'doc',
+              id: 'api-info/indexing/documents/document-model',
+              label: 'Document Model',
+            },
+            {
+              type: 'doc',
+              id: 'api-info/indexing/documents/supported-mimetypes',
+              label: 'Supported MIME Types',
+            },
+          ],
+        },
       ],
     },
     {
@@ -713,6 +734,23 @@ const sidebars: SidebarsConfig = {
       collapsible: false,
       collapsed: false,
       items: [
+        {
+          type: 'category',
+          label: 'Authentication',
+          items: [
+            {
+              type: 'doc',
+              id: 'api/indexing-api/authentication-overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'api/indexing-api/rotate-token',
+              label: 'Rotate token',
+              className: 'api-method post',
+            },
+          ],
+        },
         {
           type: 'category',
           label: 'Datasources',
@@ -909,23 +947,6 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'api/indexing-api/beta-users',
               label: 'Beta users',
-              className: 'api-method post',
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Authentication',
-          items: [
-            {
-              type: 'doc',
-              id: 'api/indexing-api/authentication-overview',
-              label: 'Overview',
-            },
-            {
-              type: 'doc',
-              id: 'api/indexing-api/rotate-token',
-              label: 'Rotate token',
               className: 'api-method post',
             },
           ],

@@ -3,13 +3,18 @@ title: Datasource Config
 icon: sliders
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Gather information about the datasource's config.
 
 ### Sample Request
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/getdatasourceconfig \
   -H 'Authorization: Bearer <token>' \
   -H 'Content-Type : application/json' \
@@ -18,7 +23,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/getdatasourceconfig \
       }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import datasources_api
 from glean_indexing_api_client.model.get_datasource_config_request import GetDatasourceConfigRequest
 from glean_indexing_api_client.model.custom_datasource_config import CustomDatasourceConfig
@@ -36,7 +44,8 @@ except glean_indexing_api_client.ApiException as e:
     print("Exception when calling DatasourcesApi->getdatasourceconfig_post: %s\n" % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### Sample Response
 

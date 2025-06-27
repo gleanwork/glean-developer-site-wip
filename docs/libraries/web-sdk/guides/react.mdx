@@ -4,12 +4,17 @@ description: 'Integrate Glean Search into your React application'
 icon: react
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 The following is an example usage of the inline components from within React.
 The imports used are custom, but should be self-explanatory in context.
 
-<CodeGroup>
+<Tabs>
+<TabItem value="gleanwebsdkgallerytsx" label="GleanWebSDKGallery.tsx">
 
-```tsx GleanWebSDKGallery.tsx
+```tsx
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -123,7 +128,10 @@ const GleanWebSDKGallery = () => {
 export default GleanWebSDKGallery;
 ```
 
-```ts styles/GleanWebSDKGalleryStyles.ts
+</TabItem>
+<TabItem value="stylesgleanwebsdkgallerystylests" label="styles/GleanWebSDKGalleryStyles.ts">
+
+```ts
 import * as Fonts from 'core/theme/Fonts.css';
 import Stylesheet from 'core/types/Stylesheet';
 
@@ -140,4 +148,5 @@ export default Stylesheet({
 });
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>

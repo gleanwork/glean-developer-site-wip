@@ -1,4 +1,7 @@
 import { LangChainIcon } from './snippets/agents/icons.mdx';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
 
 # <LangChainIcon className="inline" height="2rem" /> Glean LangChain Integration
 
@@ -15,16 +18,28 @@ Glean's official LangChain integration enables you to build powerful AI agents t
 ### Installation
 
 <Tabs>
-  <Tab title="pip">```bash pip install -U langchain-glean ```</Tab>
-  <Tab title="poetry">```bash poetry add langchain-glean ```</Tab>
-  <Tab title="uv">```bash uv add langchain-glean ```</Tab>
+  <TabItem value="pip" label="pip">
+
+```bash pip install -U langchain-glean ```
+
+</TabItem>
+  <TabItem value="poetry" label="poetry">
+
+```bash poetry add langchain-glean ```
+
+</TabItem>
+  <TabItem value="uv" label="uv">
+
+```bash uv add langchain-glean ```
+
+</TabItem>
 </Tabs>
 
 ### Configuration
 
 #### API Tokens
 
-You'll need Glean [API credentials](/api-info/client/authentication/glean-issued), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#selecting-permissions-and-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
+You'll need Glean [API credentials](/get-started/authentication), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#available-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
 
 #### Configure Environment Variables
 

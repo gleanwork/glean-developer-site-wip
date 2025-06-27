@@ -3,6 +3,10 @@ title: 'Bulk Indexing'
 icon: files
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Bulk index documents endpoint is used to index all the documents of a custom
 datasource using a series of `/bulkindexdocuments` requests with a common
 `uploadId`. Bulk indexing fully replaces the entire list of documents stored
@@ -43,10 +47,11 @@ manage your document indexing process.
 
 Here is a sample request to the `/bulkindexdocuments` endpoint.
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
- curl -X POST  https://customer-be.glean.com/api/index/v1/bulkindexdocuments \
+```bash
+curl -X POST  https://customer-be.glean.com/api/index/v1/bulkindexdocuments \
   -H 'Authorization: Bearer <token>' \
   -H 'Content-Type : application/json' \
   -d '
@@ -88,7 +93,10 @@ Here is a sample request to the `/bulkindexdocuments` endpoint.
 }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean.api_client import Glean
 import os
 
@@ -129,7 +137,8 @@ with Glean(
         print(f"Exception when bulk indexing documents: {e}")
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 Let's look at the different fields you need to successfully index documents to
 Glean. Note that this is just a sample request with minimal fields required to index content. For

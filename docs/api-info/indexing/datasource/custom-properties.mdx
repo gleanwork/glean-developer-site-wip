@@ -3,6 +3,10 @@ title: Custom Properties
 icon: pen-field
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 In this document, we discuss how to define custom properties for a datasource and how to upload them with each document.
 
 ## What are custom properties?
@@ -56,9 +60,10 @@ An object is any logical categorization of documents within your datasource (for
 
 Here is a sample API call for the above example:
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="curl">
 
-```bash curl
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource  \
 -H 'Authorization : Bearer <token>' \
 -H 'Content-Type : application/json' \
@@ -83,7 +88,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource  \
 }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import datasources_api
 from glean_indexing_api_client.model.custom_datasource_config import CustomDatasourceConfig
 # Please refer to the Getting Started page for more details on how to setup api_client
@@ -113,7 +121,8 @@ except indexing_api.ApiException as e:
   print('Exception when calling DatasourcesApi->adddatasource_post: %s\\n' % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 The above API calls define a document type `Account` for our datasource `testDatasource`. For `Account` we define an operator called `priority`. This operator will become a facet if we set `hideUiFacet` to `false`.
 Note: propertyTypes `"DATE"` and `"INT"` are not faceted.
@@ -124,9 +133,10 @@ After you have defined the properties, you can set the properties values while u
 
 Here is a sample API call for the above example:
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="curl">
 
-```bash curl
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 -H 'Authorization : Bearer <token>' \
 -H 'Content-Type : application/json' \
@@ -147,7 +157,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import documents_api
 from glean_indexing_api_client.model.index_document_request import IndexDocumentRequest
 from glean_indexing_api_client.model.document_definition import DocumentDefinition
@@ -180,7 +193,8 @@ except indexing_api.ApiException as e:
     print("Exception when calling DocumentsApi->indexdocument_post: %s\n" % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 In the above API call we set the value for the custom property `Priority` as `High` for the document Account_1.
 

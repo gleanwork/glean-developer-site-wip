@@ -3,13 +3,18 @@ title: Document Count
 icon: hashtag
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Get the count of documents in a datasource, optionally filtered by object type.
 
 ### Sample Request
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/getdocumentcount
   -H 'Authorization : Bearer <token>'
   -H 'Content-Type : application/json' \
@@ -19,7 +24,10 @@ curl -X POST https://customer-be.glean.com/api/index/v1/getdocumentcount
       }'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import troubleshooting_api
 from glean_indexing_api_client.model.get_document_count_request import GetDocumentCountRequest
 from glean_indexing_api_client.model.get_document_count_response import GetDocumentCountResponse
@@ -37,7 +45,8 @@ except glean_indexing_api_client.ApiException as e:
     print("Exception when calling TroubleshootingApi->getdocumentcount_post: %s\n" % e)
 ```
 
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### Sample Response
 

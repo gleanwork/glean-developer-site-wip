@@ -4,6 +4,8 @@ description: 'Connect Glean to AI models with MCP'
 icon: 'link'
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import { MCPIcon } from './snippets/mcp/icons.mdx';
 
 # <MCPIcon className="inline" height="1.4rem" /> Glean MCP Integration
@@ -55,7 +57,7 @@ Search Glean's People directory to find employee information.
 
 ### API Tokens
 
-You'll need Glean [API credentials](/api-info/client/authentication/glean-issued), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#selecting-permissions-and-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
+You'll need Glean [API credentials](/get-started/authentication), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#available-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
 
 <Warning>
   Currently, our MCP implementation uses API tokens for authentication. While
@@ -75,43 +77,45 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
 ### Configure Cursor
 
 <Tabs>
-  <Tab title="Configure using the CLI">
+  <TabItem value="configure-using-the-cli" label="Configure using the CLI">
+
     <Steps>
-      <Step title="Get Credentials">
-        Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
-        - Your Glean instance name
-        - A [user-scoped API token](/client/authentication#user)
-      </Step>
+          <Step title="Get Credentials">
+            Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
+            - Your Glean instance name
+            - A [user-scoped API token](/client/authentication#user)
+          </Step>
 
-      <Step title="Configure Cursor">
-        Run the following command to configure Cursor to use Glean's MCP server. This will add a new MCP server to Cursor's settings.
+          <Step title="Configure Cursor">
+            Run the following command to configure Cursor to use Glean's MCP server. This will add a new MCP server to Cursor's settings.
 
-        Using explicit `domain` and `token` flags:
-        ```bash
-        npx @gleanwork/mcp-server configure --client cursor --instance <your-glean-instance-name> --token <your-glean-api-token>
-        ```
+            Using explicit `domain` and `token` flags:
+            ```bash
+            npx @gleanwork/mcp-server configure --client cursor --instance <your-glean-instance-name> --token <your-glean-api-token>
+            ```
 
-        Using a `.env` file:
-        ```bash
-        npx @gleanwork/mcp-server configure --client cursor --env <path-to-env-file>
-        ```
-      </Step>
+            Using a `.env` file:
+            ```bash
+            npx @gleanwork/mcp-server configure --client cursor --env <path-to-env-file>
+            ```
+          </Step>
 
-      <Step title="Test the Integration">
-        <Note>
-          Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cursor's AI to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help the AI understand which tool to use.
-        </Note>
+          <Step title="Test the Integration">
+            <Note>
+              Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cursor's AI to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help the AI understand which tool to use.
+            </Note>
 
-        1. Open a new chat in Cursor
-        2. Try a query like "Using Glean, what's our company's policy on remote work?"
-        3. Verify that Cursor can access and search your Glean content
-      </Step>
-    </Steps>
+            1. Open a new chat in Cursor
+            2. Try a query like "Using Glean, what's our company's policy on remote work?"
+            3. Verify that Cursor can access and search your Glean content
+          </Step>
+        </Steps>
 
-  </Tab>
+    </TabItem>
 
-  <Tab title="Configure manually">
-    <Steps>
+  <TabItem value="configure-manually" label="Configure manually">
+
+<Steps>
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
@@ -160,7 +164,7 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
       </Step>
     </Steps>
 
-  </Tab>
+</TabItem>
 </Tabs>
 </Accordion>
 
@@ -168,8 +172,9 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
 ### Configure Windsurf
 
 <Tabs>
-  <Tab title="Configure using the CLI">
-    <Steps>
+  <TabItem value="configure-using-the-cli" label="Configure using the CLI">
+
+<Steps>
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
@@ -199,10 +204,11 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
       </Step>
     </Steps>
 
-  </Tab>
+</TabItem>
 
-  <Tab title="Configure manually">
-    <Steps>
+  <TabItem value="configure-manually" label="Configure manually">
+
+<Steps>
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
@@ -253,7 +259,7 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
       </Step>
     </Steps>
 
-  </Tab>
+</TabItem>
 </Tabs>
 </Accordion>
 
@@ -261,11 +267,12 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
 ### Configure VS Code
 
 <Tabs>
-  <Tab title="Global configuration">
-    VS Code supports global MCP server configuration that applies across all your workspaces. This is ideal for personal use.
+  <TabItem value="global-configuration" label="Global configuration">
+
+VS Code supports global MCP server configuration that applies across all your workspaces. This is ideal for personal use.
 
     <Tabs>
-      <Tab title="Configure using the CLI">
+      <TabItem value="configure-cli-global" label="Configure using the CLI">
         <Steps>
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
@@ -299,10 +306,12 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
             5. Verify that VS Code can access and search your Glean content
           </Step>
         </Steps>
-      </Tab>
 
-      <Tab title="Configure manually">
-        <Steps>
+</TabItem>
+
+      <TabItem value="configure-manually" label="Configure manually">
+
+<Steps>
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
@@ -348,16 +357,18 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
             5. Verify that VS Code can access and search your Glean content
           </Step>
         </Steps>
-      </Tab>
+
+</TabItem>
     </Tabs>
 
-  </Tab>
+  </TabItem>
 
-  <Tab title="Workspace configuration">
-    VS Code supports workspace-specific MCP server configuration stored in `.vscode/mcp.json`. This is ideal for teams to share configurations.
+  <TabItem value="workspace-configuration" label="Workspace configuration">
+
+VS Code supports workspace-specific MCP server configuration stored in `.vscode/mcp.json`. This is ideal for teams to share configurations.
 
     <Tabs>
-      <Tab title="Configure using the CLI">
+      <TabItem value="configure-cli-workspace" label="Configure using the CLI">
         <Steps>
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
@@ -391,10 +402,12 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
             5. Verify that VS Code can access and search your Glean content
           </Step>
         </Steps>
-      </Tab>
 
-      <Tab title="Configure manually">
-        <Steps>
+</TabItem>
+
+      <TabItem value="configure-manually" label="Configure manually">
+
+<Steps>
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
@@ -451,10 +464,11 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
             5. Verify that VS Code can access and search your Glean content
           </Step>
         </Steps>
-      </Tab>
+
+</TabItem>
     </Tabs>
 
-  </Tab>
+  </TabItem>
 </Tabs>
 </Accordion>
 
@@ -464,8 +478,9 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
 ### Claude Desktop
 
 <Tabs>
-  <Tab title="Configure using the CLI">
-    <Steps>
+  <TabItem value="configure-using-the-cli" label="Configure using the CLI">
+
+<Steps>
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
@@ -496,10 +511,11 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
       </Step>
     </Steps>
 
-  </Tab>
+</TabItem>
 
-  <Tab title="Configure manually">
-    <Steps>
+  <TabItem value="configure-manually" label="Configure manually">
+
+<Steps>
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
@@ -555,6 +571,6 @@ You'll need Glean [API credentials](/api-info/client/authentication/glean-issued
       </Step>
     </Steps>
 
-  </Tab>
+</TabItem>
 </Tabs>
 </Accordion>

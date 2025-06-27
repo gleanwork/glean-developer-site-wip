@@ -3,18 +3,26 @@ title: Datasource Status
 icon: signal
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 Gather information about the datasource's overall status.
 
 ### Sample Request
 
-<CodeGroup>
+<Tabs>
+<TabItem value="curl" label="cURL">
 
-```bash cURL
+```bash
 curl -X POST https://customer-be.glean.com/api/index/v1/debug/gleantest/status \
   -H 'Authorization: Bearer <token>'
 ```
 
-```python Python
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
 from glean_indexing_api_client.api import troubleshooting_api
 from pprint import pprint
 # Please refer to the Getting Started page for more details on how to setup api_client
@@ -26,11 +34,8 @@ except glean_indexing_api_client.ApiException as e:
     print("Exception when calling TroubleshootingApi->debug_datasource_status_post: %s\n" % e)
 ```
 
-`documents` contains information about counts, bulk upload history and processing history for documents in the datasource.
-
-`identity` contains information about counts and processing history for users, groups, and memberships in the datasource.
-
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### Sample Response
 

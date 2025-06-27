@@ -1,13 +1,245 @@
 ---
-title: Overview
+title: Client API Authentication
+sidebar_label: Overview
+description: Choose the right authentication method for your Client API integration
 ---
 
-The developer-ready Client API endpoints can be accessed via one of two types of Bearer tokens: [OAuth Access Tokens](/api-info/client/authentication/oauth) issued by an SSO provider or [Glean-issued tokens](/api-info/client/authentication/glean-issued). Both methods can be used concurrently, but we recommend using OAuth access tokens for a more secure authentication for Client API requests, scoped to the individual user it's issued to.
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+import { Steps, Step } from '@site/src/components/Steps';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Navigating to Client API Settings
+# Client API Authentication
 
-Only admins have access to these settings. To access it, navigate to [this link](https://app.glean.com/admin/platform/tokenManagement?tab=client), or do the following:
+This guide helps you choose and implement the right authentication method for Glean's **Client API**, which powers search, chat, collections, agents, and other user-facing functionality.
 
-1. Click on the wrench icon in the left navigation bar. This will open up the admin console.
-2. On the left sidebar, navigate to **Platform** and select **API Tokens**.
-3. In the API Tokens page, select the **Client Tokens** tab. Here you can see a list of all token metadata (note that the token itself won't be visible).
+<CardGroup cols={2}>
+  <Card title="OAuth (Recommended)" icon="shield-check" color="#22c55e">
+    **Leverages your existing identity provider**
+    
+    - No token management required
+    - Works with Google, Azure, Okta, OneLogin
+    - Full API access without scope restrictions
+    - Best for production applications
+    
+    [Setup OAuth →](./oauth)
+  </Card>
+  
+  <Card title="Glean Tokens (Alternative)" icon="key" color="#3b82f6">
+    **Granular control and flexibility**
+    
+    - Fine-grained scope control
+    - User-scoped or global permissions
+    - Manual token management
+    - Best for specific use cases or testing
+    
+    [Setup Glean Tokens →](./glean-issued)
+  </Card>
+</CardGroup>
+
+---
+
+## Quick Decision Guide
+
+Choose your authentication method based on your needs:
+
+### Choose OAuth if you:
+- Have an existing identity provider (Google, Azure, Okta, OneLogin)
+- Want full Client API access without managing scopes
+- Prefer leveraging existing enterprise authentication
+- Need production-ready authentication quickly
+
+### Choose Glean Tokens if you:
+- Need granular scope control for security
+- Don't have an OAuth identity provider
+- Need global permissions to impersonate users
+- Want fine-grained control over token lifecycle
+
+---
+
+## Authentication Headers Reference
+
+Different authentication methods require different headers:
+
+<Tabs>
+<TabItem value="oauth" label="OAuth">
+
+```bash
+Authorization: Bearer <oauth_access_token>
+X-Glean-Auth-Type: OAUTH
+```
+
+</TabItem>
+<TabItem value="user-scoped" label="User-Scoped Token">
+
+```bash
+Authorization: Bearer <user_scoped_token>
+```
+
+</TabItem>
+<TabItem value="global" label="Global Token">
+
+```bash
+Authorization: Bearer <global_token>
+X-Glean-ActAs: user@company.com
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+## Quick Start
+
+<Steps>
+  <Step title="Choose your authentication method">
+    Use the decision guide above to pick OAuth or Glean tokens
+  </Step>
+  
+  <Step title="Follow the detailed setup guide">
+    - **OAuth**: [Complete OAuth Setup Guide](./oauth)
+    - **Glean Tokens**: [Complete Glean Tokens Guide](./glean-issued)
+  </Step>
+  
+  <Step title="Test your integration">
+    Use the test commands in your chosen guide to verify authentication
+  </Step>
+  
+  <Step title="Build your application">
+    Start building with the [Client API Reference](/api/client-api/activity/overview)
+  </Step>
+</Steps>
+
+---
+
+## Testing Your Authentication
+
+### Quick Test Commands
+
+<Tabs>
+<TabItem value="oauth" label="OAuth">
+
+```bash
+curl -X POST https://<instance>-be.glean.com/rest/api/v1/search \
+  -H 'Authorization: Bearer <OAUTH_TOKEN>' \
+  -H 'X-Glean-Auth-Type: OAUTH' \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "test", "pageSize": 1}'
+```
+
+</TabItem>
+<TabItem value="user-scoped" label="User-Scoped Token">
+
+```bash
+curl -X POST https://<instance>-be.glean.com/rest/api/v1/search \
+  -H 'Authorization: Bearer <USER_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "test", "pageSize": 1}'
+```
+
+</TabItem>
+<TabItem value="global" label="Global Token">
+
+```bash
+curl -X POST https://<instance>-be.glean.com/rest/api/v1/search \
+  -H 'Authorization: Bearer <GLOBAL_TOKEN>' \
+  -H 'X-Glean-ActAs: your-email@company.com' \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "test", "pageSize": 1}'
+```
+
+</TabItem>
+</Tabs>
+
+### Expected Response
+
+Successful authentication returns a 200 status with search results:
+
+```json
+{
+  "results": [...],
+  "trackingToken": "...",
+  "requestId": "..."
+}
+```
+
+---
+
+## Common Authentication Errors
+
+| Error | Likely Cause | Solution |
+|-------|--------------|----------|
+| `401 Unauthorized` | Invalid or expired token | Verify token is correct and not expired |
+| `403 Forbidden` | Insufficient permissions | Check token scopes or OAuth settings |
+| `Missing X-Glean-Auth-Type header` | OAuth header not set | Add `X-Glean-Auth-Type: OAUTH` for OAuth |
+| `Required header missing: X-Glean-ActAs` | Global token header missing | Add `X-Glean-ActAs: user@email.com` |
+
+For detailed troubleshooting, see your specific authentication guide.
+
+---
+
+## Best Practices
+
+### Security
+- **Store tokens securely** - Never commit tokens to version control
+- **Use environment variables** for token storage in applications
+- **Implement proper error handling** for authentication failures
+- **Monitor token usage** through appropriate admin consoles
+
+### Development
+- **Test authentication first** - Verify auth works before building features
+- **Create separate tokens** for development, staging, and production
+- **Use descriptive names** for tokens to track their purpose
+- **Plan your architecture** early - some settings cannot be changed later
+
+---
+
+## Implementation Guides
+
+Ready to implement? Choose your path:
+
+<CardGroup cols={2}>
+  <Card title="OAuth Authentication" href="./oauth" icon="shield-check" color="#22c55e">
+    **Complete OAuth setup guide**
+    
+    - Provider-specific setup (Google, Azure, Okta, OneLogin)
+    - Configuration in Glean admin console
+    - Implementation examples and testing
+    - OAuth-specific troubleshooting
+  </Card>
+  
+  <Card title="Glean-Issued Tokens" href="./glean-issued" icon="key" color="#3b82f6">
+    **Complete Glean tokens guide**
+    
+    - Token creation and management
+    - Scope selection and planning
+    - User-scoped vs global tokens
+    - Token-specific troubleshooting
+  </Card>
+</CardGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Client API Reference" href="/api/client-api/activity/overview" icon="book">
+    Explore available Client API endpoints
+  </Card>
+  <Card title="Search Implementation" href="/api-info/client/search/filtering-results" icon="search">
+    Learn advanced search techniques
+  </Card>
+  <Card title="Chat Integration" href="/api/client-api/chat/overview" icon="message-circle">
+    Build chat applications with Glean
+  </Card>
+</CardGroup>
+
+---
+
+## Need Help?
+
+- **Getting Started**: Use the decision guide above to choose your path
+- **Technical Issues**: Check the detailed guides linked above
+- **Admin Access**: Contact your Glean administrator for token creation or OAuth setup
+- **Community**: Join discussions at [community.glean.com](https://community.glean.com)

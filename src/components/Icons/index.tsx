@@ -42,7 +42,7 @@ export const GleanIconRegistry = {
 
 export type GleanIconName = keyof typeof GleanIconRegistry;
 
-interface IconRendererProps extends IconProps {
+interface IconComponentProps extends IconProps {
   name: string;
   iconStyle?: 'solid' | 'regular' | 'brands';
   iconSet?: 'fontawesome' | 'glean';
@@ -84,12 +84,12 @@ export function getIcon(
   );
 }
 
-export function IconRenderer({ 
+export function Icon({ 
   name, 
   iconSet = 'fontawesome', 
   iconStyle = 'solid', 
   ...props 
-}: IconRendererProps) {
+}: IconComponentProps) {
   return getIcon(name, iconSet, iconStyle, props) as React.ReactElement;
 }
 

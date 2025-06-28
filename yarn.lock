@@ -2217,7 +2217,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/plugin-content-blog@npm:3.8.1, @docusaurus/plugin-content-blog@npm:^3.8.1":
+"@docusaurus/plugin-content-blog@npm:3.8.1":
   version: 3.8.1
   resolution: "@docusaurus/plugin-content-blog@npm:3.8.1"
   dependencies:
@@ -7228,7 +7228,6 @@ __metadata:
   dependencies:
     "@docusaurus/core": "npm:^3.8.1"
     "@docusaurus/module-type-aliases": "npm:^3.8.1"
-    "@docusaurus/plugin-content-blog": "npm:^3.8.1"
     "@docusaurus/plugin-content-docs": "npm:^3.8.1"
     "@docusaurus/preset-classic": "npm:^3.8.1"
     "@docusaurus/theme-classic": "npm:^3.8.1"

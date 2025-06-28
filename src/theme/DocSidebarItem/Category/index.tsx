@@ -22,6 +22,7 @@ import Link from '@docusaurus/Link';
 import { translate } from '@docusaurus/Translate';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import DocSidebarItems from '@theme/DocSidebarItems';
+import { Icon } from '@site/src/components/Icons';
 import type { Props } from '@theme/DocSidebarItem/Category';
 
 // If we navigate to a category and it becomes active, it should automatically
@@ -208,6 +209,14 @@ export default function DocSidebarItemCategory({
           }
           {...props}
         >
+          {(item as any).customProps?.icon && (
+            <Icon 
+              name={(item as any).customProps.icon} 
+              iconSet={(item as any).customProps?.iconSet || 'fontawesome'}
+              iconStyle={(item as any).customProps?.iconStyle || 'solid'}
+              className="sidebar-category-icon"
+            />
+          )}
           {label}
         </Link>
         {href && collapsible && (

@@ -5,6 +5,7 @@ import { isActiveSidebarItem } from '@docusaurus/plugin-content-docs/client';
 import Link from '@docusaurus/Link';
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import IconExternalLink from '@theme/Icon/ExternalLink';
+import { Icon } from '@site/src/components/Icons';
 import type { Props } from '@theme/DocSidebarItem/Link';
 
 import styles from './styles.module.css';
@@ -46,6 +47,14 @@ export default function DocSidebarItemLink({
         })}
         {...props}
       >
+        {(item as any).customProps?.icon && (
+          <Icon 
+            name={(item as any).customProps.icon} 
+            iconSet={(item as any).customProps?.iconSet || 'fontawesome'}
+            iconStyle={(item as any).customProps?.iconStyle || 'solid'}
+            className={styles.sidebarIcon}
+          />
+        )}
         {label}
         {!isInternalLink && <IconExternalLink />}
       </Link>

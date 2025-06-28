@@ -22,7 +22,7 @@ export default function Home() {
     {
       title: 'Build AI Agents',
       body: 'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
-      href: 'api/client-api/agents/overview',
+      href: 'guides/agents',
       icon: 'robot',
       iconSet: 'fontawesome',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
@@ -38,7 +38,7 @@ export default function Home() {
     {
       title: 'Create Connectors',
       body: 'Bring any source into Glean with our connector framework and indexing API.',
-      href: 'api-info/indexing/getting-started/setup-datasource',
+      href: 'api-info/indexing/getting-started/overview',
       icon: 'indexing',
       iconSet: 'glean',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,

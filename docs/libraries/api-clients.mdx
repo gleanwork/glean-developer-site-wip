@@ -11,11 +11,11 @@ import CardGroup from '@site/src/components/CardGroup';
 Glean offers official API clients for several popular programming languages to help developers integrate Glean's powerful search and knowledge capabilities into their applications. These clients provide language-specific interfaces to Glean's APIs, making it easier to build custom solutions without having to handle the low-level HTTP requests.
 
 :::info
-**Authentication Required**: You'll need a [Client API token](/api-info/client/authentication/overview) to use these libraries.
+**Authentication Required**: You'll need API tokens to use these libraries. Get [Client API tokens](/api-info/client/authentication/overview) for search and chat features, or [Indexing API tokens](/api-info/indexing/authentication/overview) for document management.
 :::
 
-:::warning
-**Client API Only**: These API clients are designed for the **Client API only**. For the Indexing API, you'll need to use HTTP requests directly with [Indexing API tokens](/api-info/indexing/authentication/overview).
+:::tip
+**Unified Libraries**: These API clients support **both Client API and Indexing API** functionality. Use the same library with different tokens depending on whether you're building user-facing features (Client API) or managing document indexing (Indexing API).
 :::
 
 ## Choose Your Language
@@ -61,12 +61,17 @@ Select your preferred programming language to get started with the official Glea
 
 All official API clients provide:
 
-### **Core Features**
+### **Client API Features**
 - **Chat API**: Build conversational AI applications
 - **Search API**: Integrate enterprise search capabilities  
 - **Agents API**: Execute pre-built agents from Agent Builder
 - **Collections API**: Manage and search document collections
-- **Authentication**: Support for user-scoped and global tokens
+
+### **Indexing API Features**
+- **Document Management**: Index, update, and delete documents
+- **User Management**: Manage users, groups, and permissions
+- **Datasource Configuration**: Set up and configure data sources
+- **Bulk Operations**: Efficient batch processing for large datasets
 
 ### **Developer Experience**
 - **Type Safety**: Full type definitions and IntelliSense support
@@ -86,6 +91,8 @@ All official API clients provide:
 | Feature | Python | TypeScript | Go | Java |
 |---------|--------|------------|-----|------|
 | **Installation** | pip/poetry/uv | npm/yarn/pnpm | go get | Maven/Gradle |
+| **Client API** | ✅ | ✅ | ✅ | ✅ |
+| **Indexing API** | ✅ | ✅ | ✅ | ✅ |
 | **Async Support** | ✅ | ✅ | ✅ | ✅ |
 | **Streaming** | ✅ | ✅ | ✅ | ✅ |
 | **Framework Examples** | FastAPI, Django | Next.js, Express | Gin, Echo | Spring Boot |
@@ -95,7 +102,9 @@ All official API clients provide:
 
 1. **Choose your language** from the cards above
 2. **Follow the installation** instructions for your package manager
-3. **Get your credentials** from the [Authentication Guide](/api-info/client/authentication/overview)
+3. **Get your credentials**:
+   - [Client API tokens](/api-info/client/authentication/overview) for search and chat features
+   - [Indexing API tokens](/api-info/indexing/authentication/overview) for document management
 4. **Start building** with the provided examples
 
 ## Alternative Integration Options
@@ -125,19 +134,19 @@ If you prefer not to use an API client library:
 
 <CardGroup cols={3}>
   <Card 
-    title="Authentication Guide"
+    title="Client API Auth"
     icon="shield"
     href="/api-info/client/authentication/overview"
   >
-    Complete authentication setup
+    Authentication for search and chat
   </Card>
   
   <Card 
-    title="API Reference"
-    icon="book"
-    href="/api/client-api/glean-api.info"
+    title="Indexing API Auth"
+    icon="key"
+    href="/api-info/indexing/authentication/overview"
   >
-    Full API endpoint documentation
+    Authentication for document management
   </Card>
   
   <Card 

@@ -143,7 +143,8 @@ Authorization: Bearer <indexing_api_token>
 
 Restrict token usage to specific IP ranges for enhanced security:
 
-<Accordion title="IP Restrictions Setup">
+<details>
+<summary>IP Restrictions Setup</summary>
 
 **Configure IP Ranges**
 
@@ -173,13 +174,14 @@ Restrict token usage to specific IP ranges for enhanced security:
 - Prevent unauthorized usage if token is compromised
 - Meet compliance requirements for IP-based access control
 
-</Accordion>
+</details>
 
 ### Token Rotation
 
 Enable automatic token rotation for enhanced security:
 
-<Accordion title="Token Rotation Setup">
+<details>
+<summary>Token Rotation Setup</summary>
 
 **Configure Rotation**
 
@@ -220,7 +222,7 @@ curl -X POST https://instance-be.glean.com/api/index/v1/rotatetoken \
 - Store both old and new tokens during rotation period
 - Test rotation in development environment first
 
-</Accordion>
+</details>
 
 ---
 
@@ -407,7 +409,8 @@ curl -X POST https://<instance>-be.glean.com/api/index/v1/indexdocument \
 
 ### Indexing-Specific Issues
 
-<Accordion title="Document Indexing Troubleshooting">
+<details>
+<summary>Document Indexing Troubleshooting</summary>
 
 **Common Document Indexing Issues**
 
@@ -425,7 +428,7 @@ curl -X POST https://<instance>-be.glean.com/api/index/v1/indexdocument \
 3. **Test search**: Search for indexed document using specific terms from content
 4. **Monitor logs**: Check Glean's admin console for indexing errors
 
-</Accordion>
+</details>
 
 ---
 

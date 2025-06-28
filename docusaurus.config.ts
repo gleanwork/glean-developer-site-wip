@@ -94,6 +94,23 @@ const config: Config = {
         },
       },
     ],
+    languageTabs: [
+      {
+        highlight: "python",
+        language: "python",
+        logoClass: "python",
+      },
+      {
+        highlight: "go",
+        language: "go",
+        logoClass: "go",
+      },
+      {
+        highlight: "java",
+        language: "java",
+        logoClass: "java",
+      }
+    ],
   } satisfies Preset.ThemeConfig,
 
   plugins: [
@@ -131,57 +148,145 @@ const config: Config = {
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          activity: {
-            specPath: './openapi/split-apis/activity-api.yaml',
-            outputDir: 'docs/api/client-api',
+          activity: { // ok
+            specPath: './openapi/split-apis-flat/activity-api.yaml',
+            outputDir: 'docs/api/client-api/activity',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          authentication: {
-            specPath: './openapi/split-apis/authentication-api.yaml',
-            outputDir: 'docs/api/client-api',
+          announcements: { // circular
+            specPath: './openapi/split-apis-flat/announcements-api.yaml',
+            outputDir: 'docs/api/client-api/announcements',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          agents: {
-            specPath: './openapi/split-apis/agents-api.yaml',
-            outputDir: 'docs/api/client-api',
+          answers: { // ok
+            specPath: './openapi/split-apis-flat/answers-api.yaml',
+            outputDir: 'docs/api/client-api/answers',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          governance: {
-            specPath: './openapi/split-apis/governance-api.yaml',
-            outputDir: 'docs/api/client-api',
+          authentication: { // ok
+            specPath: './openapi/split-apis-flat/authentication-api.yaml',
+            outputDir: 'docs/api/client-api/authentication',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          summarize: {
-            specPath: './openapi/split-apis/summarize-api.yaml',
-            outputDir: 'docs/api/test',
+          chat: { // circular
+            specPath: './openapi/split-apis-flat/chat-api.yaml',
+            outputDir: 'docs/api/client-api/chat',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          tools: {
+          agents: { // ok
+            specPath: './openapi/split-apis-flat/agents-api.yaml',
+            outputDir: 'docs/api/client-api/agents',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          collections: { // circular
+            specPath: './openapi/split-apis-flat/collections-api.yaml',
+            outputDir: 'docs/api/client-api/collections',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          documents: { // circular
+            specPath: './openapi/split-apis-flat/documents-api.yaml',
+            outputDir: 'docs/api/client-api/documents',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          insights: { // circular
+            specPath: './openapi/split-apis-flat/insights-api.yaml',
+            outputDir: 'docs/api/client-api/insights',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            }, 
+          } satisfies OpenApiPlugin.Options,
+          messages: { // circular
+            specPath: './openapi/global-maximum-split-apis/messages-api.yaml',
+            outputDir: 'docs/api/client-api/messages',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },    
+          } satisfies OpenApiPlugin.Options,
+          pins: { // circular
+            specPath: './openapi/split-apis-flat/pins-api.yaml',
+            outputDir: 'docs/api/client-api/pins',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          search: { // circular
+            specPath: './openapi/split-apis-flat/search-api.yaml',
+            outputDir: 'docs/api/client-api/search',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          entities: { // circular
+            specPath: './openapi/split-apis-flat/entities-api.yaml',
+            outputDir: 'docs/api/client-api/entities',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          shortcuts: { // circular
+            specPath: './openapi/split-apis-flat/shortcuts-api.yaml',
+            outputDir: 'docs/api/client-api/shortcuts',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          summarize: { // ok
+            specPath: './openapi/split-apis-flat/summarize-api.yaml',
+            outputDir: 'docs/api/client-api/summarize',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          verification: { // circular
+            specPath: './openapi/split-apis-flat/verification-api.yaml',
+            outputDir: 'docs/api/client-api/verification',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+          tools: { // ok
             specPath: './openapi/split-apis/tools-api.yaml',
-            outputDir: 'docs/api/test',
+            outputDir: 'docs/api/client-api/tools',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',
             },
           } satisfies OpenApiPlugin.Options,
-          announcements: {
-            specPath: './openapi/split-apis/announcements-api.yaml',
-            outputDir: 'docs/api/test',
+          governance: { // ok
+            specPath: './openapi/split-apis/governance-api.yaml',
+            outputDir: 'docs/api/client-api/governance',
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'tag',

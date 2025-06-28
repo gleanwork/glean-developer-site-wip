@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  version: 0.9.0
+  title: Authentication
+  description: Authentication operations for Glean API
+  x-logo:
+    url: https://app.glean.com/images/glean-text2.svg
+  x-speakeasy-name: Glean API
+servers:
+  - url: https://{instance}-be.glean.com
+    variables:
+      instance:
+        default: instance-name
+        description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
+tags:
+  - name: Authentication
+    description: Authentication
+paths:
+  /rest/api/v1/createauthtoken:
+    post:
+      tags:
+        - Authentication
+      summary: Create authentication token
+      description: Creates an authentication token for the authenticated user.
+      operationId: createauthtoken
+      x-visibility: Public
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAuthTokenResponse'
+        '400':
+          description: Invalid Request
+        '401':
+          description: Not Authorized
+        '429':
+          description: Too Many Requests
+      x-speakeasy-name-override: createToken
+      x-speakeasy-group: client.authentication
+      x-codeSamples:
+        - lang: python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as g_client:
+
+                res = g_client.client.authentication.create_token()
+
+                # Handle response
+                print(res)
+        - lang: typescript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.authentication.createToken();
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Authentication.CreateToken(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CreateAuthTokenResponse != nil {\n        // handle response\n    }\n}"
+        - lang: java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.operations.CreateauthtokenResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    CreateauthtokenResponse res = sdk.client().authentication().createToken()
+                            .call();
+
+                    if (res.createAuthTokenResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+components:
+  schemas:
+    CreateAuthTokenResponse:
+      required:
+        - token
+        - expirationTime
+      properties:
+        token:
+          type: string
+          description: An authentication token that can be passed to any endpoint via Bearer Authentication
+        expirationTime:
+          description: Unix timestamp for when this token expires (in seconds since epoch UTC).
+          type: integer
+          format: int64
+      type: object
+  parameters:
+    timezoneOffset:
+      name: timezoneOffset
+      in: query
+      description: The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+      schema:
+        type: integer
+  securitySchemes:
+    APIToken:
+      scheme: bearer
+      type: http

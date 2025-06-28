@@ -60,13 +60,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'guides/mcp/mcp',
-          label: 'MCP',
+          id: 'guides/langchain/langchain',
+          label: 'LangChain',
         },
         {
           type: 'doc',
-          id: 'guides/langchain/langchain',
-          label: 'LangChain',
+          id: 'guides/mcp/mcp',
+          label: 'MCP',
         },
       ],
     },

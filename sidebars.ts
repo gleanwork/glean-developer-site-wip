@@ -60,13 +60,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'guides/mcp/mcp',
-          label: 'MCP',
+          id: 'guides/langchain/langchain',
+          label: 'LangChain',
         },
         {
           type: 'doc',
-          id: 'guides/langchain/langchain',
-          label: 'LangChain',
+          id: 'guides/mcp/mcp',
+          label: 'MCP',
         },
       ],
     },
@@ -948,6 +948,29 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Shortcuts',
+          items: [
+            {
+              type: 'doc',
+              id: 'api/indexing-api/shortcuts-overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'api/indexing-api/bulk-index-external-shortcuts',
+              label: 'Bulk index external shortcuts',
+              className: 'api-method post',
+            },
+            {
+              type: 'doc',
+              id: 'api/indexing-api/upload-shortcuts',
+              label: 'Upload shortcuts',
+              className: 'api-method post',
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: 'Troubleshooting',
           items: [
             {
@@ -1002,29 +1025,6 @@ const sidebars: SidebarsConfig = {
               id: 'api/indexing-api/get-user-count',
               label: 'Get user count',
               className: 'menu__list-item--deprecated api-method post',
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Shortcuts',
-          items: [
-            {
-              type: 'doc',
-              id: 'api/indexing-api/shortcuts-overview',
-              label: 'Overview',
-            },
-            {
-              type: 'doc',
-              id: 'api/indexing-api/bulk-index-external-shortcuts',
-              label: 'Bulk index external shortcuts',
-              className: 'api-method post',
-            },
-            {
-              type: 'doc',
-              id: 'api/indexing-api/upload-shortcuts',
-              label: 'Upload shortcuts',
-              className: 'api-method post',
             },
           ],
         },
@@ -1120,9 +1120,35 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
-          type: 'doc',
-          id: 'libraries/api-clients',
+          type: 'category',
           label: 'API Clients',
+          items: [
+            {
+              type: 'doc',
+              id: 'libraries/api-clients',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/python',
+              label: 'Python',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/typescript',
+              label: 'TypeScript',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/go',
+              label: 'Go',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/java',
+              label: 'Java',
+            },
+          ],
         },
       ],
     },

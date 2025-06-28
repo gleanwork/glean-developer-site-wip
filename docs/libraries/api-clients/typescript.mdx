@@ -1,0 +1,271 @@
+---
+title: TypeScript API Client
+description: Complete guide to using Glean's TypeScript/JavaScript API client
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# TypeScript API Client
+
+Glean's TypeScript API client provides full type safety for integrating Glean's search and AI capabilities into web applications and Node.js services.
+
+<Card
+  title="@gleanwork/api-client"
+  icon="github"
+  iconStyle="brands"
+  href="https://github.com/gleanwork/api-client-typescript"
+>
+  Official TypeScript/JavaScript client for Glean's Client API
+</Card>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm install @gleanwork/api-client
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn add @gleanwork/api-client
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm add @gleanwork/api-client
+    ```
+  </TabItem>
+</Tabs>
+
+## Quick Start
+
+```typescript
+import { Glean } from "@gleanwork/api-client";
+
+const client = new Glean({
+  apiToken: process.env.GLEAN_API_TOKEN,
+  instance: process.env.GLEAN_INSTANCE,
+});
+
+const result = await client.client.chat.create({
+  messages: [{
+    fragments: [{ text: "What are our company values?" }]
+  }]
+});
+```
+
+## Core Features
+
+### Chat API
+
+```typescript
+// Simple chat
+const response = await client.client.chat.create({
+  messages: [{ fragments: [{ text: "Explain our Q4 strategy" }] }]
+});
+
+// Streaming responses
+const stream = client.client.chat.stream({
+  messages: [{ fragments: [{ text: "What are our priorities?" }] }]
+});
+
+for await (const chunk of stream) {
+  console.log(chunk.text);
+}
+```
+
+### Search API
+
+```typescript
+const results = await client.client.search.search({
+  query: "quarterly business review",
+  pageSize: 10
+});
+
+results.results?.forEach(result => {
+  console.log(`Title: ${result.title}`);
+  console.log(`URL: ${result.url}`);
+});
+```
+
+## Framework Integrations
+
+### Next.js API Route
+
+```typescript
+// app/api/chat/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { Glean } from '@gleanwork/api-client';
+
+export async function POST(request: NextRequest) {
+  const { message } = await request.json();
+  
+  const client = new Glean({
+    apiToken: process.env.GLEAN_API_TOKEN!,
+    instance: process.env.GLEAN_INSTANCE!,
+  });
+
+  const response = await client.client.chat.create({
+    messages: [{ fragments: [{ text: message }] }]
+  });
+
+  return NextResponse.json({ response: response.text });
+}
+```
+
+### React Component
+
+```typescript
+import React, { useState } from 'react';
+import { Glean } from '@gleanwork/api-client';
+
+export function ChatComponent({ apiToken, instance }) {
+  const [input, setInput] = useState('');
+  const [response, setResponse] = useState('');
+  
+  const client = new Glean({ apiToken, instance });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await client.client.chat.create({
+      messages: [{ fragments: [{ text: input }] }]
+    });
+    setResponse(result.text || '');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Ask a question..."
+      />
+      <button type="submit">Send</button>
+      {response && <div>{response}</div>}
+    </form>
+  );
+}
+```
+
+### Express.js
+
+```typescript
+import express from 'express';
+import { Glean } from '@gleanwork/api-client';
+
+const app = express();
+app.use(express.json());
+
+const client = new Glean({
+  apiToken: process.env.GLEAN_API_TOKEN!,
+  instance: process.env.GLEAN_INSTANCE!,
+});
+
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body;
+  
+  const response = await client.client.chat.create({
+    messages: [{ fragments: [{ text: message }] }]
+  });
+
+  res.json({ response: response.text });
+});
+```
+
+## Authentication
+
+### User-Scoped Tokens (Recommended)
+
+```typescript
+const client = new Glean({
+  apiToken: "your-user-token",
+  instance: "your-company"
+});
+```
+
+### Global Tokens with ActAs
+
+```typescript
+const response = await client.client.chat.create({
+  messages: [{ fragments: [{ text: "Hello" }] }]
+}, {
+  headers: { "X-Glean-ActAs": "user@company.com" }
+});
+```
+
+## Error Handling
+
+```typescript
+try {
+  const response = await client.client.chat.create({
+    messages: [{ fragments: [{ text: "Hello" }] }]
+  });
+} catch (error) {
+  console.error('API error:', error);
+}
+```
+
+## Testing
+
+```typescript
+import { jest } from '@jest/globals';
+import { Glean } from '@gleanwork/api-client';
+
+jest.mock('@gleanwork/api-client');
+
+const MockedGlean = Glean as jest.MockedClass<typeof Glean>;
+
+test('chat service', async () => {
+  const mockCreate = jest.fn().mockResolvedValue({
+    text: 'Test response'
+  });
+
+  MockedGlean.mockImplementation(() => ({
+    client: { chat: { create: mockCreate } }
+  } as any));
+
+  // Test your code here
+});
+```
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card 
+    title="GitHub Repository"
+    icon="github"
+    iconStyle="brands"
+    href="https://github.com/gleanwork/api-client-typescript"
+  >
+    Source code and examples
+  </Card>
+  
+  <Card 
+    title="API Reference"
+    icon="book"
+    href="/api/client-api/glean-api.info"
+  >
+    Complete endpoint documentation
+  </Card>
+  
+  <Card 
+    title="Web SDK"
+    icon="react"
+    iconStyle="brands"
+    href="/libraries/web-sdk/overview"
+  >
+    Frontend integration components
+  </Card>
+  
+  <Card 
+    title="Authentication Guide"
+    icon="shield"
+    href="/api-info/client/authentication/overview"
+  >
+    Token creation and management
+  </Card>
+</CardGroup> 

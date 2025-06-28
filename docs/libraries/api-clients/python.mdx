@@ -1,0 +1,285 @@
+---
+title: Python API Client
+description: Complete guide to using Glean's Python API client for building search and chat applications
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# Python API Client
+
+Glean's Python API client provides a Pythonic interface to Glean's Client API, making it easy to integrate enterprise search and AI capabilities into your Python applications.
+
+<Card
+  title="glean-api-client"
+  icon="github"
+  iconStyle="brands"
+  href="https://github.com/gleanwork/api-client-python"
+>
+  Official Python client for Glean's Client API
+</Card>
+
+:::info
+**Authentication Required**: You'll need a [Client API token](/api-info/client/authentication/overview) to use this library.
+:::
+
+## Installation
+
+<Tabs>
+  <TabItem value="pip" label="pip">
+    ```bash
+    pip install glean-api-client
+    ```
+  </TabItem>
+  <TabItem value="poetry" label="poetry">
+    ```bash
+    poetry add glean-api-client
+    ```
+  </TabItem>
+  <TabItem value="uv" label="uv">
+    ```bash
+    uv add glean-api-client
+    ```
+  </TabItem>
+</Tabs>
+
+## Quick Start
+
+<Steps>
+  <Step title="Set up environment variables">
+    ```bash
+    export GLEAN_INSTANCE="your-company"
+    export GLEAN_API_TOKEN="your-token-here"
+    ```
+  </Step>
+  
+  <Step title="Basic usage">
+    ```python
+    from glean.api_client import Glean
+    import os
+
+    with Glean(
+        api_token=os.getenv("GLEAN_API_TOKEN"),
+        instance=os.getenv("GLEAN_INSTANCE"),
+    ) as client:
+        response = client.client.chat.create(
+            messages=[{
+                "fragments": [{"text": "What are our company values?"}]
+            }],
+            timeout_millis=30000
+        )
+        print(response)
+    ```
+  </Step>
+</Steps>
+
+## Core Features
+
+### Chat API
+
+Build conversational AI applications:
+
+```python
+# Simple chat
+response = client.client.chat.create(
+    messages=[{"fragments": [{"text": "Explain our Q4 strategy"}]}]
+)
+
+# Streaming chat for real-time responses
+for chunk in client.client.chat.stream(
+    messages=[{"fragments": [{"text": "What are our priorities?"}]}]
+):
+    print(chunk.text, end="", flush=True)
+```
+
+### Search API
+
+Integrate enterprise search:
+
+```python
+results = client.client.search.search(
+    query="quarterly business review",
+    page_size=10
+)
+
+for result in results.results:
+    print(f"Title: {result.title}")
+    print(f"URL: {result.url}")
+```
+
+### Agents API
+
+Execute pre-built agents:
+
+```python
+response = client.client.agents.create_and_wait_run(
+    agent_id="your-agent-id",
+    inputs={"query": "Analyze sales performance"}
+)
+```
+
+## Framework Integrations
+
+### FastAPI
+
+```python
+from fastapi import FastAPI
+from glean.api_client import Glean
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class ChatRequest(BaseModel):
+    message: str
+
+@app.post("/chat")
+async def chat_endpoint(request: ChatRequest):
+    with Glean(
+        api_token=os.getenv("GLEAN_API_TOKEN"),
+        instance=os.getenv("GLEAN_INSTANCE"),
+    ) as client:
+        response = client.client.chat.create(
+            messages=[{"fragments": [{"text": request.message}]}]
+        )
+        return {"response": response.text}
+```
+
+### Django
+
+```python
+from django.http import JsonResponse
+from glean.api_client import Glean
+import json
+
+def chat_view(request):
+    data = json.loads(request.body)
+    message = data.get('message')
+    
+    with Glean(
+        api_token=os.getenv("GLEAN_API_TOKEN"),
+        instance=os.getenv("GLEAN_INSTANCE"),
+    ) as client:
+        response = client.client.chat.create(
+            messages=[{"fragments": [{"text": message}]}]
+        )
+        
+    return JsonResponse({'response': response.text})
+```
+
+### Streamlit
+
+```python
+import streamlit as st
+from glean.api_client import Glean
+
+st.title("Company Knowledge Assistant")
+
+user_input = st.text_input("Ask a question:")
+
+if user_input:
+    with Glean(
+        api_token=os.getenv("GLEAN_API_TOKEN"),
+        instance=os.getenv("GLEAN_INSTANCE"),
+    ) as client:
+        response = client.client.chat.create(
+            messages=[{"fragments": [{"text": user_input}]}]
+        )
+        st.write(response.text)
+```
+
+## Authentication
+
+### User-Scoped Tokens (Recommended)
+
+```python
+client = Glean(
+    api_token="your-user-token",
+    instance="your-company"
+)
+```
+
+### Global Tokens with ActAs
+
+```python
+response = client.client.chat.create(
+    messages=[{"fragments": [{"text": "Hello"}]}],
+    headers={"X-Glean-ActAs": "user@company.com"}
+)
+```
+
+## Error Handling
+
+```python
+from glean.api_client.exceptions import GleanAPIError
+
+try:
+    response = client.client.chat.create(messages=[...])
+except GleanAPIError as e:
+    print(f"API error: {e}")
+except Exception as e:
+    print(f"Unexpected error: {e}")
+```
+
+## Testing
+
+### Unit Testing with Mocks
+
+```python
+import pytest
+from unittest.mock import patch, MagicMock
+
+@pytest.fixture
+def mock_glean_client():
+    with patch('your_app.Glean') as mock:
+        client_instance = MagicMock()
+        mock.return_value.__enter__.return_value = client_instance
+        yield client_instance
+
+def test_chat_service(mock_glean_client):
+    mock_response = MagicMock()
+    mock_response.text = "Test response"
+    mock_glean_client.client.chat.create.return_value = mock_response
+    
+    result = send_message("Hello")
+    assert result == "Test response"
+```
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card 
+    title="GitHub Repository"
+    icon="github"
+    iconStyle="brands"
+    href="https://github.com/gleanwork/api-client-python"
+  >
+    Source code and examples
+  </Card>
+  
+  <Card 
+    title="API Reference"
+    icon="book"
+    href="/api/client-api/glean-api.info"
+  >
+    Complete endpoint documentation
+  </Card>
+  
+  <Card 
+    title="Authentication Guide"
+    icon="shield"
+    href="/api-info/client/authentication/overview"
+  >
+    Token creation and management
+  </Card>
+  
+  <Card 
+    title="LangChain Integration"
+    icon="langchain"
+    iconSet="glean"
+    href="/guides/langchain/"
+  >
+    Use with LangChain framework
+  </Card>
+</CardGroup> 

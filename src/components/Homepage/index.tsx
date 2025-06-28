@@ -23,8 +23,8 @@ export default function Home() {
       title: 'Build AI Agents',
       body: 'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
       href: 'api/client-api/agents/overview',
-      icon: 'agent',
-      iconSet: 'glean',
+      icon: 'robot',
+      iconSet: 'fontawesome',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {

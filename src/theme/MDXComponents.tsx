@@ -4,7 +4,6 @@ import MDXComponents from '@theme-original/MDXComponents';
 import { Steps, Step } from '@site/src/components/Steps';
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { ResponseField } from '@site/src/components/ResponseField';
 import Frame from '@site/src/components/Frame';
 import { GleanIconRegistry } from '@site/src/components/Icons';
 
@@ -15,7 +14,6 @@ export default {
   Step,
   Card,
   CardGroup,
-  ResponseField,
   Frame,
   ...GleanIconRegistry,
 };

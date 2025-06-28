@@ -44,21 +44,21 @@ The Glean Indexing API enables organizations to make their custom content search
 The Indexing API follows a straightforward workflow:
 
 <Steps>
-<Step title="Create Datasource">
-Set up a custom datasource to hold your content. This defines how your content appears in search results and provides organizational structure.
-</Step>
+  <Step title="Create Datasource">
+  Set up a custom datasource to hold your content. This defines how your content appears in search results and provides organizational structure.
+  </Step>
 
-<Step title="Index Content">
-Push documents, structured data, and metadata to your datasource using the indexing endpoints. Content can be indexed individually or in bulk.
-</Step>
+  <Step title="Index Content">
+  Push documents, structured data, and metadata to your datasource using the indexing endpoints. Content can be indexed individually or in bulk.
+  </Step>
 
-<Step title="Manage Permissions">
-Configure access controls to ensure users only see content they're authorized to access, respecting your organization's security policies.
-</Step>
+  <Step title="Manage Permissions">
+  Configure access controls to ensure users only see content they're authorized to access, respecting your organization's security policies.
+  </Step>
 
-<Step title="Enable Discovery">
-Activate your datasource in Glean's admin console to make the indexed content discoverable through search and AI features.
-</Step>
+  <Step title="Enable Discovery">
+  Activate your datasource in Glean's admin console to make the indexed content discoverable through search and AI features.
+  </Step>
 </Steps>
 
 ## Content Types
@@ -76,46 +76,46 @@ The Indexing API supports various types of content:
 Here's how to create a datasource and index your first document:
 
 <Tabs>
-<TabItem value="create-datasource" label="Create Datasource">
+  <TabItem value="create-datasource" label="Create Datasource">
 
-```bash
-curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource \
-  -H 'Authorization: Bearer <your_indexing_token>' \
-  -d '{
-    "name": "internal-docs",
-    "displayName": "Internal Documentation",
-    "datasourceCategory": "PUBLISHED_CONTENT",
-    "urlRegex": "^https://internal.company.com/docs.*",
-    "isUserReferencedByEmail": true
-  }'
-```
+  ```bash
+  curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource \
+    -H 'Authorization: Bearer <your_indexing_token>' \
+    -d '{
+      "name": "internal-docs",
+      "displayName": "Internal Documentation",
+      "datasourceCategory": "PUBLISHED_CONTENT",
+      "urlRegex": "^https://internal.company.com/docs.*",
+      "isUserReferencedByEmail": true
+    }'
+  ```
 
-</TabItem>
-<TabItem value="index-document" label="Index Document">
+  </TabItem>
+  <TabItem value="index-document" label="Index Document">
 
-```bash
-curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
-  -H 'Authorization: Bearer <your_indexing_token>' \
-  -d '{
-    "document": {
-      "datasource": "internal-docs",
-      "objectType": "Document",
-      "id": "getting-started-guide",
-      "title": "Getting Started Guide",
-      "body": {
-        "mimeType": "text/plain",
-        "textContent": "This guide helps new employees get up to speed quickly..."
-      },
-      "permissions": {
-        "allowAnonymousAccess": false,
-        "allowedUsers": ["employee@company.com"]
-      },
-      "viewURL": "https://internal.company.com/docs/getting-started"
-    }
-  }'
-```
+  ```bash
+  curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
+    -H 'Authorization: Bearer <your_indexing_token>' \
+    -d '{
+      "document": {
+        "datasource": "internal-docs",
+        "objectType": "Document",
+        "id": "getting-started-guide",
+        "title": "Getting Started Guide",
+        "body": {
+          "mimeType": "text/plain",
+          "textContent": "This guide helps new employees get up to speed quickly..."
+        },
+        "permissions": {
+          "allowAnonymousAccess": false,
+          "allowedUsers": ["employee@company.com"]
+        },
+        "viewURL": "https://internal.company.com/docs/getting-started"
+      }
+    }'
+  ```
 
-</TabItem>
+  </TabItem>
 </Tabs>
 
 ## Authentication & Permissions
@@ -137,21 +137,21 @@ Learn more in our [Authentication Guide](../authentication/overview).
 ## Next Steps
 
 <CardGroup cols={1}>
-<Card title="Setup Your First Datasource" icon="database" href="setup-datasource">
-  Learn how to create and configure a custom datasource for your content
-</Card>
+  <Card title="Setup Your First Datasource" icon="database" href="setup-datasource">
+    Learn how to create and configure a custom datasource for your content
+  </Card>
 
-<Card title="Index Your First Document" icon="file-import" href="index-documents">
-  Follow our step-by-step guide to index content and make it searchable
-</Card>
+  <Card title="Index Your First Document" icon="file-import" href="index-documents">
+    Follow our step-by-step guide to index content and make it searchable
+  </Card>
 
-<Card title="Manage Authentication" icon="shield" href="../authentication/overview">
-  Set up indexing API tokens with proper permissions and security
-</Card>
+  <Card title="Manage Authentication" icon="shield" href="../authentication/overview">
+    Set up indexing API tokens with proper permissions and security
+  </Card>
 
-<Card title="API Reference" icon="book" href="../../../api/indexing-api/documents-overview">
-  Browse complete API documentation with all available endpoints
-</Card>
+  <Card title="API Reference" icon="book" href="../../../api/indexing-api/documents-overview">
+    Browse complete API documentation with all available endpoints
+  </Card>
 </CardGroup>
 
 ## Important Considerations

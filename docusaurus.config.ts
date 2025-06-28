@@ -92,6 +92,15 @@ const config: Config = {
           src: 'https://app.glean.com/embedded-search-latest.min.js',
         },
       },
+      {
+        tagName: 'link',
+        attributes: {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          title: 'Glean Developer Changelog',
+          href: '/glean-developer-site-wip/changelog.xml',
+        },
+      },
     ],
     languageTabs: [
       {

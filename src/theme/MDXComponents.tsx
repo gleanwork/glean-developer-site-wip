@@ -2,7 +2,6 @@ import React from 'react';
 // Importing the original mapper + our components according to the Docusaurus doc
 import MDXComponents from '@theme-original/MDXComponents';
 import { Steps, Step } from '@site/src/components/Steps';
-import { Tabs } from '@site/src/components/Tabs';
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
 import { ResponseField } from '@site/src/components/ResponseField';
@@ -14,7 +13,6 @@ export default {
   ...MDXComponents,
   Steps,
   Step,
-  Tabs,
   Card,
   CardGroup,
   ResponseField,

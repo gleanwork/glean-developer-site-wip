@@ -97,7 +97,7 @@
 
 .entryDetails summary {
   cursor: pointer;
-  color: var(--ifm-color-primary);
+  color: var(--ifm-color-emphasis-600);
   font-weight: 500;
   list-style: none;
   user-select: none;
@@ -108,7 +108,7 @@
 }
 
 .entryDetails summary:hover {
-  color: var(--ifm-color-primary-dark);
+  color: var(--ifm-color-primary);
 }
 
 .fullContent {

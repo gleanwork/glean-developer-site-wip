@@ -1,3 +1,11 @@
 .menuExternalLink {
   align-items: center;
 }
+
+.sidebarIcon {
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}

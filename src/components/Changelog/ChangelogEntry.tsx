@@ -56,12 +56,6 @@ export default function ChangelogEntry({
             <h2>{entry.title}</h2>
           </header>
           
-          <div className={styles.entryCategories}>
-            {entry.categories.map((category) => (
-              <CategoryBadge key={category} category={category} />
-            ))}
-          </div>
-          
           <div className={styles.entryBody}>
             <div dangerouslySetInnerHTML={{ __html: entry.summary }} />
           </div>

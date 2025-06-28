@@ -24,26 +24,51 @@ const sidebars: SidebarsConfig = {
           type: 'doc',
           id: 'get-started/home',
           label: 'Home',
+          customProps: {
+            icon: 'home',
+            iconSet: 'fontawesome',
+            iconStyle: 'solid'
+          },
         },
         {
           type: 'doc',
           id: 'get-started/key-terms',
           label: 'Key Terms',
+          customProps: {
+            icon: 'file-lines',
+            iconSet: 'fontawesome',
+            iconStyle: 'solid'
+          },
         },
         {
           type: 'doc',
           id: 'get-started/authentication',
           label: 'Authentication Overview',
+          customProps: {
+            icon: 'shield',
+            iconSet: 'fontawesome',
+            iconStyle: 'solid'
+          },
         },
         {
           type: 'doc',
           id: 'get-started/rate-limits',
           label: 'Rate Limits',
+          customProps: {
+            icon: 'gauge',
+            iconSet: 'fontawesome',
+            iconStyle: 'solid'
+          },
         },
         {
           type: 'doc',
           id: 'changelog/index',
           label: 'Changelog',
+          customProps: {
+            icon: 'rss',
+            iconSet: 'fontawesome',
+            iconStyle: 'solid'
+          },
         },
       ],
     },
@@ -57,16 +82,27 @@ const sidebars: SidebarsConfig = {
           type: 'doc',
           id: 'guides/agents/agents',
           label: 'Agents',
+          customProps: {
+            icon: 'robot',
+          },
         },
         {
           type: 'doc',
           id: 'guides/langchain/langchain',
           label: 'LangChain',
+          customProps: {
+            icon: 'langchain',
+            iconSet: 'glean'
+          },
         },
         {
           type: 'doc',
           id: 'guides/mcp/mcp',
           label: 'MCP',
+          customProps: {
+            icon: 'mcp',
+            iconSet: 'glean'
+          },
         },
       ],
     },

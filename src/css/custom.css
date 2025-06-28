@@ -278,6 +278,15 @@ h6 {
   color: #6366f1 !important;
 }
 
+/* Sidebar icons */
+.sidebar-category-icon {
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
 .card__image {
   overflow: hidden;
 }

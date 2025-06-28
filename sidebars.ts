@@ -1120,9 +1120,35 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
-          type: 'doc',
-          id: 'libraries/api-clients',
+          type: 'category',
           label: 'API Clients',
+          items: [
+            {
+              type: 'doc',
+              id: 'libraries/api-clients',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/python',
+              label: 'Python',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/typescript',
+              label: 'TypeScript',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/go',
+              label: 'Go',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/java',
+              label: 'Java',
+            },
+          ],
         },
       ],
     },

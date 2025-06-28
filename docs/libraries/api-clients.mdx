@@ -1,488 +1,150 @@
 ---
 title: API Clients
+description: Official API clients for integrating Glean's search and AI capabilities into your applications
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
 
+# API Clients
 
 Glean offers official API clients for several popular programming languages to help developers integrate Glean's powerful search and knowledge capabilities into their applications. These clients provide language-specific interfaces to Glean's APIs, making it easier to build custom solutions without having to handle the low-level HTTP requests.
 
 :::info
-  **Before you start**: You'll need a Client API token to use these libraries. See the [Authentication Guide](/api-info/client/authentication/overview) for complete setup instructions.
+**Authentication Required**: You'll need a [Client API token](/api-info/client/authentication/overview) to use these libraries.
 :::
 
 :::warning
-  **Important**: These API clients are designed for the **Client API only**. For the Indexing API, you'll need to use HTTP requests directly with [Indexing API tokens](/api-info/indexing/authentication/overview).
+**Client API Only**: These API clients are designed for the **Client API only**. For the Indexing API, you'll need to use HTTP requests directly with [Indexing API tokens](/api-info/indexing/authentication/overview).
 :::
 
-## Official API Clients
+## Choose Your Language
 
-Glean provides official API clients for the following languages:
+Select your preferred programming language to get started with the official Glean API client:
 
 <CardGroup cols={2}>
   <Card
     title="Python"
     icon="python"
     iconStyle="brands"
-    href="https://github.com/gleanwork/api-client-python"
+    href="/libraries/api-clients/python"
   >
-    Python API client for Glean
+    Full-featured Python client with framework integrations for FastAPI, Django, and Streamlit
   </Card>
   <Card
     title="TypeScript"
     icon="js"
     iconStyle="brands"
-    href="https://github.com/gleanwork/api-client-typescript"
+    href="/libraries/api-clients/typescript"
   >
-    TypeScript/JavaScript API client for Glean
+    Type-safe client for Node.js and browser applications with React, Next.js, and Express examples
   </Card>
   <Card
     title="Go"
     icon="golang"
     iconStyle="brands"
-    href="https://github.com/gleanwork/api-client-go"
+    href="/libraries/api-clients/go"
   >
-    Go API client for Glean
+    Idiomatic Go client with concurrency patterns and framework integrations for Gin and Echo
   </Card>
   <Card
     title="Java"
     icon="java"
     iconStyle="brands"
-    href="https://github.com/gleanwork/api-client-java"
+    href="/libraries/api-clients/java"
   >
-    Java API client for Glean
+    Enterprise-ready Java client with Spring Boot integration and reactive programming support
   </Card>
 </CardGroup>
 
-## Quick Start
+## What's Included
 
-<Steps>
-  <Step title="Get your credentials">
-    Before installing any client, you'll need:
-    - **Glean instance name** (your-company)
-    - **Client API token** ([create one here](/api-info/client/authentication/glean-issued))
-    
-    Store these as environment variables:
-    ```bash
-    export GLEAN_INSTANCE="your-company"
-    export GLEAN_API_TOKEN="your-token-here"
-    ```
-  </Step>
+All official API clients provide:
+
+### **Core Features**
+- **Chat API**: Build conversational AI applications
+- **Search API**: Integrate enterprise search capabilities  
+- **Agents API**: Execute pre-built agents from Agent Builder
+- **Collections API**: Manage and search document collections
+- **Authentication**: Support for user-scoped and global tokens
+
+### **Developer Experience**
+- **Type Safety**: Full type definitions and IntelliSense support
+- **Error Handling**: Structured error responses and retry mechanisms
+- **Framework Integration**: Examples for popular web frameworks
+- **Testing Support**: Mock examples and integration test patterns
+- **Documentation**: Comprehensive guides with real-world examples
+
+### **Production Ready**
+- **Rate Limiting**: Automatic handling with exponential backoff
+- **Timeout Control**: Configurable request timeouts
+- **Connection Pooling**: Efficient HTTP connection management
+- **Security**: Best practices for token management
+
+## Quick Comparison
+
+| Feature | Python | TypeScript | Go | Java |
+|---------|--------|------------|-----|------|
+| **Installation** | pip/poetry/uv | npm/yarn/pnpm | go get | Maven/Gradle |
+| **Async Support** | ✅ | ✅ | ✅ | ✅ |
+| **Streaming** | ✅ | ✅ | ✅ | ✅ |
+| **Framework Examples** | FastAPI, Django | Next.js, Express | Gin, Echo | Spring Boot |
+| **Testing** | pytest, mock | Jest, Vitest | testify | JUnit, Mockito |
+
+## Getting Started
+
+1. **Choose your language** from the cards above
+2. **Follow the installation** instructions for your package manager
+3. **Get your credentials** from the [Authentication Guide](/api-info/client/authentication/overview)
+4. **Start building** with the provided examples
+
+## Alternative Integration Options
+
+If you prefer not to use an API client library:
+
+<CardGroup cols={2}>
+  <Card 
+    title="Direct HTTP Requests"
+    icon="globe"
+    href="/api/client-api/glean-api.info"
+  >
+    Use Glean's REST APIs directly with your preferred HTTP library
+  </Card>
   
-  <Step title="Install your preferred client">
-    Choose your language and follow the installation instructions below.
-  </Step>
-  
-  <Step title="Test your setup">
-    Each language section includes a quick test to verify everything is working.
-  </Step>
-</Steps>
-
----
-
-## Installation & Usage
-
-<Tabs>
-  <TabItem value="python" label="Python">
-
-<Steps>
-      <Step title="Install the Python client">
-        ```bash
-        pip install glean-api-client
-        ```
-        
-        Or using Poetry:
-        ```bash
-        poetry add glean-api-client
-        ```
-      </Step>
-      
-      <Step title="Basic usage">
-        ```python
-        from glean.api_client import Glean
-        import os
-
-        with Glean(
-            api_token=os.getenv("GLEAN_API_TOKEN"),
-            instance=os.getenv("GLEAN_INSTANCE"),
-        ) as client:
-            # Send a chat message
-            response = client.client.chat.create(
-                messages=[{
-                    "fragments": [{"text": "What are our company values?"}]
-                }],
-                timeout_millis=30000
-            )
-            print(response)
-        ```
-      </Step>
-    </Steps>
-
-</TabItem>
-  
-  <TabItem value="typescript" label="TypeScript">
-
-<Steps>
-      <Step title="Install the TypeScript client">
-        ```bash
-        npm install @gleanwork/api-client
-        ```
-        
-        Or using Yarn:
-        ```bash
-        yarn add @gleanwork/api-client
-        ```
-      </Step>
-      
-      <Step title="Basic usage">
-        ```typescript
-        import { Glean } from "@gleanwork/api-client";
-
-        const client = new Glean({
-          apiToken: process.env.GLEAN_API_TOKEN,
-          instance: process.env.GLEAN_INSTANCE,
-        });
-
-        const result = await client.client.chat.create({
-          messages: [{
-            fragments: [{ text: "What are our company values?" }]
-          }]
-        });
-
-        console.log(result);
-        ```
-      </Step>
-    </Steps>
-
-</TabItem>
-  
-  <TabItem value="go" label="Go">
-
-<Steps>
-      <Step title="Install the Go client">
-        ```bash
-        go get github.com/gleanwork/api-client-go
-        ```
-      </Step>
-      
-      <Step title="Basic usage">
-        ```go
-        package main
-
-        import (
-          "context"
-          "fmt"
-          "os"
-          glean "github.com/gleanwork/api-client-go"
-        )
-
-        func main() {
-          ctx := context.Background()
-
-          client := glean.New(
-            glean.WithAPIToken(os.Getenv("GLEAN_API_TOKEN")),
-            glean.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-          )
-
-          message := glean.ChatMessageFragment{
-            Text: "What are our company values?",
-          }
-
-          res, err := client.Client.Chat.Create(ctx, &glean.ChatRequest{
-            Messages: []glean.ChatMessage{{
-              Fragments: []glean.ChatMessageFragment{message},
-            }},
-            TimeoutMillis: glean.Int64(30000),
-          })
-
-          if err != nil {
-            fmt.Printf("Error: %v\n", err)
-            return
-          }
-
-          fmt.Println(res)
-        }
-        ```
-      </Step>
-    </Steps>
-
-</TabItem>
-  
-  <TabItem value="java" label="Java">
-
-<Steps>
-      <Step title="Add dependency">
-        **Maven:**
-        ```xml
-        <dependency>
-          <groupId>com.glean.api-client</groupId>
-          <artifactId>glean-api-client</artifactId>
-          <version>0.x.x</version>
-        </dependency>
-        ```
-        
-        **Gradle:**
-        ```groovy
-        implementation 'com.glean.api-client:glean-api-client:0.x.x'
-        ```
-      </Step>
-      
-      <Step title="Basic usage">
-        ```java
-        import com.glean.api_client.glean_api_client.Glean;
-        import com.glean.api_client.glean_api_client.models.components.*;
-        import java.util.List;
-
-        public class Main {
-          public static void main(String[] args) {
-            Glean client = Glean.builder()
-                .apiToken(System.getenv("GLEAN_API_TOKEN"))
-                .instance(System.getenv("GLEAN_INSTANCE"))
-                .build();
-
-            var response = client.client().chat().create()
-                .chatRequest(ChatRequest.builder()
-                    .messages(List.of(
-                        ChatMessage.builder()
-                            .fragments(List.of(
-                                ChatMessageFragment.builder()
-                                    .text("What are our company values?")
-                                    .build()))
-                            .build()))
-                    .build())
-                .call();
-
-            if (response.chatResponse().isPresent()) {
-              System.out.println(response.chatResponse().get());
-            }
-          }
-        }
-        ```
-      </Step>
-    </Steps>
-
-</TabItem>
-</Tabs>
-
----
-
-## Authentication with API Clients (Client API Only)
-
-The API clients support both Client API authentication methods:
-
-:::warning
-  **OAuth limitation**: OAuth authentication only works with Client API endpoints. These API clients are designed for Client API only, so OAuth will work. For Indexing API operations, use direct HTTP requests with [Indexing API tokens](/api-info/indexing/authentication/overview).
-:::
-
-### Using User-Scoped Tokens (Recommended)
-```python
-# Most common - token is tied to a specific user
-client = Glean(
-    api_token="your-user-token",
-    instance="your-company"
-)
-```
-
-### Using Global Tokens
-```python
-# For multi-user applications - requires X-Glean-ActAs header
-client = Glean(
-    api_token="your-global-token",
-    instance="your-company"
-)
-
-# When making requests, specify the user
-response = client.client.chat.create(
-    messages=[{"fragments": [{"text": "Hello"}]}],
-    headers={"X-Glean-ActAs": "user@company.com"}
-)
-```
-
-### Using OAuth (Client API Only)
-```python
-# OAuth tokens work with API clients since they target Client API
-client = Glean(
-    api_token="your-oauth-token",  # This should be your OAuth access token
-    instance="your-company"
-)
-
-# Note: You may need to handle the X-Glean-Auth-Type header separately
-# depending on the client library implementation
-```
-
-<Card title="Authentication Guide" href="/api-info/client/authentication/overview" icon="shield">
-  Learn more about token types, creation, and best practices
-</Card>
-
----
-
-## Error Handling
-
-All clients provide structured error handling:
-
-<Tabs>
-<TabItem value="python" label="Python">
-
-```python
-try:
-    response = client.client.chat.create(messages=[...])
-except Exception as e:
-    print(f"API Error: {e}")
-```
-
-</TabItem>
-<TabItem value="typescript" label="TypeScript">
-
-```typescript
-try {
-  const response = await client.client.chat.create({...});
-} catch (error) {
-  console.error('API Error:', error);
-}
-```
-
-</TabItem>
-<TabItem value="go" label="Go">
-
-```go
-response, err := client.Client.Chat.Create(ctx, request)
-if err != nil {
-    fmt.Printf("API Error: %v\n", err)
-}
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-```java
-try {
-    var response = client.client().chat().create()...call();
-} catch (Exception e) {
-    System.err.println("API Error: " + e.getMessage());
-}
-```
-
-</TabItem>
-</Tabs>
-
----
-
-## Advanced Features
-
-### Rate Limiting
-All clients automatically handle rate limiting with exponential backoff.
-
-### Timeouts
-Configure request timeouts for your use case:
-
-<Tabs>
-<TabItem value="python" label="Python">
-
-```python
-response = client.client.chat.create(
-    messages=[...],
-    timeout_millis=60000  # 60 seconds
-)
-```
-
-</TabItem>
-<TabItem value="typescript" label="TypeScript">
-
-```typescript
-const response = await client.client.chat.create({
-  messages: [...],
-  timeoutMillis: 60000
-});
-```
-
-</TabItem>
-</Tabs>
-
-### Streaming Responses
-For real-time chat responses:
-
-<Tabs>
-<TabItem value="python" label="Python">
-
-```python
-for chunk in client.client.chat.stream(messages=[...]):
-    print(chunk)
-```
-
-</TabItem>
-<TabItem value="typescript" label="TypeScript">
-
-```typescript
-const stream = client.client.chat.stream({messages: [...]});
-for await (const chunk of stream) {
-  console.log(chunk);
-}
-```
-
-</TabItem>
-</Tabs>
-
----
-
-## API Coverage
-
-These API clients cover **Client API endpoints only**:
-
-<details>
-<summary>Supported Client API Endpoints</summary>
-
-**Endpoints available through API clients:**
-
-- **Chat**: `/rest/api/v1/chat`
-- **Search**: `/rest/api/v1/search`  
-- **Agents**: `/rest/api/v1/agents/*`
-- **Collections**: `/rest/api/v1/collections/*`
-- **Answers**: `/rest/api/v1/answers/*`
-- **Announcements**: `/rest/api/v1/announcements/*`
-- **Authentication**: `/rest/api/v1/createauth`
-- All other Client API endpoints
-
-</details>
-
-<details>
-<summary>Not Supported - Indexing API</summary>
-
-**These endpoints require direct HTTP requests:**
-
-- **Document Indexing**: `/api/index/v1/indexdocument`
-- **Datasource Management**: `/api/index/v1/adddatasource`
-- **Bulk Operations**: `/api/index/v1/bulkindexdocuments`
-- All other Indexing API endpoints
-
-For these operations, use:
-- [Indexing API Authentication Guide](/api-info/indexing/authentication/overview)
-- [Indexing API Getting Started](/api-info/indexing/getting-started/setup-datasource)
-- Direct HTTP requests with appropriate Indexing API tokens
-
-</details>
-
----
-
-## Next Steps
+  <Card 
+    title="Web SDK"
+    icon="react"
+    iconStyle="brands"
+    href="/libraries/web-sdk/overview"
+  >
+    Frontend JavaScript components for search and chat interfaces
+  </Card>
+</CardGroup>
+
+## Need Help?
 
 <CardGroup cols={3}>
-  <Card title="Authentication Setup" href="/api-info/client/authentication/overview" icon="key">
-    Set up your Client API tokens
+  <Card 
+    title="Authentication Guide"
+    icon="shield"
+    href="/api-info/client/authentication/overview"
+  >
+    Complete authentication setup
   </Card>
-  <Card title="Client API Reference" href="/api/client-api/chat/overview" icon="book">
-    Explore all available endpoints
+  
+  <Card 
+    title="API Reference"
+    icon="book"
+    href="/api/client-api/glean-api.info"
+  >
+    Full API endpoint documentation
   </Card>
-  <Card title="Examples" href="/api-info/client/examples/chatbot" icon="code">
-    See complete integration examples
+  
+  <Card 
+    title="Agent Building"
+    icon="robot"
+    href="/guides/agents/"
+  >
+    Learn about building AI agents
   </Card>
 </CardGroup>
-
-## Additional Resources
-
-For more detailed information about using these API clients:
-
-- [Python Client Repository](https://github.com/gleanwork/api-client-python)
-- [TypeScript Client Repository](https://github.com/gleanwork/api-client-typescript)
-- [Go Client Repository](https://github.com/gleanwork/api-client-go)
-- [Java Client Repository](https://github.com/gleanwork/api-client-java)

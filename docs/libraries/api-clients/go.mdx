@@ -1,0 +1,353 @@
+---
+title: Go API Client
+description: Complete guide to using Glean's Go API client for backend services
+---
+
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# Go API Client
+
+Glean's Go API client provides idiomatic Go interfaces for integrating enterprise search and AI capabilities into your Go applications.
+
+<Card
+  title="api-client-go"
+  icon="github"
+  iconStyle="brands"
+  href="https://github.com/gleanwork/api-client-go"
+>
+  Official Go client for Glean's Client API
+</Card>
+
+## Installation
+
+```bash
+go get github.com/gleanwork/api-client-go
+```
+
+## Quick Start
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "os"
+  glean "github.com/gleanwork/api-client-go"
+)
+
+func main() {
+  ctx := context.Background()
+
+  client := glean.New(
+    glean.WithAPIToken(os.Getenv("GLEAN_API_TOKEN")),
+    glean.WithInstance(os.Getenv("GLEAN_INSTANCE")),
+  )
+
+  message := glean.ChatMessageFragment{
+    Text: "What are our company values?",
+  }
+
+  res, err := client.Client.Chat.Create(ctx, &glean.ChatRequest{
+    Messages: []glean.ChatMessage{{
+      Fragments: []glean.ChatMessageFragment{message},
+    }},
+  })
+
+  if err != nil {
+    fmt.Printf("Error: %v\n", err)
+    return
+  }
+
+  fmt.Println(res.Text)
+}
+```
+
+## Core Features
+
+### Chat API
+
+```go
+func chatExample(client *glean.Client) error {
+  ctx := context.Background()
+  
+  response, err := client.Client.Chat.Create(ctx, &glean.ChatRequest{
+    Messages: []glean.ChatMessage{{
+      Fragments: []glean.ChatMessageFragment{{
+        Text: "Explain our Q4 strategy",
+      }},
+    }},
+  })
+  
+  if err != nil {
+    return err
+  }
+  
+  fmt.Println(response.Text)
+  return nil
+}
+```
+
+### Search API
+
+```go
+func searchExample(client *glean.Client) error {
+  ctx := context.Background()
+  
+  results, err := client.Client.Search.Search(ctx, &glean.SearchRequest{
+    Query: "quarterly business review",
+    PageSize: glean.Int(10),
+  })
+  
+  if err != nil {
+    return err
+  }
+  
+  for _, result := range results.Results {
+    fmt.Printf("Title: %s\n", result.Title)
+    fmt.Printf("URL: %s\n", result.URL)
+  }
+  
+  return nil
+}
+```
+
+## Framework Integrations
+
+### Gin Web Framework
+
+```go
+package main
+
+import (
+  "net/http"
+  "github.com/gin-gonic/gin"
+  glean "github.com/gleanwork/api-client-go"
+)
+
+type ChatRequest struct {
+  Message string `json:"message"`
+}
+
+func setupRoutes(client *glean.Client) *gin.Engine {
+  r := gin.Default()
+  
+  r.POST("/chat", func(c *gin.Context) {
+    var req ChatRequest
+    if err := c.ShouldBindJSON(&req); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    
+    response, err := client.Client.Chat.Create(c.Request.Context(), &glean.ChatRequest{
+      Messages: []glean.ChatMessage{{
+        Fragments: []glean.ChatMessageFragment{{
+          Text: req.Message,
+        }},
+      }},
+    })
+    
+    if err != nil {
+      c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+      return
+    }
+    
+    c.JSON(http.StatusOK, gin.H{"response": response.Text})
+  })
+  
+  return r
+}
+```
+
+### Echo Framework
+
+```go
+import (
+  "net/http"
+  "github.com/labstack/echo/v4"
+  glean "github.com/gleanwork/api-client-go"
+)
+
+func chatHandler(client *glean.Client) echo.HandlerFunc {
+  return func(c echo.Context) error {
+    var req ChatRequest
+    if err := c.Bind(&req); err != nil {
+      return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+    }
+    
+    response, err := client.Client.Chat.Create(c.Request().Context(), &glean.ChatRequest{
+      Messages: []glean.ChatMessage{{
+        Fragments: []glean.ChatMessageFragment{{
+          Text: req.Message,
+        }},
+      }},
+    })
+    
+    if err != nil {
+      return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+    }
+    
+    return c.JSON(http.StatusOK, map[string]string{
+      "response": response.Text,
+    })
+  }
+}
+```
+
+## Concurrency Patterns
+
+### Batch Processing with Goroutines
+
+```go
+func batchSearch(client *glean.Client, queries []string) ([]glean.SearchResponse, error) {
+  ctx := context.Background()
+  results := make([]glean.SearchResponse, len(queries))
+  errors := make([]error, len(queries))
+  
+  var wg sync.WaitGroup
+  
+  for i, query := range queries {
+    wg.Add(1)
+    go func(index int, q string) {
+      defer wg.Done()
+      
+      result, err := client.Client.Search.Search(ctx, &glean.SearchRequest{
+        Query: q,
+      })
+      
+      if err != nil {
+        errors[index] = err
+        return
+      }
+      
+      results[index] = *result
+    }(i, query)
+  }
+  
+  wg.Wait()
+  
+  // Check for errors
+  for _, err := range errors {
+    if err != nil {
+      return nil, err
+    }
+  }
+  
+  return results, nil
+}
+```
+
+## Authentication
+
+### User-Scoped Tokens (Recommended)
+
+```go
+client := glean.New(
+  glean.WithAPIToken("your-user-token"),
+  glean.WithInstance("your-company"),
+)
+```
+
+### Global Tokens with ActAs
+
+```go
+ctx := context.Background()
+
+// Add ActAs header to context
+ctx = context.WithValue(ctx, "X-Glean-ActAs", "user@company.com")
+
+response, err := client.Client.Chat.Create(ctx, &glean.ChatRequest{
+  Messages: []glean.ChatMessage{{
+    Fragments: []glean.ChatMessageFragment{{
+      Text: "Hello",
+    }},
+  }},
+})
+```
+
+## Error Handling
+
+```go
+func safeChat(client *glean.Client, message string) (string, error) {
+  ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+  defer cancel()
+  
+  response, err := client.Client.Chat.Create(ctx, &glean.ChatRequest{
+    Messages: []glean.ChatMessage{{
+      Fragments: []glean.ChatMessageFragment{{
+        Text: message,
+      }},
+    }},
+  })
+  
+  if err != nil {
+    return "", fmt.Errorf("chat error: %w", err)
+  }
+  
+  return response.Text, nil
+}
+```
+
+## Testing
+
+```go
+import (
+  "context"
+  "testing"
+  "github.com/stretchr/testify/assert"
+  "github.com/stretchr/testify/mock"
+)
+
+func TestChatService(t *testing.T) {
+  // Mock implementation
+  mockClient := &MockGleanClient{}
+  
+  expectedResponse := &glean.ChatResponse{
+    Text: "Test response",
+  }
+  
+  mockClient.On("Create", mock.Anything, mock.Anything).Return(expectedResponse, nil)
+  
+  // Test your service here
+  assert.NotNil(t, expectedResponse)
+}
+```
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card 
+    title="GitHub Repository"
+    icon="github"
+    iconStyle="brands"
+    href="https://github.com/gleanwork/api-client-go"
+  >
+    Source code and examples
+  </Card>
+  
+  <Card 
+    title="API Reference"
+    icon="book"
+    href="/api/client-api/glean-api.info"
+  >
+    Complete endpoint documentation
+  </Card>
+  
+  <Card 
+    title="Authentication Guide"
+    icon="shield"
+    href="/api-info/client/authentication/overview"
+  >
+    Token creation and management
+  </Card>
+  
+  <Card 
+    title="Go Documentation"
+    icon="golang"
+    iconStyle="brands"
+    href="https://pkg.go.dev/github.com/gleanwork/api-client-go"
+  >
+    Go package documentation
+  </Card>
+</CardGroup> 

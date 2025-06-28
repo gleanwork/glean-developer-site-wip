@@ -1,7 +1,7 @@
 ---
 slug: debug-endpoints-permission-status
 title: Debug Endpoints Permission Status
-tags: [Indexing API]
+categories: [Indexing API]
 ---
 
 - [/debug/\{datasource\}/document](https://developers.glean.com/api-reference/indexing/troubleshooting/beta:-get-document-information) - New response field `permissionIdentityStatus` under `status`: Provides information regarding upload status of users and groups specified in document permissions

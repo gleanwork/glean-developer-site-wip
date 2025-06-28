@@ -5,7 +5,6 @@ icon: message-bot
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import { Warning } from '@site/src/components/Callouts';
 
 The Glean Chat API is a powerful tool for integrating conversational AI into your products. It allows you to create custom conversational interfaces that leverage Glean's AI capabilities. This page provides examples of how to use the Chat API to integrate conversational AI into your products.
 
@@ -69,7 +68,7 @@ curl 'https://<instance-name>-be.glean.com/rest/api/v1/chat' \
 
 _Note: The following example streams the output as it becomes available, whenever possible. To turn off streaming outputs, please set the `stream` field in the request body to `False`_
 
-<Warning>
+:::warning
   As of 04/24/2025, the /chat API response has been changed. The previous way of
   processing the response message stream has been deprecated. As in-line
   citations (citations inside the fragments) do not contain `startIndex` or
@@ -77,7 +76,7 @@ _Note: The following example streams the output as it becomes available, wheneve
   get the `endIndex` of each citation (`startIndex` is no longer populated).
   Please also note that this function may return the same citation multiple
   times, although each duplicated citation should have a different `endIndex`.
-</Warning>
+:::
 
 <Tabs>
 <TabItem value="single-conversation" label="Single Conversation">

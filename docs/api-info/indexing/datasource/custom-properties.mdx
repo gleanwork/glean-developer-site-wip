@@ -19,19 +19,19 @@ Fundamentally, a custom property is any additional information that is attached 
 
 The above 3 use-cases are explained in respective sections below. But first, we explain how you can set up and upload custom properties for your datasource.
 
-<Info>
+:::info
   By default, no further action is needed after configuring and uploading custom
   properties to use them as facets/operators and to use them for improving
   searchability. Rendering requires a few additional steps (described below).
-</Info>
+:::
 
 ## Setting up custom properties
 
-<Warning>
+:::warning
   It is highly recommended to configure custom properties first and then upload
   documents with the custom properties. Expect delays in indexing if it is done
   the other way round!
-</Warning>
+:::
 
 Before custom properties can be uploaded for documents, we must configure the datasource to accept the specific custom properties. You need to define them under an object definition.
 
@@ -212,7 +212,7 @@ Operators are a powerful way to filter information in Glean. In the above exampl
 
 Facets are special kinds of operators which are shown as visual filters in the Glean UI. You can find them on the right hand side of the search result page. This removes the burden of remembering the operators and gives you a nice and interactive way of filtering results.
 
-<Info>
+:::info
 
 Glean also has a default faceting behavior. Facets are automatically created of the same name for the following document fields if they are set for a document:
 
@@ -222,17 +222,17 @@ Glean also has a default faceting behavior. Facets are automatically created of 
 4. updatedAt
 5. objectType
 
-</Info>
+:::
 
 ### Example
 
 Once you follow the steps above in defining custom properties and uploading them for a document, you should be able to use the `priority` operator and see it as a facet!
 
-<Info>
+:::info
 
 If you wish to hide the facet from showing up in the UI, you may select the 'Hide UI Facet' option in the admin console for the property (or) set hideUiFacet to true in the API call.
 
-</Info>
+:::
 
 ## Rendering
 
@@ -248,13 +248,13 @@ Apart from the above mentioned steps for configuring and uploading custom proper
 
 **For more details on rendering of search result refer [here](https://developers.glean.com/docs/rendering_search_results/)**
 
-<Warning>
+:::warning
 
 If you have already uploaded documents with a custom property, before setting the UI options for the property to include the Search result - please expect a delay (could be multiple hours, depending on the volume of documents) before the documents' properties are visible in the search results.
 
 To propagate this update quicker - it is recommended to re-upload the documents (or) call the [`/processalldocuments`](https://developers.glean.com/indexing/tag/Documents/paths/~1processalldocuments/post/) endpoint for the datasource.
 
-</Warning>
+:::
 
 ## Searchability and Ranking
 

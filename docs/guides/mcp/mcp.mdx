@@ -6,74 +6,107 @@ icon: 'link'
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import { MCPIcon } from './snippets/mcp/icons.mdx';
+import { McpIcon } from '@site/src/components/Icons';
 
-# <MCPIcon className="inline" height="1.4rem" /> Glean MCP Integration
+# <McpIcon className="inline" height="1.4rem" /> Glean MCP Integration: Choose Your Approach
 
-Glean's Model Context Protocol (MCP) server enables AI models to securely access and search your organization's knowledge. This integration allows you to use Glean's powerful search and chat capabilities in MCP-compatible tools and applications.
+Glean offers two ways to integrate with Model Context Protocol (MCP) to enable AI models to securely access and search your organization's knowledge:
 
-<Note>
-  This documentation is for the STDIO (local) MCP server implementation. For the
-  Remote MCP server implementation, please reach out to your Glean account team.
-</Note>
+<CardGroup cols={2}>
+  <Card 
+    title="Local MCP Server"
+    icon="laptop"
+    href="#local-mcp-server-available-now"
+  >
+    **✅ Available Now**
+    
+    Self-hosted MCP server you install and configure locally. Full control over setup and immediate availability for any MCP-compatible application.
+  </Card>
+  
+  <Card 
+    title="Remote MCP Server"
+    icon="cloud"
+    href="#remote-mcp-server-private-beta"
+  >
+    **🔒 Private Beta**
+    
+    Built directly into Glean's platform. No local setup required, enterprise-grade hosting with enhanced security and performance.
+  </Card>
+</CardGroup>
 
-## MCP Server
+## Which Approach Should I Use?
+
+Choose the approach that best fits your needs:
+
+| Factor | Local MCP Server | Remote MCP Server |
+|--------|------------------|-------------------|
+| **Availability** | ✅ Available now | 🔒 Private beta - contact Glean team |
+| **Setup** | Install & configure locally | No setup required |
+| **Maintenance** | You manage updates & hosting | Glean manages everything |
+| **Security** | Runs on your infrastructure | Enterprise-grade Glean infrastructure |
+| **Performance** | Depends on your local setup | Enterprise SLA with guaranteed uptime |
+| **Ideal For** | Developers, quick testing, full control | Enterprise deployments, production use |
+
+:::tip Quick Start Recommendation
+If you're just getting started or want to test MCP integration, begin with the Local MCP Server. You can always migrate to the Remote MCP Server when it becomes generally available.
+:::
+
+---
+
+## Local MCP Server (Available Now)
+
+The Local MCP Server is a self-hosted solution that you install and run on your own infrastructure. This gives you full control over the setup and allows immediate access to Glean's MCP capabilities.
 
 <Card
   title="@gleanwork/mcp-server"
   icon="github"
+  iconStyle="brands"
   href="https://github.com/gleanwork/mcp-server"
 >
-  [![npm
-  version](https://badge.fury.io/js/@gleanwork%2Fmcp-server.svg)](https://badge.fury.io/js/@gleanwork%2Fmcp-server)
-  <br />
-  Official STDIO (local) MCP server implementation for Glean's search and chat
-  capabilities
+  [![npm version](https://badge.fury.io/js/@gleanwork%2Fmcp-server.svg)](https://badge.fury.io/js/@gleanwork%2Fmcp-server)
+  
+  Official local MCP server implementation for Glean's search and chat capabilities
 </Card>
 
-## Features
+### Features
 
 - **Enterprise Search**: Access Glean's powerful content search capabilities
 - **Chat Interface**: Interact with Glean's AI assistant
 - **MCP Compliant**: Implements the Model Context Protocol specification
+- **Cross-Platform**: Works with Cursor, VS Code, Windsurf, Claude Desktop, and more
+- **Easy Setup**: Simple CLI configuration for popular MCP clients
 
-## Available Tools
+### Available Tools
 
 The Glean MCP server provides the following tools:
 
-### `company_search`
+#### `company_search`
 
 Search Glean's content index using the Glean Search API. This tool allows you to query Glean's content index with various filtering and configuration options.
 
-### `chat`
+#### `chat`
 
 Interact with Glean's AI assistant using the Glean Chat API. This tool allows you to have conversational interactions with Glean's AI, including support for message history, citations, and various configuration options.
 
-### `people_profile_search`
+#### `people_profile_search`
 
 Search Glean's People directory to find employee information.
 
-## Configuration
+### Configuration
 
-### API Tokens
+#### API Tokens
 
-You'll need Glean [API credentials](/get-started/authentication), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#available-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
+You'll need Glean [API credentials](/get-started/authentication), and specifically a [user-scoped API token](/api-info/client/authentication/overview). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
 
-<Warning>
-  Currently, our MCP implementation uses API tokens for authentication. While
-  the MCP specification includes [optional authorization
-  mechanisms](https://spec.modelcontextprotocol.io/specification/2025-03-26/basic/authorization/)
-  and there is [an active RFC to add OAuth 2.0
-  support](https://github.com/modelcontextprotocol/specification/pull/133),
-  we're using a simple token-based approach for now. Once the OAuth
-  specification is finalized and widely adopted in the MCP ecosystem, we plan to
-  implement OAuth-based authentication for enhanced security and user
-  management.
-</Warning>
+:::warning
+Currently, our MCP implementation uses API tokens for authentication. While the MCP specification includes [optional authorization mechanisms](https://spec.modelcontextprotocol.io/specification/2025-03-26/basic/authorization/) and there is [an active RFC to add OAuth 2.0 support](https://github.com/modelcontextprotocol/specification/pull/133), we're using a simple token-based approach for now. Once the OAuth specification is finalized and widely adopted in the MCP ecosystem, we plan to implement OAuth-based authentication for enhanced security and user management.
+:::
 
-### IDE Integrations
+#### IDE Integrations
 
-<Accordion title="Cursor">
+<details>
+<summary>Cursor</summary>
+
 ### Configure Cursor
 
 <Tabs>
@@ -83,7 +116,7 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
-            - A [user-scoped API token](/client/authentication#user)
+            - A [user-scoped API token](/api-info/client/authentication/overview)
           </Step>
 
           <Step title="Configure Cursor">
@@ -101,9 +134,9 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
           </Step>
 
           <Step title="Test the Integration">
-            <Note>
-              Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cursor's AI to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help the AI understand which tool to use.
-            </Note>
+            :::note
+            Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cursor's AI to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help the AI understand which tool to use.
+            :::
 
             1. Open a new chat in Cursor
             2. Try a query like "Using Glean, what's our company's policy on remote work?"
@@ -119,7 +152,7 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
-        - A [user-scoped API token](/client/authentication#user)
+        - A [user-scoped API token](/api-info/client/authentication/overview)
       </Step>
 
       <Step title="Configure Cursor">
@@ -154,9 +187,9 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
       </Step>
 
       <Step title="Test the Integration">
-        <Note>
+        :::note
           Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cursor's AI to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help the AI understand which tool to use.
-        </Note>
+        :::
 
         1. Open a new chat in Cursor
         2. Try a query like "Using Glean, what's our company's policy on remote work?"
@@ -166,9 +199,11 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
 
 </TabItem>
 </Tabs>
-</Accordion>
+</details>
 
-<Accordion title="Windsurf">
+<details>
+<summary>Windsurf</summary>
+
 ### Configure Windsurf
 
 <Tabs>
@@ -178,7 +213,7 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
-        - A [user-scoped API token](/client/authentication#user)
+        - A [user-scoped API token](/api-info/client/authentication/overview)
       </Step>
       <Step title="Configure Windsurf">
         Run the following command to configure Windsurf to use Glean's MCP server. This will add a new MCP server to Windsurf's settings.
@@ -194,9 +229,9 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
         ```
       </Step>
       <Step title="Test the Integration">
-        <Note>
+        :::note
           Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cascade to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help Cascade understand which tool to use.
-        </Note>
+        :::
 
         1. Open a new chat in Windsurf
         2. Try a query like "Using Glean, what's our company's policy on remote work?"
@@ -212,7 +247,7 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
-        - A [user-scoped API token](/client/authentication#user)
+        - A [user-scoped API token](/api-info/client/authentication/overview)
       </Step>
 
       <Step title="Configure Windsurf">
@@ -249,9 +284,9 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
 
 
       <Step title="Test the Integration">
-        <Note>
+        :::note
           Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Cascade to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help Cascade understand which tool to use.
-        </Note>
+        :::
 
         1. Open a new chat in Windsurf
         2. Try a query like "Using Glean, what's our company's policy on remote work?"
@@ -261,9 +296,11 @@ You'll need Glean [API credentials](/get-started/authentication), and specifical
 
 </TabItem>
 </Tabs>
-</Accordion>
+</details>
 
-<Accordion title="VS Code">
+<details>
+<summary>VS Code</summary>
+
 ### Configure VS Code
 
 <Tabs>
@@ -277,7 +314,7 @@ VS Code supports global MCP server configuration that applies across all your wo
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
-            - A [user-scoped API token](/client/authentication#user)
+            - A [user-scoped API token](/api-info/client/authentication/overview)
           </Step>
 
           <Step title="Configure VS Code">
@@ -295,9 +332,9 @@ VS Code supports global MCP server configuration that applies across all your wo
           </Step>
 
           <Step title="Test the Integration">
-            <Note>
+            :::note
               VS Code has native MCP support with agent mode. You can access MCP tools through the Chat view in agent mode. Look for the **Tools** button to manage available MCP servers and tools.
-            </Note>
+            :::
 
             1. Open the Chat view in VS Code (⌃⌘I / Ctrl+Alt+I)
             2. Select **Agent** mode from the dropdown
@@ -315,7 +352,7 @@ VS Code supports global MCP server configuration that applies across all your wo
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
-            - A [user-scoped API token](/client/authentication#user)
+            - A [user-scoped API token](/api-info/client/authentication/overview)
           </Step>
 
           <Step title="Configure VS Code">
@@ -346,9 +383,9 @@ VS Code supports global MCP server configuration that applies across all your wo
           </Step>
 
           <Step title="Test the Integration">
-            <Note>
+            :::note
               VS Code has native MCP support with agent mode. You can access MCP tools through the Chat view in agent mode. Look for the **Tools** button to manage available MCP servers and tools.
-            </Note>
+            :::
 
             1. Open the Chat view in VS Code (⌃⌘I / Ctrl+Alt+I)
             2. Select **Agent** mode from the dropdown
@@ -373,7 +410,7 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
-            - A [user-scoped API token](/client/authentication#user)
+            - A [user-scoped API token](/api-info/client/authentication/overview)
           </Step>
 
           <Step title="Configure VS Code">
@@ -391,9 +428,9 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
           </Step>
 
           <Step title="Test the Integration">
-            <Note>
+            :::note
               VS Code has native MCP support with agent mode. You can access MCP tools through the Chat view in agent mode. Look for the **Tools** button to manage available MCP servers and tools.
-            </Note>
+            :::
 
             1. Open the Chat view in VS Code (⌃⌘I / Ctrl+Alt+I)
             2. Select **Agent** mode from the dropdown
@@ -411,7 +448,7 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
           <Step title="Get Credentials">
             Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
             - Your Glean instance name
-            - A [user-scoped API token](/client/authentication#user)
+            - A [user-scoped API token](/api-info/client/authentication/overview)
           </Step>
 
           <Step title="Configure VS Code">
@@ -453,9 +490,9 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
           </Step>
 
           <Step title="Test the Integration">
-            <Note>
+            :::note
               VS Code has native MCP support with agent mode. You can access MCP tools through the Chat view in agent mode. Look for the **Tools** button to manage available MCP servers and tools.
-            </Note>
+            :::
 
             1. Open the Chat view in VS Code (⌃⌘I / Ctrl+Alt+I)
             2. Select **Agent** mode from the dropdown
@@ -470,12 +507,14 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
 
   </TabItem>
 </Tabs>
-</Accordion>
+</details>
 
-### Application Integrations
+#### Application Integrations
 
-<Accordion title="Claude Desktop">
-### Claude Desktop
+<details>
+<summary>Claude Desktop</summary>
+
+### Configure Claude Desktop
 
 <Tabs>
   <TabItem value="configure-using-the-cli" label="Configure using the CLI">
@@ -484,7 +523,7 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
-        - A [user-scoped API token](/client/authentication#user)
+        - A [user-scoped API token](/api-info/client/authentication/overview)
       </Step>
 
       <Step title="Configure Claude Desktop">
@@ -501,9 +540,9 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
         ```
       </Step>
       <Step title="Test the Integration">
-        <Note>
+        :::note
           Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Claude to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help Claude understand which tool to use.
-        </Note>
+        :::
 
         1. Start a new conversation in Claude Desktop
         2. Try a query like "Using Glean, what's our company's policy on remote work?"
@@ -519,7 +558,7 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
       <Step title="Get Credentials">
         Ensure you have your Glean API credentials ready from the [Configuration](#configuration) section above. You'll need:
         - Your Glean instance name
-        - A [user-scoped API token](/client/authentication#user)
+        - A [user-scoped API token](/api-info/client/authentication/overview)
       </Step>
 
       <Step title="Configure Claude Desktop">
@@ -546,11 +585,11 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
         6. Save and close the file
         7. Restart Claude Desktop
 
-        <Note>
+        :::note
         The config file is typically located at:
         - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
         - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-        </Note>
+        :::
 
         Your MCP server should now be listed, as shown below.
 
@@ -561,9 +600,9 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
 
 
       <Step title="Test the Integration">
-        <Note>
+        :::note
           Since MCP [does not mandate a specific tool discovery interface](https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/), you may need to explicitly prompt Claude to use Glean's tools. Try prefixing your questions with phrases like "Using Glean, ..." or "Search in Glean for ..." to help Claude understand which tool to use.
-        </Note>
+        :::
 
         1. Start a new conversation in Claude Desktop
         2. Try a query like "Using Glean, what's our company's policy on remote work?"
@@ -573,4 +612,77 @@ VS Code supports workspace-specific MCP server configuration stored in `.vscode/
 
 </TabItem>
 </Tabs>
-</Accordion>
+</details>
+
+---
+
+## Remote MCP Server (Private Beta)
+
+The Remote MCP Server is built directly into Glean's platform, providing enterprise-grade hosting, security, and performance without requiring any local setup or maintenance.
+
+:::info Private Beta Status
+The Remote MCP Server is currently in private beta. It's available to select enterprise customers and requires special access from the Glean team.
+:::
+
+### Key Benefits
+
+- **Zero Setup**: No installation, configuration, or maintenance required
+- **Enterprise Security**: Built on Glean's secure, SOC 2 compliant infrastructure
+- **High Performance**: Enterprise SLA with guaranteed uptime and response times
+- **Automatic Updates**: Always running the latest features and security patches
+- **Centralized Management**: IT teams can manage access and permissions centrally
+- **Scalable**: Handles enterprise-scale workloads without performance degradation
+
+### How It Works
+
+The Remote MCP Server operates as a cloud service within Glean's infrastructure:
+
+1. **Direct Integration**: MCP clients connect directly to Glean's hosted endpoints
+2. **Authentication**: Uses your existing Glean authentication and permissions
+3. **Real-time Access**: Provides live access to your organization's knowledge base
+4. **Audit & Compliance**: Full audit logging and compliance reporting available
+
+### Same Tools, Better Experience
+
+The Remote MCP Server provides the same powerful tools as the Local MCP Server:
+
+- **`company_search`**: Enterprise search with enhanced performance
+- **`chat`**: AI assistant with reduced latency and improved reliability  
+- **`people_profile_search`**: Employee directory access with real-time updates
+
+### Beta Access
+
+To join the Remote MCP Server private beta:
+
+<Card 
+  title="Request Beta Access"
+  icon="envelope"
+  href="mailto:support@glean.com?subject=Remote%20MCP%20Server%20Beta%20Access"
+>
+  Contact your Glean account team or email support@glean.com with "Remote MCP Server Beta Access" in the subject line
+</Card>
+
+**What to Include in Your Request:**
+- Your organization name and Glean instance
+- Intended use cases for MCP integration
+- Expected number of users
+- Timeline for deployment
+
+### Migration Path
+
+If you're currently using the Local MCP Server, migrating to the Remote MCP Server is seamless:
+
+1. **No Code Changes**: Your existing MCP integrations work unchanged
+2. **Same API**: Identical tool interfaces and capabilities  
+3. **Assisted Migration**: Glean team provides migration support
+4. **Gradual Rollout**: Test with pilot users before full deployment
+
+---
+
+### Next Steps
+
+1. **Choose Your Approach**: Review the [comparison table](#which-approach-should-i-use) above
+2. **Local Setup**: Follow the [configuration guide](#configuration) for immediate access
+3. **Beta Access**: Contact Glean for Remote MCP Server access
+4. **Integration**: Connect your favorite MCP-compatible tools (Cursor, VS Code, Claude, etc.)
+5. **Support**: Reach out to [support@glean.com](mailto:support@glean.com) for any questions

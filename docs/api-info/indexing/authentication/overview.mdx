@@ -7,7 +7,6 @@ icon: key
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { Note } from '@site/src/components/Callouts';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
@@ -17,9 +16,9 @@ import TabItem from '@theme/TabItem';
 
 This guide covers implementing authentication for Glean's **Indexing API**, which powers document indexing, datasource management, and administrative operations. The Indexing API **only supports Glean-issued tokens** - OAuth authentication is not available.
 
-<Warning>
+:::warning
   **Critical**: The Indexing API does **NOT support OAuth authentication**. You must use Glean-issued tokens for all Indexing API operations.
-</Warning>
+:::
 
 <CardGroup cols={1}>
   <Card title="Glean-Issued Tokens (Only Option)" icon="key" color="#8b5cf6">
@@ -49,9 +48,9 @@ Authorization: Bearer <indexing_api_token>
 |--------|----------|-------------|---------------|
 | `Authorization` | Always | Bearer token with your Indexing API token | `Bearer glean_XYZ123...` |
 
-<Note>
+:::note
   Unlike the Client API, Indexing API tokens do **not** require additional headers like `X-Glean-Auth-Type` or `X-Glean-ActAs`.
-</Note>
+:::
 
 ---
 
@@ -113,9 +112,9 @@ Authorization: Bearer <indexing_api_token>
   </Step>
 
   <Step title="Save Token Securely">
-    <Warning>
+    :::warning
       The token is only displayed once after creation. Save it securely - you cannot retrieve it again.
-    </Warning>
+    :::
     
     <ThemedImage
       alt="Token creation success"
@@ -144,7 +143,8 @@ Authorization: Bearer <indexing_api_token>
 
 Restrict token usage to specific IP ranges for enhanced security:
 
-<Accordion title="IP Restrictions Setup">
+<details>
+<summary>IP Restrictions Setup</summary>
 
 **Configure IP Ranges**
 
@@ -174,13 +174,14 @@ Restrict token usage to specific IP ranges for enhanced security:
 - Prevent unauthorized usage if token is compromised
 - Meet compliance requirements for IP-based access control
 
-</Accordion>
+</details>
 
 ### Token Rotation
 
 Enable automatic token rotation for enhanced security:
 
-<Accordion title="Token Rotation Setup">
+<details>
+<summary>Token Rotation Setup</summary>
 
 **Configure Rotation**
 
@@ -221,7 +222,7 @@ curl -X POST https://instance-be.glean.com/api/index/v1/rotatetoken \
 - Store both old and new tokens during rotation period
 - Test rotation in development environment first
 
-</Accordion>
+</details>
 
 ---
 
@@ -408,7 +409,8 @@ curl -X POST https://<instance>-be.glean.com/api/index/v1/indexdocument \
 
 ### Indexing-Specific Issues
 
-<Accordion title="Document Indexing Troubleshooting">
+<details>
+<summary>Document Indexing Troubleshooting</summary>
 
 **Common Document Indexing Issues**
 
@@ -426,7 +428,7 @@ curl -X POST https://<instance>-be.glean.com/api/index/v1/indexdocument \
 3. **Test search**: Search for indexed document using specific terms from content
 4. **Monitor logs**: Check Glean's admin console for indexing errors
 
-</Accordion>
+</details>
 
 ---
 

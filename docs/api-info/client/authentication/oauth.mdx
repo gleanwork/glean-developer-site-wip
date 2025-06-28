@@ -6,9 +6,7 @@ description: Complete OAuth setup guide for Client API authentication with provi
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { Warning } from '@site/src/components/Callouts';
 import { Steps, Step } from '@site/src/components/Steps';
-import { Accordion } from '@site/src/components/Accordion';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -23,9 +21,9 @@ OAuth is the **recommended authentication method** for Client API integrations. 
   - **Enterprise security** - Leverages your existing auth infrastructure
 </Card>
 
-<Warning>
+:::warning
   OAuth authentication is **only supported for Client API**. Indexing API operations require Glean-issued tokens.
-</Warning>
+:::
 
 ---
 
@@ -85,7 +83,8 @@ Choose your identity provider for detailed setup instructions:
 
 ### Google Workspace (GSuite)
 
-<Accordion title="Complete Google Workspace Setup">
+<details>
+<summary>Complete Google Workspace Setup</summary>
 
 **Step 1: Create OAuth Application**
 
@@ -109,11 +108,12 @@ Your GSuite tokens must include these scopes:
 2. Under **OAuth Access Tokens** → **GSuite**, enter your **Client ID**
 3. Click **Save** and wait up to 10 minutes for settings to take effect
 
-</Accordion>
+</details>
 
 ### Microsoft Azure
 
-<Accordion title="Complete Azure Setup">
+<details>
+<summary>Complete Azure Setup</summary>
 
 **Step 1: App Registration**
 
@@ -142,11 +142,12 @@ Note your:
    - **Client ID**: Your Application (client) ID
    - **Issuer**: `https://login.microsoftonline.com/<directory_ID>/v2.0`
 
-</Accordion>
+</details>
 
 ### Okta
 
-<Accordion title="Complete Okta Setup">
+<details>
+<summary>Complete Okta Setup</summary>
 
 **Step 1: Create OIDC Application**
 
@@ -172,11 +173,12 @@ Note your:
    - **Client ID**: Your Okta application client ID
    - **Issuer**: `https://<your-okta-domain>.okta.com`
 
-</Accordion>
+</details>
 
 ### OneLogin
 
-<Accordion title="Complete OneLogin Setup">
+<details>
+<summary>Complete OneLogin Setup</summary>
 
 **Step 1: Create OIDC Application**
 
@@ -200,7 +202,7 @@ Go to the **SSO** tab and note your:
    - **Client ID**: Your OneLogin application client ID
    - **Issuer**: `https://<your-onelogin-subdomain>.onelogin.com/oidc/2`
 
-</Accordion>
+</details>
 
 ---
 

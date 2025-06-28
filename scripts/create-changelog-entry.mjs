@@ -13,24 +13,20 @@ const __dirname = path.dirname(__filename);
 const CHANGELOG_DIR = path.join(__dirname, '..', 'changelog', 'entries');
 const TEMPLATE_FILE = path.join(__dirname, 'templates', 'changelog-entry.md');
 
-const PRIMARY_TAGS = [
-  'Client API',
-  'Indexing API',
-  'API Clients',
-  'Agent Interop Toolkit',
-  'Glean Indexing SDK',
-  'langchain-glean',
-  'MCP',
+const PRIMARY_CATEGORIES = [
+  'API',
+  'SDK',
+  'Website',
+  'Documentation',
 ];
 
-const SECONDARY_TAGS = [
+const SECONDARY_CATEGORIES = [
   'Feature',
   'Enhancement',
   'Bug Fix',
   'Breaking',
   'Security',
   'Deprecation',
-  'Documentation',
 ];
 
 function getCurrentDate() {
@@ -63,9 +59,9 @@ function generateFilename(title) {
   return filename;
 }
 
-function formatTags(primaryTag, secondaryTags) {
-  const allTags = [primaryTag, ...secondaryTags];
-  return allTags.map((tag) => `"${tag}"`).join(', ');
+function formatCategories(primaryCategory, secondaryCategories) {
+  const allCategories = [primaryCategory, ...secondaryCategories];
+  return allCategories.map((category) => `"${category}"`).join(', ');
 }
 
 function replaceTemplateVariables(template, variables) {
@@ -97,15 +93,15 @@ async function promptUser() {
     },
     {
       type: 'list',
-      name: 'primaryTag',
-      message: 'Select primary component:',
-      choices: PRIMARY_TAGS,
+      name: 'primaryCategory',
+      message: 'Select primary category:',
+      choices: PRIMARY_CATEGORIES,
     },
     {
       type: 'checkbox',
-      name: 'secondaryTags',
+      name: 'secondaryCategories',
       message: 'Select change types (space to select, enter to continue):',
-      choices: SECONDARY_TAGS,
+      choices: SECONDARY_CATEGORIES,
     },
     {
       type: 'editor',
@@ -163,7 +159,7 @@ async function createChangelogEntry() {
     if (!fs.existsSync(TEMPLATE_FILE)) {
       const defaultTemplate = `---
 title: "{{TITLE}}"
-tags: [{{TAGS}}]
+categories: [{{CATEGORIES}}]
 ---
 
 {{SUMMARY}}
@@ -183,7 +179,7 @@ tags: [{{TAGS}}]
 
     const variables = {
       TITLE: answers.title,
-      TAGS: formatTags(answers.primaryTag, answers.secondaryTags),
+      CATEGORIES: formatCategories(answers.primaryCategory, answers.secondaryCategories),
       SUMMARY: answers.summary.trim(),
       DETAILED_CONTENT: answers.detailedContent.trim(),
     };

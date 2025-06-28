@@ -8,14 +8,14 @@ Major browsers like Safari, Firefox, and Chrome (including Chromium-based browse
 
 ## Browser Cookie Policies
 
-<Info>
+:::info
   Google Chrome has announced plans to move towards a more privacy-focused web
   environment with initiatives like the Privacy Sandbox, which aims to provide
   personalization while protecting user privacy. Google is planning to introduce
   a new experience in Chrome that lets people make an informed choice that
   applies across their web browsing, including (but not limited to) third-party
   cookie usage.
-</Info>
+:::
 
 Mozilla Firefox and Apple's Safari have already implemented strict third-party cookie blocking by default:
 
@@ -25,13 +25,13 @@ Mozilla Firefox and Apple's Safari have already implemented strict third-party c
 
 ## Impact on Glean Functionality
 
-<Warning>
+:::warning
   Since Glean is embedded on customers' websites, it is classified as a
   third-party and this change can have an impact on critical workflows. Glean's
   embedded widgets and other functionalities rely on third-party cookies for
   authenticating users and these would be affected if third-party cookies are
   blocked.
-</Warning>
+:::
 
 ## Granting Cookie Access
 
@@ -55,41 +55,45 @@ To grant access:
 
 ## Frequently Asked Questions
 
-<AccordionGroup>
-  <Accordion title="How do I grant access if I accidentally clicked 'Block'?">
-    If you clicked "Block" when the browser asked for third-party cookie access, any subsequent click on "Allow cookies" will automatically be rejected. To manually grant access:
+<details>
+<summary>How do I grant access if I accidentally clicked 'Block'?</summary>
 
-    1. Click on the cookie access icon <img src="./images/third_party_cookies/cookie-access-icon.png" style={{width: "32px", display: "inline"}} /> in the top-right corner of the URL address bar
-    2. In the prompt, switch the glean.com toggle to "On":
+If you clicked "Block" when the browser asked for third-party cookie access, any subsequent click on "Allow cookies" will automatically be rejected. To manually grant access:
 
-    <Frame>
-      <img src="./images/third_party_cookies/3P-cookie-chrome-allow.png" alt="Allow Cookies Chrome" />
-    </Frame>
+1. Click on the cookie access icon <img src="./images/third_party_cookies/cookie-access-icon.png" style={{width: "32px", display: "inline"}} /> in the top-right corner of the URL address bar
+2. In the prompt, switch the glean.com toggle to "On":
 
-    3. Click on "Allow Cookies" in the Glean UI
-    4. The login should complete successfully
+<Frame>
+  <img src="./images/third_party_cookies/3P-cookie-chrome-allow.png" alt="Allow Cookies Chrome" />
+</Frame>
 
-  </Accordion>
+3. Click on "Allow Cookies" in the Glean UI
+4. The login should complete successfully
 
-  <Accordion title="Why don't I see a prompt after clicking 'Allow Cookies'?">
-    This can occur in two scenarios:
+</details>
 
-    1. Access was previously denied or the prompt was dismissed multiple times (see solution above)
-    2. The embedding `iframe` configuration needs to meet specific requirements:
-        - If the `iframe` is not sandboxed, there are no issues
-        - If sandboxed, it must include these sandbox attributes:
-          - `allow-storage-access-by-user-activation`
-          - `allow-scripts`
-          - `allow-same-origin`
+<details>
+<summary>Why don't I see a prompt after clicking 'Allow Cookies'?</summary>
 
-  </Accordion>
+This can occur in two scenarios:
 
-  <Accordion title="Do I need to grant access for each domain separately?">
-    Yes, cookie access is domain-specific. The duration of access varies by browser:
+1. Access was previously denied or the prompt was dismissed multiple times (see solution above)
+2. The embedding `iframe` configuration needs to meet specific requirements:
+    - If the `iframe` is not sandboxed, there are no issues
+    - If sandboxed, it must include these sandbox attributes:
+      - `allow-storage-access-by-user-activation`
+      - `allow-scripts`
+      - `allow-same-origin`
 
-    - **Google Chrome/Chromium:** Access persists for the current user profile
-    - **Firefox:** Access persists for the current user profile
-    - **Safari:** Access is limited to the current browser tab only
+</details>
 
-  </Accordion>
-</AccordionGroup>
+<details>
+<summary>Do I need to grant access for each domain separately?</summary>
+
+Yes, cookie access is domain-specific. The duration of access varies by browser:
+
+- **Google Chrome/Chromium:** Access persists for the current user profile
+- **Firefox:** Access persists for the current user profile
+- **Safari:** Access is limited to the current browser tab only
+
+</details>

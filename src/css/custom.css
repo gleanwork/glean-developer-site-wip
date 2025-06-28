@@ -674,14 +674,16 @@ article h1,
   padding: 0.125rem 0.25rem;
   border-radius: 0.375rem;
   line-height: 1.25;
-  width: auto;
+  width: 2rem;
   height: auto;
   border: none;
   text-transform: uppercase;
   margin-right: var(--ifm-spacing-horizontal);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  text-align: center;
 }
 
 .get > .menu__link::before {

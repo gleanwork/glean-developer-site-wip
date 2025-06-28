@@ -948,6 +948,29 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Shortcuts',
+          items: [
+            {
+              type: 'doc',
+              id: 'api/indexing-api/shortcuts-overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'api/indexing-api/bulk-index-external-shortcuts',
+              label: 'Bulk index external shortcuts',
+              className: 'api-method post',
+            },
+            {
+              type: 'doc',
+              id: 'api/indexing-api/upload-shortcuts',
+              label: 'Upload shortcuts',
+              className: 'api-method post',
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: 'Troubleshooting',
           items: [
             {
@@ -1002,29 +1025,6 @@ const sidebars: SidebarsConfig = {
               id: 'api/indexing-api/get-user-count',
               label: 'Get user count',
               className: 'menu__list-item--deprecated api-method post',
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Shortcuts',
-          items: [
-            {
-              type: 'doc',
-              id: 'api/indexing-api/shortcuts-overview',
-              label: 'Overview',
-            },
-            {
-              type: 'doc',
-              id: 'api/indexing-api/bulk-index-external-shortcuts',
-              label: 'Bulk index external shortcuts',
-              className: 'api-method post',
-            },
-            {
-              type: 'doc',
-              id: 'api/indexing-api/upload-shortcuts',
-              label: 'Upload shortcuts',
-              className: 'api-method post',
             },
           ],
         },

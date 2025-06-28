@@ -177,65 +177,15 @@ Leverage the rich Python ecosystem with our official LangChain integration. Perf
   Official LangChain integration for Glean's search and chat capabilities
 </Card>
 
-### Installation
-
-<Tabs>
-  <TabItem value="pip" label="pip">
-    ```bash 
-    pip install -U langchain-glean 
-    ```
-  </TabItem>
-  <TabItem value="poetry" label="poetry">
-    ```bash 
-    poetry add langchain-glean 
-    ```
-  </TabItem>
-  <TabItem value="uv" label="uv">
-    ```bash 
-    uv add langchain-glean 
-    ```
-  </TabItem>
-</Tabs>
-
 ### Key Components
 
 - **`GleanSearchRetriever`**: Retrieve documents from Glean
 - **`GleanSearchTool`**: Agent tool for searching Glean
 - **`GleanChatRetriever`**: Conversational retrieval with context
 
-### Example: LangChain Agent
+The integration provides everything you need to build production-ready agents with LangChain, including retrievers, tools, and chat capabilities. You can use it for simple RAG workflows, complex multi-agent systems, or anything in between.
 
-```python
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_openai_tools_agent
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_glean.tools import GleanSearchTool
-from langchain_glean.retrievers import GleanSearchRetriever
-
-# Initialize components
-llm = ChatOpenAI(model="gpt-4o")
-retriever = GleanSearchRetriever()
-glean_tool = GleanSearchTool(
-    retriever=retriever,
-    name="glean_search",
-    description="Search your organization's knowledge base"
-)
-
-# Create agent
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant with access to company knowledge."),
-    ("user", "{input}")
-])
-
-agent = create_openai_tools_agent(llm, [glean_tool], prompt)
-agent_executor = AgentExecutor(agent=agent, tools=[glean_tool])
-
-# Execute query
-response = agent_executor.invoke({"input": "Find our latest quarterly report"})
-print(response["output"])
-```
-
-**Learn More:** [Complete LangChain Guide](/guides/langchain/)
+**Learn More:** [Complete LangChain Guide](/guides/langchain/) - Full installation, configuration, and usage examples
 
 ---
 

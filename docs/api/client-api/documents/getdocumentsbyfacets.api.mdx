@@ -1,0 +1,71 @@
+---
+id: getdocumentsbyfacets
+title: "Read documents by facets"
+description: "Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions."
+sidebar_label: "Read documents by facets"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: api/client-api/documents/documents
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Read documents by facets"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/rest/api/v1/getdocumentsbyfacets"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"required":["filterSets"],"properties":{"datasourcesFilter":{"type":"array","description":"Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.","items":{"type":"string"}},"filterSets":{"type":"array","description":"A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters in each set.","items":{"description":"Within a single FacetFilterSet, the filters are treated as AND. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.","properties":{"filters":{"type":"array","items":{"example":{"fieldName":"type","values":[{"value":"Spreadsheet","relationType":"EQUALS"},{"value":"Presentation","relationType":"EQUALS"}]},"properties":{"fieldName":{"type":"string","example":"owner"},"values":{"type":"array","description":"Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.","items":{"properties":{"value":{"type":"string","example":"Spreadsheet"},"relationType":{"type":"string","enum":["EQUALS","ID_EQUALS","LT","GT"],"example":"EQUALS"},"isNegated":{"type":"boolean","deprecated":true,"description":"DEPRECATED - please use relationType instead"}},"type":"object"}},"groupName":{"type":"string","example":"Spreadsheet","description":"Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet."}},"type":"object"}}},"type":"object"}},"cursor":{"type":"string","description":"Pagination cursor. A previously received opaque token representing the position in the overall results at which to start."}},"type":"object","title":"GetDocumentsByFacetsRequest"}}},"description":"Information about facet conditions for documents to be retrieved."}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK","content":{"application/json":{"schema":{"properties":{"documents":{"type":"array","description":"The document details, ordered by score.","items":{"properties":{"id":{"type":"string","description":"The Glean Document ID."},"datasource":{"type":"string","description":"The app or other repository type from which the document was extracted"},"connectorType":{"type":"string","description":"The source from which document content was pulled, e.g. an API crawl or browser history","enum":["API_CRAWL","BROWSER_CRAWL","BROWSER_HISTORY","BUILTIN","FEDERATED_SEARCH","PUSH_API","WEB_CRAWL","NATIVE_HISTORY"]},"docType":{"type":"string","description":"The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request)."},"content":{"properties":{"fullTextList":{"type":"array","description":"The plaintext content of the document.","items":{"type":"string"}}},"type":"object"},"containerDocument":{"type":"object","description":"Document object"},"parentDocument":{"type":"object","description":"Document object"},"title":{"type":"string","description":"The title of the document."},"url":{"type":"string","description":"A permalink for the document."},"metadata":{"type":"object","description":"DocumentMetadata object"},"sections":{"type":"array","description":"A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.","items":{"type":"object","properties":{"title":{"type":"string","description":"The title of the document section (e.g. the section header)."},"url":{"type":"string","description":"The permalink of the document section."}}}}},"type":"object"}},"hasMoreResults":{"type":"boolean","description":"Whether more results are available. Use cursor to retrieve them."},"cursor":{"type":"string","description":"Cursor that indicates the start of the next page of results. To be passed in \"more\" requests for this query."}},"type":"object","title":"GetDocumentsByFacetsResponse"}}}},"400":{"description":"Invalid request"},"401":{"description":"Not Authorized"},"404":{"description":"Not Found"},"429":{"description":"Too Many Requests"}}}
+>
+  
+</StatusCodes>
+
+
+      

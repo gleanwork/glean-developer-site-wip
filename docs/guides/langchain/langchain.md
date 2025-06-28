@@ -1,15 +1,16 @@
-import { LangChainIcon } from './snippets/agents/icons.mdx';
+import { LangchainIcon } from '../../../src/components/Icons';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Card from '@site/src/components/Card';
 
-# <LangChainIcon className="inline" height="2rem" /> Glean LangChain Integration
+# <LangchainIcon className="inline" height="2rem" /> Glean LangChain Integration
 
 Glean's official LangChain integration enables you to build powerful AI agents that can search and reason over your organization's knowledge using Python and the LangChain framework.
 
 <Card
   title="langchain-glean"
   icon="github"
+  iconStyle="brands"
   href="https://github.com/gleanwork/langchain-glean"
 >
   Official LangChain integration for Glean's search and chat capabilities

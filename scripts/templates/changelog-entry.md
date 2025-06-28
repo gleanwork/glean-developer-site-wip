@@ -1,6 +1,6 @@
 ---
 title: "{{TITLE}}"
-tags: [{{TAGS}}]
+categories: [{{CATEGORIES}}]
 ---
 
 {{SUMMARY}}

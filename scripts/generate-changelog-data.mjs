@@ -19,45 +19,7 @@ marked.setOptions({
   mangle: false,
 });
 
-// Map tags to semantic categories
-const TAG_TO_CATEGORY_MAP = {
-  // Primary component tags
-  'Client API': 'API',
-  'Indexing API': 'API',
-  'API Clients': 'SDK',
-  'Agent Interop Toolkit': 'SDK',
-  'Glean Indexing SDK': 'SDK',
-  'langchain-glean': 'SDK',
-  MCP: 'SDK',
-
-  // Legacy mappings for backward compatibility
-  SDK: 'SDK',
-  'Developer Site': 'Documentation',
-
-  // Change type tags
-  Feature: 'Feature',
-  Enhancement: 'Enhancement',
-  'Bug Fix': 'Bug Fix',
-  Breaking: 'Breaking',
-  Security: 'Security',
-  Deprecation: 'Deprecation',
-  Documentation: 'Documentation',
-};
-
-function processCategories(tags) {
-  const categories = new Set();
-
-  for (const tag of tags) {
-    if (TAG_TO_CATEGORY_MAP[tag]) {
-      categories.add(TAG_TO_CATEGORY_MAP[tag]);
-    } else {
-      // Use the tag itself as a category if no mapping exists
-      categories.add(tag);
-    }
-  }
-
-  return Array.from(categories);
-}
+// No mapping needed - read categories directly from frontmatter
 
 function markdownToHtml(markdown) {
   return marked(markdown);
@@ -127,15 +89,14 @@ function parseChangelogEntry(fileName, rawContent) {
 
   const processedContent = processChangelogContent(content);
 
-  const tags = data.tags || [];
-  const categories = processCategories(tags);
+  // Read categories directly from frontmatter (no more tags/mapping)
+  const categories = data.categories || [];
 
   return {
     id: `${dateStr}-${slug}`,
     slug,
     title: data.title,
     date: dateStr,
-    tags,
     categories,
     summary: processedContent.summary,
     fullContent: processedContent.fullContent,
@@ -174,14 +135,12 @@ function generateChangelogData() {
     }
   });
 
-  const allTags = [...new Set(entries.flatMap((entry) => entry.tags))].sort();
   const allCategories = [
     ...new Set(entries.flatMap((entry) => entry.categories)),
   ].sort();
 
   const changelogData = {
     entries,
-    tags: allTags,
     categories: allCategories,
     generatedAt: new Date().toISOString(),
     totalEntries: entries.length,

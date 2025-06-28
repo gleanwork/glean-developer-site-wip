@@ -1,22 +1,68 @@
-## Installation
+import { LangchainIcon } from '@site/src/components/Icons';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
 
-```bash
-pip install -U langchain-glean
-```
+# <LangchainIcon className="inline" height="2rem" /> Glean LangChain Integration
 
-## Configuration
+Glean's official LangChain integration enables you to build powerful AI agents that can search and reason over your organization's knowledge using Python and the LangChain framework.
 
-You need to configure your Glean credentials by setting the following environment variables:
+<Card
+  title="langchain-glean"
+  icon="github"
+  iconStyle="brands"
+  href="https://github.com/gleanwork/langchain-glean"
+>
+  Official LangChain integration for Glean's search and chat capabilities
+</Card>
+
+### Installation
+
+<Tabs>
+  <TabItem value="pip" label="pip">
+
+  ```bash 
+  pip install -U langchain-glean 
+  ```
+
+  </TabItem>
+
+  <TabItem value="poetry" label="poetry">
+
+  ```bash 
+  poetry add langchain-glean 
+  ```
+
+  </TabItem>
+
+  <TabItem value="uv" label="uv">
+
+  ```bash 
+  uv add langchain-glean 
+  ```
+
+  </TabItem>
+</Tabs>
+
+### Configuration
+
+#### API Tokens
+
+You'll need Glean [API credentials](/get-started/authentication), and specifically a [user-scoped API token](/api-info/client/authentication/glean-issued#available-scopes). API Tokens require the following scopes: `chat`, `search`. You should speak to your Glean administrator to provision these tokens.
+
+#### Configure Environment Variables
+
+Configure your Glean credentials by setting the following environment variables:
 
 ```bash
 export GLEAN_SUBDOMAIN="your-glean-subdomain"
-export GLEAN_API_TOKEN="your-api-token"
+export GLEAN_API_TOKEN="your-glean-api-token"
 export GLEAN_ACT_AS="user@example.com"  # Optional: Email to act as when making requests
 ```
 
-## Usage
+### Usage Examples
 
-### Using the Retriever
+#### Using the Retriever
 
 The `GleanSearchRetriever` allows you to search and retrieve documents from Glean:
 
@@ -37,7 +83,7 @@ for doc in documents:
     print("---")
 ```
 
-### Using the Tool
+#### Building an Agent with Tools
 
 The `GleanSearchTool` can be used in LangChain agents to search Glean:
 
@@ -48,7 +94,7 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_glean.retrievers import GleanSearchRetriever
 from langchain_glean.tools import GleanSearchTool
 
-# Initialize the retriever (will use environment variables)
+# Initialize the retriever
 retriever = GleanSearchRetriever()
 
 # Create the tool
@@ -59,7 +105,7 @@ glean_tool = GleanSearchTool(
 )
 
 # Create an agent with the tool
-llm = ChatOpenAI(model="gpt-3.5-turbo")
+llm = ChatOpenAI(model="gpt-4o")
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a helpful assistant with access to Glean search."),
     ("user", "{input}")
@@ -73,7 +119,7 @@ response = agent_executor.invoke({"input": "Find the latest quarterly report"})
 print(response["output"])
 ```
 
-### Integration with LangChain Chains
+#### RAG with LangChain Chains
 
 You can integrate the retriever with LangChain chains for more complex workflows:
 
@@ -84,7 +130,7 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI
 from langchain_glean.retrievers import GleanSearchRetriever
 
-# Initialize the retriever (will use environment variables)
+# Initialize the retriever
 retriever = GleanSearchRetriever()
 
 # Create a prompt template
@@ -97,7 +143,7 @@ Question: {question}"""
 )
 
 # Initialize the language model
-llm = ChatOpenAI(model="gpt-3.5-turbo")
+llm = ChatOpenAI(model="gpt-4o")
 
 # Format documents function
 def format_docs(docs):
@@ -116,9 +162,9 @@ result = chain.invoke("What were our Q2 sales results?")
 print(result)
 ```
 
-## Advanced Usage
+### Advanced Usage
 
-### Search Parameters
+#### Search Parameters
 
 You can customize your search by passing additional parameters:
 
@@ -130,5 +176,21 @@ documents = retriever.invoke(
     disable_spellcheck=True,  # Disable spellcheck
     max_snippet_size=200  # Maximum snippet size
 )
-
 ```
+
+#### Custom Retriever Configuration
+
+Configure the retriever with custom settings:
+
+```python
+# Initialize with custom settings
+retriever = GleanSearchRetriever(
+    subdomain="your-subdomain",  # Override environment variable
+    api_token="your-api-token",  # Override environment variable
+    act_as="user@example.com",   # Override environment variable
+    page_size=10,               # Default number of results
+    max_snippet_size=300        # Default snippet size
+)
+```
+
+For the complete API documentation and implementation details, visit the [GitHub repository](https://github.com/gleanwork/langchain-glean).

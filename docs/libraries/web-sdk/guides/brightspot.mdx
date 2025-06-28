@@ -23,44 +23,31 @@ The following steps will guide you through replacing your Brightspot site's nati
   <Step title="Configure Web SDK Script">
     Under **Elements**, add a Script Element with the following configuration:
 
-    <ResponseField name="Internal Name" type="string" required>
-      Glean Web SDK
-    </ResponseField>
-
-    <ResponseField name="Type" type="string" required>
-      Link
-    </ResponseField>
-
-    <ResponseField name="Script URL" type="string" required>
-      https://app.glean.com/embedded-search-latest.min.js
-    </ResponseField>
-
-    <ResponseField name="Defer" type="boolean" required>
-      true
-    </ResponseField>
+    | Field | Value | Required |
+    |-------|--------|----------|
+    | **Internal Name** | `Glean Web SDK` | ✅ |
+    | **Type** | `Link` | ✅ |
+    | **Script URL** | `https://app.glean.com/embedded-search-latest.min.js` | ✅ |
+    | **Defer** | `true` | ✅ |
 
   </Step>
 
   <Step title="Add Integration Script">
     Add another Script Element with these settings:
 
-    <ResponseField name="Internal Name" type="string" required>
-      Glean Search Replace
-    </ResponseField>
+    | Field | Value | Required |
+    |-------|--------|----------|
+    | **Internal Name** | `Glean Search Replace` | ✅ |
+    | **Type** | `Inline` | ✅ |
+    | **Body** | See script below | ✅ |
 
-    <ResponseField name="Type" type="string" required>
-      Inline
-    </ResponseField>
-
-    <ResponseField name="Body" type="string" required>
-      ```javascript
-      addEventListener('DOMContentLoaded', () => {
-        // If you've customized the page header, you'll need to adjust these selectors.
-        GleanWebSDK.attach(document.querySelector('.Page-header-search-open'))
-        GleanWebSDK.attach(document.querySelector('.Page-header-search-input'))
-      })
-      ```
-    </ResponseField>
+    ```javascript
+    addEventListener('DOMContentLoaded', () => {
+      // If you've customized the page header, you'll need to adjust these selectors.
+      GleanWebSDK.attach(document.querySelector('.Page-header-search-open'))
+      GleanWebSDK.attach(document.querySelector('.Page-header-search-input'))
+    })
+    ```
 
   </Step>
 
@@ -69,7 +56,7 @@ The following steps will guide you through replacing your Brightspot site's nati
   </Step>
 </Steps>
 
-<Note>
+:::note
   If you have customized your page header, you may need to modify the CSS
   selectors in the integration script to match your specific implementation.
-</Note>
+:::

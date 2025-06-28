@@ -1,7 +1,7 @@
 ---
 slug: update-permissions
 title: Update Permissions Endpoint
-tags: [Indexing API]
+categories: [Indexing API]
 ---
 
   [/updatepermissions](https://developers.glean.com/api-reference/indexing/documents/update-document-permissions)

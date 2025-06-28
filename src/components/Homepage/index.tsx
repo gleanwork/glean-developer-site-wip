@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './index.module.css';
-import McpIcon from '../Icons/McpIcon';
+import { McpIcon } from '../Icons';
 import Card from '../Card';
 import CarouselSection from './CarouselSection';
 import { GLEAN_BRAND_COLORS } from '../../utils/brandColors';
@@ -13,6 +13,7 @@ type Feature = {
   href: string;
   icon: string;
   iconStyle?: 'solid' | 'regular' | 'brands';
+  iconSet?: 'fontawesome' | 'glean';
   color?: string;
 };
 
@@ -22,24 +23,24 @@ export default function Home() {
       title: 'Build AI Agents',
       body: 'Create and orchestrate intelligent agents that reason over enterprise knowledge and automate work.',
       href: 'api/client-api/agents/overview',
-      icon: 'robot',
-      iconStyle: 'solid',
+      icon: 'agent',
+      iconSet: 'glean',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {
       title: 'Leverage Your Data',
       body: "Use Glean's APIs and client libraries to search, chat, and embed Work AI in your own apps.",
       href: 'api-info/client/getting-started/overview',
-      icon: 'code',
-      iconStyle: 'solid',
+      icon: 'search',
+      iconSet: 'glean',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
     {
       title: 'Create Connectors',
       body: 'Bring any source into Glean with our connector framework and indexing API.',
       href: 'api-info/indexing/getting-started/setup-datasource',
-      icon: 'database',
-      iconStyle: 'solid',
+      icon: 'indexing',
+      iconSet: 'glean',
       color: GLEAN_BRAND_COLORS.PRIMARY_BLUE,
     },
   ];
@@ -63,6 +64,7 @@ export default function Home() {
                   title={f.title}
                   icon={f.icon}
                   iconStyle={f.iconStyle}
+                  iconSet={f.iconSet}
                   href={f.href}
                   color={f.color}
                 >
@@ -102,7 +104,7 @@ export default function Home() {
 
               <Link
                 className="button button--primary button--lg"
-                to="guides/mcp/"
+                to="guides/mcp"
               >
                 Learn more about Glean's MCP integration
               </Link>

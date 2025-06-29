@@ -5,143 +5,121 @@ title: Key Terms
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
 
-# Key Terms and Concepts
+# Key Terms
 
-Understanding these key terms will help you navigate Glean's developer platform and APIs effectively.
+As you read our documentation, you may encounter terminology that is specific to Glean or has a particular meaning within the platform. Below are key definitions.
 
-## Authentication & Access
-
-| Term | Definition | Details |
-|------|------------|---------|
-| **API Token** | A credential used to authenticate API requests | Glean provides two distinct types:<br/>• **Client API Tokens**: For user-facing APIs (search, chat, etc.)<br/>• **Indexing API Tokens**: For content upload and datasource management |
-| **User-Scoped Token** | A Client API token tied to a specific user's identity | Requests return data accessible to that user only |
-| **Global Token** | A Client API token that can impersonate any user | Uses `X-Glean-ActAs` header. Only Super Admins can create these |
-| **OAuth Access Token** | A token issued by your identity provider | From Azure, Google, Okta, etc. for Client API authentication |
-| **Scopes** | Permissions defining API endpoint access | Examples: `CHAT`, `SEARCH`, `COLLECTIONS` |
+<CardGroup cols={3}>
+  <Card title="Core Concepts" href="#core-concepts" icon="lightbulb">
+    Essential Glean platform concepts
+  </Card>
+  <Card title="Authentication & Tokens" href="#authentication--tokens" icon="shield">
+    API authentication and token types
+  </Card>
+  <Card title="Data & Content" href="#data--content" icon="database">
+    Content sources and organization
+  </Card>
+  <Card title="AI & Search Features" href="#ai--search-features" icon="search">
+    AI-powered capabilities
+  </Card>
+  <Card title="Platform Features" href="#platform-features" icon="cog">
+    Built-in platform functionality
+  </Card>
+  <Card title="Development Tools" href="#development-tools" icon="code">
+    APIs, SDKs, and integrations
+  </Card>
+</CardGroup>
 
 ---
 
-## APIs & Endpoints
+## Core Concepts
 
-| Term | Definition | Use Case |
-|------|------------|----------|
-| **Client API** | User-facing API for search, chat, and AI interactions | End-user integrations and applications |
-| **Indexing API** | Administrative API for content upload and datasource management | Content ingestion and administrative operations |
-| **REST API** | HTTP-based API using standard methods and JSON | GET, POST, PUT, DELETE operations with JSON payloads |
+**Agent** – A Glean Agent is an AI program that performs tasks on behalf of users. Built using a visual interface or natural language prompts, agents require no coding. They can be conversational (e.g., chatbots answering questions) or task-based (e.g., automating workflows like IT ticket resolution or customer responses).
+
+**Client API** – A RESTful API that enables developers to interact with Glean programmatically. It's used to build custom search and chat interfaces, integrate Glean into other tools, and let AI apps query enterprise knowledge using Glean's graph.
+
+**Connector** – A connector links Glean to enterprise data sources (e.g., Slack, Google Drive, Outlook). It ingests content and permissions so information can be indexed, searched, and surfaced through Glean's AI-powered tools.
+
+**Indexing API** – A RESTful API that allows organizations to push custom content into Glean's search index, making it accessible for search and generative AI applications.
+
+**Web SDK** – A set of JavaScript libraries and UI components for embedding Glean's search and chat directly into websites or internal tools. It allows fast, customizable integration of core Glean functionality.
+
+**MCP Server** – An implementation of the Model Context Protocol that provides tools and resources to MCP hosts. Can be local (STDIO) or remote (SSE/HTTP).
+
+**Local MCP Server** – An MCP server that runs locally using STDIO communication, typically self-hosted on your own infrastructure.
+
+**Remote MCP Server** – An MCP server that runs remotely and communicates via SSE (Server-Sent Events) or HTTP protocols, often cloud-hosted.
+
+**MCP Host** – An application that connects to and manages MCP servers, coordinating tool execution and resource access.
+
+**MCP Client** – The component within an MCP host that handles the actual communication protocol with MCP servers.
+
+---
+
+## Authentication & Tokens
+
+**API Token** – Credentials for authenticating API requests. Glean provides Client API tokens (for user-facing APIs) and Indexing API tokens (for content management).
+
+**User-Scoped Token** – A token tied to a specific user's permissions and data access.
+
+**Global Token** – An administrative token that can impersonate any user (Super Admin only).
 
 ---
 
 ## Data & Content
 
-| Term | Definition | Examples |
-|------|------------|-----------|
-| **Datasource** | A configured content source in Glean | Confluence, Slack, custom integrations |
-| **Document** | A piece of content indexed in Glean | Files, web pages, database records, structured content |
-| **Index** | Glean's searchable content repository | Content must be indexed before search/AI can use it |
-| **Permissions** | Access controls determining content visibility | Glean enforces same permissions as source systems |
-| **Bulk Indexing** | Process for uploading large document volumes efficiently | Uses batch operations for performance |
+**Datasource** – A configured content source in Glean (e.g., Confluence, Slack, custom integrations).
+
+**Index** – Glean's searchable content repository where all data must be added before search/AI can access it.
+
+**Collection** – A curated group of documents organized around specific topics or purposes.
 
 ---
 
-## AI & Search
+## AI & Search Features
 
-| Term | Definition | Capabilities |
-|------|------------|--------------|
-| **Chat** | Conversational AI interface | Answer questions, summarize content, provide insights |
-| **Search** | Enterprise search functionality | Finds relevant content across all connected datasources |
-| **Agent** | AI-powered assistant | Customizable for specific tasks or domain questions |
-| **Summarization** | AI-powered content summarization | Creates concise summaries of documents or search results |
-| **Citations** | References to source documents | Provides transparency and verification for AI responses |
+**Chat** – Conversational AI interface for asking questions and getting insights from your enterprise data.
+
+**Summarization** – AI-powered feature that creates concise summaries of documents or search results.
+
+**Answer** – Structured Q&A entries that provide authoritative responses to common questions.
 
 ---
 
 ## Platform Features
 
-| Term | Definition | Purpose |
-|------|------------|---------|
-| **Collection** | Curated group of documents or resources | Organized around specific topics or purposes |
-| **Answer** | Structured Q&A entry | Provides authoritative responses to common questions |
-| **Announcement** | Company-wide communications | Updates distributed through Glean |
-| **Shortcut (GoLinks)** | Short, memorable links | Redirect to frequently accessed resources |
-| **Pin** | Featured content | Appears prominently in search results or contexts |
+**Announcement** – Company-wide communications distributed through Glean.
+
+**Shortcut (GoLinks)** – Short, memorable links that redirect to frequently accessed resources.
+
+**Pin** – Featured content that appears prominently in search results and recommendations.
+
+**Verification** – Process to ensure content accuracy and relevance over time.
+
+**Insight** – Analytics and metrics about content usage and search patterns.
 
 ---
 
-## Development & Integration
+## Development Tools
 
-| Term | Definition | Available Languages/Details |
-|------|------------|----------------------------|
-| **SDK (Software Development Kit)** | Pre-built libraries that simplify API integration | Python, TypeScript, Go, Java |
-| **Web SDK** | JavaScript library for web applications | Embeds Glean's search and chat functionality |
-| **MCP (Model Context Protocol)** | Protocol for AI model integration | Allows secure access to Glean's knowledge and search |
-| **Webhook** | HTTP callbacks for event notifications | Notifies applications when specific events occur |
-| **Rate Limiting** | API request restrictions | Ensures system stability within time periods |
+**API Client** – Auto-generated libraries available in Python, TypeScript, Go, and Java that provide language-specific interfaces for making HTTP requests to Glean's APIs.
 
----
+**SDK** – Higher-level libraries that provide components, UI elements, and abstractions for building applications, beyond basic API request functionality.
 
-## User Roles & Permissions
-
-| Role | Permission Level | Key Capabilities |
-|------|------------------|------------------|
-| **Super Admin** | Highest level | Create global tokens, manage system-wide settings, access all features |
-| **Admin** | Administrative level | User token creation, datasource configuration, most management features |
-| **API Token Creator** | Limited administrative | Create API tokens for own use only |
-| **End User** | Standard user | Access via web interface or integrated applications |
-
----
-
-## Technical Concepts
-
-| Term | Definition | Example |
-|------|------------|---------|
-| **Instance** | Your organization's unique Glean environment | `yourcompany-be.glean.com` |
-| **Bearer Token** | Authentication method using Authorization header | `Authorization: Bearer <token>` |
-| **HTTPS/SSL** | Secure HTTP protocol | Required for all API communications |
-| **JSON** | JavaScript Object Notation data format | Used for API requests and responses |
-| **MIME Type** | File type classification | `application/pdf`, `text/html` |
-
----
-
-## Integration Patterns
-
-| Pattern | Definition | Use Cases |
-|---------|------------|-----------|
-| **Streaming** | Real-time data delivery method | Chat responses, live updates |
-| **Pagination** | Retrieve large datasets in manageable chunks | Large result sets, performance optimization |
-| **Filtering** | Restrict results based on specific criteria | Content type, date, source filtering |
-| **Faceted Search** | Multi-category filter refinement | Simultaneous filtering across multiple categories |
-
----
-
-## Common Acronyms
-
-| Acronym | Full Term | Definition |
-|---------|-----------|------------|
-| **API** | Application Programming Interface | Set of protocols for building software applications |
-| **SDK** | Software Development Kit | Collection of tools for developing applications |
-| **REST** | Representational State Transfer | Architectural style for web services |
-| **HTTP** | Hypertext Transfer Protocol | Protocol for transferring data over the web |
-| **JSON** | JavaScript Object Notation | Data interchange format |
-| **CRUD** | Create, Read, Update, Delete | Basic operations for data management |
-| **JWT** | JSON Web Token | Compact token format for securely transmitting information |
-| **SSO** | Single Sign-On | Authentication system allowing access to multiple applications |
-| **SAML** | Security Assertion Markup Language | Standard for exchanging authentication data |
-| **OIDC** | OpenID Connect | Identity layer on top of OAuth 2.0 |
+**MCP Tool** – In the context of Model Context Protocol, a specific function or capability that can be invoked by MCP hosts (e.g., search, chat, document retrieval).
 
 ---
 
 ## Getting Help
 
-If you encounter terms not defined here or need clarification:
-
 <CardGroup cols={3}>
-  <Card title="Glean Documentation" href="https://docs.glean.com" icon="book">
-    Glean's documentation site
+  <Card title="Documentation" href="/docs" icon="book">
+    Browse our complete documentation
   </Card>
-  <Card title="Community Discussions" href="https://community.glean.com" icon="comments">
-    Ask questions and share knowledge
+  <Card title="API Reference" href="/docs/api" icon="code">
+    Detailed API specifications
   </Card>
   <Card title="Support" href="https://support.glean.com" icon="life-ring">
-    Get help from Glean's support team
+    Get help from our support team
   </Card>
 </CardGroup>

@@ -1,3 +1,34 @@
 ---
 title: Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+<ApiOverview 
+  apiFamily="troubleshooting"
+  apiType="indexing-api"
+  title="Troubleshooting"
+  description="Debug and monitor your indexing operations with diagnostic endpoints. These tools help identify issues, verify data integrity, and ensure successful content indexing."
+  useCases={[
+    {
+      title: "Indexing Status Monitoring",
+      description: "Monitor the status of document uploads and indexing operations to ensure content is being processed successfully.",
+      icon: "heartbeat"
+    },
+    {
+      title: "Data Integrity Verification",
+      description: "Verify that documents and user information have been indexed correctly and are accessible through search.",
+      icon: "check-circle"
+    },
+    {
+      title: "Access Control Testing",
+      description: "Test document access permissions to ensure users can see the content they should have access to.",
+      icon: "key"
+    },
+    {
+      title: "Performance Diagnostics",
+      description: "Analyze indexing performance and identify bottlenecks in your content processing pipeline.",
+      icon: "search"
+    }
+  ]}
+/>

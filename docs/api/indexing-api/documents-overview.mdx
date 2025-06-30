@@ -1,3 +1,34 @@
 ---
 title: Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+<ApiOverview 
+  apiFamily="documents"
+  apiType="indexing-api"
+  title="Documents"
+  description="Index, update, and manage documents in your Glean instance. These endpoints handle the core document indexing workflow, from individual documents to bulk operations."
+  useCases={[
+    {
+      title: "Real-time Content Indexing",
+      description: "Index documents immediately as they are created or updated in your systems to ensure search results are always current.",
+      icon: "bolt"
+    },
+    {
+      title: "Bulk Content Migration",
+      description: "Efficiently index large volumes of existing content when migrating to Glean or performing initial data loads.",
+      icon: "upload"
+    },
+    {
+      title: "Permission Management",
+      description: "Update document permissions to ensure proper access control and security compliance as organizational structures change.",
+      icon: "shield-alt"
+    },
+    {
+      title: "Content Lifecycle Management",
+      description: "Remove outdated or deleted documents from the search index to maintain result quality and data accuracy.",
+      icon: "recycle"
+    }
+  ]}
+/>

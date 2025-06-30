@@ -1,3 +1,34 @@
 ---
 title: Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+<ApiOverview 
+  apiFamily="people"
+  apiType="indexing-api"
+  title="People"
+  description="Manage employee and team information in your Glean instance. These endpoints handle indexing organizational data to enable people search and proper content attribution."
+  useCases={[
+    {
+      title: "Employee Directory Sync",
+      description: "Synchronize employee information from HR systems to maintain accurate people profiles and organizational charts in Glean.",
+      icon: "address-book"
+    },
+    {
+      title: "Team Structure Management",
+      description: "Index team hierarchies and organizational structures to enable team-based search and content organization.",
+      icon: "sitemap"
+    },
+    {
+      title: "Bulk Organization Updates",
+      description: "Efficiently update large numbers of employee records during organizational changes, mergers, or system migrations.",
+      icon: "users-cog"
+    },
+    {
+      title: "Onboarding & Offboarding",
+      description: "Add new employees and remove departing team members to maintain current organizational data and access controls.",
+      icon: "user-plus"
+    }
+  ]}
+/>

@@ -1,3 +1,29 @@
 ---
 title: Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+<ApiOverview 
+  apiFamily="shortcuts"
+  apiType="indexing-api"
+  title="Shortcuts"
+  description="Create and manage search shortcuts that provide quick access to frequently used queries, tools, and external resources. Shortcuts enhance user productivity by reducing search friction."
+  useCases={[
+    {
+      title: "Quick Access Tools",
+      description: "Create shortcuts to commonly used internal tools, dashboards, and applications so users can access them directly from search.",
+      icon: "tachometer-alt"
+    },
+    {
+      title: "External Resource Integration",
+      description: "Index shortcuts to external resources, documentation sites, and third-party tools that are relevant to your organization.",
+      icon: "external-link-alt"
+    },
+    {
+      title: "Workflow Optimization",
+      description: "Bulk upload shortcuts that streamline common workflows and help users discover relevant tools and resources more efficiently.",
+      icon: "route"
+    }
+  ]}
+/>

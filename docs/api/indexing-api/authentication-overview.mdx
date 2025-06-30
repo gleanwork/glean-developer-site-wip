@@ -1,3 +1,29 @@
 ---
 title: Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+<ApiOverview 
+  apiFamily="authentication"
+  apiType="indexing-api"
+  title="Authentication"
+  description="Manage authentication tokens for the Indexing API. The Indexing API requires authentication tokens to authorize access to your Glean instance."
+  useCases={[
+    {
+      title: "Token Rotation",
+      description: "Implement secure token rotation policies to maintain API security and compliance with your organization's security requirements.",
+      icon: "sync-alt"
+    },
+    {
+      title: "Multi-Environment Setup", 
+      description: "Manage separate authentication tokens for development, staging, and production environments to ensure proper access control.",
+      icon: "layer-group"
+    },
+    {
+      title: "Service Integration",
+      description: "Authenticate third-party services and custom applications that need to index content into your Glean instance.",
+      icon: "plug"
+    }
+  ]}
+/>

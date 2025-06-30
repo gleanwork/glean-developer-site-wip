@@ -3,31 +3,45 @@ title: Agents API Overview
 description: Programmatic control and integration with Glean agents
 ---
 
+import ApiOverview from '@site/src/components/ApiOverview';
 import Card from '@site/src/components/Card';
 
 # Agents API Overview
 
-The Agents API provides programmatic control over Glean agents, enabling you to build, deploy, and manage AI agents across your organization. This API allows you to integrate Glean's agent capabilities directly into your applications and workflows.
-
-## Key Capabilities
-
-The Agents API enables:
-
-- **Agent Discovery**: Search and retrieve available agents in your deployment
-- **Agent Execution**: Create and manage agent runs with streaming or blocking responses
-- **Schema Inspection**: Examine agent input and output schemas for integration planning
-- **Real-time Integration**: Stream agent responses to chat interfaces and applications
-- **External Application Integration**: Embed Glean agents into your existing systems
-
-## API Endpoints
-
-| Endpoint | Purpose |
-|----------|---------|
-| [`/agents`](./search-agents.api.mdx) | Search and list available agents |
-| [`/agents/{agentId}`](./get-agent.api.mdx) | Get detailed information about a specific agent |
-| [`/agents/{agentId}/schemas`](./get-agent-schemas.api.mdx) | Retrieve agent input/output schemas |
-| [`/agents/{agentId}/runs`](./create-and-stream-run.api.mdx) | Create streaming agent runs |
-| [`/agents/{agentId}/runs`](./create-and-wait-run.api.mdx) | Create blocking agent runs |
+<ApiOverview
+  title="Agents API"
+  description="The Agents API provides programmatic control over Glean agents, enabling you to build, deploy, and manage AI agents across your organization. This API allows you to integrate Glean's agent capabilities directly into your applications and workflows."
+  apiFamily="agents"
+  useCases={[
+    {
+      title: "Agent Discovery",
+      description: "Search and retrieve available agents in your deployment to understand what capabilities are available for integration.",
+      icon: "magnifying-glass"
+    },
+    {
+      title: "Agent Execution",
+      description: "Create and manage agent runs with streaming or blocking responses for real-time chat interfaces and batch processing.",
+      icon: "play"
+    },
+    {
+      title: "Schema Inspection",
+      description: "Examine agent input and output schemas for integration planning and validation in your applications.",
+      icon: "code"
+    },
+    {
+      title: "Real-time Integration",
+      description: "Stream agent responses to chat interfaces and applications for immediate user feedback and interaction.",
+      icon: "comments"
+    },
+    {
+      title: "External Application Integration",
+      description: "Embed Glean agents into your existing systems and workflows for seamless AI-powered assistance.",
+      icon: "puzzle-piece"
+    }
+  ]}
+  authRequired={true}
+  rateLimited={true}
+/>
 
 ## Agent Builder Integration
 
@@ -99,6 +113,6 @@ async def process_queries(queries):
 
 ## Next Steps
 
-- Browse the [API endpoint documentation](./search-agents.api.mdx) for detailed request/response schemas  
+- Browse the API endpoint documentation above for detailed request/response schemas  
 - Check out the [Building Agents guide](/guides/agents/) for different ways to create agent-powered applications
 - Review [authentication requirements](/api-info/client/authentication/overview) for API access

@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import styles from './CarouselSection.module.css';
 import ThemedImage from '@theme/ThemedImage';
+import { Icon } from '../Icons';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -17,6 +18,8 @@ type CarouselSlide = {
   bullets: string[];
   ctaText: string;
   ctaHref: string;
+  ctaIcon: string;
+  ctaIconSet: 'feather' | 'glean';
   codeLanguage?: string;
   codeContent?: string;
   imageUrl?: {
@@ -36,8 +39,10 @@ const slides: CarouselSlide[] = [
       'Permission-aware by default',
       'API Clients for Python, TypeScript, Go, and Java',
     ],
-    ctaText: 'Jump to the Chat API',
+    ctaText: 'Learn about the Chat API',
     ctaHref: '/api/client-api/chat/overview',
+    ctaIcon: 'chat',
+    ctaIconSet: 'glean',
     codeLanguage: 'python',
     codeContent: `import os
 from glean import Glean, models
@@ -69,6 +74,8 @@ with Glean(
     ],
     ctaText: 'Explore Agent APIs',
     ctaHref: '/api/client-api/agents/overview',
+    ctaIcon: 'agent',
+    ctaIconSet: 'glean',
     codeLanguage: 'python',
     codeContent: `import os
 from glean import Glean, models
@@ -101,6 +108,8 @@ with Glean(
     ],
     ctaText: 'View Indexing APIs',
     ctaHref: '/api/indexing-api/datasources-overview',
+    ctaIcon: 'Database',
+    ctaIconSet: 'feather',
     codeLanguage: 'python',
     codeContent: `import os
 from glean import Glean, models
@@ -129,6 +138,8 @@ with Glean(
     ],
     ctaText: 'Get Started with MCP',
     ctaHref: '/guides/mcp',
+    ctaIcon: 'mcp',
+    ctaIconSet: 'glean',
     imageUrl: {
       light: '/img/mcp-usage-light.png',
       dark: '/img/mcp-usage-dark.png',
@@ -171,8 +182,15 @@ export default function CarouselSection() {
                 </ul>
                 <Link
                   to={slide.ctaHref}
-                  className="button button--primary button--lg"
+                  className={clsx("button button--primary button--lg", styles.carouselButton)}
                 >
+                  <Icon 
+                    name={slide.ctaIcon} 
+                    iconSet={slide.ctaIconSet} 
+                    width={20} 
+                    height={20} 
+                    className="margin-right--sm" 
+                  />
                   {slide.ctaText}
                 </Link>
               </div>

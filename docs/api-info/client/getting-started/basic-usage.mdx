@@ -11,413 +11,395 @@ import { Steps, Step } from '@site/src/components/Steps';
 
 # Basic Usage Guide
 
-Once you have authentication configured, you can start making API calls to interact with Glean's search and AI capabilities. This guide covers the most common API operations to get you started.
+Learn the core concepts and patterns for building applications with Glean's Client API. This guide focuses on understanding what you can build and how the API works, rather than language-specific implementation details.
 
-## Your First API Call
+:::tip **Choose Your SDK**
+Ready to start coding? Check out our [official API clients](/libraries/api-clients) for Python, TypeScript, Go, and Java with complete examples and installation instructions.
+:::
 
-Start with a simple search to verify your setup and understand the API response format:
+## Core APIs
 
-<Tabs>
-  <TabItem value="curl" label="cURL">
+### Chat API - Conversational AI
 
-  ```bash
-  curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
-    -H 'Authorization: Bearer <your_token>' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "query": "quarterly planning",
-      "requestOptions": {
-        "maxResults": 10
+Ask questions and get AI-powered answers grounded in your organization's knowledge.
+
+**Request Format:**
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "messages": [
+      {
+        "author": "USER",
+        "fragments": [
+          { "text": "What is our vacation policy?" }
+        ]
       }
-    }'
-  ```
+    ]
+  }'
+```
 
-  </TabItem>
-  <TabItem value="python" label="Python SDK">
-
-  ```python
-  from glean.api_client import Glean
-  import os
-
-  with Glean(
-      api_token=os.getenv("GLEAN_CLIENT_API_TOKEN"),
-      instance=os.getenv("GLEAN_INSTANCE")
-  ) as client:
-      response = client.client.search.search(request={
-          "query": "quarterly planning",
-          "requestOptions": {
-              "maxResults": 10
+**Response Structure:**
+```json showLineNumbers
+{
+  "messages": [
+    {
+      "messageType": "CONTENT", 
+      "author": "GLEAN_AI",
+      "fragments": [
+        {
+          "text": "Based on our employee handbook, the vacation policy allows..."
+        },
+        {
+          "citation": {
+            "sourceDocument": {
+              "title": "Employee Handbook 2024",
+              "url": "https://company.com/handbook",
+              "snippet": "Employees accrue 15 days of PTO annually..."
+            }
           }
-      })
-      print(f"Found {len(response.results)} results")
-      for result in response.results:
-          print(f"- {result.title}: {result.url}")
-  ```
-
-  </TabItem>
-  <TabItem value="nodejs" label="Node.js SDK">
-
-  ```javascript
-  import { Glean } from '@gleanwork/client-api';
-
-  const client = new Glean({
-    apiToken: process.env.GLEAN_CLIENT_API_TOKEN,
-    instance: process.env.GLEAN_INSTANCE
-  });
-
-  const response = await client.search({
-    query: "quarterly planning",
-    requestOptions: {
-      maxResults: 10
+        }
+      ]
     }
-  });
-
-  console.log(`Found ${response.results.length} results`);
-  response.results.forEach(result => {
-    console.log(`- ${result.title}: ${result.url}`);
-  });
-  ```
-
-  </TabItem>
-</Tabs>
-
-## Core API Operations
-
-### 1. Search for Content
-
-Search is the foundation of most Client API integrations:
-
-<Tabs>
-  <TabItem value="basic-search" label="Basic Search">
-
-  ```bash
-  curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
-    -H 'Authorization: Bearer <your_token>' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "query": "employee handbook",
-      "requestOptions": {
-        "maxResults": 5
-      }
-    }'
-  ```
-
-  </TabItem>
-  <TabItem value="filtered-search" label="Filtered Search">
-
-  ```bash
-  curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
-    -H 'Authorization: Bearer <your_token>' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "query": "quarterly report",
-      "requestOptions": {
-        "maxResults": 5,
-        "filters": {
-          "datasource": ["confluence", "gdrive"]
-        }
-      }
-    }'
-  ```
-
-  </TabItem>
-</Tabs>
-
-### 2. Start a Chat Conversation
-
-Use Glean's AI to have conversations about your organization's content:
-
-<Tabs>
-  <TabItem value="simple-chat" label="Simple Chat">
-
-  ```bash
-  curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
-    -H 'Authorization: Bearer <your_token>' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "stream": false,
-      "messages": [
-        {
-          "author": "USER",
-          "fragments": [
-            {
-              "text": "What are our vacation policies?"
-            }
-          ]
-        }
-      ]
-    }'
-  ```
-
-  </TabItem>
-  <TabItem value="streaming-chat" label="Streaming Chat">
-
-  ```bash
-  curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
-    -H 'Authorization: Bearer <your_token>' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "stream": true,
-      "messages": [
-        {
-          "author": "USER",
-          "fragments": [
-            {
-              "text": "Summarize our Q3 results"
-            }
-          ]
-        }
-      ]
-    }'
-  ```
-
-  </TabItem>
-</Tabs>
-
-### 3. Get Document Content
-
-Retrieve specific documents and their metadata:
-
-```bash
-curl -X GET https://your-instance-be.glean.com/rest/api/v1/documents/{document_id} \
-  -H 'Authorization: Bearer <your_token>' \
-  -H 'Content-Type: application/json'
+  ],
+  "chatId": "chat_abc123",
+  "followUpPrompts": [
+    "What are the paid time off policies?",
+    "How do I request vacation time?"
+  ],
+  "backendTimeMillis": 1200,
+  "chatSessionTrackingToken": "session_xyz789"
+}
 ```
 
-### 4. List People and Entities
+**Key Concepts:**
+- **Fragments**: Mix of text content and citations in responses
+- **Chat ID**: Use `chatId` for follow-up messages in the same conversation  
+- **Citations**: Source documents that informed the AI's response (inline in fragments)
+- **Follow-up Prompts**: Suggested questions based on the response context
+- **Tracking Tokens**: For analytics and feedback reporting
+- **Streaming**: Set `"stream": true` for real-time response chunks
+- **Multi-turn**: Include previous messages for conversational context
 
-Access organizational information:
+### Search API - Enterprise Search
 
-```bash
-curl -X GET https://your-instance-be.glean.com/rest/api/v1/entities/people \
+Find documents, people, and information across all connected systems.
+
+**Request Format:**
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
   -H 'Authorization: Bearer <your_token>' \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' \
+  -d '{
+    "query": "quarterly planning",
+    "pageSize": 10,
+    "requestOptions": {
+      "datasourcesFilter": ["confluence", "gdrive"],
+      "facetBucketSize": 100
+    }
+  }'
 ```
 
-## Understanding API Responses
-
-### Search Response Structure
-
-```json
+**Response Structure:**
+```json showLineNumbers
 {
   "results": [
     {
-      "id": "doc123",
-      "title": "Employee Handbook",
-      "url": "https://company.com/handbook",
-      "snippet": "Our comprehensive guide to company policies...",
+      "id": "doc_123",
+      "title": "Q4 Planning Document", 
+      "url": "https://company.com/q4-plan",
+      "snippet": "Our Q4 objectives focus on...",
       "datasource": "confluence",
       "lastModified": "2024-01-15T10:30:00Z",
       "permissions": {
         "canView": true,
         "canEdit": false
+      },
+      "author": {
+        "name": "Jane Smith",
+        "email": "jane@company.com"
       }
     }
   ],
   "facets": {
     "datasource": [
-      {"value": "confluence", "count": 15},
-      {"value": "gdrive", "count": 8}
+      { "value": "confluence", "count": 15 },
+      { "value": "gdrive", "count": 8 }
+    ],
+    "author": [
+      { "value": "Jane Smith", "count": 3 }
     ]
   },
   "requestId": "req_abc123"
 }
 ```
 
-### Chat Response Structure
+**Key Concepts:**
+- **Results**: Array of documents with rich metadata
+- **Facets**: Aggregations for filtering and navigation (e.g., by datasource, author)
+- **Permissions**: User-specific access controls (canView, canEdit)
+- **Filters**: Narrow results by datasource, author, date, etc.
+- **Ranking**: Results ordered by relevance scoring
 
-```json
+### Agents API - Pre-built Workflows
+
+Execute specialized AI agents built in Glean's Agent Builder for complex workflows.
+
+**Request Format:**
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/agents/runs/wait \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "agent_id": "your-agent-id",
+    "input": {
+      "query": "Analyze our Q4 sales performance",
+      "region": "North America",
+      "timeframe": "Q4 2023"
+    }
+  }'
+```
+
+**Response Structure:**
+```json showLineNumbers
 {
+  "run": {
+    "agent_id": "your-agent-id",
+    "input": {
+      "query": "Analyze our Q4 sales performance",
+      "region": "North America",
+      "timeframe": "Q4 2023"
+    },
+    "status": "success"
+  },
   "messages": [
     {
-      "messageType": "CONTENT",
-      "author": "ASSISTANT",
-      "fragments": [
+      "role": "GLEAN_AI",
+      "content": [
         {
-          "text": "Based on our vacation policy document, employees receive..."
-        },
-        {
-          "citation": {
-            "sourceDocument": {
-              "title": "Employee Handbook",
-              "url": "https://company.com/handbook"
-            }
-          }
+          "text": "Based on the Q4 sales data, I found that sales increased 15% compared to Q3...",
+          "type": "text"
         }
       ]
     }
-  ],
-  "conversationId": "conv_xyz789"
+  ]
 }
 ```
 
-## Common Patterns
+**Key Concepts:**
+- **Agent ID**: Unique identifier for pre-built agents in Agent Builder
+- **Input vs Messages**: Use `input` object for data OR `messages` array for conversation
+- **Run Status**: "success" or "error" indicating execution result
+- **Response Messages**: Agent responses in message format with role and content
+- **Wait vs Stream**: Use `/runs/wait` for complete response or `/runs/stream` for real-time
+
+## Common Integration Patterns
+
+### Pattern 1: Content Discovery
+
+Use search to help users discover and navigate to specific documents:
 
 <Steps>
-<Step title="Search then Chat">
-A common pattern is to first search for relevant content, then use chat to ask specific questions about the results:
+<Step title="Initial Discovery Search">
+Start with a broad search to find relevant content:
 
-1. Search for documents related to your query
-2. Use the search results to inform a more specific chat question
-3. Reference specific documents in your chat prompt
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "query": "employee onboarding",
+    "pageSize": 10,
+    "requestOptions": {
+      "facetBucketSize": 100
+    }
+  }'
+```
 </Step>
 
-<Step title="Progressive Conversations">
-Build multi-turn conversations by maintaining conversation state:
+<Step title="Present Results with Navigation">
+Show users the search results with links to actual documents, plus facets for further filtering:
 
-1. Start with an initial question
-2. Include the `conversationId` in follow-up messages
-3. Reference previous context in subsequent questions
+- Display document titles, snippets, and direct links
+- Show facet counts (e.g., "Confluence (15)", "Google Drive (8)")
+- Allow users to click through to read full documents
 </Step>
 
-<Step title="Error Handling">
-Implement robust error handling for production applications:
+<Step title="Follow-up Questions">
+Once users have context from reading documents, they can ask specific questions via chat:
 
-1. Handle authentication errors (401, 403)
-2. Implement retry logic for temporary failures (5xx)
-3. Respect rate limits and implement backoff strategies
-4. Log request IDs for troubleshooting
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "messages": [
+      {
+        "author": "USER",
+        "fragments": [
+          { "text": "What are the steps for setting up a new employee'\''s laptop?" }
+        ]
+      }
+    ]
+  }'
+```
 </Step>
 </Steps>
 
-## Testing Your Integration
+### Pattern 2: Progressive Conversations
 
-:::warning
-**Rate Limits**: Be mindful of [rate limits](../../../get-started/rate-limits) when testing. Use reasonable delays between requests to avoid hitting limits.
-:::
+Build multi-turn conversations that maintain context:
 
-### Quick Test Script
+```bash showLineNumbers
+# First message
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "messages": [
+      {
+        "author": "USER",
+        "fragments": [{ "text": "What are our company'\''s main products?" }]
+      }
+    ]
+  }'
 
-Here's a simple script to test your basic integration:
-
-<Tabs>
-<TabItem value="python-test" label="Python Test">
-
-```python
-import os
-import requests
-import json
-
-# Configuration
-instance = os.getenv("GLEAN_INSTANCE")
-token = os.getenv("GLEAN_CLIENT_API_TOKEN")
-base_url = f"https://{instance}-be.glean.com/rest/api/v1"
-
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Content-Type": "application/json"
-}
-
-def test_search():
-    """Test basic search functionality"""
-    response = requests.post(
-        f"{base_url}/search",
-        headers=headers,
-        json={
-            "query": "test",
-            "requestOptions": {"maxResults": 3}
-        }
-    )
-    print(f"Search status: {response.status_code}")
-    if response.status_code == 200:
-        results = response.json()
-        print(f"Found {len(results.get('results', []))} results")
-    return response.status_code == 200
-
-def test_chat():
-    """Test basic chat functionality"""
-    response = requests.post(
-        f"{base_url}/chat",
-        headers=headers,
-        json={
-            "stream": False,
-            "messages": [
-                {
-                    "author": "USER",
-                    "fragments": [{"text": "Hello, can you help me?"}]
-                }
-            ]
-        }
-    )
-    print(f"Chat status: {response.status_code}")
-    return response.status_code == 200
-
-# Run tests
-if test_search() and test_chat():
-    print("✅ Basic integration tests passed!")
-else:
-    print("❌ Integration tests failed. Check your configuration.")
+# Follow-up using chatId
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "chatId": "chat_abc123",
+    "messages": [
+      {
+        "author": "USER", 
+        "fragments": [{ "text": "What are our company'\''s main products?" }]
+      },
+      {
+        "author": "GLEAN_AI",
+        "fragments": [{ "text": "Our main products include..." }]
+      },
+      {
+        "author": "USER",
+        "fragments": [{ "text": "Which one generates the most revenue?" }]
+      }
+    ]
+  }'
 ```
 
-</TabItem>
-<TabItem value="curl-test" label="cURL Test">
+### Pattern 3: Faceted Search Navigation
 
-```bash
-#!/bin/bash
+Use facets to help users navigate and filter results:
 
-# Configuration
-INSTANCE="your-instance"
-TOKEN="your-token"
-BASE_URL="https://${INSTANCE}-be.glean.com/rest/api/v1"
+<Steps>
+<Step title="Initial Search">
+Start with a broad search to understand available content:
 
-# Test search
-echo "Testing search..."
-SEARCH_RESPONSE=$(curl -s -w "%{http_code}" -X POST "${BASE_URL}/search" \
-  -H "Authorization: Bearer ${TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "test", "requestOptions": {"maxResults": 3}}')
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "query": "project planning",
+    "pageSize": 10,
+    "requestOptions": {
+      "facetBucketSize": 100
+    }
+  }'
+```
+</Step>
 
-SEARCH_STATUS="${SEARCH_RESPONSE: -3}"
-if [ "$SEARCH_STATUS" = "200" ]; then
-    echo "✅ Search test passed"
-else
-    echo "❌ Search test failed with status: $SEARCH_STATUS"
-fi
+<Step title="Show Facets">
+Display facet counts to users (e.g., "Confluence (15)", "Google Drive (8)")
+</Step>
 
-# Test chat
-echo "Testing chat..."
-CHAT_RESPONSE=$(curl -s -w "%{http_code}" -X POST "${BASE_URL}/chat" \
-  -H "Authorization: Bearer ${TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{"stream": false, "messages": [{"author": "USER", "fragments": [{"text": "Hello"}]}]}')
+<Step title="Filtered Search">
+Let users click facets to refine results:
 
-CHAT_STATUS="${CHAT_RESPONSE: -3}"
-if [ "$CHAT_STATUS" = "200" ]; then
-    echo "✅ Chat test passed"
-else
-    echo "❌ Chat test failed with status: $CHAT_STATUS"
-fi
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/search \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "query": "project planning",
+    "pageSize": 10,
+    "requestOptions": {
+      "datasourcesFilter": ["confluence"],
+      "facetFilters": [
+        {
+          "fieldName": "author",
+          "values": ["Jane Smith"]
+        }
+      ],
+      "facetBucketSize": 100
+    }
+  }'
+```
+</Step>
+</Steps>
+
+### Pattern 4: Streaming for Real-time UX
+
+Use streaming for interactive chat experiences:
+
+```bash showLineNumbers
+curl -X POST https://your-instance-be.glean.com/rest/api/v1/chat \
+  -H 'Authorization: Bearer <your_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "stream": true,
+    "messages": [
+      {
+        "author": "USER",
+        "fragments": [{ "text": "Explain our Q4 strategy" }]
+      }
+    ]
+  }'
 ```
 
-</TabItem>
-</Tabs>
+Handle the streaming response to show text as it arrives, creating a more engaging user experience.
 
-## Next Steps
+## What You Can Build
 
-<CardGroup cols={1}>
-  <Card title="Explore Advanced Examples" icon="lightbulb" href="../examples/chatbot">
-    Build complete applications with step-by-step tutorials
+<CardGroup cols={2}>
+  <Card title="Knowledge Chatbots" icon="chat" iconSet="glean">
+    Build conversational interfaces that answer questions using your organization's content
   </Card>
 
-  <Card title="Learn About SDKs" icon="box" href="../../../libraries/api-clients">
-    Use official client libraries for easier development
+  <Card title="Search Applications" icon="Search">
+    Create custom search experiences with filtering, faceting, and result customization
   </Card>
 
-  <Card title="Learn About Search" icon="magnifying-glass" href="../search/filtering-results">
-    Master advanced search techniques and filtering options
+  <Card title="Content Discovery" icon="Navigation">
+    Help users find relevant documents and experts across your organization
   </Card>
 
-  <Card title="Production Best Practices" icon="settings" href="../../../get-started/rate-limits">
-    Learn about scaling, monitoring, and production considerations
+  <Card title="Workflow Automation" icon="User">
+    Use agents to automate complex business processes and analysis
   </Card>
 </CardGroup>
 
-## Troubleshooting Common Issues
+## Implementation Resources
 
-| Issue | Symptoms | Solution |
-|-------|----------|----------|
-| **Authentication Failed** | 401 or 403 errors | Verify token is correct and has required scopes |
-| **No Results Returned** | Empty search results | Check if user has access to content, try broader queries |
-| **Rate Limit Exceeded** | 429 errors | Implement exponential backoff, reduce request frequency |
-| **Invalid Request Format** | 400 errors | Verify JSON structure matches API documentation |
-| **Connection Timeout** | Network errors | Check instance URL, implement retry logic | 
+<CardGroup cols={2}>
+  <Card title="Official API Clients" icon="Code" href="../../../libraries/api-clients">
+    Python, TypeScript, Go, and Java SDKs with complete examples
+  </Card>
+
+  <Card title="Complete Examples" icon="Info" href="../examples/chatbot">
+    Step-by-step tutorials for building real applications
+  </Card>
+
+  <Card title="Authentication Setup" icon="Shield" href="../authentication/overview">
+    How to get and manage API tokens
+  </Card>
+
+  <Card title="Advanced Search" icon="Search" href="../search/filtering-results">
+    Master filtering, faceting, and result customization
+  </Card>
+</CardGroup>
+
+:::info **Ready to Start Coding?**
+Check out our [API clients documentation](/libraries/api-clients) for your preferred programming language, complete with installation instructions and working examples.
+:::

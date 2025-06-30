@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { AgentIcon, ApiIcon, IntegrationIcon } from '@site/src/components/Icons';
+import { Icon } from '@site/src/components/Icons';
 
 # Building Agents with Glean
 
@@ -18,7 +18,7 @@ Glean provides multiple ways to build AI agents that can search and reason over 
 <CardGroup cols={2}>
   <Card 
     title="Direct API Integration"
-    icon="cloud"
+    icon="Cloud"
     href="#direct-api-integration"
   >
     Use Glean's REST APIs directly for maximum control and customization
@@ -44,7 +44,7 @@ Glean provides multiple ways to build AI agents that can search and reason over 
   
   <Card 
     title="Glean Agent Toolkit"
-    icon="robot"
+    icon="User"
     href="#glean-agent-toolkit"
   >
     Pre-built Glean tools that work across multiple agent frameworks
@@ -68,8 +68,7 @@ Build custom agents using Glean's REST APIs with our official client libraries. 
 <CardGroup cols={2}>
   <Card 
     title="Python SDK"
-    icon="python"
-    iconStyle="brands"
+    icon="Code"
     href="https://github.com/gleanwork/api-client-python"
   >
     ```bash
@@ -79,8 +78,7 @@ Build custom agents using Glean's REST APIs with our official client libraries. 
   
   <Card 
     title="TypeScript SDK"
-    icon="node"
-    iconStyle="brands" 
+    icon="Code" 
     href="https://github.com/gleanwork/api-client-typescript"
   >
     ```bash
@@ -90,8 +88,7 @@ Build custom agents using Glean's REST APIs with our official client libraries. 
   
   <Card 
     title="Go SDK"
-    icon="golang"
-    iconStyle="brands"
+    icon="Code"
     href="https://github.com/gleanwork/api-client-go"
   >
     ```bash
@@ -101,8 +98,7 @@ Build custom agents using Glean's REST APIs with our official client libraries. 
   
   <Card 
     title="Java SDK"
-    icon="java"
-    iconStyle="brands"
+    icon="Code"
     href="https://github.com/gleanwork/api-client-java"
   >
     ```xml
@@ -170,9 +166,8 @@ Leverage the rich Python ecosystem with our official LangChain integration. Perf
 
 <Card 
   title="langchain-glean"
-  icon="github"
-  iconStyle="brands"
-  href="https://github.com/gleanwork/langchain-glean"
+      icon="GitHub"
+    href="https://github.com/gleanwork/langchain-glean"
 >
   Official LangChain integration for Glean's search and chat capabilities
 </Card>
@@ -201,8 +196,7 @@ Connect AI models and development tools to Glean using the standardized Model Co
 
 <Card 
   title="@gleanwork/mcp-server"
-  icon="github"
-  iconStyle="brands"
+  icon="GitHub"
   href="https://github.com/gleanwork/mcp-server"
 >
   Official MCP server implementation for Glean's search and chat capabilities
@@ -211,16 +205,16 @@ Connect AI models and development tools to Glean using the standardized Model Co
 ### Supported Tools & IDEs
 
 <CardGroup cols={3}>
-  <Card title="Cursor" icon={<IntegrationIcon />}>
+  <Card title="Cursor" icon="ExternalLink">
     AI-powered code editor with MCP support
   </Card>
-  <Card title="VS Code" icon={<IntegrationIcon />}>
+  <Card title="VS Code" icon="ExternalLink">
     Popular editor with native MCP integration
   </Card>
-  <Card title="Windsurf" icon={<IntegrationIcon />}>
+  <Card title="Windsurf" icon="ExternalLink">
     AI development environment
   </Card>
-  <Card title="Claude Desktop" icon={<IntegrationIcon />}>
+  <Card title="Claude Desktop" icon="ExternalLink">
     Anthropic's desktop AI assistant
   </Card>
 </CardGroup>
@@ -266,8 +260,7 @@ A Python toolkit that makes it easy to integrate Glean's powerful search and kno
 
 <Card 
   title="glean-agent-toolkit"
-  icon="github"
-  iconStyle="brands"
+  icon="GitHub"
   href="https://github.com/gleanwork/glean-agent-toolkit"
 >
   Official Python toolkit for adapting Glean's enterprise tools across multiple agent frameworks
@@ -372,7 +365,7 @@ For creating agents without writing code, use Glean's built-in Agent Builder:
 
 <Card 
   title="Glean Agent Builder"
-  icon={<AgentIcon />}
+  icon="User"
   href="https://docs.glean.com/agents/home"
 >
   Create agents with drag-and-drop interface, pre-built templates, and custom instructions. Perfect for business users and rapid prototyping.

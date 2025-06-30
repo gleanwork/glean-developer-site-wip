@@ -30,11 +30,6 @@
     "@docusaurus/theme-search-algolia": "^3.8.1",
     "@docusaurus/utils": "^3.8.1",
     "@docusaurus/utils-validation": "^3.8.1",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/free-regular-svg-icons": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
     "@mdx-js/react": "^3.0.0",
     "@signalwire/docusaurus-plugin-llms-txt": "^1.1.0",
     "clsx": "^2.1.1",
@@ -49,6 +44,7 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-feather": "^2.0.10",
     "swiper": "^11.2.8"
   },
   "devDependencies": {

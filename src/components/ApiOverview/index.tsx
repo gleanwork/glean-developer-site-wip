@@ -17,6 +17,7 @@ interface UseCase {
   title: string;
   description: string;
   icon?: string;
+  iconSet?: 'feather' | 'glean';
 }
 
 interface ApiOverviewProps {
@@ -322,6 +323,7 @@ export default function ApiOverview({
               key={index}
               title={useCase.title}
               icon={useCase.icon}
+              iconSet={useCase.iconSet}
             >
               {useCase.description}
             </Card>

@@ -1,21 +1,6 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
-import {
-  SearchIcon,
-  ChatIcon,
-  DocumentIcon,
-  IndexingIcon,
-  AgentIcon,
-  KnowledgeIcon,
-  SecurityIcon,
-  DatasourceIcon,
-  ApiIcon,
-  IntegrationIcon,
-  AnalyticsIcon,
-  McpIcon,
-  LangchainIcon,
-} from './GleanIcons';
+import React, { useState, useEffect } from 'react';
+import * as FeatherIcons from 'react-feather';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 interface IconProps {
   width?: number;
@@ -24,73 +9,126 @@ interface IconProps {
   color?: string;
 }
 
-export const GleanIconRegistry = {
-  search: SearchIcon,
-  chat: ChatIcon,
-  document: DocumentIcon,
-  indexing: IndexingIcon,
-  agent: AgentIcon,
-  knowledge: KnowledgeIcon,
-  security: SecurityIcon,
-  datasource: DatasourceIcon,
-  api: ApiIcon,
-  integration: IntegrationIcon,
-  analytics: AnalyticsIcon,
-  mcp: McpIcon,
-  langchain: LangchainIcon,
-} as const;
+// Registry of available Glean SVG icons in /static/img/glean/
+const AVAILABLE_GLEAN_ICONS = [
+  'agent',
+  'chat',
+  'tools', 
+  'platform',
+  'sparkles',
+  'mcp',
+  'langchain',
+  'plug',
+  'pin',
+  'golink',
+  'verification',
+  // Programming languages
+  'python',
+  'typescript',
+  'go',
+  'java',
+  // Package registries
+  'npm',
+  'pypi',
+  'maven',
+] as const;
 
-export type GleanIconName = keyof typeof GleanIconRegistry;
+export type GleanIconName = typeof AVAILABLE_GLEAN_ICONS[number];
 
 interface IconComponentProps extends IconProps {
   name: string;
-  iconStyle?: 'solid' | 'regular' | 'brands';
-  iconSet?: 'fontawesome' | 'glean';
+  iconSet?: 'feather' | 'glean';
 }
 
-export function getIcon(
-  iconName: string,
-  iconSet: 'fontawesome' | 'glean' = 'fontawesome',
-  iconStyle: 'solid' | 'regular' | 'brands' = 'solid',
-  props?: IconProps
-): React.ReactNode {
-  if (iconSet === 'glean') {
-    const GleanIconComponent = GleanIconRegistry[iconName as GleanIconName];
-    if (GleanIconComponent) {
-      return <GleanIconComponent {...props} />;
-    }
-    console.warn(`Glean icon "${iconName}" not found. Available icons:`, Object.keys(GleanIconRegistry));
-    return null;
+function GleanIcon({ name, width, height, className, color }: IconProps & { name: string }) {
+  const iconUrl = useBaseUrl(`/img/glean/${name}.svg`);
+  const [svgContent, setSvgContent] = useState<string>('');
+  
+  useEffect(() => {
+    fetch(iconUrl)
+      .then(response => response.text())
+      .then(text => {
+        // Remove hardcoded fill and stroke attributes to allow CSS control
+        // Also preserve viewBox and remove fixed width/height to allow proper scaling
+        const cleanedSvg = text
+          .replace(/fill="[^"]*"/g, 'fill="currentColor"')
+          .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
+          .replace(/<svg([^>]*)\s+width="[^"]*"/, '<svg$1')
+          .replace(/<svg([^>]*)\s+height="[^"]*"/, '<svg$1')
+          .replace(/<svg/, '<svg style="width: 100%; height: 100%"');
+        setSvgContent(cleanedSvg);
+      })
+      .catch(error => {
+        console.error(`Failed to load SVG icon: ${name}`, error);
+      });
+  }, [iconUrl, name]);
+
+  if (!svgContent) {
+    return <div style={{ width, height }} />; // Placeholder while loading
   }
 
-  const prefixMap = {
-    solid: 'fas' as IconPrefix,
-    regular: 'far' as IconPrefix,
-    brands: 'fab' as IconPrefix,
+  const style: React.CSSProperties = {
+    color: color || 'currentColor',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
   };
 
-  const prefix = prefixMap[iconStyle];
+  // Only set inline dimensions if explicitly provided
+  if (width !== undefined) style.width = width;
+  if (height !== undefined) style.height = height;
 
   return (
-    <FontAwesomeIcon 
-      icon={[prefix, iconName as IconName]} 
-      style={{ 
-        width: props?.width, 
-        height: props?.height,
-        color: props?.color 
-      }}
-      className={props?.className}
+    <div
+      className={className}
+      style={style}
+      dangerouslySetInnerHTML={{ __html: svgContent }}
     />
   );
 }
 
-export function Icon({ 
-  name, 
-  iconSet = 'fontawesome', 
-  iconStyle = 'solid', 
-  ...props 
-}: IconComponentProps) {
-  return getIcon(name, iconSet, iconStyle, props) as React.ReactElement;
+export function getIcon(
+  iconName: string,
+  iconSet: 'feather' | 'glean' = 'feather',
+  props?: IconProps
+): React.ReactNode {
+  if (iconSet === 'glean') {
+    if (AVAILABLE_GLEAN_ICONS.includes(iconName as GleanIconName)) {
+      return <GleanIcon name={iconName} {...props} />;
+    }
+    console.warn(`Glean icon "${iconName}" not found. Available icons:`, AVAILABLE_GLEAN_ICONS);
+    return null;
+  }
+
+  const FeatherIconComponent = FeatherIcons[iconName as keyof typeof FeatherIcons] as React.ComponentType<any>;
+  
+  if (FeatherIconComponent) {
+    const style: React.CSSProperties = {};
+    if (props?.width !== undefined) style.width = props.width;
+    if (props?.height !== undefined) style.height = props.height;
+
+    return (
+      <FeatherIconComponent
+        size={props?.width || props?.height || 24}
+        color={props?.color}
+        className={props?.className}
+        style={style}
+      />
+    );
+  }
+
+  console.warn(`Feather icon "${iconName}" not found.`);
+  return null;
 }
 
-export * from './GleanIcons'; 
+export function Icon({ 
+  name, 
+  iconSet = 'feather',
+  ...props 
+}: IconComponentProps) {
+  return getIcon(name, iconSet, props) as React.ReactElement;
+}
+
+// Export the list of available icons for reference
+export { AVAILABLE_GLEAN_ICONS }; 

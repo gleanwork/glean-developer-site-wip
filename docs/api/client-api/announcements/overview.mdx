@@ -1,3 +1,30 @@
 ---
-title: Overview
+title: Announcements API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Announcements API
+
+<ApiOverview
+  title="Announcements API"
+  description="The Announcements API allows administrators to create, update, and manage organizational announcements that are visible to users based on department and location targeting. These announcements help keep teams informed about important updates, policy changes, and company-wide communications."
+  apiFamily="announcements"
+  useCases={[
+    {
+      title: "Company-wide Communications",
+      description: "Create and broadcast important announcements to all employees or specific departments about policy changes, events, and updates.",
+      icon: "bullhorn"
+    },
+    {
+      title: "Department-specific Notifications",
+      description: "Target announcements to specific departments or locations to ensure relevant information reaches the right audience.",
+      icon: "users"
+    },
+    {
+      title: "Announcement Management",
+      description: "Update, modify, or remove announcements as needed to keep organizational communications current and accurate.",
+      icon: "edit"
+    }
+  ]}
+/>

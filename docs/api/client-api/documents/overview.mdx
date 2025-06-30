@@ -1,3 +1,30 @@
 ---
-title: Overview
+title: Documents API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Documents API
+
+<ApiOverview
+  title="Documents API"
+  description="The Documents API provides access to document metadata, permissions, and content within your organization. Retrieve document information, check access permissions, and query documents by various criteria to build powerful document management and discovery features."
+  apiFamily="documents"
+  useCases={[
+    {
+      title: "Document Discovery",
+      description: "Retrieve document metadata and content to build custom search and discovery interfaces that help users find relevant information.",
+      icon: "search"
+    },
+    {
+      title: "Permission Management",
+      description: "Check document access permissions to ensure users only see content they're authorized to access in your applications.",
+      icon: "shield"
+    },
+    {
+      title: "Content Analysis",
+      description: "Access document metadata and facets to perform content analysis, categorization, and build insights about your organization's knowledge.",
+      icon: "chart-bar"
+    }
+  ]}
+/>

@@ -1,3 +1,30 @@
 ---
-title: Overview
+title: Messages API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Messages API
+
+<ApiOverview
+  title="Messages API"
+  description="The Messages API provides access to messages from messaging and chat platforms like Slack and Microsoft Teams. Retrieve conversation data, search across team communications, and integrate messaging insights into your applications."
+  apiFamily="messages"
+  useCases={[
+    {
+      title: "Communication Search",
+      description: "Search across team messages and conversations to find important discussions, decisions, and knowledge shared in chat platforms.",
+      icon: "comment-dots"
+    },
+    {
+      title: "Knowledge Extraction",
+      description: "Extract valuable insights and institutional knowledge from team conversations and chat histories across different platforms.",
+      icon: "brain"
+    },
+    {
+      title: "Communication Analytics",
+      description: "Analyze messaging patterns and team communication trends to improve collaboration and knowledge sharing practices.",
+      icon: "chart-bar"
+    }
+  ]}
+/>

@@ -458,7 +458,7 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'api/client-api/collections/listcollections',
               label: 'List collections',
-              className: 'api-method get',
+              className: "api-method post",
             },
             {
               type: 'doc',
@@ -470,19 +470,19 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'api/client-api/collections/getcollection',
               label: 'Get collection',
-              className: 'api-method get',
+              className: "api-method post",
             },
             {
               type: 'doc',
               id: 'api/client-api/collections/editcollection',
               label: 'Edit collection',
-              className: 'api-method put',
+              className: "api-method post",
             },
             {
               type: 'doc',
               id: 'api/client-api/collections/deletecollection',
               label: 'Delete collection',
-              className: 'api-method delete',
+              className: "api-method post",
             },
             {
               type: 'doc',
@@ -494,13 +494,107 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'api/client-api/collections/editcollectionitem',
               label: 'Edit collection item',
-              className: 'api-method put',
+              className: "api-method post",
             },
             {
               type: 'doc',
               id: 'api/client-api/collections/deletecollectionitem',
               label: 'Delete collection item',
-              className: 'api-method delete',
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Entities',
+          items: [
+            {
+              type: 'doc',
+              id: 'api/client-api/entities/overview',
+              label: 'Overview',
+            },
+            {
+              type: "doc",
+              id: "api/client-api/entities/listentities",
+              label: "List entities",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/entities/people",
+              label: "Read people",
+              className: "api-method post",
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Governance',
+          items: [
+            {
+              type: 'doc',
+              id: 'api/client-api/governance/overview',
+              label: 'Overview',
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/getpolicy",
+              label: "Gets specified policy",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/updatepolicy",
+              label: "Updates an existing policy",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/listpolicies",
+              label: "Lists policies",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/createpolicy",
+              label: "Creates new policy",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/downloadpolicycsv",
+              label: "Downloads violations CSV for policy",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/createreport",
+              label: "Creates new one-time report",
+              className: "api-method post",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/downloadreportcsv",
+              label: "Downloads violations CSV for report",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/getreportstatus",
+              label: "Fetches report run status",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/getdocvisibility",
+              label: "Fetches documents visibility",
+              className: "api-method get",
+            },
+            {
+              type: "doc",
+              id: "api/client-api/governance/setdocvisibility",
+              label: "Hide or unhide docs",
+              className: "api-method post",
             },
           ],
         },
@@ -622,29 +716,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Entities',
-          items: [
-            {
-              type: 'doc',
-              id: 'api/client-api/entities/overview',
-              label: 'Overview',
-            },
-            {
-              type: "doc",
-              id: "api/client-api/entities/listentities",
-              label: "List entities",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/entities/people",
-              label: "Read people",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: 'category',
           label: 'Shortcuts',
           items: [
             {
@@ -703,35 +774,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Verification',
-          items: [
-            {
-              type: 'doc',
-              id: 'api/client-api/verification/overview',
-              label: 'Overview',
-            },
-            {
-              type: "doc",
-              id: "api/client-api/verification/addverificationreminder",
-              label: "Create verification",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/verification/listverifications",
-              label: "List verifications",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/verification/verify",
-              label: "Update verification",
-              className: "api-method post",
-            },
-          ],
-        },
-        {
-          type: 'category',
           label: 'Tools',
           items: [
             {
@@ -755,71 +797,29 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Governance',
+          label: 'Verification',
           items: [
             {
               type: 'doc',
-              id: 'api/client-api/governance/overview',
+              id: 'api/client-api/verification/overview',
               label: 'Overview',
             },
             {
               type: "doc",
-              id: "api/client-api/governance/getpolicy",
-              label: "Gets specified policy",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/updatepolicy",
-              label: "Updates an existing policy",
+              id: "api/client-api/verification/addverificationreminder",
+              label: "Create verification",
               className: "api-method post",
             },
             {
               type: "doc",
-              id: "api/client-api/governance/listpolicies",
-              label: "Lists policies",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/createpolicy",
-              label: "Creates new policy",
+              id: "api/client-api/verification/listverifications",
+              label: "List verifications",
               className: "api-method post",
             },
             {
               type: "doc",
-              id: "api/client-api/governance/downloadpolicycsv",
-              label: "Downloads violations CSV for policy",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/createreport",
-              label: "Creates new one-time report",
-              className: "api-method post",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/downloadreportcsv",
-              label: "Downloads violations CSV for report",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/getreportstatus",
-              label: "Fetches report run status",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/getdocvisibility",
-              label: "Fetches documents visibility",
-              className: "api-method get",
-            },
-            {
-              type: "doc",
-              id: "api/client-api/governance/setdocvisibility",
-              label: "Hide or unhide docs",
+              id: "api/client-api/verification/verify",
+              label: "Update verification",
               className: "api-method post",
             },
           ],

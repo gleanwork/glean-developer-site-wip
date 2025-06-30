@@ -1,3 +1,30 @@
 ---
-title: Overview
+title: Tools API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Tools API
+
+<ApiOverview
+  title="Tools API"
+  description="The Tools API enables you to discover and execute various tools and integrations available within your Glean instance. Access external services, run automated workflows, and integrate with third-party applications to extend Glean's capabilities."
+  apiFamily="tools"
+  useCases={[
+    {
+      title: "Tool Discovery",
+      description: "Discover available tools and integrations within your Glean instance to understand what capabilities are accessible through the API.",
+      icon: "toolbox"
+    },
+    {
+      title: "Workflow Automation",
+      description: "Execute tools programmatically to automate workflows, data processing, and integration tasks with external systems.",
+      icon: "cogs"
+    },
+    {
+      title: "Third-party Integration",
+      description: "Integrate with external services and applications through Glean's tool ecosystem to create comprehensive business solutions.",
+      icon: "plug"
+    }
+  ]}
+/>

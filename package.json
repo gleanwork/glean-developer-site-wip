@@ -15,12 +15,14 @@
     "changelog:new": "node scripts/create-changelog-entry.mjs",
     "generate:changelog": "node scripts/generate-changelog-data.mjs",
     "generate:rss": "node scripts/generate-rss-feed.mjs",
+    "generate:redirects": "tsx scripts/generate-redirects.ts",
     "typecheck": "tsc",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",
+    "@docusaurus/plugin-client-redirects": "^3.8.1",
     "@docusaurus/plugin-content-docs": "^3.8.1",
     "@docusaurus/preset-classic": "^3.8.1",
     "@docusaurus/theme-classic": "^3.8.1",
@@ -53,14 +55,18 @@
     "@docusaurus/module-type-aliases": "^3.8.1",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "^3.8.1",
+    "@types/xml2js": "^0.4.14",
     "chalk": "^5.4.1",
+    "fast-levenshtein": "^3.0.0",
     "inquirer": "^12.6.3",
     "open": "^10.1.2",
     "prettier": "^3.6.1",
     "sass": "^1.89.1",
     "sass-loader": "^16.0.5",
     "slugify": "^1.6.6",
-    "typescript": "~5.6.2"
+    "tsx": "^4.19.2",
+    "typescript": "~5.6.2",
+    "xml2js": "^0.6.2"
   },
   "browserslist": {
     "production": [

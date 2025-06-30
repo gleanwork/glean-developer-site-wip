@@ -1,3 +1,32 @@
 ---
-title: Overview
+title: Activity API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Activity API
+
+<ApiOverview
+  title="Activity API"
+  description="The Activity API enables you to report user activity on indexed documents and search interactions to improve Glean's search quality and relevance. By tracking document views, edits, searches, and other user interactions, this API helps Glean understand content usage patterns and optimize search results."
+  apiFamily="activity"
+  useCases={[
+    {
+      title: "Document Activity Tracking",
+      description: "Report user interactions with documents such as viewing, editing, and commenting to improve search relevance and content recommendations.",
+      icon: "broadcast-tower"
+    },
+    {
+      title: "Search Feedback Collection",
+      description: "Capture search result interactions, clicks, and user feedback to enhance search quality and result ranking algorithms.",
+      icon: "magnifying-glass"
+    },
+    {
+      title: "Usage Analytics",
+      description: "Gather comprehensive usage data to understand content popularity, user engagement patterns, and optimize the search experience.",
+      icon: "chart-line"
+    }
+  ]}
+  authRequired={true}
+  rateLimited={true}
+/>

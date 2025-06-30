@@ -131,13 +131,28 @@ function splitOpenAPIByTags(inputFile, outputDir) {
           .replace(/-+/g, '-')
           .replace(/^-|-$/g, '');
         
+        // Extract endpoint information for this tag
+        const endpoints = [];
+        Object.entries(taggedPaths[tag] || {}).forEach(([pathName, pathItem]) => {
+          Object.entries(pathItem).forEach(([method, operation]) => {
+            endpoints.push({
+              method: method.toUpperCase(),
+              path: pathName,
+              summary: operation.summary || '',
+              description: operation.description || '',
+              operationId: operation.operationId || ''
+            });
+          });
+        });
+        
         return {
           name: tag,
           displayName: displayName,
           description: currentTagInfo.description,
           file: `${filename}-api.yaml`,
           configId: filename.replace(/-/g, '_'), // Suggested config ID for docusaurus
-          paths: Object.keys(taggedPaths[tag] || {}).length
+          paths: Object.keys(taggedPaths[tag] || {}).length,
+          endpoints: endpoints
         };
       })
     };

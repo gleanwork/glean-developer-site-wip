@@ -1,3 +1,30 @@
 ---
-title: Overview
+title: Chat API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Chat API
+
+<ApiOverview
+  title="Chat API"
+  description="The Chat API enables you to build conversational experiences with Glean AI. Create interactive chat applications, manage conversation history, upload files for context, and leverage Glean's AI capabilities to provide intelligent responses based on your organization's knowledge."
+  apiFamily="chat"
+  useCases={[
+    {
+      title: "AI-Powered Conversations",
+      description: "Build interactive chat applications that leverage Glean AI to provide intelligent responses based on your organization's indexed content.",
+      icon: "comments"
+    },
+    {
+      title: "File-Enhanced Context",
+      description: "Upload and manage files within chat conversations to provide additional context for more accurate and relevant AI responses.",
+      icon: "file-upload"
+    },
+    {
+      title: "Conversation Management",
+      description: "Create, retrieve, and manage chat histories to maintain context across sessions and provide personalized user experiences.",
+      icon: "history"
+    }
+  ]}
+/>

@@ -1,3 +1,30 @@
 ---
-title: Overview
+title: Entities API Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+# Entities API
+
+<ApiOverview
+  title="Entities API"
+  description="The Entities API provides access to organizational entities such as people, teams, and other structured data within your Glean instance. Query and retrieve entity information to build directory services, organizational charts, and people-centric applications."
+  apiFamily="entities"
+  useCases={[
+    {
+      title: "People Directory",
+      description: "Build employee directories and organizational charts by accessing people entities with their profiles, roles, and contact information.",
+      icon: "address-book"
+    },
+    {
+      title: "Team Management",
+      description: "Retrieve team and organizational structure information to create team-based applications and workflow management tools.",
+      icon: "users-cog"
+    },
+    {
+      title: "Entity Search",
+      description: "Search across different entity types to find people, teams, and other organizational resources for integration into your applications.",
+      icon: "search"
+    }
+  ]}
+/>

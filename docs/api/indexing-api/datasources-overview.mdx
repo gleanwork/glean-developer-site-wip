@@ -1,3 +1,29 @@
 ---
 title: Overview
 ---
+
+import ApiOverview from '@site/src/components/ApiOverview';
+
+<ApiOverview 
+  apiFamily="datasources"
+  apiType="indexing-api"
+  title="Datasources"
+  description="Configure and manage datasources for indexing content. Datasources define the origin and configuration settings for content that will be indexed into Glean."
+  useCases={[
+    {
+      title: "Custom Datasource Setup",
+      description: "Create and configure custom datasources for proprietary systems, internal tools, or specialized content repositories that need to be searchable in Glean.",
+      icon: "database"
+    },
+    {
+      title: "Configuration Management",
+      description: "Update datasource configurations to modify indexing behavior, content processing rules, and metadata extraction settings.",
+      icon: "cogs"
+    },
+    {
+      title: "Integration Monitoring",
+      description: "Retrieve datasource configuration details to troubleshoot indexing issues and verify integration settings.",
+      icon: "chart-line"
+    }
+  ]}
+/>

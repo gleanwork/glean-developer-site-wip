@@ -1,0 +1,41 @@
+/* Method badges for API endpoints */
+.methodBadge {
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: var(--ifm-font-family-monospace);
+  text-transform: uppercase;
+}
+
+.methodBadge.get {
+  background-color: #10b981;
+}
+
+.methodBadge.post {
+  background-color: #3b82f6;
+}
+
+.methodBadge.put {
+  background-color: #f59e0b;
+}
+
+.methodBadge.delete {
+  background-color: #ef4444;
+}
+
+.methodBadge.patch {
+  background-color: #8b5cf6;
+}
+
+.methodBadge.default {
+  background-color: #6b7280;
+}
+
+/* Table styling */
+.endpointsTable td {
+  vertical-align: top;
+}
+
+ 

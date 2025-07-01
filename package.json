@@ -6,6 +6,8 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn generate:changelog && yarn generate:rss && docusaurus build",
+    "build:fast": "GENERATE_API_DOCS=false yarn generate:changelog && yarn generate:rss && docusaurus build",
+    "start:fast": "GENERATE_API_DOCS=false docusaurus start",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

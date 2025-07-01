@@ -4,6 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 import { redirects } from './redirects';
 
+// Environment variable to control API docs generation
+const shouldGenerateApiDocs = process.env.GENERATE_API_DOCS !== 'false';
+
 const config: Config = {
   title: 'Glean Developer',
   tagline: 'Documentation for Glean developers',
@@ -179,7 +182,8 @@ const config: Config = {
         hashed: true,
       },
     ],
-    [
+    // Conditionally include OpenAPI docs plugin
+    ...(shouldGenerateApiDocs ? [[
       'docusaurus-plugin-openapi-docs',
       {
         id: 'api',
@@ -340,7 +344,7 @@ const config: Config = {
           } satisfies OpenApiPlugin.Options,
         },
       },
-    ],
+    ]] : []),
   ],
   themes: ['docusaurus-theme-openapi-docs'],
 };

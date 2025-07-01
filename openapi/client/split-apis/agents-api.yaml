@@ -1,0 +1,954 @@
+openapi: 3.0.0
+info:
+  version: 0.9.0
+  title: Agents
+  description: Agents operations for Glean API
+  x-logo:
+    url: https://app.glean.com/images/glean-text2.svg
+  x-speakeasy-name: Glean API
+servers:
+  - url: https://{instance}-be.glean.com
+    variables:
+      instance:
+        default: instance-name
+        description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
+tags:
+  - name: Agents
+    description: Agents
+paths:
+  /rest/api/v1/agents/{agent_id}:
+    get:
+      tags:
+        - Agents
+      summary: Retrieve an agent
+      description: Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+      operationId: getAgent
+      x-visibility: Preview
+      parameters:
+        - $ref: '#/components/parameters/timezoneOffset'
+        - description: The ID of the agent.
+          required: true
+          schema:
+            type: string
+            title: Agent ID
+            description: The ID of the agent.
+          name: agent_id
+          in: path
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+      x-speakeasy-group: client.agents
+      x-speakeasy-name-override: retrieve
+      x-codeSamples:
+        - lang: Python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as glean:
+
+                res = glean.client.agents.retrieve(agent_id="<id>")
+
+                # Handle response
+                print(res)
+        - lang: JavaScript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.agents.retrieve("<id>");
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: Go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.Retrieve(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Agent != nil {\n        // handle response\n    }\n}"
+        - lang: Java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.operations.GetAgentResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    GetAgentResponse res = sdk.client().agents().retrieve()
+                            .agentId("<id>")
+                            .call();
+
+                    if (res.agent().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  /rest/api/v1/agents/{agent_id}/schemas:
+    get:
+      tags:
+        - Agents
+      summary: List an agent's schemas
+      description: Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+      operationId: getAgentSchemas
+      x-visibility: Preview
+      parameters:
+        - $ref: '#/components/parameters/timezoneOffset'
+        - description: The ID of the agent.
+          required: true
+          schema:
+            type: string
+            title: Agent Id
+            description: The ID of the agent.
+          name: agent_id
+          in: path
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentSchemas'
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+      x-speakeasy-group: client.agents
+      x-speakeasy-name-override: retrieveSchemas
+      x-codeSamples:
+        - lang: Python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as glean:
+
+                res = glean.client.agents.retrieve_schemas(agent_id="<id>")
+
+                # Handle response
+                print(res)
+        - lang: JavaScript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.agents.retrieveSchemas("<id>");
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: Go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.RetrieveSchemas(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.AgentSchemas != nil {\n        // handle response\n    }\n}"
+        - lang: Java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.operations.GetAgentSchemasResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    GetAgentSchemasResponse res = sdk.client().agents().retrieveSchemas()
+                            .agentId("<id>")
+                            .call();
+
+                    if (res.agentSchemas().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  /rest/api/v1/agents/search:
+    post:
+      tags:
+        - Agents
+      summary: Search agents
+      description: Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
+      operationId: searchAgents
+      x-visibility: Preview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAgentsRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAgentsResponse'
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+      x-speakeasy-group: client.agents
+      x-speakeasy-name-override: list
+      x-codeSamples:
+        - lang: Python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as glean:
+
+                res = glean.client.agents.list(name="HR Policy Agent")
+
+                # Handle response
+                print(res)
+        - lang: JavaScript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.agents.list({
+                name: "HR Policy Agent",
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: Go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.List(ctx, components.SearchAgentsRequest{\n        Name: apiclientgo.String(\"HR Policy Agent\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.SearchAgentsResponse != nil {\n        // handle response\n    }\n}"
+        - lang: Java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.components.SearchAgentsRequest;
+            import org.openapis.openapi.models.operations.SearchAgentsResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    SearchAgentsRequest req = SearchAgentsRequest.builder()
+                            .name("HR Policy Agent")
+                            .build();
+
+                    SearchAgentsResponse res = sdk.client().agents().list()
+                            .request(req)
+                            .call();
+
+                    if (res.searchAgentsResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  /rest/api/v1/agents/runs/stream:
+    post:
+      tags:
+        - Agents
+      summary: Create an agent run and stream the response
+      description: Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
+      operationId: createAndStreamRun
+      x-visibility: Preview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRunCreate'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: The server will send a stream of events in server-sent events (SSE) format.
+                example: |
+                  id: 1
+                  event: message
+                  data: {"messages":[{"role":"GLEAN_AI","content":[{"text":"Hello","type":"text"}]}]}
+
+                  id: 2
+                  event: message
+                  data: {"messages":[{"role":"GLEAN_AI","content":[{"text":",","type":"text"}]}]}
+
+                  id: 3
+                  event: message
+                  data: {"messages":[{"role":"GLEAN_AI","content":[{"text":" I'm","type":"text"}]}]}
+
+                  id: 4
+                  event: message
+                  data: {"messages":[{"role":"GLEAN_AI","content":[{"text":" your","type":"text"}]}]}
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+      x-speakeasy-group: client.agents
+      x-speakeasy-name-override: runStream
+      x-codeSamples:
+        - lang: Python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as glean:
+
+                res = glean.client.agents.run_stream(agent_id="<id>")
+
+                # Handle response
+                print(res)
+        - lang: JavaScript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.agents.runStream({
+                agentId: "<id>",
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: Go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.RunStream(ctx, components.AgentRunCreate{\n        AgentID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Res != nil {\n        // handle response\n    }\n}"
+        - lang: Java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.components.AgentRunCreate;
+            import org.openapis.openapi.models.operations.CreateAndStreamRunResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    AgentRunCreate req = AgentRunCreate.builder()
+                            .agentId("<id>")
+                            .build();
+
+                    CreateAndStreamRunResponse res = sdk.client().agents().runStream()
+                            .request(req)
+                            .call();
+
+                    if (res.res().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  /rest/api/v1/agents/runs/wait:
+    post:
+      tags:
+        - Agents
+      summary: Create an agent run and wait for the response
+      description: Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
+      operationId: createAndWaitRun
+      x-visibility: Preview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRunCreate'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentRunWaitResponse'
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+        '422':
+          description: Validation Error
+        '500':
+          description: Internal server error
+      x-speakeasy-group: client.agents
+      x-speakeasy-name-override: run
+      x-codeSamples:
+        - lang: Python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as glean:
+
+                res = glean.client.agents.run(agent_id="<id>")
+
+                # Handle response
+                print(res)
+        - lang: JavaScript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.agents.run({
+                agentId: "<id>",
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: Go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.Run(ctx, components.AgentRunCreate{\n        AgentID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.AgentRunWaitResponse != nil {\n        // handle response\n    }\n}"
+        - lang: Java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.components.AgentRunCreate;
+            import org.openapis.openapi.models.operations.CreateAndWaitRunResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    AgentRunCreate req = AgentRunCreate.builder()
+                            .agentId("<id>")
+                            .build();
+
+                    CreateAndWaitRunResponse res = sdk.client().agents().run()
+                            .request(req)
+                            .call();
+
+                    if (res.agentRunWaitResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+components:
+  schemas:
+    Agent:
+      title: Agent
+      type: object
+      required:
+        - agent_id
+        - name
+        - capabilities
+      properties:
+        agent_id:
+          type: string
+          title: Agent Id
+          description: The ID of the agent.
+          example: mho4lwzylcozgoc2
+        name:
+          type: string
+          title: Agent Name
+          description: The name of the agent
+          example: HR Policy Agent
+        description:
+          type: string
+          title: Description
+          description: The description of the agent.
+          example: This agent answers questions about the current company HR policies.
+        metadata:
+          type: object
+          title: Metadata
+          description: The agent metadata. Currently not implemented.
+        capabilities:
+          type: object
+          title: Agent Capabilities
+          description: |-
+            Describes features that the agent supports. example: {
+              "ap.io.messages": true,
+              "ap.io.streaming": true
+            }
+          additionalProperties: true
+          properties:
+            ap.io.messages:
+              type: boolean
+              title: Messages
+              description: Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+            ap.io.streaming:
+              type: boolean
+              title: Streaming
+              description: Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+    ErrorResponse:
+      type: string
+      title: ErrorResponse
+      description: Error message returned from the server
+    AgentSchemas:
+      type: object
+      required:
+        - agent_id
+        - input_schema
+        - output_schema
+      title: AgentSchemas
+      description: Defines the structure and properties of an agent.
+      properties:
+        agent_id:
+          type: string
+          title: Agent Id
+          description: The ID of the agent.
+          example: mho4lwzylcozgoc2
+        input_schema:
+          type: object
+          title: Input Schema
+          description: The schema for the agent input. In JSON Schema format.
+        output_schema:
+          type: object
+          title: Output Schema
+          description: The schema for the agent output. In JSON Schema format.
+    SearchAgentsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+          example: HR Policy Agent
+    SearchAgentsResponse:
+      type: object
+      title: Response Search Agents
+      properties:
+        agents:
+          type: array
+          items:
+            title: Agent
+            type: object
+            required:
+              - agent_id
+              - name
+              - capabilities
+            properties:
+              agent_id:
+                type: string
+                title: Agent Id
+                description: The ID of the agent.
+                example: mho4lwzylcozgoc2
+              name:
+                type: string
+                title: Agent Name
+                description: The name of the agent
+                example: HR Policy Agent
+              description:
+                type: string
+                title: Description
+                description: The description of the agent.
+                example: This agent answers questions about the current company HR policies.
+              metadata:
+                type: object
+                title: Metadata
+                description: The agent metadata. Currently not implemented.
+              capabilities:
+                type: object
+                title: Agent Capabilities
+                description: |-
+                  Describes features that the agent supports. example: {
+                    "ap.io.messages": true,
+                    "ap.io.streaming": true
+                  }
+                additionalProperties: true
+                properties:
+                  ap.io.messages:
+                    type: boolean
+                    title: Messages
+                    description: Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+                  ap.io.streaming:
+                    type: boolean
+                    title: Streaming
+                    description: Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+    AgentRunCreate:
+      description: Payload for creating a run.
+      type: object
+      required:
+        - agent_id
+      properties:
+        agent_id:
+          type: string
+          title: Agent Id
+          description: The ID of the agent to run.
+        input:
+          type: object
+          title: Input
+          description: The input to the agent.
+          additionalProperties: true
+        messages:
+          type: array
+          title: Messages
+          description: The messages to pass an input to the agent.
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                title: Role
+                description: The role of the message.
+              content:
+                title: Content
+                description: The content of the message.
+                type: array
+                items:
+                  type: object
+                  required:
+                    - text
+                    - type
+                  title: MessageTextBlock
+                  properties:
+                    text:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - text
+        metadata:
+          type: object
+          title: Metadata
+          description: The metadata to pass to the agent.
+          additionalProperties: true
+    AgentRunWaitResponse:
+      type: object
+      properties:
+        run:
+          description: Payload for creating a run.
+          type: object
+          properties:
+            agent_id:
+              type: string
+              title: Agent Id
+              description: The ID of the agent to run.
+            input:
+              type: object
+              title: Input
+              description: The input to the agent.
+              additionalProperties: true
+            messages:
+              type: array
+              title: Messages
+              description: The messages to pass an input to the agent.
+              items:
+                type: object
+                properties:
+                  role:
+                    type: string
+                    title: Role
+                    description: The role of the message.
+                  content:
+                    title: Content
+                    description: The content of the message.
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - text
+                        - type
+                      title: MessageTextBlock
+                      properties:
+                        text:
+                          type: string
+                        type:
+                          type: string
+                          enum:
+                            - text
+            metadata:
+              type: object
+              title: Metadata
+              description: The metadata to pass to the agent.
+              additionalProperties: true
+            status:
+              description: The status of the run. One of 'error', 'success'.
+              type: string
+              enum:
+                - error
+                - success
+              title: AgentExecutionStatus
+          required:
+            - agent_id
+        messages:
+          type: array
+          title: Messages
+          description: The messages returned by the run.
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                title: Role
+                description: The role of the message.
+              content:
+                title: Content
+                description: The content of the message.
+                type: array
+                items:
+                  type: object
+                  required:
+                    - text
+                    - type
+                  title: MessageTextBlock
+                  properties:
+                    text:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - text
+    Message:
+      type: object
+      properties:
+        role:
+          type: string
+          title: Role
+          description: The role of the message.
+        content:
+          title: Content
+          description: The content of the message.
+          type: array
+          items:
+            type: object
+            required:
+              - text
+              - type
+            title: MessageTextBlock
+            properties:
+              text:
+                type: string
+              type:
+                type: string
+                enum:
+                  - text
+    AgentRun:
+      description: Payload for creating a run.
+      type: object
+      properties:
+        agent_id:
+          type: string
+          title: Agent Id
+          description: The ID of the agent to run.
+        input:
+          type: object
+          title: Input
+          description: The input to the agent.
+          additionalProperties: true
+        messages:
+          type: array
+          title: Messages
+          description: The messages to pass an input to the agent.
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                title: Role
+                description: The role of the message.
+              content:
+                title: Content
+                description: The content of the message.
+                type: array
+                items:
+                  type: object
+                  required:
+                    - text
+                    - type
+                  title: MessageTextBlock
+                  properties:
+                    text:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - text
+        metadata:
+          type: object
+          title: Metadata
+          description: The metadata to pass to the agent.
+          additionalProperties: true
+        status:
+          description: The status of the run. One of 'error', 'success'.
+          type: string
+          enum:
+            - error
+            - success
+          title: AgentExecutionStatus
+      required:
+        - agent_id
+    ContentType:
+      type: string
+      enum:
+        - text
+    AgentExecutionStatus:
+      description: The status of the run. One of 'error', 'success'.
+      type: string
+      enum:
+        - error
+        - success
+      title: AgentExecutionStatus
+  parameters:
+    timezoneOffset:
+      name: timezoneOffset
+      in: query
+      description: The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+      schema:
+        type: integer
+  securitySchemes:
+    APIToken:
+      scheme: bearer
+      type: http

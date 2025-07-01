@@ -1,0 +1,254 @@
+openapi: 3.0.0
+info:
+  version: 0.9.0
+  title: Summarize
+  description: Summarize operations for Glean API
+  x-logo:
+    url: https://app.glean.com/images/glean-text2.svg
+  x-speakeasy-name: Glean API
+servers:
+  - url: https://{instance}-be.glean.com
+    variables:
+      instance:
+        default: instance-name
+        description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
+tags:
+  - name: Summarize
+    description: Summarize
+paths:
+  /rest/api/v1/summarize:
+    post:
+      tags:
+        - Summarize
+      summary: Summarize documents
+      description: Generate an AI summary of the requested documents.
+      operationId: summarize
+      x-visibility: Public
+      x-codegen-request-body-name: payload
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizeRequest'
+        description: Includes request params such as the query and specs of the documents to summarize.
+        required: true
+        x-exportParamName: Request
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizeResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not Authorized
+        '429':
+          description: Too Many Requests
+      x-speakeasy-name-override: summarize
+      x-speakeasy-group: client.documents
+      x-codeSamples:
+        - lang: Python
+          label: Python (API Client)
+          source: |-
+            from glean.api_client import Glean
+            import os
+
+
+            with Glean(
+                api_token=os.getenv("GLEAN_API_TOKEN", ""),
+                instance=os.getenv("GLEAN_INSTANCE", ""),
+            ) as glean:
+
+                res = glean.client.documents.summarize(document_specs=[
+                    {},
+                ])
+
+                # Handle response
+                print(res)
+        - lang: JavaScript
+          label: Typescript (API Client)
+          source: |-
+            import { Glean } from "@gleanwork/api-client";
+
+            const glean = new Glean({
+              apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
+              instance: process.env["GLEAN_INSTANCE"] ?? "",
+            });
+
+            async function run() {
+              const result = await glean.client.documents.summarize({
+                documentSpecs: [
+                  {},
+                  {},
+                  {},
+                ],
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+        - lang: Go
+          label: Go (API Client)
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Documents.Summarize(ctx, components.SummarizeRequest{\n        DocumentSpecs: []components.DocumentSpecUnion{\n            components.CreateDocumentSpecUnionDocumentSpec1(\n                components.DocumentSpec1{},\n            ),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.SummarizeResponse != nil {\n        // handle response\n    }\n}"
+        - lang: Java
+          label: Java (API Client)
+          source: |-
+            package hello.world;
+
+            import java.lang.Exception;
+            import java.util.List;
+            import org.openapis.openapi.Glean;
+            import org.openapis.openapi.models.components.*;
+            import org.openapis.openapi.models.operations.SummarizeResponse;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    Glean sdk = Glean.builder()
+                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                        .build();
+
+                    SummarizeRequest req = SummarizeRequest.builder()
+                            .documentSpecs(List.of(
+                                DocumentSpecUnion.of(DocumentSpec1.builder()
+                                    .build())))
+                            .build();
+
+                    SummarizeResponse res = sdk.client().documents().summarize()
+                            .request(req)
+                            .call();
+
+                    if (res.summarizeResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+components:
+  schemas:
+    SummarizeRequest:
+      description: Summary of the document
+      required:
+        - documentSpecs
+      properties:
+        timestamp:
+          type: string
+          description: The ISO 8601 timestamp associated with the client request.
+          format: date-time
+        query:
+          type: string
+          description: Optional query that the summary should be about
+        preferredSummaryLength:
+          type: integer
+          description: Optional length of summary output. If not given, defaults to 500 chars.
+        documentSpecs:
+          type: array
+          description: Specifications of documents to summarize
+          items:
+            oneOf:
+              - type: object
+                properties:
+                  url:
+                    type: string
+                    description: The URL of the document.
+              - type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the document.
+              - type: object
+                properties:
+                  ugcType:
+                    type: string
+                    enum:
+                      - ANNOUNCEMENTS
+                      - ANSWERS
+                      - COLLECTIONS
+                      - SHORTCUTS
+                    description: The type of the user generated content (UGC datasource).
+                  contentId:
+                    type: integer
+                    description: The id for user generated content.
+                  docType:
+                    type: string
+                    description: The specific type of the user generated content type.
+        trackingToken:
+          type: string
+          description: An opaque token that represents this particular result. To be used for /feedback reporting.
+      type: object
+    SummarizeResponse:
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+        summary:
+          properties:
+            text:
+              type: string
+            followUpPrompts:
+              type: array
+              description: Follow-up prompts based on the summarized doc
+              items:
+                type: string
+          type: object
+        trackingToken:
+          type: string
+          description: An opaque token that represents this summary in this particular query. To be used for /feedback reporting.
+      type: object
+    DocumentSpec:
+      oneOf:
+        - type: object
+          properties:
+            url:
+              type: string
+              description: The URL of the document.
+        - type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the document.
+        - type: object
+          properties:
+            ugcType:
+              type: string
+              enum:
+                - ANNOUNCEMENTS
+                - ANSWERS
+                - COLLECTIONS
+                - SHORTCUTS
+              description: The type of the user generated content (UGC datasource).
+            contentId:
+              type: integer
+              description: The id for user generated content.
+            docType:
+              type: string
+              description: The specific type of the user generated content type.
+    Summary:
+      properties:
+        text:
+          type: string
+        followUpPrompts:
+          type: array
+          description: Follow-up prompts based on the summarized doc
+          items:
+            type: string
+      type: object
+  parameters:
+    timezoneOffset:
+      name: timezoneOffset
+      in: query
+      description: The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+      schema:
+        type: integer
+  securitySchemes:
+    APIToken:
+      scheme: bearer
+      type: http

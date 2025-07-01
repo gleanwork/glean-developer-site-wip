@@ -108,7 +108,7 @@ const config: Config = {
         highlight: "javascript",
         language: "javascript",
         logoClass: "javascript",
-      },
+      }
     ],
   } satisfies Preset.ThemeConfig,
 
@@ -154,7 +154,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           activity: { // ok
-            specPath: './openapi/split-apis-flat/activity-api.yaml',
+            specPath: './openapi/client/split-apis/activity-api.yaml',
             outputDir: 'docs/api/client-api/activity',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -162,7 +162,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           announcements: { // circular
-            specPath: './openapi/split-apis-flat/announcements-api.yaml',
+            specPath: './openapi/client/split-apis/announcements-api.yaml',
             outputDir: 'docs/api/client-api/announcements',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -170,7 +170,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           answers: { // ok
-            specPath: './openapi/split-apis-flat/answers-api.yaml',
+            specPath: './openapi/client/split-apis/answers-api.yaml',
             outputDir: 'docs/api/client-api/answers',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -178,7 +178,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           authentication: { // ok
-            specPath: './openapi/split-apis-flat/authentication-api.yaml',
+            specPath: './openapi/client/split-apis/authentication-api.yaml',
             outputDir: 'docs/api/client-api/authentication',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -186,7 +186,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           chat: { // circular
-            specPath: './openapi/split-apis-flat/chat-api.yaml',
+            specPath: './openapi/client/split-apis/chat-api.yaml',
             outputDir: 'docs/api/client-api/chat',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -194,7 +194,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           agents: { // ok
-            specPath: './openapi/split-apis-flat/agents-api.yaml',
+            specPath: './openapi/client/split-apis/agents-api.yaml',
             outputDir: 'docs/api/client-api/agents',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -202,7 +202,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           collections: { // circular
-            specPath: './openapi/split-apis-flat/collections-api.yaml',
+            specPath: './openapi/client/split-apis/collections-api.yaml',
             outputDir: 'docs/api/client-api/collections',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -210,7 +210,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           documents: { // circular
-            specPath: './openapi/split-apis-flat/documents-api.yaml',
+            specPath: './openapi/client/split-apis/documents-api.yaml',
             outputDir: 'docs/api/client-api/documents',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -218,7 +218,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           insights: { // circular
-            specPath: './openapi/split-apis-flat/insights-api.yaml',
+            specPath: './openapi/client/split-apis/insights-api.yaml',
             outputDir: 'docs/api/client-api/insights',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -226,7 +226,7 @@ const config: Config = {
             }, 
           } satisfies OpenApiPlugin.Options,
           messages: { // circular
-            specPath: './openapi/global-maximum-split-apis/messages-api.yaml',
+            specPath: './openapi/client/split-apis/messages-api.yaml',
             outputDir: 'docs/api/client-api/messages',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -234,7 +234,7 @@ const config: Config = {
             },    
           } satisfies OpenApiPlugin.Options,
           pins: { // circular
-            specPath: './openapi/split-apis-flat/pins-api.yaml',
+            specPath: './openapi/client/split-apis/pins-api.yaml',
             outputDir: 'docs/api/client-api/pins',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -242,7 +242,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           search: { // circular
-            specPath: './openapi/split-apis-flat/search-api.yaml',
+            specPath: './openapi/client/split-apis/search-api.yaml',
             outputDir: 'docs/api/client-api/search',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -250,7 +250,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           entities: { // circular
-            specPath: './openapi/split-apis-flat/entities-api.yaml',
+            specPath: './openapi/client/split-apis/entities-api.yaml',
             outputDir: 'docs/api/client-api/entities',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -258,7 +258,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           shortcuts: { // circular
-            specPath: './openapi/split-apis-flat/shortcuts-api.yaml',
+            specPath: './openapi/client/split-apis/shortcuts-api.yaml',
             outputDir: 'docs/api/client-api/shortcuts',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -266,7 +266,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           summarize: { // ok
-            specPath: './openapi/split-apis-flat/summarize-api.yaml',
+            specPath: './openapi/client/split-apis/summarize-api.yaml',
             outputDir: 'docs/api/client-api/summarize',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -274,7 +274,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           verification: { // circular
-            specPath: './openapi/split-apis-flat/verification-api.yaml',
+            specPath: './openapi/client/split-apis/verification-api.yaml',
             outputDir: 'docs/api/client-api/verification',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -282,7 +282,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           tools: { // ok
-            specPath: './openapi/split-apis-flat/tools-api.yaml',
+            specPath: './openapi/client/split-apis/tools-api.yaml',
             outputDir: 'docs/api/client-api/tools',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -290,7 +290,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           governance: { // ok
-            specPath: './openapi/split-apis-flat/governance-api.yaml',
+            specPath: './openapi/client/split-apis/governance-api.yaml',
             outputDir: 'docs/api/client-api/governance',
             sidebarOptions: {
               groupPathsBy: 'tag',

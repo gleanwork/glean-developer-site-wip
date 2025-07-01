@@ -21,7 +21,12 @@ paths:
       tags:
         - Authentication
       summary: Create authentication token
-      description: Creates an authentication token for the authenticated user.
+      description: |
+        Creates an authentication token for the authenticated user. These are
+        specifically intended to be used with the [Web SDK](https://developers.glean.com/web).
+
+        Note: The tokens generated from this endpoint are **not** valid tokens
+        for use with the Client API (e.g. `/rest/api/v1/*`).
       operationId: createauthtoken
       x-visibility: Public
       parameters: []
@@ -41,7 +46,7 @@ paths:
       x-speakeasy-name-override: createToken
       x-speakeasy-group: client.authentication
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -51,13 +56,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.authentication.create_token()
+                res = glean.client.authentication.create_token()
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -75,10 +80,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Authentication.CreateToken(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CreateAuthTokenResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -118,6 +123,7 @@ components:
           description: Unix timestamp for when this token expires (in seconds since epoch UTC).
           type: integer
           format: int64
+      type: object
   parameters:
     timezoneOffset:
       name: timezoneOffset

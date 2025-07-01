@@ -6,7 +6,9 @@
       "description": "Activity",
       "file": "activity-api.yaml",
       "configId": "activity",
-      "paths": 2
+      "paths": 2,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Announcements",
@@ -14,7 +16,9 @@
       "description": "Announcements",
       "file": "announcements-api.yaml",
       "configId": "announcements",
-      "paths": 3
+      "paths": 3,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Answers",
@@ -22,7 +26,9 @@
       "description": "Answers",
       "file": "answers-api.yaml",
       "configId": "answers",
-      "paths": 5
+      "paths": 5,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Authentication",
@@ -30,7 +36,9 @@
       "description": "Authentication",
       "file": "authentication-api.yaml",
       "configId": "authentication",
-      "paths": 1
+      "paths": 1,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Chat",
@@ -38,7 +46,9 @@
       "description": "Chat",
       "file": "chat-api.yaml",
       "configId": "chat",
-      "paths": 10
+      "paths": 10,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Agents",
@@ -46,7 +56,9 @@
       "description": "Agents",
       "file": "agents-api.yaml",
       "configId": "agents",
-      "paths": 5
+      "paths": 5,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Collections",
@@ -54,7 +66,9 @@
       "description": "Collections",
       "file": "collections-api.yaml",
       "configId": "collections",
-      "paths": 8
+      "paths": 8,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Documents",
@@ -62,7 +76,9 @@
       "description": "Documents",
       "file": "documents-api.yaml",
       "configId": "documents",
-      "paths": 3
+      "paths": 3,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Insights",
@@ -70,7 +86,9 @@
       "description": "Insights",
       "file": "insights-api.yaml",
       "configId": "insights",
-      "paths": 1
+      "paths": 1,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Messages",
@@ -78,7 +96,9 @@
       "description": "Messages",
       "file": "messages-api.yaml",
       "configId": "messages",
-      "paths": 1
+      "paths": 1,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Pins",
@@ -86,7 +106,9 @@
       "description": "Pins",
       "file": "pins-api.yaml",
       "configId": "pins",
-      "paths": 5
+      "paths": 5,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Search",
@@ -94,7 +116,9 @@
       "description": "Search",
       "file": "search-api.yaml",
       "configId": "search",
-      "paths": 5
+      "paths": 5,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Entities",
@@ -102,7 +126,9 @@
       "description": "Entities",
       "file": "entities-api.yaml",
       "configId": "entities",
-      "paths": 2
+      "paths": 2,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Shortcuts",
@@ -110,7 +136,9 @@
       "description": "Shortcuts",
       "file": "shortcuts-api.yaml",
       "configId": "shortcuts",
-      "paths": 5
+      "paths": 5,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Summarize",
@@ -118,7 +146,9 @@
       "description": "Summarize",
       "file": "summarize-api.yaml",
       "configId": "summarize",
-      "paths": 1
+      "paths": 1,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Verification",
@@ -126,7 +156,9 @@
       "description": "Verification",
       "file": "verification-api.yaml",
       "configId": "verification",
-      "paths": 3
+      "paths": 3,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Tools",
@@ -134,7 +166,9 @@
       "description": "Tools",
       "file": "tools-api.yaml",
       "configId": "tools",
-      "paths": 2
+      "paths": 2,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     },
     {
       "name": "Governance",
@@ -142,7 +176,9 @@
       "description": "Governance",
       "file": "governance-api.yaml",
       "configId": "governance",
-      "paths": 7
+      "paths": 7,
+      "fullyInlined": true,
+      "circularReferencesFixed": true
     }
   ]
 }

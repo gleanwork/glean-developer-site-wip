@@ -50,7 +50,7 @@ paths:
       x-speakeasy-name-override: summarize
       x-speakeasy-group: client.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -60,15 +60,15 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.documents.summarize(document_specs=[
+                res = glean.client.documents.summarize(document_specs=[
                     {},
                 ])
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -92,10 +92,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Documents.Summarize(ctx, components.SummarizeRequest{\n        DocumentSpecs: []components.DocumentSpecUnion{\n            components.CreateDocumentSpecUnionDocumentSpec1(\n                components.DocumentSpec1{},\n            ),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.SummarizeResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -149,12 +149,39 @@ components:
           description: Optional length of summary output. If not given, defaults to 500 chars.
         documentSpecs:
           type: array
-          items:
-            $ref: '#/components/schemas/DocumentSpec'
           description: Specifications of documents to summarize
+          items:
+            oneOf:
+              - type: object
+                properties:
+                  url:
+                    type: string
+                    description: The URL of the document.
+              - type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the document.
+              - type: object
+                properties:
+                  ugcType:
+                    type: string
+                    enum:
+                      - ANNOUNCEMENTS
+                      - ANSWERS
+                      - COLLECTIONS
+                      - SHORTCUTS
+                    description: The type of the user generated content (UGC datasource).
+                  contentId:
+                    type: integer
+                    description: The id for user generated content.
+                  docType:
+                    type: string
+                    description: The specific type of the user generated content type.
         trackingToken:
           type: string
           description: An opaque token that represents this particular result. To be used for /feedback reporting.
+      type: object
     SummarizeResponse:
       properties:
         error:
@@ -163,10 +190,19 @@ components:
             message:
               type: string
         summary:
-          $ref: '#/components/schemas/Summary'
+          properties:
+            text:
+              type: string
+            followUpPrompts:
+              type: array
+              description: Follow-up prompts based on the summarized doc
+              items:
+                type: string
+          type: object
         trackingToken:
           type: string
           description: An opaque token that represents this summary in this particular query. To be used for /feedback reporting.
+      type: object
     DocumentSpec:
       oneOf:
         - type: object
@@ -201,9 +237,10 @@ components:
           type: string
         followUpPrompts:
           type: array
+          description: Follow-up prompts based on the summarized doc
           items:
             type: string
-          description: Follow-up prompts based on the summarized doc
+      type: object
   parameters:
     timezoneOffset:
       name: timezoneOffset

@@ -56,7 +56,7 @@ paths:
       x-speakeasy-group: client.agents
       x-speakeasy-name-override: retrieve
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -66,13 +66,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.agents.retrieve(agent_id="<id>")
+                res = glean.client.agents.retrieve(agent_id="<id>")
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -90,10 +90,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.Retrieve(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Agent != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -166,7 +166,7 @@ paths:
       x-speakeasy-group: client.agents
       x-speakeasy-name-override: retrieveSchemas
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -176,13 +176,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.agents.retrieve_schemas(agent_id="<id>")
+                res = glean.client.agents.retrieve_schemas(agent_id="<id>")
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -200,10 +200,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.RetrieveSchemas(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.AgentSchemas != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -235,7 +235,7 @@ paths:
       tags:
         - Agents
       summary: Search agents
-      description: 'Search for [agents](https://developers.glean.com/agents/agents-api) by agent name. '
+      description: Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
       operationId: searchAgents
       x-visibility: Preview
       requestBody:
@@ -272,7 +272,7 @@ paths:
       x-speakeasy-group: client.agents
       x-speakeasy-name-override: list
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -282,13 +282,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.agents.list(name="HR Policy Agent")
+                res = glean.client.agents.list(name="HR Policy Agent")
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -308,10 +308,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.List(ctx, components.SearchAgentsRequest{\n        Name: apiclientgo.String(\"HR Policy Agent\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.SearchAgentsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -408,7 +408,7 @@ paths:
       x-speakeasy-group: client.agents
       x-speakeasy-name-override: runStream
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -418,13 +418,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.agents.run_stream(agent_id="<id>")
+                res = glean.client.agents.run_stream(agent_id="<id>")
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -444,10 +444,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.RunStream(ctx, components.AgentRunCreate{\n        AgentID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -515,7 +515,7 @@ paths:
       x-speakeasy-group: client.agents
       x-speakeasy-name-override: run
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -525,13 +525,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.agents.run(agent_id="<id>")
+                res = glean.client.agents.run(agent_id="<id>")
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -551,10 +551,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Agents.Run(ctx, components.AgentRunCreate{\n        AgentID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.AgentRunWaitResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -623,6 +623,7 @@ components:
               "ap.io.messages": true,
               "ap.io.streaming": true
             }
+          additionalProperties: true
           properties:
             ap.io.messages:
               type: boolean
@@ -632,12 +633,18 @@ components:
               type: boolean
               title: Streaming
               description: Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
-          additionalProperties: true
     ErrorResponse:
       type: string
       title: ErrorResponse
       description: Error message returned from the server
     AgentSchemas:
+      type: object
+      required:
+        - agent_id
+        - input_schema
+        - output_schema
+      title: AgentSchemas
+      description: Defines the structure and properties of an agent.
       properties:
         agent_id:
           type: string
@@ -652,13 +659,6 @@ components:
           type: object
           title: Output Schema
           description: The schema for the agent output. In JSON Schema format.
-      type: object
-      required:
-        - agent_id
-        - input_schema
-        - output_schema
-      title: AgentSchemas
-      description: Defines the structure and properties of an agent.
     SearchAgentsRequest:
       type: object
       properties:
@@ -673,7 +673,50 @@ components:
         agents:
           type: array
           items:
-            $ref: '#/components/schemas/Agent'
+            title: Agent
+            type: object
+            required:
+              - agent_id
+              - name
+              - capabilities
+            properties:
+              agent_id:
+                type: string
+                title: Agent Id
+                description: The ID of the agent.
+                example: mho4lwzylcozgoc2
+              name:
+                type: string
+                title: Agent Name
+                description: The name of the agent
+                example: HR Policy Agent
+              description:
+                type: string
+                title: Description
+                description: The description of the agent.
+                example: This agent answers questions about the current company HR policies.
+              metadata:
+                type: object
+                title: Metadata
+                description: The agent metadata. Currently not implemented.
+              capabilities:
+                type: object
+                title: Agent Capabilities
+                description: |-
+                  Describes features that the agent supports. example: {
+                    "ap.io.messages": true,
+                    "ap.io.streaming": true
+                  }
+                additionalProperties: true
+                properties:
+                  ap.io.messages:
+                    type: boolean
+                    title: Messages
+                    description: Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+                  ap.io.streaming:
+                    type: boolean
+                    title: Streaming
+                    description: Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
     AgentRunCreate:
       description: Payload for creating a run.
       type: object
@@ -691,23 +734,123 @@ components:
           additionalProperties: true
         messages:
           type: array
-          items:
-            $ref: '#/components/schemas/Message'
           title: Messages
           description: The messages to pass an input to the agent.
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                title: Role
+                description: The role of the message.
+              content:
+                title: Content
+                description: The content of the message.
+                type: array
+                items:
+                  type: object
+                  required:
+                    - text
+                    - type
+                  title: MessageTextBlock
+                  properties:
+                    text:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - text
+        metadata:
+          type: object
+          title: Metadata
+          description: The metadata to pass to the agent.
+          additionalProperties: true
     AgentRunWaitResponse:
       type: object
       properties:
         run:
-          $ref: '#/components/schemas/AgentRun'
-          title: Run
-          description: The run information.
+          description: Payload for creating a run.
+          type: object
+          properties:
+            agent_id:
+              type: string
+              title: Agent Id
+              description: The ID of the agent to run.
+            input:
+              type: object
+              title: Input
+              description: The input to the agent.
+              additionalProperties: true
+            messages:
+              type: array
+              title: Messages
+              description: The messages to pass an input to the agent.
+              items:
+                type: object
+                properties:
+                  role:
+                    type: string
+                    title: Role
+                    description: The role of the message.
+                  content:
+                    title: Content
+                    description: The content of the message.
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - text
+                        - type
+                      title: MessageTextBlock
+                      properties:
+                        text:
+                          type: string
+                        type:
+                          type: string
+                          enum:
+                            - text
+            metadata:
+              type: object
+              title: Metadata
+              description: The metadata to pass to the agent.
+              additionalProperties: true
+            status:
+              description: The status of the run. One of 'error', 'success'.
+              type: string
+              enum:
+                - error
+                - success
+              title: AgentExecutionStatus
+          required:
+            - agent_id
         messages:
           type: array
-          items:
-            $ref: '#/components/schemas/Message'
           title: Messages
           description: The messages returned by the run.
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                title: Role
+                description: The role of the message.
+              content:
+                title: Content
+                description: The content of the message.
+                type: array
+                items:
+                  type: object
+                  required:
+                    - text
+                    - type
+                  title: MessageTextBlock
+                  properties:
+                    text:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - text
     Message:
       type: object
       properties:
@@ -721,22 +864,72 @@ components:
           type: array
           items:
             type: object
-            properties:
-              text:
-                type: string
-              type:
-                $ref: '#/components/schemas/ContentType'
             required:
               - text
               - type
             title: MessageTextBlock
+            properties:
+              text:
+                type: string
+              type:
+                type: string
+                enum:
+                  - text
     AgentRun:
-      allOf:
-        - $ref: '#/components/schemas/AgentRunCreate'
-        - type: object
-          properties:
-            status:
-              $ref: '#/components/schemas/AgentExecutionStatus'
+      description: Payload for creating a run.
+      type: object
+      properties:
+        agent_id:
+          type: string
+          title: Agent Id
+          description: The ID of the agent to run.
+        input:
+          type: object
+          title: Input
+          description: The input to the agent.
+          additionalProperties: true
+        messages:
+          type: array
+          title: Messages
+          description: The messages to pass an input to the agent.
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                title: Role
+                description: The role of the message.
+              content:
+                title: Content
+                description: The content of the message.
+                type: array
+                items:
+                  type: object
+                  required:
+                    - text
+                    - type
+                  title: MessageTextBlock
+                  properties:
+                    text:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - text
+        metadata:
+          type: object
+          title: Metadata
+          description: The metadata to pass to the agent.
+          additionalProperties: true
+        status:
+          description: The status of the run. One of 'error', 'success'.
+          type: string
+          enum:
+            - error
+            - success
+          title: AgentExecutionStatus
+      required:
+        - agent_id
     ContentType:
       type: string
       enum:

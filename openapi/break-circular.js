@@ -9,6 +9,29 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
+// Add this function near the top of the file, after the imports
+function capitalizeLanguageName(lang) {
+  // Common programming languages and their proper capitalization
+  const languageMap = {
+    'python': 'Python',
+    'java': 'Java',
+    'javascript': 'JavaScript',
+    'typescript': 'JavaScript',
+    'go': 'Go',
+    'ruby': 'Ruby',
+    'php': 'PHP',
+    'csharp': 'C#',
+    'cpp': 'C++',
+    'c': 'C',
+    'rust': 'Rust',
+    'swift': 'Swift',
+    'kotlin': 'Kotlin',
+    'scala': 'Scala'
+  };
+  
+  return languageMap[lang.toLowerCase()] || lang;
+}
+
 // Circular reference detection and breaking strategies
 class CircularReferenceBreaker {
   constructor() {
@@ -320,7 +343,7 @@ class CircularReferenceBreaker {
                   items: {
                     type: 'object',
                     description: `${itemRefName} object`,
-                    additionalProperties: true
+                    // additionalProperties: true
                   }
                 };
               }
@@ -343,7 +366,7 @@ class CircularReferenceBreaker {
             items: {
               type: 'object',
               description: `${childSchemaName} object`,
-              additionalProperties: true
+              // additionalProperties: true
             }
           };
         }
@@ -393,7 +416,7 @@ class CircularReferenceBreaker {
       return {
         type: 'object',
         description: `Circular reference to ${schemaName} resolved`,
-        additionalProperties: true
+          // additionalProperties: true
       };
     }
     
@@ -424,7 +447,7 @@ class CircularReferenceBreaker {
             flattened.properties[propName] = {
               type: 'object',
               description: `Inlined ${refName} content`,
-              additionalProperties: true,
+              // additionalProperties: true,
               ...this.getBasicPropertiesFromSchema(allSchemas[refName])
             };
           } else if (allSchemas[refName]) {
@@ -485,7 +508,7 @@ class CircularReferenceBreaker {
       
       Object.keys(obj).forEach(key => {
         if (obj[key] && typeof obj[key] === 'object') {
-          if (obj[key].description && obj[key].description.includes('circular reference resolved')) {
+          if (obj[key].description && typeof obj[key].description === 'string' && obj[key].description.includes('circular reference resolved')) {
             obj[key].nullable = true;
           }
           makeCircularNullable(obj[key]);
@@ -613,6 +636,19 @@ function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
     tags.forEach(tag => {
       const currentTagInfo = tagInfo[tag];
       
+      // Process x-codeSamples for this specific tag's paths
+      Object.values(taggedPaths[tag] || {}).forEach(pathItem => {
+        Object.values(pathItem).forEach(operation => {
+          if (operation['x-codeSamples']) {
+            operation['x-codeSamples'].forEach(sample => {
+              if (sample.lang) {
+                sample.lang = capitalizeLanguageName(sample.lang);
+              }
+            });
+          }
+        });
+      });
+      
       let components = filterComponentsByTag(apiSpec.components, tag, taggedPaths[tag]);
       
       // Process schemas for this tag
@@ -634,7 +670,12 @@ function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
         
         // Now safely inline all schemas
         console.log(`🔗 Inlining all schema references...`);
-        components.schemas = fullyInlineAllSchemas(components.schemas);
+        // Use global max tracking only for messages API to prevent exponential expansion
+        const useGlobalMax = tag.toLowerCase() === 'messages';
+        if (useGlobalMax) {
+          console.log(`   Using global max tracking for messages API`);
+        }
+        components.schemas = fullyInlineAllSchemas(components.schemas, useGlobalMax);
         console.log(`   Processed ${Object.keys(components.schemas).length} schemas`);
       }
       
@@ -873,12 +914,28 @@ function addNestedSchemas(filteredSchemas, allSchemas) {
 }
 
 // Function to fully inline all schemas - no $ref left behind
-function fullyInlineAllSchemas(schemas) {
+function fullyInlineAllSchemas(schemas, useGlobalMax = false) {
   const inlinedSchemas = {};
   const resolutionPath = []; // Track the exact path to detect circular references
+  const globalOccurrences = useGlobalMax ? {} : null; // Track how many times each schema has been inlined globally (only for messages)
   
   // Function to fully resolve a single schema
   function resolveSchema(schemaName, pathDepth = 0) {
+    // Track global occurrences to prevent exponential expansion (only for messages API)
+    if (useGlobalMax) {
+      globalOccurrences[schemaName] = (globalOccurrences[schemaName] || 0) + 1;
+      
+      // If a schema has been inlined too many times globally, stop
+      if (globalOccurrences[schemaName] > 10) {
+        console.log(`     Schema ${schemaName} inlined too many times (${globalOccurrences[schemaName]}), using placeholder`);
+        return {
+          type: 'object',
+          description: `${schemaName} object`,
+          // additionalProperties: true
+        };
+      }
+    }
+    
     // Check if we're in a circular reference loop (same schema in current path)
     if (resolutionPath.includes(schemaName)) {
       console.log(`     Circular reference detected: ${resolutionPath.join(' -> ')} -> ${schemaName}`);
@@ -904,7 +961,7 @@ function fullyInlineAllSchemas(schemas) {
       return {
         type: 'object',
         description: `Schema ${schemaName} not found`,
-        additionalProperties: true
+        // additionalProperties: true
       };
     }
     
@@ -922,7 +979,7 @@ function fullyInlineAllSchemas(schemas) {
       return {
         type: 'object',
         description: `Error resolving ${schemaName}: ${error.message}`,
-        additionalProperties: true
+        // additionalProperties: true
       };
     }
   }
@@ -982,7 +1039,7 @@ function fullyInlineAllSchemas(schemas) {
           resolved.properties[propName] = {
             type: 'object',
             description: `Error resolving property ${propName}`,
-            additionalProperties: true
+            // additionalProperties: true
           };
         }
       });
@@ -1033,7 +1090,7 @@ function fullyInlineAllSchemas(schemas) {
           return {
             type: 'object',
             description: `Error resolving oneOf[${index}]`,
-            additionalProperties: true
+            // additionalProperties: true
           };
         }
       });
@@ -1048,7 +1105,7 @@ function fullyInlineAllSchemas(schemas) {
           return {
             type: 'object',
             description: `Error resolving anyOf[${index}]`,
-            additionalProperties: true
+              // additionalProperties: true
           };
         }
       });
@@ -1071,7 +1128,7 @@ function fullyInlineAllSchemas(schemas) {
       inlinedSchemas[schemaName] = {
         type: 'object',
         description: `Failed to resolve ${schemaName}: ${error.message}`,
-        additionalProperties: true
+        // additionalProperties: true
       };
     }
   });
@@ -1092,8 +1149,8 @@ if (require.main === module) {
     console.log('  --break-circular    Detect and fix circular references in schemas');
     console.log('');
     console.log('Example:');
-    console.log('  node split-by-tags.js openapi.yaml ./split-apis/');
-    console.log('  node split-by-tags.js openapi.yaml ./split-apis/ --break-circular');
+    console.log('  node break-circular.js client_rest.yaml ./split-apis/');
+    console.log('  node break-circular.js client_rest.yaml ./split-apis/ --break-circular');
     process.exit(1);
   }
 

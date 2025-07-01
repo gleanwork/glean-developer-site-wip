@@ -52,7 +52,7 @@ paths:
       x-speakeasy-name-override: list
       x-speakeasy-group: client.tools
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -62,13 +62,13 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.tools.list()
+                res = glean.client.tools.list()
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -86,10 +86,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Tools.List(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ToolsListResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -146,7 +146,7 @@ paths:
       x-speakeasy-name-override: run
       x-speakeasy-group: client.tools
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -156,15 +156,15 @@ paths:
             with Glean(
                 api_token=os.getenv("GLEAN_API_TOKEN", ""),
                 instance=os.getenv("GLEAN_INSTANCE", ""),
-            ) as g_client:
+            ) as glean:
 
-                res = g_client.client.tools.run(name="<value>", parameters={
+                res = glean.client.tools.run(name="<value>", parameters={
 
                 })
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -190,10 +190,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Tools.Run(ctx, components.ToolsCallRequest{\n        Name: \"<value>\",\n        Parameters: map[string]components.ToolsCallParameter{\n\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ToolsCallResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -236,7 +236,28 @@ components:
         tools:
           type: array
           items:
-            $ref: '#/components/schemas/Tool'
+            type: object
+            properties:
+              type:
+                type: string
+                description: Type of tool (READ, WRITE)
+                enum:
+                  - READ
+                  - WRITE
+              name:
+                type: string
+                description: Unique identifier for the tool
+              displayName:
+                type: string
+                description: Human-readable name
+              description:
+                type: string
+                description: LLM friendly description of the tool
+              parameters:
+                type: object
+                description: The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+                additionalProperties:
+                  $ref: '#/components/schemas/ToolParameter'
     ToolsCallRequest:
       type: object
       required:
@@ -300,12 +321,14 @@ components:
           type: array
           description: The value of the parameter (for array types)
           items:
-            $ref: '#/components/schemas/ToolsCallParameter'
+            type: object
+            description: ToolsCallParameter object
         properties:
           type: object
           description: The value of the parameter (for object types)
           additionalProperties:
-            $ref: '#/components/schemas/ToolsCallParameter'
+            type: object
+            description: ToolsCallParameter object
     ToolParameter:
       type: object
       properties:
@@ -334,13 +357,13 @@ components:
             type: string
         items:
           type: object
-          description: When type is 'array', this describes the structure of the item in the array.
-          $ref: '#/components/schemas/ToolParameter'
+          description: ToolParameter object
         properties:
           type: object
           description: When type is 'object', this describes the structure of the object.
           additionalProperties:
-            $ref: '#/components/schemas/ToolParameter'
+            type: object
+            description: ToolParameter object
   parameters:
     timezoneOffset:
       name: timezoneOffset

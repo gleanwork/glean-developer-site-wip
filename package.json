@@ -6,6 +6,8 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn generate:changelog && yarn generate:rss && docusaurus build",
+    "build:fast": "GENERATE_API_DOCS=false yarn generate:changelog && yarn generate:rss && docusaurus build",
+    "start:fast": "GENERATE_API_DOCS=false docusaurus start",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -48,6 +50,7 @@
     "swiper": "^11.2.8"
   },
   "devDependencies": {
+    "@docusaurus/faster": "^3.8.1",
     "@docusaurus/module-type-aliases": "^3.8.1",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "^3.8.1",

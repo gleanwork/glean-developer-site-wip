@@ -525,3 +525,7 @@ article h1,
 [data-theme='dark'] .badge--success {
   color: white; /* White text on blue in dark mode */
 }
+
+.tabs-container.openapi-tabs__code-container.openapi-tabs__code-container-inner:nth-child(2) {
+  display: none;
+}

@@ -1,4 +1,4 @@
-import splitInfo from '../../openapi/split-apis-flat/split-info.json';
+import splitInfo from '../../openapi/client/split-apis/split-info.json';
 
 interface Endpoint {
   method: string;

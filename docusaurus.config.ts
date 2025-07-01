@@ -58,12 +58,55 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/glean-developer-logo-light.svg',
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       logo: {
         alt: 'Glean Developer Logo',
         src: 'img/glean-developer-logo-light.svg',
         srcDark: 'img/glean-developer-logo-dark.svg',
       },
+      items: [
+        {
+          label: 'More from Glean',
+          position: 'right',
+          items: [
+            {
+              label: 'Go to Glean',
+              href: 'https://app.glean.com',
+              className: 'navbar-dropdown-with-icon navbar-dropdown-icon-glean-app',
+            },
+            {
+              label: 'Help Center',
+              href: 'https://docs.glean.com',
+              className: 'navbar-dropdown-with-icon navbar-dropdown-icon-help-center',
+            },
+            {
+              label: 'Community',
+              href: 'https://community.glean.com',
+              className: 'navbar-dropdown-with-icon navbar-dropdown-icon-community',
+            },
+            {
+              label: 'Support',
+              href: 'https://support.glean.com',
+              className: 'navbar-dropdown-with-icon navbar-dropdown-icon-support',
+            },
+            {
+              label: 'Trust Portal',
+              href: 'https://trust.glean.com',
+              className: 'navbar-dropdown-with-icon navbar-dropdown-icon-trust',
+            },
+            {
+              label: 'Status',
+              href: 'https://status.glean.com',
+              className: 'navbar-dropdown-with-icon navbar-dropdown-icon-status',
+            },
+          ],
+        },
+      ],
     },
     prism: {
       theme: prismThemes.github,

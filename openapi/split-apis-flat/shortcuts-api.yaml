@@ -50,7 +50,7 @@ paths:
       x-speakeasy-name-override: create
       x-speakeasy-group: client.shortcuts
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -85,7 +85,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -152,10 +152,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Shortcuts.Create(ctx, components.CreateShortcutRequest{\n        Data: components.ShortcutMutableProperties{\n            AddedRoles: []components.UserRoleSpecification{\n                components.UserRoleSpecification{\n                    Person: &components.Person{\n                        Name: \"George Clooney\",\n                        ObfuscatedID: \"abc123\",\n                    },\n                    Role: components.UserRoleVerifier,\n                },\n            },\n            RemovedRoles: []components.UserRoleSpecification{\n                components.UserRoleSpecification{\n                    Person: &components.Person{\n                        Name: \"George Clooney\",\n                        ObfuscatedID: \"abc123\",\n                    },\n                    Role: components.UserRoleViewer,\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CreateShortcutResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -235,7 +235,7 @@ paths:
       x-speakeasy-name-override: delete
       x-speakeasy-group: client.shortcuts
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -250,7 +250,7 @@ paths:
                 g_client.client.shortcuts.delete(id=975862)
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -269,10 +269,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Shortcuts.Delete(ctx, components.DeleteShortcutRequest{\n        ID: 975862,\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -336,7 +336,7 @@ paths:
       x-speakeasy-group: client.shortcuts
       x-speakeasy-name-override: retrieve
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -354,7 +354,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -374,10 +374,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Shortcuts.Retrieve(ctx, components.CreateGetShortcutRequestUnionGetShortcutRequest(\n        components.GetShortcutRequest{\n            Alias: \"<value>\",\n        },\n    ))\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetShortcutResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -444,7 +444,7 @@ paths:
       x-speakeasy-group: client.shortcuts
       x-speakeasy-name-override: list
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -474,7 +474,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -509,10 +509,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Shortcuts.List(ctx, components.ListShortcutsPaginatedRequest{\n        PageSize: 10,\n        Filters: []components.FacetFilter{\n            components.FacetFilter{\n                FieldName: apiclientgo.String(\"type\"),\n                Values: []components.FacetFilterValue{\n                    components.FacetFilterValue{\n                        Value: apiclientgo.String(\"Spreadsheet\"),\n                        RelationType: components.RelationTypeEquals.ToPointer(),\n                    },\n                    components.FacetFilterValue{\n                        Value: apiclientgo.String(\"Presentation\"),\n                        RelationType: components.RelationTypeEquals.ToPointer(),\n                    },\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ListShortcutsPaginatedResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -592,7 +592,7 @@ paths:
       x-speakeasy-group: client.shortcuts
       x-speakeasy-name-override: update
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -624,7 +624,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -676,10 +676,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Shortcuts.Update(ctx, components.UpdateShortcutRequest{\n        ID: 268238,\n        AddedRoles: []components.UserRoleSpecification{\n            components.UserRoleSpecification{\n                Person: &components.Person{\n                    Name: \"George Clooney\",\n                    ObfuscatedID: \"abc123\",\n                },\n                Role: components.UserRoleAnswerModerator,\n            },\n        },\n        RemovedRoles: []components.UserRoleSpecification{\n            components.UserRoleSpecification{\n                Person: &components.Person{\n                    Name: \"George Clooney\",\n                    ObfuscatedID: \"abc123\",\n                },\n                Role: components.UserRoleAnswerModerator,\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.UpdateShortcutResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

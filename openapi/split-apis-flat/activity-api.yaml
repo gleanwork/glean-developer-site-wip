@@ -44,7 +44,7 @@ paths:
       x-speakeasy-name-override: report
       x-speakeasy-group: client.activity
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -83,7 +83,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -125,10 +125,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"github.com/gleanwork/api-client-go/types\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Activity.Report(ctx, components.Activity{\n        Events: []components.ActivityEvent{\n            components.ActivityEvent{\n                Action: components.ActivityEventActionHistoricalView,\n                Timestamp: types.MustTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                URL: \"https://example.com/\",\n            },\n            components.ActivityEvent{\n                Action: components.ActivityEventActionSearch,\n                Params: &components.ActivityEventParams{\n                    Query: apiclientgo.String(\"query\"),\n                },\n                Timestamp: types.MustTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                URL: \"https://example.com/search?q=query\",\n            },\n            components.ActivityEvent{\n                Action: components.ActivityEventActionView,\n                Params: &components.ActivityEventParams{\n                    Duration: apiclientgo.Int64(20),\n                    Referrer: apiclientgo.String(\"https://example.com/document\"),\n                },\n                Timestamp: types.MustTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                URL: \"https://example.com/\",\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -215,7 +215,7 @@ paths:
           description: Too Many Requests
       x-speakeasy-group: client.activity
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -235,7 +235,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -257,10 +257,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Activity.Feedback(ctx, nil, &components.Feedback{\n        TrackingTokens: []string{\n            \"trackingTokens\",\n        },\n        Event: components.EventView,\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

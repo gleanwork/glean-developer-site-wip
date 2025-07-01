@@ -2,13 +2,11 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import { getIcon } from '../Icons';
 import styles from './styles.module.css';
-import './fontawesome';
 
 interface CardProps {
   title: string;
   icon?: string | React.ReactNode;
-  iconStyle?: 'solid' | 'regular' | 'brands';
-  iconSet?: 'fontawesome' | 'glean';
+  iconSet?: 'feather' | 'glean';
   color?: string;
   href?: string;
   horizontal?: boolean;
@@ -21,8 +19,7 @@ interface CardProps {
 export default function Card({
   title,
   icon,
-  iconStyle = 'solid',
-  iconSet = 'fontawesome',
+  iconSet = 'feather',
   color = '#343CED',
   href,
   horizontal = false,
@@ -35,7 +32,11 @@ export default function Card({
     if (!icon) return null;
 
     if (typeof icon === 'string') {
-      const iconElement = getIcon(icon, iconSet, iconStyle, { color });
+      const iconElement = getIcon(icon, iconSet, { 
+        color,
+        width: 24,
+        height: 24
+      });
 
       return (
         <div className={styles.icon} style={{ color }}>

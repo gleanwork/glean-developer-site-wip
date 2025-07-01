@@ -1,7 +1,6 @@
 import type React from 'react'
 import useBaseUrl from '@docusaurus/useBaseUrl'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRss } from '@fortawesome/free-solid-svg-icons'
+import { Rss } from 'react-feather'
 import styles from './ChangelogHeader.module.css'
 
 export default function ChangelogHeader(): React.ReactElement {
@@ -19,7 +18,7 @@ export default function ChangelogHeader(): React.ReactElement {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faRss} className={styles.rssIcon} />
+          <Rss size={20} className={styles.rssIcon} />
         </a>
       </h1>
     </div>

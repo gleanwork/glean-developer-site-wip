@@ -5,8 +5,6 @@ import { Steps, Step } from '@site/src/components/Steps';
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
 import Frame from '@site/src/components/Frame';
-import { GleanIconRegistry } from '@site/src/components/Icons';
-
 export default {
   // Reusing the default mapping
   ...MDXComponents,
@@ -15,5 +13,4 @@ export default {
   Card,
   CardGroup,
   Frame,
-  ...GleanIconRegistry,
 };

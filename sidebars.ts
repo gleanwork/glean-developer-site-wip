@@ -25,9 +25,8 @@ const sidebars: SidebarsConfig = {
           id: 'get-started/home',
           label: 'Home',
           customProps: {
-            icon: 'home',
-            iconSet: 'fontawesome',
-            iconStyle: 'solid'
+            icon: 'Home',
+            iconSet: 'feather'
           },
         },
         {
@@ -35,9 +34,8 @@ const sidebars: SidebarsConfig = {
           id: 'get-started/key-terms',
           label: 'Key Terms',
           customProps: {
-            icon: 'file-lines',
-            iconSet: 'fontawesome',
-            iconStyle: 'solid'
+            icon: 'FileText',
+            iconSet: 'feather'
           },
         },
         {
@@ -45,9 +43,8 @@ const sidebars: SidebarsConfig = {
           id: 'get-started/authentication',
           label: 'Authentication Overview',
           customProps: {
-            icon: 'shield',
-            iconSet: 'fontawesome',
-            iconStyle: 'solid'
+            icon: 'Shield',
+            iconSet: 'feather'
           },
         },
         {
@@ -55,9 +52,8 @@ const sidebars: SidebarsConfig = {
           id: 'get-started/rate-limits',
           label: 'Rate Limits',
           customProps: {
-            icon: 'gauge',
-            iconSet: 'fontawesome',
-            iconStyle: 'solid'
+            icon: 'Activity',
+            iconSet: 'feather'
           },
         },
         {
@@ -65,9 +61,8 @@ const sidebars: SidebarsConfig = {
           id: 'changelog/index',
           label: 'Changelog',
           customProps: {
-            icon: 'rss',
-            iconSet: 'fontawesome',
-            iconStyle: 'solid'
+            icon: 'Rss',
+            iconSet: 'feather'
           },
         },
       ],
@@ -83,7 +78,8 @@ const sidebars: SidebarsConfig = {
           id: 'guides/agents/agents',
           label: 'Agents',
           customProps: {
-            icon: 'robot',
+            icon: 'agent',
+            iconSet: 'glean'
           },
         },
         {

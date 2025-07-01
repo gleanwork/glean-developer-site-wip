@@ -4,7 +4,11 @@
         <title>Glean Developer Changelog</title>
         <link>https://glean-developer-site.vercel.app</link>
         <description>Updates and changes to the Glean Developer Platform</description>
+<<<<<<< HEAD
+        <lastBuildDate>Wed, 02 Jul 2025 18:22:32 GMT</lastBuildDate>
+=======
         <lastBuildDate>Thu, 03 Jul 2025 00:49:34 GMT</lastBuildDate>
+>>>>>>> 2c6c3cb (feat: Adds glean search)
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Glean Developer Site</generator>
         <language>en</language>

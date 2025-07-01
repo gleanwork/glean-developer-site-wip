@@ -5,16 +5,6 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 // Environment variable to control API docs generation (same as in docusaurus.config.ts)
 const shouldGenerateApiDocs = process.env.GENERATE_API_DOCS !== 'false';
 
-/**
- * Creating a sidebar enables you to:
- - create an ordered group of docs
- - render a sidebar for each doc of that group
- - provide next/previous navigation
-
- The sidebars can be generated from the filesystem, or explicitly defined here.
-
- Create as many sidebars as you want.
- */
 const sidebars: SidebarsConfig = {
   docSidebar: [
     {
@@ -172,6 +162,123 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Libraries',
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: 'category',
+          label: 'Web SDK',
+          items: [
+            {
+              type: 'doc',
+              id: 'libraries/web-sdk/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/web-sdk/3rd-party-cookies',
+              label: 'Third-Party Cookie Management',
+            },
+            {
+              type: 'category',
+              label: 'Components',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/components/chat',
+                  label: 'Glean Chat',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/components/autocomplete',
+                  label: 'Autocomplete',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/components/modal-search',
+                  label: 'Modal Search',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/components/sidebar',
+                  label: 'Sidebar',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/components/recommendations',
+                  label: 'Recommendations',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Guides',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/guides/react',
+                  label: 'React',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/guides/zendesk',
+                  label: 'Zendesk',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/guides/lumapps',
+                  label: 'Lumapps',
+                },
+                {
+                  type: 'doc',
+                  id: 'libraries/web-sdk/guides/brightspot',
+                  label: 'Brightspot',
+                },
+              ],
+            },
+            {
+              type: 'link',
+              href: 'https://app.glean.com/meta/browser_api/index.html',
+              label: 'SDK Reference',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'API Clients',
+          items: [
+            {
+              type: 'doc',
+              id: 'libraries/api-clients',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/python',
+              label: 'Python',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/typescript',
+              label: 'TypeScript',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/go',
+              label: 'Go',
+            },
+            {
+              type: 'doc',
+              id: 'libraries/api-clients/java',
+              label: 'Java',
+            },
+          ],
+        },
+      ],
+    },
     // Only include API sections when API docs are being generated
     ...(shouldGenerateApiDocs
       ? ([
@@ -215,22 +322,6 @@ const sidebars: SidebarsConfig = {
                     type: 'doc',
                     id: 'api-info/client/authentication/oauth',
                     label: 'OAuth',
-                  },
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Examples',
-                items: [
-                  {
-                    type: 'doc',
-                    id: 'guides/chat/chatbot-example',
-                    label: 'Chatbot',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'guides/agents/nvidia-example',
-                    label: 'Agentic AI With NVIDIA NIM',
                   },
                 ],
               },
@@ -1332,123 +1423,6 @@ const sidebars: SidebarsConfig = {
                 type: 'link',
                 href: 'https://developers.glean.com/oas/indexing',
                 label: 'OpenAPI Spec',
-              },
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Libraries',
-            collapsible: false,
-            collapsed: false,
-            items: [
-              {
-                type: 'category',
-                label: 'Web SDK',
-                items: [
-                  {
-                    type: 'doc',
-                    id: 'libraries/web-sdk/overview',
-                    label: 'Overview',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'libraries/web-sdk/3rd-party-cookies',
-                    label: 'Third-Party Cookie Management',
-                  },
-                  {
-                    type: 'category',
-                    label: 'Components',
-                    items: [
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/components/chat',
-                        label: 'Glean Chat',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/components/autocomplete',
-                        label: 'Autocomplete',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/components/modal-search',
-                        label: 'Modal Search',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/components/sidebar',
-                        label: 'Sidebar',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/components/recommendations',
-                        label: 'Recommendations',
-                      },
-                    ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Guides',
-                    items: [
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/guides/react',
-                        label: 'React',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/guides/zendesk',
-                        label: 'Zendesk',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/guides/lumapps',
-                        label: 'Lumapps',
-                      },
-                      {
-                        type: 'doc',
-                        id: 'libraries/web-sdk/guides/brightspot',
-                        label: 'Brightspot',
-                      },
-                    ],
-                  },
-                  {
-                    type: 'link',
-                    href: 'https://app.glean.com/meta/browser_api/index.html',
-                    label: 'SDK Reference',
-                  },
-                ],
-              },
-              {
-                type: 'category',
-                label: 'API Clients',
-                items: [
-                  {
-                    type: 'doc',
-                    id: 'libraries/api-clients',
-                    label: 'Overview',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'libraries/api-clients/python',
-                    label: 'Python',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'libraries/api-clients/typescript',
-                    label: 'TypeScript',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'libraries/api-clients/go',
-                    label: 'Go',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'libraries/api-clients/java',
-                    label: 'Java',
-                  },
-                ],
               },
             ],
           },

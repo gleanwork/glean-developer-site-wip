@@ -229,6 +229,11 @@
     "SDK",
     "Website"
   ],
+<<<<<<< HEAD
+  "generatedAt": "2025-07-02T18:22:32.032Z",
+  "totalEntries": 17
+=======
   "generatedAt": "2025-07-03T00:49:34.938Z",
   "totalEntries": 5
+>>>>>>> 2c6c3cb (feat: Adds glean search)
 }

@@ -5,130 +5,67 @@ description: "Adds a document to the index or updates an existing document."
 sidebar_label: "Index document"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
-info_path: docs/api/indexing-api/glean-api
+info_path: api/indexing-api/glean-api
 custom_edit_url: null
 ---
 
-# Index document
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Index document"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/index/v1/indexdocument"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
 
 Adds a document to the index or updates an existing document.
 
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-## Code Samples
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-### Python (API Client)
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","description":"Describes the request body of the /indexdocument API call","properties":{"version":{"type":"integer","format":"int64","description":"Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done."},"document":{"description":"Document being added/updated","type":"object","properties":{"title":{"type":"string","description":"Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content."},"filename":{"type":"string","description":"Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file."},"container":{"type":"string","description":"The container name for the content (Folder for example for file content)."},"containerDatasourceId":{"type":"string","description":"This represents the datasource sepcific id of the container."},"containerObjectType":{"type":"string","description":"This represents the object type of the container. It cannot have spaces or _"},"datasource":{"type":"string"},"objectType":{"type":"string","description":"The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _"},"viewURL":{"type":"string","description":"The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'\n"},"id":{"type":"string","description":"The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length."},"summary":{"type":"object","description":"Describes text content or base64 encoded binary content","properties":{"mimeType":{"type":"string"},"textContent":{"type":"string","description":"text content. Only one of textContent or binary content can be specified"},"binaryContent":{"type":"string","description":"base64 encoded binary content. Only one of textContent or binary content can be specified"}},"required":["mimeType"],"title":"ContentDefinition"},"body":{"type":"object","description":"Describes text content or base64 encoded binary content","properties":{"mimeType":{"type":"string"},"textContent":{"type":"string","description":"text content. Only one of textContent or binary content can be specified"},"binaryContent":{"type":"string","description":"base64 encoded binary content. Only one of textContent or binary content can be specified"}},"required":["mimeType"],"title":"ContentDefinition"},"author":{"type":"object","description":"Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.","properties":{"email":{"type":"string"},"datasourceUserId":{"type":"string","description":"some datasources refer to the user by the datasource user id in the document"},"name":{"type":"string"}},"title":"UserReferenceDefinition"},"owner":{"type":"object","description":"Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.","properties":{"email":{"type":"string"},"datasourceUserId":{"type":"string","description":"some datasources refer to the user by the datasource user id in the document"},"name":{"type":"string"}},"title":"UserReferenceDefinition"},"permissions":{"description":"The permissions that define who can view this document in the search results. Please refer to [this](https://developers.glean.com/docs/indexing_api_permissions/) for more details.","type":"object","properties":{"allowedUsers":{"description":"List of users who can view the document","type":"array","items":{"type":"object","description":"Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.","properties":{"email":{"type":"string"},"datasourceUserId":{"type":"string","description":"some datasources refer to the user by the datasource user id in the document"},"name":{"type":"string"}},"title":"UserReferenceDefinition"}},"allowedGroups":{"description":"List of groups that can view the document","type":"array","items":{"type":"string"}},"allowedGroupIntersections":{"description":"List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...","type":"array","items":{"type":"object","description":"describes a list of groups that are all required in a permissions constraint","properties":{"requiredGroups":{"type":"array","items":{"type":"string"}}},"title":"PermissionsGroupIntersectionDefinition"}},"allowAnonymousAccess":{"description":"If true, then any Glean user can view the document","type":"boolean"},"allowAllDatasourceUsersAccess":{"description":"If true, then any user who has an account in the datasource can view the document.","type":"boolean"}},"title":"DocumentPermissionsDefinition"},"createdAt":{"type":"integer","format":"int64","description":"The creation time, in epoch seconds."},"updatedAt":{"type":"integer","format":"int64","description":"The last update time, in epoch seconds."},"updatedBy":{"type":"object","description":"Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.","properties":{"email":{"type":"string"},"datasourceUserId":{"type":"string","description":"some datasources refer to the user by the datasource user id in the document"},"name":{"type":"string"}},"title":"UserReferenceDefinition"},"tags":{"type":"array","items":{"type":"string"},"description":"Labels associated with the document."},"interactions":{"type":"object","description":"describes the interactions on the document","properties":{"numViews":{"type":"integer"},"numLikes":{"type":"integer"},"numComments":{"type":"integer"}},"title":"DocumentInteractionsDefinition"},"status":{"type":"string"},"additionalUrls":{"type":"array","items":{"type":"string"},"description":"Additional variations of the URL that this document points to."},"comments":{"type":"array","items":{"type":"object","description":"Describes a comment on a document","properties":{"id":{"type":"string","description":"The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length."},"author":{"type":"object","description":"Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.","properties":{"email":{"type":"string"},"datasourceUserId":{"type":"string","description":"some datasources refer to the user by the datasource user id in the document"},"name":{"type":"string"}},"title":"UserReferenceDefinition"},"content":{"type":"object","description":"Describes text content or base64 encoded binary content","properties":{"mimeType":{"type":"string"},"textContent":{"type":"string","description":"text content. Only one of textContent or binary content can be specified"},"binaryContent":{"type":"string","description":"base64 encoded binary content. Only one of textContent or binary content can be specified"}},"required":["mimeType"],"title":"ContentDefinition"},"createdAt":{"type":"integer","format":"int64","description":"The creation time, in epoch seconds."},"updatedAt":{"type":"integer","format":"int64","description":"The last updated time, in epoch seconds."},"updatedBy":{"type":"object","description":"Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.","properties":{"email":{"type":"string"},"datasourceUserId":{"type":"string","description":"some datasources refer to the user by the datasource user id in the document"},"name":{"type":"string"}},"title":"UserReferenceDefinition"}},"required":["id"],"title":"CommentDefinition"},"description":"Comments associated with the document."},"customProperties":{"type":"array","items":{"type":"object","description":"Describes the custom properties of the object.","properties":{"name":{"type":"string"},"value":{"description":"Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this."}},"title":"CustomProperty"},"description":"Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/)."}},"required":["datasource"],"title":"DocumentDefinition"}},"required":["document"],"title":"IndexDocumentRequest"}}},"required":true,"x-exportParamName":"IndexDocumentRequest"}}
+>
+  
+</RequestSchema>
 
-```python
-from glean.api_client import Glean, models
-import os
-
-
-with Glean(
-    api_token=os.getenv("GLEAN_API_TOKEN", ""),
-    instance=os.getenv("GLEAN_INSTANCE", ""),
-) as glean:
-
-    glean.indexing.documents.add_or_update(document=models.DocumentDefinition(
-        datasource="<value>",
-    ))
-
-    # Use the SDK ...
-```
-
-### Typescript (API Client)
-
-```typescript
-import { Glean } from "@gleanwork/api-client";
-
-const glean = new Glean({
-  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
-  instance: process.env["GLEAN_INSTANCE"] ?? "",
-});
-
-async function run() {
-  await glean.indexing.documents.addOrUpdate({
-    document: {
-      datasource: "<value>",
-    },
-  });
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"400":{"description":"Bad Request"},"401":{"description":"Not Authorized"},"409":{"description":"Conflict"},"429":{"description":"Too Many Requests"}}}
+>
+  
+</StatusCodes>
 
 
-}
-
-run();
-```
-
-### Java (API Client)
-
-```java
-package hello.world;
-
-import java.lang.Exception;
-import org.openapis.openapi.Glean;
-import org.openapis.openapi.models.components.DocumentDefinition;
-import org.openapis.openapi.models.components.IndexDocumentRequest;
-import org.openapis.openapi.models.operations.PostApiIndexV1IndexdocumentResponse;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
-            .build();
-
-        IndexDocumentRequest req = IndexDocumentRequest.builder()
-                .document(DocumentDefinition.builder()
-                    .datasource("<value>")
-                    .build())
-                .build();
-
-        PostApiIndexV1IndexdocumentResponse res = sdk.indexing().documents().addOrUpdate()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Go (API Client)
-
-```go
-package main
-
-import(
-	"context"
-	"os"
-	apiclientgo "github.com/gleanwork/api-client-go"
-	"github.com/gleanwork/api-client-go/models/components"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := apiclientgo.New(
-        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
-        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-    )
-
-    res, err := s.Indexing.Documents.AddOrUpdate(ctx, components.IndexDocumentRequest{
-        Document: components.DocumentDefinition{
-            Datasource: "<value>",
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-undefined
       

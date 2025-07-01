@@ -5,187 +5,67 @@ description: "Replaces all the currently indexed employees using paginated batch
 sidebar_label: "Bulk index employees"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: eJztPP1zIreS/4puUleBLRg2+1K5CxvnPdbL7nK7sV3Gfu/eGZcRMw2jeJAmkgZMXPzvV93SfAG22eR+unr8YpDULanV3eov+TGIwURaZFYoGfSDS8hSHoFhPE2ZTYBFudYgbbphQsbwADGDZZaqDYBhuRFywTK+EJJbiNmM2yhhg4sRi3iampBdpMANMA1z0MwqQngzy9N7h0zIxW0rsTYz/V4vhhWkKgNtwkUKXIaRWvZiFZleMfaOZ+IOoe+Klt43+LObZ6nicXepYkjbLFZRvgRpOW6JzZVmXDJ4yFIuXZOas0StcT25AUbLARlnSkhrwqATWL4wQf8muACVpRDcdgINv+Vg7DsVb4L+YxApaUFa/MqzLBUR4e39apR8y6KEawP25PrqQ/c/cYiJElhy/GY3GQT9QM1+hcgGnR3Sv6dfMzBEJj8lm6l4gyvGth6u1R1DeQYFtYNOwNP0fB70b/7cRNxRxNG0jh4HCg0xksb1jmIkTqbx1KwAg3sse6r9GquFXOwt41qK33JgImY24ZYtc1wE4JnEdGo2EaaxFiGN5TKCYNsJhPkgtLEXfAG1mWZKIevsTWU1TjR3KIXb9xzhkXmhIK+bJmTvYc7z1BrkkDlPjZ/wC/9T86X8a6abKx3BJRjLtb2mgUdM+yHlC8QSCxNxHbNMw0qo3BQE5NbCMrOGcRkzQs3mWi2ZiTRKbsh+8WdgMojEXEDM1sImrEbsE9xasN12Aitsiot5l6f3I+TJS8dIwbazz4BNHim5F380t/COVIial1qGCTlXekkShrLpEHOt+SboBMLC0nyNaDXQHlgYF+nLnHuVQInoW8SJUHhoSKUzvoTjUDgOlHxZskSBNGSvXp0pC69e9RmOXPE0BxZxKRWdD57iZiJxTmSr46ckJvyTM2akzjXEx09bgvi5NZMiuj+0DhK1I5THq1c3g3iF2iC+ffWKDVjutEkuxQq04SkT0oKW+CUGaZGbtVcr9V1feQk1KoV0UymfXMagUd3EeMUtueQL0ExDSoxoEpHhFankwknI1I8YxdPQUylREs7y5Qz0VzMUwTJJwCEdsnJXzFdjKgBZKxJ201PzuYjAHQLYqB0SfKYhwvs76KNwbzuIO49sriH+Upt4V6QsFynE1RROVVTSyvhM5ZZFKpdWbzqocCx0GC4EJw8raX5CTcRg7r8cvfP3YO7rNLNiCb8reQSHFnN8a1gB1GEQLkJ2fXXaYRfjK0LI41iDMS/jO3dU9uOJ2/kSCAdu/mUEZzXBQAgCJfK9DDvGYSxSsZtQw+Io6l3SuPrxeRKcnV8OfumwwcXglBD+LrJTFR+xkP8ZXTAcWQqdp4ejg2OKl7GcuoE1CrqG49YwSLOEd9/gEbivf2Gj8Tn7y3c//FDwJZGqOO4xjrweD8LGDTfeF4eq9ysFUqsUGIGGXktYda0P3jnuJIJ+kGvxosbQai5SYJmIEO0MLXMw5loKe8QSN5lAG29Dx5SIRYL2YIr2OFN6waX4nXbNU1Sv9i1bgARNAGT+ApkuM7FAFRmpZcYltpE+WOapFVkKaJNYISPLirWB44QYMq7t0pvTLxynPLQetk5AA4MV6A3qzYQbxpkRS5FyzSw39/54p0O5EBIAcU/d5Nxyo3IdwYUjYF26Cxtjn/AVWEF4s3uPFVOOUx7dTzvTj8Im+Wwa1m2WukFdoQw6QcJl7ByPHYVYDTpAK3jgy4wYdkGTvbR0m5TLxxtQzYkkfu6j+DoWJkv5pmlQSIsKXkj6tRArkLVJaYr8ML/veAeXX5CrVgLWNbwVqxMmdOhWMMiyJ0Roh31YDJCxVMj7DlrnfMVFymcpdNBYcN5ptdRvDXPoWc3HqyyIcjkptyiprCVCCJnB8+73emEYtkPnN1wb0B9JYuiOfdmKV7oyXtBDVTLdhOzK+RTzcpmsyYJszQ0aKrkTzDhGh3zDOKLQzs5HiRSSfcRpWYvfc4bWHXUhUqUFevJpHXu7oQnf78qL6wW+fFlwRnKuvElgm8oL4Vumfbw5P9ozMtaJiBJCRM5+YeTPAE00VE97xsUxRmZeeKg7BqRwa3YceJQNjAujoU+z/7Pq/ouQ9ygOJV84NbtxW0avsnFOQ08AnBeJRZ3k8L1/wogoZ49xwBOaA1DVysbxOTcSYtwYyPiPoR9h1AGHgK4p0NJppplLlxCvCpKsmVBHmEOJ0pbNhFponiUbvN+XwhjkHDKoENueL+S8HCVVfoTlNE6gl4DusE/QQ85QmimbgGYeg7MdU6M+S7WWg5cF5ZygkVsM48aoSFBwja7T5jL3Bcavces2gBJ6lGZ8kr0wHKdkQ+fSgtIzsGul71/ezRdhiMAOjEkHV96bhzbxhNQPK41xGNmejB8nnBfKGDFLvc9rGNfAJoFdC2tBT4IOmwR4ZUAs5CQoeAPnO87//ZQvuexq4DFeNaW2Lg3aP3JO1XnUzdT6wbyHuZDC2arbTuDd0+HXxDe4SHcl41tTuMJBhfSYWN//jbteTX/YcReSRUr+msuockinonTJ3RKP2TyO2Lfo8GaR+RI7ph+uv3y5uxr9Mpx22PT0/OzqcnB6dX6Jv87Oz+6Gv1x8Of/ncDgl9BTfw5u9AHKeWS2WcLQY5VLEQkPk7d9mQII27JRPGWIL2RANUbq0SqXdmg6mbaQeZ6efRsMPd+cf7sZXgw8fkLm4bKJgrem7afstK66+A1gkG/738PT6avT34d1gPB6NrwZnVxRM3sd1Om2HFGJa8izD4IpJVJ7GGGTi1vIogRhXMR1M68beHwj18QZ1GMQLNAjsGkCy0njCSGgM6Jo4c8LZdTvRbtIjHR8d3LPKjzQBEu/3ER09f9UXGLLTMtVS57TmASGDHaD1lO7f46R7WJdsr+CJc9aJNwSbdHsQxmIuB7wwOjcDDa8VujmCDnj6boobm55Oi4AoiyEDFz5Tcg9tU3UNieqXtf7CYrH5EQEXpK0b+7zQnl5fXg7PrpCGH66vri+HjppNIfWDfMRHOEH7ICCNj5fSCpDNCdI7w0rDgQjZS5f6E5w+qCZ5HidxHPBluHdB3sMRIZjPsEGBpBAuSHIchXH78l7uJEi5XOR8AWYShAzjyC6ng6u4h01dxNOUpWoNOsLEIMegzAysiChtxiML2tNKKh/MMx1mMkxJdliyyRKQZGK5+GyktA8j0N199PmQ/LntIrJPG6QJPFg65nAiJ7LZhEouxhsVYsbNRE6n04l8nEjGuIwSpfseWYcxxno9NqBWhvDlJZYUGB3pQoSmNjQuKgS9HkPX92morZ9+6OSwz6bT6eMkcAuZBP1JQP7dJOhMghI/tReZ1jK9Ogm2hGoi/4F2/XkGEvN93llVmpk8y5S2hikJ5/MOWwNbizRlBpZcWh80AknJKp/scqKOeVuiY5VVGM19vhj7LzY2UZKN338mc4YbguQsLaxFooZxToDLRSwx0ADuckBGKsfGwt2GWuBtN5KO9ZC/OiUDCt9ajt24jcyAiYVUGpCydYo2WLrPbh5dA9FxKBepMAlRuGwcY9SLGsMw3N5Op1O/FmF21lIA7a6A7qII9RXGTGZAZHFWDTferbUbTxo0aY63nJ2O5k+zPDueAXCFx51/sK3r+EFTmTYM1G3zvq3FBGu37q5zi47tjpkbC4NG9tjyFDBW8R5SwM7TBKL7I0IvPsbCVBrXjRaKhyDvGc98bsMxYsdzm1t/N/o8K3pP2GWayV2HlZDNAM+hQIABHpcupgs5wuIFlyc+MFgYlmJawSZcsjev/92bwpQ+J0SYvwXrXPVplbZmJwzTO9Ngl9pVNvZ2e3sgr1vQ25QJ3iYGxNoJHrrwgKxywTVfOs/oORSIwGRKGncRvXn9ej/FdP4Zx31/qOsdj1kN1/evv9sfc6YsG+Q2UVr87gIU37/+cX/YqZLzVESW6PLQNRnwe+Bm00W7rqtWoLWIiWmK3QTNcQut8izoB0VRSpi5uhEchcmFMWkVQ4UZKPnocpL6CzB7O4O0bGAtlL7TVIC0GA4rYr0Bheic2sYamIhGMLFEgrtw3kT6X8qg2p1IukSpq4U3DWMIaNU9yBNlwgVYkKvWJPj4ZTg4uxtcjO6uzj8Pz5y7OwnaHQdUlFwcgBmdoeV5OqyDtFFT0Tr7uAbE4Fa9Q5uwquJpOZm5E/HJJPhJxD8jvpIlT24cFvw8Vl/xM3GaAbXzJLhUMyHDsVWpBTkDvfjbhidKuUuuswtY6RcH/RPdMD8fGlkGPO+KiAVdB81xB1Z3CIWbzAXn9+aqAFwE/vmV4We703Zb+1303baLc/iGXRsX88dLNwxDqtPw/PhffMXHJBM1nrzaZF5QnuRLz3OPPqS8dbHkSfA3OnWMQ/R4JrqOXyfBW1xMpKSxji3YCZOw9lzqzKlMXCGP9tHzizBbCHJ1c4BNb9lf/0psRxst2PQwWMWpdahtm5bDzUZGbF7EDHQuW213mHzNhX2Gf0kXtPy5F2VPdGiOi11Hyco1rqnxCvHw13BwxbtP8cd+UmuHYXdYtRr/DHs6pnyaJevMWDFi1fqvLf//37Jr8XJFjspEkjy93dU1NS2DP5/ULxmP7tF0SSBNVbhWOo0Judc7v/IVDxFtOHyIgC70t83O3Io0RK+vald6EaoMJM+EKb6EpIJeGEPlpQaPKlMSsFb01XEQ6HG7wEZ4oYwdZIJUx9+/e7dXznnpjSLaZZbPUvSMU3SPBrUk5GOh1P0IjH2IiK2UiNmSC9kak51/c8u4Xpg2s4lWa8NKIlUI8ON0t4nv2Yn7Hs5ygaZqq71/6YSFhm5Ngp/+eX59efduOLgcXjq9fPdpeDn8eRIcAix0dAnYVM5PgLq1tBxPFY1P2pVYzMpOnu5/dmeFCm8VGvzQoPKkWshVoZq3Dl/jh52U5+avTcFF2npBVzyHoFIerZogPwuxp0xe2F7x2UsIH7PDA9O2KpV0DKDTU0furoTyrNR+jhLPjDnIiscKNNNg2AlKWWlLtNremmi1a/bEoYl9iXZLw2+HutEN31lWr+d1OSvcLNe3nchtXRl/VDVV/FG9qIhRu1QKuDWREztx5fAPdhK4n8q4bzwTzvBbqPLGoaL+Q8Zhd6EK+JdH9pxi7VWquIBN1QK/ktWLNp1Th+3iMozsA+ufML/g8B2P7tF7k3GrtJMNDqgtPTyDdU0I6j3/EDYZQ5RrYTctZcKPTzpV7XbnaRSjQjHuo6gs1xJDuVCNEVHQGtdrwlFhoLpHC2GpAluRfeiw2qX1pHKsGQyu4nz0fs+aZTXVhgbHbQ3xYZW3Y4Z87Xg34VdaT8Xn/YtWVDnykDVV39zegCf8vT8A0pz/CBcRP59esNSqz66beKit/rv4vvWqRsyJy/7thEmR1q3KVC3CD9zytAVat0v94mFQ3+3DPK+XbrGIzYLE8gwXL6EExTNRmTLwX4vOoHrbh3NRmmr8brQGJ1+CTVSM6k4ZKkfmNgn6ASof9wipt/ruwBscVJSgMY9Na6b6njLY/ljYPdvuDKqXTbQSLTBa6cqRirctFJ8qclFFa9dnIPfTXsUIV4PXso1STp+HU6gEKatSZIauvrxv+4A4WNBLLMh0cVsoSmzYjEf3IGOK4t7iDp2ioy0OLkZkBAb9m9t65xifOrkNVUP8Cyg6JOAadFX4jUSiuBs+nbqsHlkNi1LG+nuiKj/VePzjwo/15zmu5dALGtdTe35yU775qNUqVa84qsbqmUXVtvMQora+xmobLwGq5ieL7Gs179Xoqpq9aisL0qsmV19en4QKsqqGoh68aikLumtYiursvabmyFp0v75bX9FctTXLket5xqr2t9Z6oCj3pln8WlW4FuWqFXjenLtZIlrnoZ26THr7cFtWM9487hyj3DnkxjwkBFV9XfDm9Zvvu6//o/vmx6BWF9dspvq1Ojf5grPaAderxm6K9ttmzVDtsHcqs24e9xbdqFzaa77e3VKzbKgaX6v8qbGok+mqyGWvxuXAgnakz9ORsv5lJv5QIr68G0pMXrHfPG5vt6SUXkgG+bcu9A6s/xig+naS8Tr8MXwdVKzt/OPBxWhPAX/DRtJqFecUO5zIkSwz/6xWT+xrTYzTuA4dFqmjP2G7QhZZNkwrdXw/Hj0GM1ciplKWy+H4ih5jEg6QdHGwKDdWLTFnjlnU3DKuZ8JqTs8a6I1qkZAzwHWUuGe3VfFUbmCepx3KNvu6DvcjVvSyF68GKpY0Xb7GujiPBu/f+gxl8ZZVKvX71GBEjMXL3UzDEhMDa0hT/IsTOESUjERctRLrBpliBYaKlKtnyCWx6PUcBUco01pRPgEDSCt6xKzW/hmzo5QjlEkaDwncKbWcJUDFFJ1mf6mr6dWUqxZ3oRK0xjG0js7RIhcxpKjpJpIojOeFBVMrla5wq3NubOh3Rslff8CMu9o43Cm+HKLCqQ2WlktJz6qj+zXXMWZXqTDTUrlilHC5AP8MzSd8OPuhu1TSJszkErOAGWihYv8KemMTl4Cn46H8HdY1FO+uqfgrVpmzETAy74XC+G1WzqGZSHrlhFWY9ETYtZZlC26PhVNCQ5B9yop7ZJryaUiZaaekUZfduGxY9TT8JY8wo/FtgsWshUtlHA9vy0yHw/FRHQ+7UA4G45jHQ2Fwkjy5q4JZSxIWPIGL6ho+x9cJsVBLCvGRoM3pgT6SGtGK4g1ik+bE/0Kyjcp1SWHkrChRIgJXP/DQTdWC1F/TaOVZVnuEL5Z4OG4jXXSc34RmRbf/rmHe0JZY26qMXXJZVclRSthpIVa3nxt6tfbA/l//j6C6WJHyvSzlQtZeETgX5SbgGT4aED49vfqOrK49R+W2EyTo2vRvgsfHGTd442+32PxbDmjw3dxWfgkZ950gAR6j5VreuKfucLooaTWH6qX/hNBwsC7Ox3ivz/w/VFg6s1LzNRoNfB30g6ATKOIH91QK2x7LmpygTx4Duibb7f8CU9KLIA==
 sidebar_class_name: "post api-method"
-info_path: docs/api/indexing-api/glean-api
+info_path: api/indexing-api/glean-api
 custom_edit_url: null
 ---
 
-# Bulk index employees
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bulk index employees"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/index/v1/bulkindexemployees"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
 
 Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
 
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-## Code Samples
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-### Python (API Client)
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json; charset=UTF-8":{"schema":{"type":"object","description":"Describes the request body of the /bulkindexemployees API call","allOf":[{"type":"object","description":"Describes the request body of a bulk upload API call","required":["uploadId"],"properties":{"uploadId":{"type":"string","description":"Unique id that must be used for this bulk upload instance"},"isFirstPage":{"type":"boolean","description":"true if this is the first page of the upload. Defaults to false"},"isLastPage":{"type":"boolean","description":"true if this is the last page of the upload. Defaults to false"},"forceRestartUpload":{"type":"boolean","description":"Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true"}},"title":"BulkIndexRequest"},{"type":"object","properties":{"employees":{"description":"Batch of employee information","type":"array","items":{"type":"object","description":"Describes employee info","properties":{"email":{"type":"string","description":"The employee's email"},"firstName":{"type":"string","description":"The first name of the employee. **Note**: The value cannot be empty\n"},"lastName":{"type":"string","description":"The last name of the employee. **Note**: The value cannot be empty\n"},"preferredName":{"type":"string","description":"The preferred name or nickname of the employee"},"id":{"type":"string","description":"**[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.\n"},"phoneNumber":{"type":"string","description":"The employee's phone number."},"location":{"type":"string","description":"The employee's location (city/office name etc).","deprecated":true},"structuredLocation":{"description":"Detailed location with information about country, state, city etc.","type":"object","properties":{"deskLocation":{"type":"string","description":"Desk number."},"timezone":{"type":"string","description":"Location's timezone, e.g. UTC, PST."},"address":{"type":"string","description":"Office address or name."},"city":{"type":"string","description":"Name of the city."},"state":{"type":"string","description":"State code."},"region":{"type":"string","description":"Region information, e.g. NORAM, APAC."},"zipCode":{"type":"string","description":"ZIP Code for the address."},"country":{"type":"string","description":"Country name."},"countryCode":{"type":"string","description":"Alpha-2 or Alpha-3 ISO 3166 country code, e.g. US or USA."}},"title":"StructuredLocation"},"title":{"type":"string","description":"The employee's role title."},"photoUrl":{"type":"string","format":"uri","description":"The employee's profile pic"},"businessUnit":{"type":"string","description":"Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses."},"department":{"type":"string","description":"An organizational unit where everyone has a similar task, e.g. `Engineering`."},"datasourceProfiles":{"type":"array","description":"The datasource profiles of the employee, e.g. `Slack`,`Github`.","items":{"required":["datasource","handle"],"properties":{"datasource":{"type":"string","example":"github","description":"The datasource the profile is of."},"handle":{"type":"string","description":"The display name of the entity in the given datasource."},"url":{"type":"string","description":"URL to view the entity's profile."},"nativeAppUrl":{"type":"string","description":"A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...)."},"isUserGenerated":{"type":"boolean","description":"For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)"}},"title":"DatasourceProfile"}},"teams":{"type":"array","description":"Info about the employee's team(s)","items":{"type":"object","description":"Information about which team an employee belongs to","properties":{"id":{"type":"string","description":"unique identifier for this team"},"name":{"type":"string","description":"Team name"},"url":{"type":"string","format":"uri","description":"Link to internal company team page"}},"title":"EmployeeTeamInfo"}},"startDate":{"type":"string","format":"date","description":"The date when the employee started"},"endDate":{"type":"string","format":"date","description":"If a former employee, the last date of employment."},"bio":{"type":"string","description":"Short biography or mission statement of the employee."},"pronoun":{"type":"string","description":"She/her, He/his or other pronoun."},"alsoKnownAs":{"type":"array","description":"Other names associated with the employee.","items":{"type":"string"}},"profileUrl":{"type":"string","description":"Link to internal company person profile."},"socialNetworks":{"type":"array","description":"List of social network profiles.","items":{"type":"object","description":"Employee's social network profile","properties":{"name":{"type":"string","description":"Possible values are \"twitter\", \"linkedin\"."},"profileName":{"type":"string","description":"Human-readable profile name."},"profileUrl":{"type":"string","description":"Link to profile."}},"title":"SocialNetworkDefinition"}},"managerEmail":{"type":"string","description":"The email of the employee's manager"},"managerId":{"type":"string","description":"**[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.\n"},"type":{"type":"string","description":"The type of the employee, an enum of `FULL_TIME`, `CONTRACTOR`, `NON_EMPLOYEE`","default":"FULL_TIME"},"relationships":{"type":"array","description":"List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.","items":{"type":"object","description":"Describes a relationship edge between a source and destination entity","required":["name","email"],"properties":{"name":{"type":"string","description":"The title or type of relationship. Currently an enum of `CHIEF_OF_STAFF`, `EXECUTIVE_ASSISTANT`"},"email":{"type":"string","description":"Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s email depending on the relationship."}},"title":"EntityRelationship"}},"status":{"type":"string","description":"The status of the employee, an enum of `CURRENT`, `FUTURE`, `EX`","default":"CURRENT"},"additionalFields":{"type":"array","description":"List of additional fields with more information about the employee.","items":{"type":"object","description":"Additional information about the employee or team.","properties":{"key":{"type":"string","description":"Key to reference this field, e.g. \"languages\". Note that the key should be all lowercase alphabetic characters with no numbers, spaces, hyphens or underscores."},"value":{"type":"array","description":"List of type string or HypertextField.\n\nHypertextField is defined as\n```\n{\n  anchor: string,    // Anchor text for the hypertext field.\n  hyperlink: string, // URL for the hypertext field.\n}\n```\nExample: ```{\"anchor\":\"Glean\",\"hyperlink\":\"https://glean.com\"}```\n\nWhen OpenAPI Generator supports oneOf, we will semantically enforce this in the docs.\n\n**Note**: If using the Python SDK to pass in a list of strings, the value may need to be a list of dictionaries. In that case, the key in that dictionary will be ignored.\nExample: ```\"languages\": [{\"lang\":\"English\",\"lang\":\"Spanish\",...}]```. In this case, the key \"lang\" will be ignored and can even be passed in as an empty string.\n","items":{"type":"object","description":"Either a string or HypertextField. When OpenAPI Generator supports oneOf, we can semantically enforce this in the docs."}}},"title":"AdditionalFieldDefinition"}}},"required":["department","email"],"title":"EmployeeInfoDefinition"}},"disableStaleDataDeletionCheck":{"type":"boolean","description":"True if older employee data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than 20%. This must only be set when `isLastPage = true`"}},"required":["employees"]}],"title":"BulkIndexEmployeesRequest"}}},"required":true,"x-exportParamName":"BulkIndexEmployeesRequest"}}
+>
+  
+</RequestSchema>
 
-```python
-from glean.api_client import Glean
-import os
-
-
-with Glean(
-    api_token=os.getenv("GLEAN_API_TOKEN", ""),
-    instance=os.getenv("GLEAN_INSTANCE", ""),
-) as glean:
-
-    glean.indexing.people.bulk_index(upload_id="<id>", employees=[
-        {
-            "email": "Robin.Stoltenberg@yahoo.com",
-            "department": "<value>",
-            "datasource_profiles": [
-                {
-                    "datasource": "github",
-                    "handle": "<value>",
-                },
-            ],
-        },
-    ])
-
-    # Use the SDK ...
-```
-
-### Typescript (API Client)
-
-```typescript
-import { Glean } from "@gleanwork/api-client";
-
-const glean = new Glean({
-  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
-  instance: process.env["GLEAN_INSTANCE"] ?? "",
-});
-
-async function run() {
-  await glean.indexing.people.bulkIndex({
-    uploadId: "<id>",
-    employees: [
-      {
-        email: "Robin.Stoltenberg@yahoo.com",
-        department: "<value>",
-        datasourceProfiles: [
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-        ],
-      },
-      {
-        email: "Robin.Stoltenberg@yahoo.com",
-        department: "<value>",
-        datasourceProfiles: [
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-        ],
-      },
-      {
-        email: "Robin.Stoltenberg@yahoo.com",
-        department: "<value>",
-        datasourceProfiles: [
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-        ],
-      },
-    ],
-  });
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"400":{"description":"Bad Request"},"401":{"description":"Not Authorized"},"409":{"description":"Conflict"}}}
+>
+  
+</StatusCodes>
 
 
-}
-
-run();
-```
-
-### Java (API Client)
-
-```java
-package hello.world;
-
-import java.lang.Exception;
-import java.util.List;
-import org.openapis.openapi.Glean;
-import org.openapis.openapi.models.components.*;
-import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexemployeesResponse;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
-            .build();
-
-        BulkIndexEmployeesRequest req = BulkIndexEmployeesRequest.builder()
-                .uploadId("<id>")
-                .employees(List.of(
-                    EmployeeInfoDefinition.builder()
-                        .email("Robin.Stoltenberg@yahoo.com")
-                        .department("<value>")
-                        .datasourceProfiles(List.of(
-                            DatasourceProfile.builder()
-                                .datasource("github")
-                                .handle("<value>")
-                                .build()))
-                        .build()))
-                .build();
-
-        PostApiIndexV1BulkindexemployeesResponse res = sdk.indexing().people().bulkIndex()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Go (API Client)
-
-```go
-package main
-
-import(
-	"context"
-	"os"
-	apiclientgo "github.com/gleanwork/api-client-go"
-	"github.com/gleanwork/api-client-go/models/components"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := apiclientgo.New(
-        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
-        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-    )
-
-    res, err := s.Indexing.People.BulkIndex(ctx, components.BulkIndexEmployeesRequest{
-        UploadID: "<id>",
-        Employees: []components.EmployeeInfoDefinition{
-            components.EmployeeInfoDefinition{
-                Email: "Robin.Stoltenberg@yahoo.com",
-                Department: "<value>",
-                DatasourceProfiles: []components.DatasourceProfile{
-                    components.DatasourceProfile{
-                        Datasource: "github",
-                        Handle: "<value>",
-                    },
-                },
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-undefined
       

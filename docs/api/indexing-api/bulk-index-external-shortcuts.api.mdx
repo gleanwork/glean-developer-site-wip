@@ -5,159 +5,67 @@ description: "Replaces all the currently indexed shortcuts using paginated batch
 sidebar_label: "Bulk index external shortcuts"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
-info_path: docs/api/indexing-api/glean-api
+info_path: api/indexing-api/glean-api
 custom_edit_url: null
 ---
 
-# Bulk index external shortcuts
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bulk index external shortcuts"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/index/v1/bulkindexshortcuts"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
 
 Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that would be hosted by Glean, please use the `/uploadshortcuts` endpoint. For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
 
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-## Code Samples
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-### Python (API Client)
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json; charset=UTF-8":{"schema":{"type":"object","description":"Describes the request body of the /bulkindexshortcuts API call","allOf":[{"type":"object","description":"Describes the request body of a bulk upload API call","required":["uploadId"],"properties":{"uploadId":{"type":"string","description":"Unique id that must be used for this bulk upload instance"},"isFirstPage":{"type":"boolean","description":"true if this is the first page of the upload. Defaults to false"},"isLastPage":{"type":"boolean","description":"true if this is the last page of the upload. Defaults to false"},"forceRestartUpload":{"type":"boolean","description":"Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true"}},"title":"BulkIndexRequest"},{"type":"object","properties":{"shortcuts":{"description":"Batch of shortcuts information","type":"array","items":{"allOf":[{"properties":{"inputAlias":{"type":"string","description":"link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias."},"description":{"type":"string","description":"A short, plain text blurb to help people understand the intent of the shortcut."},"destinationUrl":{"type":"string","format":"url","description":"destination URL for the shortcut."},"createdBy":{"type":"string","description":"Email of the user who created this shortcut."},"createTime":{"type":"integer","format":"int64","description":"The time the shortcut was created in epoch seconds."},"updatedBy":{"type":"string","description":"Email of the user who last updated this shortcut."},"updateTime":{"type":"integer","format":"int64","description":"The time the shortcut was updated in epoch seconds."}},"title":"ShortcutProperties"},{"type":"object","required":["destinationUrl","intermediateUrl","createdBy","inputAlias"]}],"properties":{"title":{"type":"string","description":"Title of the golink"},"intermediateUrl":{"type":"string","format":"url","description":"The URL from which the user is then redirected to the destination URL."},"decayedVisitScore":{"type":"number","format":"double","description":"decayed visits score for ranking"},"editUrl":{"type":"string","format":"url","description":"The URL using which the user can access the edit page of the shortcut."}},"title":"ExternalShortcut"}}},"required":["shortcuts"]}],"title":"BulkIndexShortcutsRequest"}}},"required":true,"x-exportParamName":"BulkIndexShortcutsRequest"}}
+>
+  
+</RequestSchema>
 
-```python
-from glean.api_client import Glean
-import os
-
-
-with Glean(
-    api_token=os.getenv("GLEAN_API_TOKEN", ""),
-    instance=os.getenv("GLEAN_INSTANCE", ""),
-) as glean:
-
-    glean.indexing.shortcuts.bulk_index(upload_id="<id>", shortcuts=[
-        {
-            "input_alias": "<value>",
-            "destination_url": "https://plump-tune-up.biz/",
-            "created_by": "<value>",
-            "intermediate_url": "https://lean-sightseeing.net",
-        },
-    ])
-
-    # Use the SDK ...
-```
-
-### Typescript (API Client)
-
-```typescript
-import { Glean } from "@gleanwork/api-client";
-
-const glean = new Glean({
-  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
-  instance: process.env["GLEAN_INSTANCE"] ?? "",
-});
-
-async function run() {
-  await glean.indexing.shortcuts.bulkIndex({
-    uploadId: "<id>",
-    shortcuts: [
-      {
-        inputAlias: "<value>",
-        destinationUrl: "https://plump-tune-up.biz/",
-        createdBy: "<value>",
-        intermediateUrl: "https://lean-sightseeing.net",
-      },
-      {
-        inputAlias: "<value>",
-        destinationUrl: "https://plump-tune-up.biz/",
-        createdBy: "<value>",
-        intermediateUrl: "https://lean-sightseeing.net",
-      },
-    ],
-  });
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"400":{"description":"Bad Request"},"401":{"description":"Not Authorized"},"409":{"description":"Conflict"}}}
+>
+  
+</StatusCodes>
 
 
-}
-
-run();
-```
-
-### Java (API Client)
-
-```java
-package hello.world;
-
-import java.lang.Exception;
-import java.util.List;
-import org.openapis.openapi.Glean;
-import org.openapis.openapi.models.components.BulkIndexShortcutsRequest;
-import org.openapis.openapi.models.components.ExternalShortcut;
-import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexshortcutsResponse;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
-            .build();
-
-        BulkIndexShortcutsRequest req = BulkIndexShortcutsRequest.builder()
-                .uploadId("<id>")
-                .shortcuts(List.of(
-                    ExternalShortcut.builder()
-                        .inputAlias("<value>")
-                        .destinationUrl("https://plump-tune-up.biz/")
-                        .createdBy("<value>")
-                        .intermediateUrl("https://lean-sightseeing.net")
-                        .build()))
-                .build();
-
-        PostApiIndexV1BulkindexshortcutsResponse res = sdk.indexing().shortcuts().bulkIndex()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Go (API Client)
-
-```go
-package main
-
-import(
-	"context"
-	"os"
-	apiclientgo "github.com/gleanwork/api-client-go"
-	"github.com/gleanwork/api-client-go/models/components"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := apiclientgo.New(
-        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
-        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-    )
-
-    res, err := s.Indexing.Shortcuts.BulkIndex(ctx, components.BulkIndexShortcutsRequest{
-        UploadID: "<id>",
-        Shortcuts: []components.ExternalShortcut{
-            components.ExternalShortcut{
-                InputAlias: "<value>",
-                DestinationURL: "https://plump-tune-up.biz/",
-                CreatedBy: "<value>",
-                IntermediateURL: "https://lean-sightseeing.net",
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-undefined
       

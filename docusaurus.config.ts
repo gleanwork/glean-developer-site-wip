@@ -103,7 +103,12 @@ const config: Config = {
         highlight: "java",
         language: "java",
         logoClass: "java",
-      }
+      },
+      {
+        highlight: "javascript",
+        language: "javascript",
+        logoClass: "javascript",
+      },
     ],
   } satisfies Preset.ThemeConfig,
 
@@ -141,7 +146,7 @@ const config: Config = {
         config: {
           indexing: {
             specPath:
-              'https://gleanwork.github.io/open-api/specs/final/indexing.yaml',
+              './openapi/indexing-capitalized.yaml',
             outputDir: 'docs/api/indexing-api',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -277,7 +282,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           tools: { // ok
-            specPath: './openapi/split-apis/tools-api.yaml',
+            specPath: './openapi/split-apis-flat/tools-api.yaml',
             outputDir: 'docs/api/client-api/tools',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -285,7 +290,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           governance: { // ok
-            specPath: './openapi/split-apis/governance-api.yaml',
+            specPath: './openapi/split-apis-flat/governance-api.yaml',
             outputDir: 'docs/api/client-api/governance',
             sidebarOptions: {
               groupPathsBy: 'tag',

@@ -52,7 +52,7 @@ First, include the JavaScript library in the `<head>` section of your page. Repl
 <TabItem value="javascript" label="JavaScript">
 
 ```javascript
-window.EmbeddedSearch.renderChat(containerElement)
+window.EmbeddedSearch.renderChat(containerElement);
 ```
 
 </TabItem>
@@ -81,10 +81,10 @@ You can streamline the authentication process in two ways:
 2. **Skip SSO Authentication**: Configure a [server-to-server handshake](https://docs.google.com/document/d/12q1oQWwhkLQyIHXKE7OF6XtvJZ5av50Wd_NKUbRh5u4/edit) and provide the user's auth token via [Options.authToken](https://app.glean.com/meta/browser_api/interfaces/Options.html#authToken).
 
 :::warning
-  When implementing auth token authentication: - You must configure an
-  [onAuthTokenRequired](https://app.glean.com/meta/browser_api/interfaces/Options.html#onAuthTokenRequired)
-  callback - This callback handles token refresh when expiration approaches -
-  Server-to-server authentication becomes mandatory if third-party cookies are
+  When implementing auth token authentication:
+  - You must configure an [onAuthTokenRequired](https://app.glean.com/meta/browser_api/interfaces/Options.html#onAuthTokenRequired) callback
+  - This callback handles token refresh when expiration approaches
+  - Server-to-server authentication becomes mandatory if third-party cookies are
   blocked in the user's browser
 :::
 

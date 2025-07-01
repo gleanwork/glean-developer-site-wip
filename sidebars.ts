@@ -1405,44 +1405,6 @@ const sidebars: SidebarsConfig = {
           },
         ],
       },
-      {
-        type: 'category',
-        label: 'Resources',
-        collapsible: false,
-        collapsed: false,
-        items: [
-          {
-            type: 'link',
-            href: 'https://github.com/gleanwork/glean-developer-site/discussions',
-            label: 'Discussions',
-          },
-          {
-            type: 'link',
-            href: 'https://github.com/gleanwork/glean-developer-site/issues/new?template=bug_report.md',
-            label: 'Bug Report',
-          },
-          {
-            type: 'link',
-            href: 'https://github.com/gleanwork/glean-developer-site/issues/new?template=feature_request.md',
-            label: 'Request a Feature',
-          },
-          {
-            type: 'link',
-            href: 'https://support.glean.com/hc/en-us',
-            label: 'Support',
-          },
-          {
-            type: 'link',
-            href: 'https://status.glean.com/',
-            label: 'Status',
-          },
-          {
-            type: 'link',
-            href: 'https://community.glean.com',
-            label: 'Community',
-          },
-        ],
-      },
          ] as any : []),
   ],
 };

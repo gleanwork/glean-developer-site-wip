@@ -52,7 +52,7 @@ paths:
       x-speakeasy-name-override: retrievePermissions
       x-speakeasy-group: client.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -68,7 +68,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -86,10 +86,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Documents.RetrievePermissions(ctx, components.GetDocPermissionsRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetDocPermissionsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -154,7 +154,7 @@ paths:
       x-speakeasy-name-override: retrieve
       x-speakeasy-group: client.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -170,7 +170,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -188,10 +188,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Documents.Retrieve(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetDocumentsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -251,7 +251,7 @@ paths:
       x-speakeasy-name-override: retrieveByFacets
       x-speakeasy-group: client.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -287,7 +287,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: TypeScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -342,10 +342,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Documents.RetrieveByFacets(ctx, &components.GetDocumentsByFacetsRequest{\n        FilterSets: []components.FacetFilterSet{\n            components.FacetFilterSet{\n                Filters: []components.FacetFilter{\n                    components.FacetFilter{\n                        FieldName: apiclientgo.String(\"type\"),\n                        Values: []components.FacetFilterValue{\n                            components.FacetFilterValue{\n                                Value: apiclientgo.String(\"Spreadsheet\"),\n                                RelationType: components.RelationTypeEquals.ToPointer(),\n                            },\n                            components.FacetFilterValue{\n                                Value: apiclientgo.String(\"Presentation\"),\n                                RelationType: components.RelationTypeEquals.ToPointer(),\n                            },\n                        },\n                    },\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetDocumentsByFacetsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

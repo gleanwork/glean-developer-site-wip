@@ -5,163 +5,67 @@ description: "Add or update a custom datasource and its schema."
 sidebar_label: "Add or update datasource"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
-info_path: docs/api/indexing-api/glean-api
+info_path: api/indexing-api/glean-api
 custom_edit_url: null
 ---
 
-# Add or update datasource
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Add or update datasource"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/index/v1/adddatasource"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
 
 Add or update a custom datasource and its schema.
 
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-## Code Samples
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-### Python (API Client)
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"description":"Structure describing config properties of a custom datasource","allOf":[{"type":"object","description":"Structure describing shared config properties of a datasource with no multi-instance support.","required":["name"],"properties":{"name":{"type":"string","description":"Unique identifier of datasource instance to which this config applies."},"displayName":{"type":"string","description":"The user-friendly instance label to display. If omitted, falls back to the title-cased `name`."},"datasourceCategory":{"type":"string","enum":["UNCATEGORIZED","TICKETS","CRM","PUBLISHED_CONTENT","COLLABORATIVE_CONTENT","QUESTION_ANSWER","MESSAGING","CODE_REPOSITORY","CHANGE_MANAGEMENT","PEOPLE","EMAIL","SSO","ATS","KNOWLEDGE_HUB","EXTERNAL_SHORTCUT","ENTITY","CALENDAR"],"default":"UNCATEGORIZED","description":"The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details."},"urlRegex":{"type":"string","description":"Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**","example":"https://example-company.datasource.com/.*"},"iconUrl":{"type":"string","description":"The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs)."},"objectDefinitions":{"type":"array","description":"The list of top-level `objectType`s for the datasource.","items":{"description":"The definition for an `DocumentMetadata.objectType` within a datasource.","properties":{"name":{"type":"string","description":"Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource."},"displayLabel":{"type":"string","description":"The user-friendly name of the object for display."},"docCategory":{"type":"string","enum":["UNCATEGORIZED","TICKETS","CRM","PUBLISHED_CONTENT","COLLABORATIVE_CONTENT","QUESTION_ANSWER","MESSAGING","CODE_REPOSITORY","CHANGE_MANAGEMENT","PEOPLE","EMAIL","SSO","ATS","KNOWLEDGE_HUB","EXTERNAL_SHORTCUT","ENTITY","CALENDAR"],"description":"The document category of this object type."},"propertyDefinitions":{"type":"array","items":{"properties":{"name":{"type":"string","description":"The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too."},"displayLabel":{"type":"string","description":"The user friendly label for the property."},"displayLabelPlural":{"type":"string","description":"The user friendly label for the property that will be used if a plural context."},"propertyType":{"type":"string","enum":["TEXT","DATE","INT","USERID","PICKLIST","TEXTLIST","MULTIPICKLIST"],"description":"The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported."},"uiOptions":{"type":"string","enum":["NONE","SEARCH_RESULT","DOC_HOVERCARD"]},"hideUiFacet":{"type":"boolean","description":"If true then the property will not show up as a facet in the UI."},"uiFacetOrder":{"type":"integer","description":"Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in \"Type\" and \"Tag\" operators."},"skipIndexing":{"type":"boolean","description":"If true then the property will not be indexed for retrieval and ranking."},"group":{"type":"string","description":"The unique identifier of the `PropertyGroup` to which this property belongs."}},"title":"PropertyDefinition"}},"propertyGroups":{"type":"array","description":"A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.","items":{"description":"A grouping for multiple PropertyDefinition. Grouped properties will be displayed together in the UI.","properties":{"name":{"type":"string","description":"The unique identifier of the group."},"displayLabel":{"type":"string","description":"The user-friendly group label to display."}},"title":"PropertyGroup"}},"summarizable":{"description":"Whether or not the object is summarizable","type":"boolean"}},"title":"ObjectDefinition"}},"suggestionText":{"type":"string","description":"Example text for what to search for in this datasource"},"homeUrl":{"type":"string","description":"The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page."},"crawlerSeedUrls":{"type":"array","description":"This only applies to WEB_CRAWL and BROWSER_CRAWL datasources. Defines the seed URLs for crawling.","items":{"type":"string"}},"iconDarkUrl":{"type":"string","description":"The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs)."},"hideBuiltInFacets":{"type":"array","description":"List of built-in facet types that should be hidden for the datasource.","items":{"type":"string","enum":["TYPE","TAG","AUTHOR","OWNER"]}},"canonicalizingURLRegex":{"type":"array","description":"A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.","items":{"description":"Regular expression to apply to an arbitrary string to transform it into a canonical string.","properties":{"matchRegex":{"type":"string","description":"Regular expression to match to an arbitrary string."},"rewriteRegex":{"type":"string","description":"Regular expression to transform into a canonical string."}},"title":"CanonicalizingRegexType"}},"canonicalizingTitleRegex":{"type":"array","description":"A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results","items":{"description":"Regular expression to apply to an arbitrary string to transform it into a canonical string.","properties":{"matchRegex":{"type":"string","description":"Regular expression to match to an arbitrary string."},"rewriteRegex":{"type":"string","description":"Regular expression to transform into a canonical string."}},"title":"CanonicalizingRegexType"}},"redlistTitleRegex":{"type":"string","description":"A regex that identifies titles that should not be indexed"},"connectorType":{"allOf":[{"type":"string","description":"The source from which document content was pulled, e.g. an API crawl or browser history","enum":["API_CRAWL","BROWSER_CRAWL","BROWSER_HISTORY","BUILTIN","FEDERATED_SEARCH","PUSH_API","WEB_CRAWL","NATIVE_HISTORY"],"title":"ConnectorType"}],"type":"string","deprecated":false},"quicklinks":{"type":"array","description":"List of actions for this datasource instance that will show up in autocomplete and app card, e.g. \"Create new issue\" for jira","items":{"description":"An action for a specific datasource that will show up in autocomplete and app card, e.g. \"Create new issue\" for jira.","properties":{"name":{"type":"string","description":"Full action name. Used in autocomplete."},"shortName":{"type":"string","description":"Shortened name. Used in app cards."},"url":{"type":"string","description":"The URL of the action."},"iconConfig":{"description":"The config for the icon for this quicklink","properties":{"generatedBackgroundColorKey":{"type":"string"},"backgroundColor":{"type":"string"},"color":{"type":"string"},"key":{"type":"string"},"iconType":{"enum":["COLLECTION","CUSTOM","DATASOURCE","DATASOURCE_INSTANCE","FAVICON","FILE_TYPE","GENERATED_BACKGROUND","GLYPH","MIME_TYPE","NO_ICON","PERSON","REACTIONS","URL"]},"masked":{"type":"boolean","description":"Whether the icon should be masked based on current theme."},"name":{"type":"string","description":"The name of the icon if applicable, e.g. the glyph name for `IconType.GLYPH` icons."},"url":{"type":"string","description":"The URL to an image to be displayed if applicable, e.g. the URL for `iconType.URL` icons."}},"example":{"color":"#343CED","key":"person_icon","iconType":"GLYPH","name":"user"},"title":"IconConfig"},"id":{"type":"string","description":"Unique identifier of this quicklink"},"scopes":{"type":"array","description":"The scopes for which this quicklink is applicable","items":{"type":"string","enum":["APP_CARD","AUTOCOMPLETE_EXACT_MATCH","AUTOCOMPLETE_FUZZY_MATCH","AUTOCOMPLETE_ZERO_QUERY","NEW_TAB_PAGE"]}}},"title":"Quicklink"}},"renderConfigPreset":{"type":"string","description":"The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details"},"aliases":{"type":"array","description":"Aliases that can be used as `app` operator-values.","items":{"type":"string"}},"isOnPrem":{"type":"boolean","description":"Whether or not this datasource is hosted on-premise."},"trustUrlRegexForViewActivity":{"type":"boolean","default":true,"description":"True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load."},"includeUtmSource":{"type":"boolean","description":"If true, a utm_source query param will be added to outbound links to this datasource within Glean."},"stripFragmentInCanonicalUrl":{"type":"boolean","default":true,"description":"If true, the fragment part of the URL will be stripped when converting to a canonical url."}},"title":"SharedDatasourceConfigNoInstance"},{"type":"object","properties":{"identityDatasourceName":{"type":"string","description":"If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already."},"productAccessGroup":{"type":"string","description":"If the datasource uses a specific product access group, then the name of that group."},"isUserReferencedByEmail":{"type":"boolean","description":"whether email is used to reference users in document ACLs and in group memberships."},"isEntityDatasource":{"type":"boolean","default":false,"description":"True if this datasource is used to push custom entities."},"isTestDatasource":{"type":"boolean","default":false,"description":"True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings."}}}],"title":"CustomDatasourceConfig"}}},"required":true,"x-exportParamName":"DatasourceConfig"}}
+>
+  
+</RequestSchema>
 
-```python
-from glean.api_client import Glean, models
-import os
-
-
-with Glean(
-    api_token=os.getenv("GLEAN_API_TOKEN", ""),
-    instance=os.getenv("GLEAN_INSTANCE", ""),
-) as glean:
-
-    glean.indexing.datasources.add(name="<value>", datasource_category=models.DatasourceCategory.UNCATEGORIZED, url_regex="https://example-company.datasource.com/.*", quicklinks=[
-        {
-            "icon_config": {
-                "color": "#343CED",
-                "key": "person_icon",
-                "icon_type": models.IconType.GLYPH,
-                "name": "user",
-            },
-        },
-    ], trust_url_regex_for_view_activity=True, strip_fragment_in_canonical_url=True, is_entity_datasource=False, is_test_datasource=False)
-
-    # Use the SDK ...
-```
-
-### Typescript (API Client)
-
-```typescript
-import { Glean } from "@gleanwork/api-client";
-
-const glean = new Glean({
-  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
-  instance: process.env["GLEAN_INSTANCE"] ?? "",
-});
-
-async function run() {
-  await glean.indexing.datasources.add({
-    name: "<value>",
-    urlRegex: "https://example-company.datasource.com/.*",
-    quicklinks: [
-      {
-        iconConfig: {
-          color: "#343CED",
-          key: "person_icon",
-          iconType: "GLYPH",
-          name: "user",
-        },
-      },
-    ],
-  });
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"400":{"description":"Bad Request"},"401":{"description":"Not Authorized"}}}
+>
+  
+</StatusCodes>
 
 
-}
-
-run();
-```
-
-### Java (API Client)
-
-```java
-package hello.world;
-
-import java.lang.Exception;
-import java.util.List;
-import org.openapis.openapi.Glean;
-import org.openapis.openapi.models.components.*;
-import org.openapis.openapi.models.operations.PostApiIndexV1AdddatasourceResponse;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
-            .build();
-
-        CustomDatasourceConfig req = CustomDatasourceConfig.builder()
-                .name("<value>")
-                .urlRegex("https://example-company.datasource.com/.*")
-                .quicklinks(List.of(
-                    Quicklink.builder()
-                        .iconConfig(IconConfig.builder()
-                            .color("#343CED")
-                            .key("person_icon")
-                            .iconType(IconType.GLYPH)
-                            .name("user")
-                            .build())
-                        .build()))
-                .build();
-
-        PostApiIndexV1AdddatasourceResponse res = sdk.indexing().datasources().add()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Go (API Client)
-
-```go
-package main
-
-import(
-	"context"
-	"os"
-	apiclientgo "github.com/gleanwork/api-client-go"
-	"github.com/gleanwork/api-client-go/models/components"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := apiclientgo.New(
-        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
-        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-    )
-
-    res, err := s.Indexing.Datasources.Add(ctx, components.CustomDatasourceConfig{
-        Name: "<value>",
-        URLRegex: apiclientgo.String("https://example-company.datasource.com/.*"),
-        Quicklinks: []components.Quicklink{
-            components.Quicklink{
-                IconConfig: &components.IconConfig{
-                    Color: apiclientgo.String("#343CED"),
-                    Key: apiclientgo.String("person_icon"),
-                    IconType: components.IconTypeGlyph.ToPointer(),
-                    Name: apiclientgo.String("user"),
-                },
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-undefined
       

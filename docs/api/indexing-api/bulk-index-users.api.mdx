@@ -5,156 +5,67 @@ description: "Replaces the users in a datasource using paginated batch API calls
 sidebar_label: "Bulk index users"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
-info_path: docs/api/indexing-api/glean-api
+info_path: api/indexing-api/glean-api
 custom_edit_url: null
 ---
 
-# Bulk index users
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bulk index users"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/index/v1/bulkindexusers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
 
 Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
 
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-## Code Samples
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-### Python (API Client)
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","description":"Describes the request body for the /bulkindexusers API call","properties":{"uploadId":{"type":"string","description":"Unique id that must be used for this instance of datasource users upload"},"isFirstPage":{"type":"boolean","description":"true if this is the first page of the upload. Defaults to false"},"isLastPage":{"type":"boolean","description":"true if this is the last page of the upload. Defaults to false"},"forceRestartUpload":{"type":"boolean","description":"Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true"},"datasource":{"type":"string","description":"datasource of the users"},"users":{"description":"batch of users for the datasource","type":"array","items":{"type":"object","description":"describes a user in the datasource","properties":{"email":{"type":"string"},"userId":{"description":"To be supplied if the user id in the datasource is not the email","type":"string"},"name":{"type":"string"},"isActive":{"type":"boolean","description":"set to false if the user is a former employee or a bot"}},"required":["email","name"],"title":"DatasourceUserDefinition"}},"disableStaleDataDeletionCheck":{"type":"boolean","description":"True if older user data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`"}},"required":["uploadId","datasource","users"],"title":"BulkIndexUsersRequest"}}},"required":true,"x-exportParamName":"BulkIndexUsersRequest"}}
+>
+  
+</RequestSchema>
 
-```python
-from glean.api_client import Glean
-import os
-
-
-with Glean(
-    api_token=os.getenv("GLEAN_API_TOKEN", ""),
-    instance=os.getenv("GLEAN_INSTANCE", ""),
-) as glean:
-
-    glean.indexing.permissions.bulk_index_users(upload_id="<id>", datasource="<value>", users=[
-        {
-            "email": "Ivory_Cummerata@hotmail.com",
-            "name": "<value>",
-        },
-    ])
-
-    # Use the SDK ...
-```
-
-### Typescript (API Client)
-
-```typescript
-import { Glean } from "@gleanwork/api-client";
-
-const glean = new Glean({
-  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
-  instance: process.env["GLEAN_INSTANCE"] ?? "",
-});
-
-async function run() {
-  await glean.indexing.permissions.bulkIndexUsers({
-    uploadId: "<id>",
-    datasource: "<value>",
-    users: [
-      {
-        email: "Ivory_Cummerata@hotmail.com",
-        name: "<value>",
-      },
-      {
-        email: "Ivory_Cummerata@hotmail.com",
-        name: "<value>",
-      },
-      {
-        email: "Ivory_Cummerata@hotmail.com",
-        name: "<value>",
-      },
-    ],
-  });
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"400":{"description":"Bad Request"},"401":{"description":"Not Authorized"},"409":{"description":"Conflict"}}}
+>
+  
+</StatusCodes>
 
 
-}
-
-run();
-```
-
-### Java (API Client)
-
-```java
-package hello.world;
-
-import java.lang.Exception;
-import java.util.List;
-import org.openapis.openapi.Glean;
-import org.openapis.openapi.models.components.BulkIndexUsersRequest;
-import org.openapis.openapi.models.components.DatasourceUserDefinition;
-import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexusersResponse;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
-            .build();
-
-        BulkIndexUsersRequest req = BulkIndexUsersRequest.builder()
-                .uploadId("<id>")
-                .datasource("<value>")
-                .users(List.of(
-                    DatasourceUserDefinition.builder()
-                        .email("Ivory_Cummerata@hotmail.com")
-                        .name("<value>")
-                        .build()))
-                .build();
-
-        PostApiIndexV1BulkindexusersResponse res = sdk.indexing().permissions().bulkIndexUsers()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Go (API Client)
-
-```go
-package main
-
-import(
-	"context"
-	"os"
-	apiclientgo "github.com/gleanwork/api-client-go"
-	"github.com/gleanwork/api-client-go/models/components"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := apiclientgo.New(
-        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
-        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-    )
-
-    res, err := s.Indexing.Permissions.BulkIndexUsers(ctx, components.BulkIndexUsersRequest{
-        UploadID: "<id>",
-        Datasource: "<value>",
-        Users: []components.DatasourceUserDefinition{
-            components.DatasourceUserDefinition{
-                Email: "Ivory_Cummerata@hotmail.com",
-                Name: "<value>",
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-undefined
       

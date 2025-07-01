@@ -872,7 +872,6 @@ const sidebars: SidebarsConfig = {
                 type: "doc",
                 id: "api/client-api/authentication/createauthtoken",
                 label: "Create authentication token",
-                className: "api-method post",
               },
             ],
           },

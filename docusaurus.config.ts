@@ -146,7 +146,7 @@ const config: Config = {
         config: {
           indexing: {
             specPath:
-              'https://gleanwork.github.io/open-api/specs/final/indexing.yaml',
+              './openapi/indexing-capitalized.yaml',
             outputDir: 'docs/api/indexing-api',
             sidebarOptions: {
               groupPathsBy: 'tag',

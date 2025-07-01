@@ -45,11 +45,11 @@ function camelToKebab(str: string): string {
 function getDocLinkForEndpoint(apiType: string, apiFamily: string, operationId: string): string {
   if (apiType === 'indexing-api') {
     const kebabCaseId = camelToKebab(operationId);
-    return `/api/indexing-api/${kebabCaseId}.api`;
+    return `/api/indexing-api/${kebabCaseId}`;
   }
   
   const kebabCaseId = camelToKebab(operationId);
-  return `/api/client-api/${apiFamily.toLowerCase()}/${kebabCaseId}.api`;
+  return `/api/client-api/${apiFamily.toLowerCase()}/${kebabCaseId}`;
 }
 
 function getIndexingApiEndpoints(apiFamily: string): Endpoint[] {

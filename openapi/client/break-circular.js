@@ -7,6 +7,8 @@
 
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
+const http = require('http');
 const yaml = require('js-yaml');
 
 // Add this function near the top of the file, after the imports
@@ -30,6 +32,42 @@ function capitalizeLanguageName(lang) {
   };
   
   return languageMap[lang.toLowerCase()] || lang;
+}
+
+// Function to fetch content from URL
+function fetchFromUrl(url) {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith('https:') ? https : http;
+    
+    client.get(url, (res) => {
+      let data = '';
+      
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(data);
+        } else {
+          reject(new Error(`HTTP ${res.statusCode}: ${res.statusMessage}`));
+        }
+      });
+    }).on('error', (err) => {
+      reject(err);
+    });
+  });
+}
+
+// Function to read content from file or URL
+async function readContent(input) {
+  if (input.startsWith('http://') || input.startsWith('https://')) {
+    console.log(`📡 Fetching from URL: ${input}...`);
+    return await fetchFromUrl(input);
+  } else {
+    console.log(`📖 Reading local file: ${input}...`);
+    return fs.readFileSync(input, 'utf8');
+  }
 }
 
 // Circular reference detection and breaking strategies
@@ -563,10 +601,10 @@ class CircularReferenceBreaker {
   }
 }
 
-function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
+async function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
   try {
-    // Read and parse the OpenAPI file
-    const fileContent = fs.readFileSync(inputFile, 'utf8');
+    // Read and parse the OpenAPI file (now supports URLs)
+    const fileContent = await readContent(inputFile);
     const apiSpec = yaml.load(fileContent);
 
     // Create output directory if it doesn't exist
@@ -735,6 +773,22 @@ function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
           .replace(/-+/g, '-')
           .replace(/^-|-$/g, '');
         
+        // Extract endpoints for this tag
+        const endpoints = [];
+        Object.entries(taggedPaths[tag] || {}).forEach(([pathName, pathItem]) => {
+          Object.entries(pathItem).forEach(([method, operation]) => {
+            endpoints.push({
+              method: method.toUpperCase(),
+              path: pathName,
+              summary: operation.summary || '',
+              description: operation.description || '',
+              operationId: operation.operationId || 
+                           (operation.summary && operation.summary.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')) ||
+                           `${method}${pathName.replace(/[^a-zA-Z0-9]/g, '')}`
+            });
+          });
+        });
+        
         return {
           name: tag,
           displayName: displayName,
@@ -742,6 +796,7 @@ function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
           file: `${filename}-api.yaml`,
           configId: filename.replace(/-/g, '_'), // Suggested config ID for docusaurus
           paths: Object.keys(taggedPaths[tag] || {}).length,
+          endpoints: endpoints, // Add the endpoints data
           fullyInlined: true,
           circularReferencesFixed: breakCircular
         };
@@ -1143,13 +1198,14 @@ if (require.main === module) {
   console.log('Debug: args =', args);
   
   if (args.length < 2) {
-    console.log('Usage: node split-by-tags.js <input-openapi.yaml> <output-directory> [--break-circular]');
+    console.log('Usage: node break-circular.js <input-openapi.yaml|url> <output-directory> [--break-circular]');
     console.log('');
     console.log('Options:');
     console.log('  --break-circular    Detect and fix circular references in schemas');
     console.log('');
     console.log('Example:');
     console.log('  node break-circular.js client_rest.yaml ./split-apis/');
+    console.log('  node break-circular.js https://gleanwork.github.io/open-api/specs/final/client_rest.yaml ./split-apis/');
     console.log('  node break-circular.js client_rest.yaml ./split-apis/ --break-circular');
     process.exit(1);
   }
@@ -1177,7 +1233,8 @@ if (require.main === module) {
     console.log('🔧 Circular reference breaking enabled');
   }
   
-  if (!fs.existsSync(inputFile)) {
+  // For local files, check if they exist
+  if (!inputFile.startsWith('http://') && !inputFile.startsWith('https://') && !fs.existsSync(inputFile)) {
     console.error(`❌ Input file not found: ${inputFile}`);
     process.exit(1);
   }

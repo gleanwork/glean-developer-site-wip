@@ -52,24 +52,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IndexDocumentRequest"
+              $ref: '#/components/schemas/IndexDocumentRequest'
         required: true
         x-exportParamName: IndexDocumentRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-name-override: addOrUpdate
       x-speakeasy-group: indexing.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -86,7 +86,7 @@ paths:
                 ))
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -107,7 +107,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -140,7 +140,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.AddOrUpdate(ctx, components.IndexDocumentRequest{\n        Document: components.DocumentDefinition{\n            Datasource: \"<value>\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexdocuments:
@@ -153,24 +153,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IndexDocumentsRequest"
+              $ref: '#/components/schemas/IndexDocumentsRequest'
         required: true
         x-exportParamName: IndexDocumentsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-name-override: index
       x-speakeasy-group: indexing.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -185,7 +185,7 @@ paths:
                 glean.indexing.documents.index(datasource="<value>", documents=[])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -205,7 +205,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -237,7 +237,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.Index(ctx, components.IndexDocumentsRequest{\n        Datasource: \"<value>\",\n        Documents: []components.DocumentDefinition{},\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexdocuments:
@@ -250,22 +250,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BulkIndexDocumentsRequest"
+              $ref: '#/components/schemas/BulkIndexDocumentsRequest'
         required: true
         x-exportParamName: BulkIndexDocumentsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndex
       x-speakeasy-group: indexing.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -280,7 +280,7 @@ paths:
                 glean.indexing.documents.bulk_index(upload_id="<id>", datasource="<value>", documents=[])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -301,7 +301,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -334,7 +334,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.BulkIndex(ctx, components.BulkIndexDocumentsRequest{\n        UploadID: \"<id>\",\n        Datasource: \"<value>\",\n        Documents: []components.DocumentDefinition{},\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/updatepermissions:
@@ -347,24 +347,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdatePermissionsRequest"
+              $ref: '#/components/schemas/UpdatePermissionsRequest'
         required: true
         x-exportParamName: UpdatePermissionsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-name-override: updatePermissions
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -379,7 +379,7 @@ paths:
                 glean.indexing.permissions.update_permissions(datasource="<value>", permissions={})
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -399,7 +399,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -432,7 +432,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.UpdatePermissions(ctx, components.UpdatePermissionsRequest{\n        Datasource: \"<value>\",\n        Permissions: components.DocumentPermissionsDefinition{},\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/processalldocuments:
@@ -456,21 +456,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ProcessAllDocumentsRequest"
+              $ref: '#/components/schemas/ProcessAllDocumentsRequest'
         x-exportParamName: ProcessAllDocumentsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-name-override: processAll
       x-speakeasy-group: indexing.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -485,7 +485,7 @@ paths:
                 glean.indexing.documents.process_all()
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -502,7 +502,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -526,7 +526,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.ProcessAll(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/deletedocument:
@@ -539,22 +539,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DeleteDocumentRequest"
+              $ref: '#/components/schemas/DeleteDocumentRequest'
         required: true
         x-exportParamName: DeleteDocumentRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: delete
       x-speakeasy-group: indexing.documents
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -569,7 +569,7 @@ paths:
                 glean.indexing.documents.delete(datasource="<value>", object_type="<value>", id="<id>")
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -590,7 +590,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -622,7 +622,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.Delete(ctx, components.DeleteDocumentRequest{\n        Datasource: \"<value>\",\n        ObjectType: \"<value>\",\n        ID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexuser:
@@ -635,22 +635,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IndexUserRequest"
+              $ref: '#/components/schemas/IndexUserRequest'
         required: true
         x-exportParamName: IndexUserRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: indexUser
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -668,7 +668,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -691,7 +691,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -726,7 +726,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.IndexUser(ctx, components.IndexUserRequest{\n        Datasource: \"<value>\",\n        User: components.DatasourceUserDefinition{\n            Email: \"Art.Schaden@hotmail.com\",\n            Name: \"<value>\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexusers:
@@ -739,22 +739,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BulkIndexUsersRequest"
+              $ref: '#/components/schemas/BulkIndexUsersRequest'
         required: true
         x-exportParamName: BulkIndexUsersRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndexUsers
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -774,7 +774,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -808,7 +808,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -846,7 +846,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.BulkIndexUsers(ctx, components.BulkIndexUsersRequest{\n        UploadID: \"<id>\",\n        Datasource: \"<value>\",\n        Users: []components.DatasourceUserDefinition{\n            components.DatasourceUserDefinition{\n                Email: \"Ivory_Cummerata@hotmail.com\",\n                Name: \"<value>\",\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexgroup:
@@ -859,22 +859,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IndexGroupRequest"
+              $ref: '#/components/schemas/IndexGroupRequest'
         required: true
         x-exportParamName: IndexGroupRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: indexGroup
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -891,7 +891,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -913,7 +913,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -947,7 +947,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.IndexGroup(ctx, components.IndexGroupRequest{\n        Datasource: \"<value>\",\n        Group: components.DatasourceGroupDefinition{\n            Name: \"<value>\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexgroups:
@@ -960,22 +960,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BulkIndexGroupsRequest"
+              $ref: '#/components/schemas/BulkIndexGroupsRequest'
         required: true
         x-exportParamName: BulkIndexGroupsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndexGroups
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -994,7 +994,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1022,7 +1022,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1059,7 +1059,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.BulkIndexGroups(ctx, components.BulkIndexGroupsRequest{\n        UploadID: \"<id>\",\n        Datasource: \"<value>\",\n        Groups: []components.DatasourceGroupDefinition{\n            components.DatasourceGroupDefinition{\n                Name: \"<value>\",\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexmembership:
@@ -1072,22 +1072,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IndexMembershipRequest"
+              $ref: '#/components/schemas/IndexMembershipRequest'
         required: true
         x-exportParamName: IndexMembershipRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: indexMembership
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1104,7 +1104,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1126,7 +1126,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1160,7 +1160,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.IndexMembership(ctx, components.IndexMembershipRequest{\n        Datasource: \"<value>\",\n        Membership: components.DatasourceMembershipDefinition{\n            GroupName: \"<value>\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexmemberships:
@@ -1173,22 +1173,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BulkIndexMembershipsRequest"
+              $ref: '#/components/schemas/BulkIndexMembershipsRequest'
         required: true
         x-exportParamName: BulkIndexMembershipsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndexMemberships
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1205,7 +1205,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1230,7 +1230,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1266,7 +1266,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.BulkIndexMemberships(ctx, components.BulkIndexMembershipsRequest{\n        UploadID: \"<id>\",\n        Datasource: \"<value>\",\n        Memberships: []components.DatasourceBulkMembershipDefinition{\n            components.DatasourceBulkMembershipDefinition{},\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/processallmemberships:
@@ -1280,19 +1280,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ProcessAllMembershipsRequest"
+              $ref: '#/components/schemas/ProcessAllMembershipsRequest'
         x-exportParamName: ProcessAllMembershipsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-name-override: processMemberships
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1307,7 +1307,7 @@ paths:
                 glean.indexing.permissions.process_memberships()
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1324,7 +1324,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1348,7 +1348,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.ProcessMemberships(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/deleteuser:
@@ -1361,22 +1361,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DeleteUserRequest"
+              $ref: '#/components/schemas/DeleteUserRequest'
         required: true
         x-exportParamName: DeleteUserRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: deleteUser
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1391,7 +1391,7 @@ paths:
                 glean.indexing.permissions.delete_user(datasource="<value>", email="Ed.Johnston@gmail.com")
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1411,7 +1411,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1442,7 +1442,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.DeleteUser(ctx, components.DeleteUserRequest{\n        Datasource: \"<value>\",\n        Email: \"Ed.Johnston@gmail.com\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/deletegroup:
@@ -1455,22 +1455,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DeleteGroupRequest"
+              $ref: '#/components/schemas/DeleteGroupRequest'
         required: true
         x-exportParamName: DeleteGroupRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: deleteGroup
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1485,7 +1485,7 @@ paths:
                 glean.indexing.permissions.delete_group(datasource="<value>", group_name="<value>")
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1505,7 +1505,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1536,7 +1536,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.DeleteGroup(ctx, components.DeleteGroupRequest{\n        Datasource: \"<value>\",\n        GroupName: \"<value>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/deletemembership:
@@ -1549,22 +1549,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DeleteMembershipRequest"
+              $ref: '#/components/schemas/DeleteMembershipRequest'
         required: true
         x-exportParamName: DeleteMembershipRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: deleteMembership
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1581,7 +1581,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1603,7 +1603,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1637,7 +1637,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.DeleteMembership(ctx, components.DeleteMembershipRequest{\n        Datasource: \"<value>\",\n        Membership: components.DatasourceMembershipDefinition{\n            GroupName: \"<value>\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/debug/{datasource}/status:
@@ -1659,20 +1659,20 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json; charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/DebugDatasourceStatusResponse"
-        "400":
+                $ref: '#/components/schemas/DebugDatasourceStatusResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-name-override: status
       x-speakeasy-group: indexing.datasource
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1688,7 +1688,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1706,7 +1706,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1733,7 +1733,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Datasource.Status(ctx, \"<value>\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.DebugDatasourceStatusResponse != nil {\n        // handle response\n    }\n}"
   /api/index/v1/debug/{datasource}/document:
@@ -1758,24 +1758,24 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/DebugDocumentRequest"
+              $ref: '#/components/schemas/DebugDocumentRequest'
         required: true
         x-exportParamName: DebugDocumentRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json; charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/DebugDocumentResponse"
-        "400":
+                $ref: '#/components/schemas/DebugDocumentResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-group: indexing.documents
       x-speakeasy-name-override: debug
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1791,7 +1791,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1812,7 +1812,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1844,7 +1844,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.Debug(ctx, \"<value>\", components.DebugDocumentRequest{\n        ObjectType: \"Article\",\n        DocID: \"art123\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.DebugDocumentResponse != nil {\n        // handle response\n    }\n}"
   /api/index/v1/debug/{datasource}/documents:
@@ -1869,24 +1869,24 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/DebugDocumentsRequest"
+              $ref: '#/components/schemas/DebugDocumentsRequest'
         required: true
         x-exportParamName: DebugDocumentsRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json; charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/DebugDocumentsResponse"
-        "400":
+                $ref: '#/components/schemas/DebugDocumentsResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-group: indexing.documents
       x-speakeasy-name-override: debugMany
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -1902,7 +1902,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1927,7 +1927,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1959,7 +1959,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.DebugMany(ctx, \"<value>\", components.DebugDocumentsRequest{\n        DebugDocuments: []components.DebugDocumentRequest{},\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.DebugDocumentsResponse != nil {\n        // handle response\n    }\n}"
   /api/index/v1/debug/{datasource}/user:
@@ -1984,24 +1984,24 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/DebugUserRequest"
+              $ref: '#/components/schemas/DebugUserRequest'
         required: true
         x-exportParamName: DebugUserRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json; charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/DebugUserResponse"
-        "400":
+                $ref: '#/components/schemas/DebugUserResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-name-override: debug
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2017,7 +2017,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2037,7 +2037,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2068,7 +2068,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.Debug(ctx, \"<value>\", components.DebugUserRequest{\n        Email: \"u1@foo.com\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.DebugUserResponse != nil {\n        // handle response\n    }\n}"
   /api/index/v1/checkdocumentaccess:
@@ -2084,26 +2084,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CheckDocumentAccessRequest"
+              $ref: '#/components/schemas/CheckDocumentAccessRequest'
         required: true
         x-exportParamName: CheckDocumentAccessRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CheckDocumentAccessResponse"
-        "400":
+                $ref: '#/components/schemas/CheckDocumentAccessResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-group: indexing.documents
       x-speakeasy-name-override: checkAccess
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2119,7 +2119,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2142,7 +2142,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2177,7 +2177,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Documents.CheckAccess(ctx, components.CheckDocumentAccessRequest{\n        Datasource: \"<value>\",\n        ObjectType: \"<value>\",\n        DocID: \"<id>\",\n        UserEmail: \"<value>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CheckDocumentAccessResponse != nil {\n        // handle response\n    }\n}"
   /api/index/v1/getdocumentstatus:
@@ -2194,21 +2194,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GetDocumentStatusRequest"
+              $ref: '#/components/schemas/GetDocumentStatusRequest'
         required: true
         x-exportParamName: GetDocumentStatusRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetDocumentStatusResponse"
-        "400":
+                $ref: '#/components/schemas/GetDocumentStatusResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-group: indexing.documents
       x-speakeasy-name-override: status
@@ -2226,21 +2226,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GetDocumentCountRequest"
+              $ref: '#/components/schemas/GetDocumentCountRequest'
         required: true
         x-exportParamName: GetDocumentCountRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetDocumentCountResponse"
-        "400":
+                $ref: '#/components/schemas/GetDocumentCountResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-group: indexing.documents
       x-speakeasy-name-override: count
@@ -2258,21 +2258,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GetUserCountRequest"
+              $ref: '#/components/schemas/GetUserCountRequest'
         required: true
         x-exportParamName: GetUserCountRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetUserCountResponse"
-        "400":
+                $ref: '#/components/schemas/GetUserCountResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: count
       x-speakeasy-group: indexing.people
@@ -2286,22 +2286,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GreenlistUsersRequest"
+              $ref: '#/components/schemas/GreenlistUsersRequest'
         required: true
         x-exportParamName: GreenlistUsersRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: authorizeBetaUsers
       x-speakeasy-group: indexing.permissions
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2320,7 +2320,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2344,7 +2344,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2379,7 +2379,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Permissions.AuthorizeBetaUsers(ctx, components.GreenlistUsersRequest{\n        Datasource: \"<value>\",\n        Emails: []string{\n            \"Neil92@gmail.com\",\n            \"Alejandrin_Boyer4@hotmail.com\",\n            \"Shyanne_McLaughlin95@hotmail.com\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/adddatasource:
@@ -2392,20 +2392,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CustomDatasourceConfig"
+              $ref: '#/components/schemas/CustomDatasourceConfig'
         required: true
         x-exportParamName: DatasourceConfig
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-name-override: add
       x-speakeasy-group: indexing.datasources
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -2429,7 +2429,7 @@ paths:
                 ], trust_url_regex_for_view_activity=True, strip_fragment_in_canonical_url=True, is_entity_datasource=False, is_test_datasource=False)
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2459,7 +2459,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2500,7 +2500,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Datasources.Add(ctx, components.CustomDatasourceConfig{\n        Name: \"<value>\",\n        URLRegex: apiclientgo.String(\"https://example-company.datasource.com/.*\"),\n        Quicklinks: []components.Quicklink{\n            components.Quicklink{\n                IconConfig: &components.IconConfig{\n                    Color: apiclientgo.String(\"#343CED\"),\n                    Key: apiclientgo.String(\"person_icon\"),\n                    IconType: components.IconTypeGlyph.ToPointer(),\n                    Name: apiclientgo.String(\"user\"),\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/getdatasourceconfig:
@@ -2513,26 +2513,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GetDatasourceConfigRequest"
+              $ref: '#/components/schemas/GetDatasourceConfigRequest'
         required: true
         x-exportParamName: GetDatasourceConfigRequest
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CustomDatasourceConfig"
-        "400":
+                $ref: '#/components/schemas/CustomDatasourceConfig'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: retrieveConfig
       x-speakeasy-group: indexing.datasources
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2548,7 +2548,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2568,7 +2568,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2600,7 +2600,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Datasources.RetrieveConfig(ctx, components.GetDatasourceConfigRequest{\n        Datasource: \"<value>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CustomDatasourceConfig != nil {\n        // handle response\n    }\n}"
   /api/index/v1/rotatetoken:
@@ -2610,20 +2610,20 @@ paths:
       tags:
         - Authentication
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RotateTokenResponse"
-        "400":
+                $ref: '#/components/schemas/RotateTokenResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
       x-speakeasy-name-override: rotateToken
       x-speakeasy-group: indexing.authentication
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2639,7 +2639,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2657,7 +2657,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2683,7 +2683,7 @@ paths:
                     }
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Authentication.RotateToken(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.RotateTokenResponse != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexemployee:
@@ -2696,22 +2696,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/IndexEmployeeRequest"
+              $ref: '#/components/schemas/IndexEmployeeRequest'
         required: true
         x-exportParamName: IndexEmployeeRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: index
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2735,7 +2735,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2763,7 +2763,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2802,7 +2802,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.Index(ctx, components.IndexEmployeeRequest{\n        Employee: components.EmployeeInfoDefinition{\n            Email: \"Jerrold_Hermann@hotmail.com\",\n            Department: \"<value>\",\n            DatasourceProfiles: []components.DatasourceProfile{\n                components.DatasourceProfile{\n                    Datasource: \"github\",\n                    Handle: \"<value>\",\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexemployees:
@@ -2815,22 +2815,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/BulkIndexEmployeesRequest"
+              $ref: '#/components/schemas/BulkIndexEmployeesRequest'
         required: true
         x-exportParamName: BulkIndexEmployeesRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndex
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2856,7 +2856,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -2907,7 +2907,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -2948,7 +2948,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.BulkIndex(ctx, components.BulkIndexEmployeesRequest{\n        UploadID: \"<id>\",\n        Employees: []components.EmployeeInfoDefinition{\n            components.EmployeeInfoDefinition{\n                Email: \"Robin.Stoltenberg@yahoo.com\",\n                Department: \"<value>\",\n                DatasourceProfiles: []components.DatasourceProfile{\n                    components.DatasourceProfile{\n                        Datasource: \"github\",\n                        Handle: \"<value>\",\n                    },\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexemployeelist: {}
@@ -2960,18 +2960,18 @@ paths:
       tags:
         - People
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "429":
+        '429':
           description: Too Many Requests
       x-speakeasy-name-override: processAllEmployeesAndTeams
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -2986,7 +2986,7 @@ paths:
                 glean.indexing.people.process_all_employees_and_teams()
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3003,7 +3003,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3027,7 +3027,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.ProcessAllEmployeesAndTeams(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/deleteemployee:
@@ -3040,22 +3040,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/DeleteEmployeeRequest"
+              $ref: '#/components/schemas/DeleteEmployeeRequest'
         required: true
         x-exportParamName: DeleteEmployeeRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: delete
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -3070,7 +3070,7 @@ paths:
                 glean.indexing.people.delete(employee_email="<value>")
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3089,7 +3089,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3119,7 +3119,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.Delete(ctx, components.DeleteEmployeeRequest{\n        EmployeeEmail: \"<value>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/indexteam:
@@ -3132,22 +3132,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/IndexTeamRequest"
+              $ref: '#/components/schemas/IndexTeamRequest'
         required: true
         x-exportParamName: IndexTeamRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: indexTeam
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -3176,7 +3176,7 @@ paths:
                 })
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3217,7 +3217,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3260,7 +3260,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.IndexTeam(ctx, components.IndexTeamRequest{\n        Team: components.TeamInfoDefinition{\n            ID: \"<id>\",\n            Name: \"<value>\",\n            DatasourceProfiles: []components.DatasourceProfile{\n                components.DatasourceProfile{\n                    Datasource: \"github\",\n                    Handle: \"<value>\",\n                },\n            },\n            Members: []components.TeamMember{\n                components.TeamMember{\n                    Email: \"Valerie9@gmail.com\",\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/deleteteam:
@@ -3273,22 +3273,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/DeleteTeamRequest"
+              $ref: '#/components/schemas/DeleteTeamRequest'
         required: true
         x-exportParamName: DeleteTeamRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: deleteTeam
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -3303,7 +3303,7 @@ paths:
                 glean.indexing.people.delete_team(id="<id>")
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3322,7 +3322,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3352,7 +3352,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.DeleteTeam(ctx, components.DeleteTeamRequest{\n        ID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexteams:
@@ -3365,22 +3365,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/BulkIndexTeamsRequest"
+              $ref: '#/components/schemas/BulkIndexTeamsRequest'
         required: true
         x-exportParamName: BulkIndexTeamsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndexTeams
       x-speakeasy-group: indexing.people
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -3411,7 +3411,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3477,7 +3477,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3522,7 +3522,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.People.BulkIndexTeams(ctx, components.BulkIndexTeamsRequest{\n        UploadID: \"<id>\",\n        Teams: []components.TeamInfoDefinition{\n            components.TeamInfoDefinition{\n                ID: \"<id>\",\n                Name: \"<value>\",\n                DatasourceProfiles: []components.DatasourceProfile{\n                    components.DatasourceProfile{\n                        Datasource: \"github\",\n                        Handle: \"<value>\",\n                    },\n                },\n                Members: []components.TeamMember{\n                    components.TeamMember{\n                        Email: \"Nina_Erdman16@gmail.com\",\n                    },\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/bulkindexshortcuts:
@@ -3535,22 +3535,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/BulkIndexShortcutsRequest"
+              $ref: '#/components/schemas/BulkIndexShortcutsRequest'
         required: true
         x-exportParamName: BulkIndexShortcutsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: bulkIndex
       x-speakeasy-group: indexing.shortcuts
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -3572,7 +3572,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3605,7 +3605,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3644,7 +3644,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Shortcuts.BulkIndex(ctx, components.BulkIndexShortcutsRequest{\n        UploadID: \"<id>\",\n        Shortcuts: []components.ExternalShortcut{\n            components.ExternalShortcut{\n                InputAlias: \"<value>\",\n                DestinationURL: \"https://plump-tune-up.biz/\",\n                CreatedBy: \"<value>\",\n                IntermediateURL: \"https://lean-sightseeing.net\",\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   /api/index/v1/uploadshortcuts:
@@ -3657,22 +3657,22 @@ paths:
         content:
           application/json; charset=UTF-8:
             schema:
-              $ref: "#/components/schemas/UploadShortcutsRequest"
+              $ref: '#/components/schemas/UploadShortcutsRequest'
         required: true
         x-exportParamName: UploadShortcutsRequest
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Not Authorized
-        "409":
+        '409':
           description: Conflict
       x-speakeasy-name-override: upload
       x-speakeasy-group: indexing.shortcuts
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -3693,7 +3693,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -3729,7 +3729,7 @@ paths:
             }
 
             run();
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -3767,7 +3767,7 @@ paths:
                     // handle response
                 }
             }
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Indexing.Shortcuts.Upload(ctx, components.UploadShortcutsRequest{\n        UploadID: \"<id>\",\n        Shortcuts: []components.IndexingShortcut{\n            components.IndexingShortcut{\n                InputAlias: \"<value>\",\n                DestinationURL: \"https://majestic-pharmacopoeia.info/\",\n                CreatedBy: \"<value>\",\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
 components:
@@ -3786,7 +3786,7 @@ components:
           description: Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
         document:
           description: Document being added/updated
-          $ref: "#/components/schemas/DocumentDefinition"
+          $ref: '#/components/schemas/DocumentDefinition'
       required:
         - document
     IndexDocumentsRequest:
@@ -3803,7 +3803,7 @@ components:
           description: Batch of documents being added/updated
           type: array
           items:
-            $ref: "#/components/schemas/DocumentDefinition"
+            $ref: '#/components/schemas/DocumentDefinition'
       required:
         - documents
         - datasource
@@ -3824,7 +3824,7 @@ components:
           description: |
             The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
         permissions:
-          $ref: "#/components/schemas/DocumentPermissionsDefinition"
+          $ref: '#/components/schemas/DocumentPermissionsDefinition'
           description: The permissions that define who can view this document in the search results. Please refer to [this](https://developers.glean.com/docs/indexing_api_permissions/) for more details.
       required:
         - permissions
@@ -3902,28 +3902,28 @@ components:
       type: object
       description: Describes the request body of the /bulkindexteams API call
       allOf:
-        - $ref: "#/components/schemas/BulkIndexRequest"
+        - $ref: '#/components/schemas/BulkIndexRequest'
         - type: object
           properties:
             teams:
               description: Batch of team information
               type: array
               items:
-                $ref: "#/components/schemas/TeamInfoDefinition"
+                $ref: '#/components/schemas/TeamInfoDefinition'
           required:
             - teams
     BulkIndexEmployeesRequest:
       type: object
       description: Describes the request body of the /bulkindexemployees API call
       allOf:
-        - $ref: "#/components/schemas/BulkIndexRequest"
+        - $ref: '#/components/schemas/BulkIndexRequest'
         - type: object
           properties:
             employees:
               description: Batch of employee information
               type: array
               items:
-                $ref: "#/components/schemas/EmployeeInfoDefinition"
+                $ref: '#/components/schemas/EmployeeInfoDefinition'
             disableStaleDataDeletionCheck:
               type: boolean
               description: True if older employee data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than 20%. This must only be set when `isLastPage = true`
@@ -3933,7 +3933,7 @@ components:
       type: object
       description: Describes the request body of the /bulkindexdocuments API call
       allOf:
-        - $ref: "#/components/schemas/BulkIndexRequest"
+        - $ref: '#/components/schemas/BulkIndexRequest'
         - type: object
           properties:
             datasource:
@@ -3943,7 +3943,7 @@ components:
               description: Batch of documents for the datasource
               type: array
               items:
-                $ref: "#/components/schemas/DocumentDefinition"
+                $ref: '#/components/schemas/DocumentDefinition'
             disableStaleDocumentDeletionCheck:
               type: boolean
               description: True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
@@ -3991,7 +3991,7 @@ components:
           description: The datasource for which the user is added
         user:
           description: The user to be added or updated
-          $ref: "#/components/schemas/DatasourceUserDefinition"
+          $ref: '#/components/schemas/DatasourceUserDefinition'
       required:
         - datasource
         - user
@@ -4034,7 +4034,7 @@ components:
           description: batch of users for the datasource
           type: array
           items:
-            $ref: "#/components/schemas/DatasourceUserDefinition"
+            $ref: '#/components/schemas/DatasourceUserDefinition'
         disableStaleDataDeletionCheck:
           type: boolean
           description: True if older user data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
@@ -4088,7 +4088,7 @@ components:
           description: The datasource for which the group is added
         group:
           description: The group to be added or updated
-          $ref: "#/components/schemas/DatasourceGroupDefinition"
+          $ref: '#/components/schemas/DatasourceGroupDefinition'
       required:
         - datasource
         - group
@@ -4115,7 +4115,7 @@ components:
           description: batch of groups for the datasource
           type: array
           items:
-            $ref: "#/components/schemas/DatasourceGroupDefinition"
+            $ref: '#/components/schemas/DatasourceGroupDefinition'
         disableStaleDataDeletionCheck:
           type: boolean
           description: True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
@@ -4145,7 +4145,7 @@ components:
           description: The datasource for which the membership is added
         membership:
           description: The membership to be added or updated
-          $ref: "#/components/schemas/DatasourceMembershipDefinition"
+          $ref: '#/components/schemas/DatasourceMembershipDefinition'
       required:
         - datasource
         - membership
@@ -4175,7 +4175,7 @@ components:
           description: batch of memberships for the group
           type: array
           items:
-            $ref: "#/components/schemas/DatasourceBulkMembershipDefinition"
+            $ref: '#/components/schemas/DatasourceBulkMembershipDefinition'
       required:
         - uploadId
         - datasource
@@ -4259,7 +4259,7 @@ components:
           description: The datasource for which the membership is removed
         membership:
           description: the name of the membership to be deleted
-          $ref: "#/components/schemas/DatasourceMembershipDefinition"
+          $ref: '#/components/schemas/DatasourceMembershipDefinition'
       required:
         - datasource
         - membership
@@ -4317,16 +4317,16 @@ components:
           type: string
           description: The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
         summary:
-          $ref: "#/components/schemas/ContentDefinition"
+          $ref: '#/components/schemas/ContentDefinition'
         body:
-          $ref: "#/components/schemas/ContentDefinition"
+          $ref: '#/components/schemas/ContentDefinition'
         author:
-          $ref: "#/components/schemas/UserReferenceDefinition"
+          $ref: '#/components/schemas/UserReferenceDefinition'
         owner:
-          $ref: "#/components/schemas/UserReferenceDefinition"
+          $ref: '#/components/schemas/UserReferenceDefinition'
           description: The current owner of the document, if not the author.
         permissions:
-          $ref: "#/components/schemas/DocumentPermissionsDefinition"
+          $ref: '#/components/schemas/DocumentPermissionsDefinition'
           description: The permissions that define who can view this document in the search results. Please refer to [this](https://developers.glean.com/docs/indexing_api_permissions/) for more details.
         createdAt:
           type: integer
@@ -4337,14 +4337,14 @@ components:
           format: int64
           description: The last update time, in epoch seconds.
         updatedBy:
-          $ref: "#/components/schemas/UserReferenceDefinition"
+          $ref: '#/components/schemas/UserReferenceDefinition'
         tags:
           type: array
           items:
             type: string
           description: Labels associated with the document.
         interactions:
-          $ref: "#/components/schemas/DocumentInteractionsDefinition"
+          $ref: '#/components/schemas/DocumentInteractionsDefinition'
         status:
           type: string
         additionalUrls:
@@ -4355,12 +4355,12 @@ components:
         comments:
           type: array
           items:
-            $ref: "#/components/schemas/CommentDefinition"
+            $ref: '#/components/schemas/CommentDefinition'
           description: Comments associated with the document.
         customProperties:
           type: array
           items:
-            $ref: "#/components/schemas/CustomProperty"
+            $ref: '#/components/schemas/CustomProperty'
           description: Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
       required:
         - datasource
@@ -4372,10 +4372,10 @@ components:
           type: string
           description: The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
         author:
-          $ref: "#/components/schemas/UserReferenceDefinition"
+          $ref: '#/components/schemas/UserReferenceDefinition'
           description: The author of the comment.
         content:
-          $ref: "#/components/schemas/ContentDefinition"
+          $ref: '#/components/schemas/ContentDefinition'
           description: The content of the comment.
         createdAt:
           type: integer
@@ -4386,7 +4386,7 @@ components:
           format: int64
           description: The last updated time, in epoch seconds.
         updatedBy:
-          $ref: "#/components/schemas/UserReferenceDefinition"
+          $ref: '#/components/schemas/UserReferenceDefinition'
           description: The user who last updated the comment.
       required:
         - id
@@ -4431,7 +4431,7 @@ components:
           description: List of users who can view the document
           type: array
           items:
-            $ref: "#/components/schemas/UserReferenceDefinition"
+            $ref: '#/components/schemas/UserReferenceDefinition'
         allowedGroups:
           description: List of groups that can view the document
           type: array
@@ -4441,7 +4441,7 @@ components:
           description: List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
           type: array
           items:
-            $ref: "#/components/schemas/PermissionsGroupIntersectionDefinition"
+            $ref: '#/components/schemas/PermissionsGroupIntersectionDefinition'
         allowAnonymousAccess:
           description: If true, then any Glean user can view the document
           type: boolean
@@ -4495,7 +4495,7 @@ components:
         value:
           description: Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
     DatasourceConfig:
-      $ref: "#/components/schemas/SharedDatasourceConfig"
+      $ref: '#/components/schemas/SharedDatasourceConfig'
     GetDatasourceConfigRequest:
       type: object
       description: Describes the request body of the /getdatasourceconfig API call
@@ -4514,7 +4514,7 @@ components:
           type: array
           description: Datasource configuration.
           items:
-            $ref: "#/components/schemas/SharedDatasourceConfig"
+            $ref: '#/components/schemas/SharedDatasourceConfig'
     RotateTokenResponse:
       description: Describes the response body of the /rotatetoken API call
       properties:
@@ -4535,7 +4535,7 @@ components:
       properties:
         employee:
           description: Info about the employee
-          $ref: "#/components/schemas/EmployeeInfoDefinition"
+          $ref: '#/components/schemas/EmployeeInfoDefinition'
         version:
           description: Version number for the employee object. If absent or 0 then no version checks are done
           type: integer
@@ -4550,7 +4550,7 @@ components:
           description: List of employee info and version.
           type: array
           items:
-            $ref: "#/components/schemas/IndexEmployeeRequest"
+            $ref: '#/components/schemas/IndexEmployeeRequest'
     StructuredLocation:
       type: object
       description: Detailed location with information about country, state, city etc.
@@ -4663,7 +4663,7 @@ components:
           deprecated: true
         structuredLocation:
           description: Detailed location with information about country, state, city etc.
-          $ref: "#/components/schemas/StructuredLocation"
+          $ref: '#/components/schemas/StructuredLocation'
         title:
           type: string
           description: The employee's role title.
@@ -4681,12 +4681,12 @@ components:
           type: array
           description: The datasource profiles of the employee, e.g. `Slack`,`Github`.
           items:
-            $ref: "#/components/schemas/DatasourceProfile"
+            $ref: '#/components/schemas/DatasourceProfile'
         teams:
           type: array
           description: Info about the employee's team(s)
           items:
-            $ref: "#/components/schemas/EmployeeTeamInfo"
+            $ref: '#/components/schemas/EmployeeTeamInfo'
         startDate:
           type: string
           format: date
@@ -4713,7 +4713,7 @@ components:
           type: array
           description: List of social network profiles.
           items:
-            $ref: "#/components/schemas/SocialNetworkDefinition"
+            $ref: '#/components/schemas/SocialNetworkDefinition'
         managerEmail:
           type: string
           description: The email of the employee's manager
@@ -4729,7 +4729,7 @@ components:
           type: array
           description: List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
           items:
-            $ref: "#/components/schemas/EntityRelationship"
+            $ref: '#/components/schemas/EntityRelationship'
         status:
           type: string
           description: The status of the employee, an enum of `CURRENT`, `FUTURE`, `EX`
@@ -4738,7 +4738,7 @@ components:
           type: array
           description: List of additional fields with more information about the employee.
           items:
-            $ref: "#/components/schemas/AdditionalFieldDefinition"
+            $ref: '#/components/schemas/AdditionalFieldDefinition'
       required:
         - department
         - email
@@ -4748,7 +4748,7 @@ components:
       properties:
         employee:
           description: Info about the employee
-          $ref: "#/components/schemas/EmployeeInfoDefinition"
+          $ref: '#/components/schemas/EmployeeInfoDefinition'
         version:
           description: Version number for the employee object. If absent or 0 then no version checks are done
           type: integer
@@ -4847,22 +4847,22 @@ components:
           type: array
           description: The emails of the team
           items:
-            $ref: "#/components/schemas/TeamEmail"
+            $ref: '#/components/schemas/TeamEmail'
         datasourceProfiles:
           type: array
           description: The datasource profiles of the team, e.g. `Slack`,`Github`.
           items:
-            $ref: "#/components/schemas/DatasourceProfile"
+            $ref: '#/components/schemas/DatasourceProfile'
         members:
           type: array
           description: The members of the team
           items:
-            $ref: "#/components/schemas/TeamMember"
+            $ref: '#/components/schemas/TeamMember'
         additionalFields:
           type: array
           description: List of additional fields with more information about the team.
           items:
-            $ref: "#/components/schemas/AdditionalFieldDefinition"
+            $ref: '#/components/schemas/AdditionalFieldDefinition'
       required:
         - id
         - members
@@ -4873,7 +4873,7 @@ components:
       properties:
         team:
           description: Info about the team
-          $ref: "#/components/schemas/TeamInfoDefinition"
+          $ref: '#/components/schemas/TeamInfoDefinition'
         version:
           description: Version number for the team object. If absent or 0 then no version checks are done
           type: integer
@@ -4884,28 +4884,28 @@ components:
       type: object
       description: Describes the request body of the /bulkindexshortcuts API call
       allOf:
-        - $ref: "#/components/schemas/BulkIndexRequest"
+        - $ref: '#/components/schemas/BulkIndexRequest'
         - type: object
           properties:
             shortcuts:
               description: Batch of shortcuts information
               type: array
               items:
-                $ref: "#/components/schemas/ExternalShortcut"
+                $ref: '#/components/schemas/ExternalShortcut'
           required:
             - shortcuts
     UploadShortcutsRequest:
       type: object
       description: Describes the request body of the /uploadshortcuts API call
       allOf:
-        - $ref: "#/components/schemas/BulkIndexRequest"
+        - $ref: '#/components/schemas/BulkIndexRequest'
         - type: object
           properties:
             shortcuts:
               description: Batch of shortcuts information
               type: array
               items:
-                $ref: "#/components/schemas/IndexingShortcut"
+                $ref: '#/components/schemas/IndexingShortcut'
           required:
             - shortcuts
     DebugDatasourceStatusResponse:
@@ -4917,33 +4917,33 @@ components:
           properties:
             bulkUploadHistory:
               type: object
-              $ref: "#/components/schemas/BulkUploadHistoryEventList"
+              $ref: '#/components/schemas/BulkUploadHistoryEventList'
             counts:
               type: object
               properties:
                 uploaded:
                   type: array
                   items:
-                    $ref: "#/components/schemas/DatasourceObjectTypeDocumentCountEntry"
+                    $ref: '#/components/schemas/DatasourceObjectTypeDocumentCountEntry'
                   description: A list of object types and corresponding upload counts
                 indexed:
                   type: array
                   description: The number of documents indexed, grouped by objectType
                   items:
-                    $ref: "#/components/schemas/DatasourceObjectTypeDocumentCountEntry"
+                    $ref: '#/components/schemas/DatasourceObjectTypeDocumentCountEntry'
             processingHistory:
-              $ref: "#/components/schemas/ProcessingHistoryEventList"
+              $ref: '#/components/schemas/ProcessingHistoryEventList'
         identity:
           type: object
           properties:
             processingHistory:
-              $ref: "#/components/schemas/ProcessingHistoryEventList"
+              $ref: '#/components/schemas/ProcessingHistoryEventList'
             users:
-              $ref: "#/components/schemas/DebugDatasourceStatusIdentityResponseComponent"
+              $ref: '#/components/schemas/DebugDatasourceStatusIdentityResponseComponent'
             groups:
-              $ref: "#/components/schemas/DebugDatasourceStatusIdentityResponseComponent"
+              $ref: '#/components/schemas/DebugDatasourceStatusIdentityResponseComponent'
             memberships:
-              $ref: "#/components/schemas/DebugDatasourceStatusIdentityResponseComponent"
+              $ref: '#/components/schemas/DebugDatasourceStatusIdentityResponseComponent'
         datasourceVisibility:
           type: string
           description: The visibility of the datasource, an enum of VISIBLE_TO_ALL, VISIBLE_TO_TEST_GROUP, NOT_VISIBLE
@@ -4957,7 +4957,7 @@ components:
       properties:
         bulkUploadHistory:
           type: object
-          $ref: "#/components/schemas/BulkUploadHistoryEventList"
+          $ref: '#/components/schemas/BulkUploadHistoryEventList'
         counts:
           type: object
           properties:
@@ -4987,11 +4987,11 @@ components:
         startTime:
           type: string
           description: The start time of the upload in ISO 8601 format
-          example: "2021-08-06T17:58:01.000Z"
+          example: '2021-08-06T17:58:01.000Z'
         endTime:
           type: string
           description: The end time of the upload in ISO 8601 format, 'NA' if the upload is still active
-          example: "2021-08-06T18:58:01.000Z"
+          example: '2021-08-06T18:58:01.000Z'
         status:
           type: string
           description: The status of the upload, an enum of ACTIVE, SUCCESSFUL
@@ -5014,7 +5014,7 @@ components:
       description: Information about active and recent successful uploads for the datasource
       type: array
       items:
-        $ref: "#/components/schemas/BulkUploadHistoryEvent"
+        $ref: '#/components/schemas/BulkUploadHistoryEvent'
     DebugDocumentRequest:
       type: object
       description: Describes the request body of the /debug/{datasource}/document API call.
@@ -5037,9 +5037,9 @@ components:
         status:
           type: object
           description: Upload and indexing status of the document
-          $ref: "#/components/schemas/DocumentStatusResponse"
+          $ref: '#/components/schemas/DocumentStatusResponse'
         uploadedPermissions:
-          $ref: "#/components/schemas/DocumentPermissionsDefinition"
+          $ref: '#/components/schemas/DocumentPermissionsDefinition'
     DebugDocumentsRequest:
       type: object
       description: Describes the request body of the /debug/{datasource}/documents API call.
@@ -5048,7 +5048,7 @@ components:
           type: array
           description: Documents to fetch debug information for
           items:
-            $ref: "#/components/schemas/DebugDocumentRequest"
+            $ref: '#/components/schemas/DebugDocumentRequest'
       required:
         - debugDocuments
     DebugDocumentsResponseItem:
@@ -5064,7 +5064,7 @@ components:
         debugInfo:
           type: object
           description: Debug information of the document
-          $ref: "#/components/schemas/DebugDocumentResponse"
+          $ref: '#/components/schemas/DebugDocumentResponse'
     DebugDocumentsResponse:
       type: object
       description: Describes the response body of a single document in the /debug/{datasource}/documents API call
@@ -5073,7 +5073,7 @@ components:
           type: array
           description: List of document ids/urls and their debug information
           items:
-            $ref: "#/components/schemas/DebugDocumentsResponseItem"
+            $ref: '#/components/schemas/DebugDocumentsResponseItem'
     DocumentStatusResponse:
       type: object
       description: Describes the document status response body
@@ -5085,7 +5085,7 @@ components:
         lastUploadedAt:
           type: string
           description: Time of last successful upload for the document, in ISO 8601 format
-          example: "2021-08-06T17:58:01.000Z"
+          example: '2021-08-06T17:58:01.000Z'
         indexingStatus:
           type: string
           description: Indexing status, enum of NOT_INDEXED, INDEXED, STATUS_UNKNOWN
@@ -5093,7 +5093,7 @@ components:
         lastIndexedAt:
           type: string
           description: Time of last successful indexing for the document, in ISO 8601 format
-          example: "2021-08-06T17:58:01.000Z"
+          example: '2021-08-06T17:58:01.000Z'
         permissionIdentityStatus:
           type: string
           description: Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
@@ -5113,7 +5113,7 @@ components:
         timestamp:
           type: string
           description: Timestamp of the event
-          example: "2021-08-06T17:58:01.000Z"
+          example: '2021-08-06T17:58:01.000Z'
     ProcessingHistoryEvent:
       type: object
       description: Processing history event for a datasource
@@ -5121,16 +5121,16 @@ components:
         startTime:
           type: string
           description: The start time of the processing in ISO 8601 format
-          example: "2021-08-06T17:58:01.000Z"
+          example: '2021-08-06T17:58:01.000Z'
         endTime:
           type: string
           description: The end time of the processing in ISO 8601 format, 'NA' if still in progress
-          example: "2021-08-06T18:58:01.000Z"
+          example: '2021-08-06T18:58:01.000Z'
     ProcessingHistoryEventList:
       description: Information about processing history for the datasource
       type: array
       items:
-        $ref: "#/components/schemas/ProcessingHistoryEvent"
+        $ref: '#/components/schemas/ProcessingHistoryEvent'
     DebugUserRequest:
       type: object
       description: Describes the request body of the /debug/{datasource}/user API call
@@ -5148,12 +5148,12 @@ components:
         status:
           type: object
           description: Upload and indexing status of the user
-          $ref: "#/components/schemas/UserStatusResponse"
+          $ref: '#/components/schemas/UserStatusResponse'
         uploadedGroups:
           type: array
           description: List of groups the user is a member of, as uploaded via permissions API.
           items:
-            $ref: "#/components/schemas/DatasourceGroupDefinition"
+            $ref: '#/components/schemas/DatasourceGroupDefinition'
     UserStatusResponse:
       type: object
       description: Describes the user status response body
@@ -5163,11 +5163,11 @@ components:
           description: Whether the user is active or not
           example: true
         uploadStatus:
-          $ref: "#/components/schemas/UploadStatusEnum"
+          $ref: '#/components/schemas/UploadStatusEnum'
         lastUploadedAt:
           type: string
           description: Time of last successful upload for the user, in ISO 8601 format
-          example: "2021-08-06T17:58:01.000Z"
+          example: '2021-08-06T17:58:01.000Z'
     UploadStatusEnum:
       type: string
       description: Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -5258,12 +5258,12 @@ components:
         propertyDefinitions:
           type: array
           items:
-            $ref: "#/components/schemas/PropertyDefinition"
+            $ref: '#/components/schemas/PropertyDefinition'
         propertyGroups:
           type: array
           description: A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
           items:
-            $ref: "#/components/schemas/PropertyGroup"
+            $ref: '#/components/schemas/PropertyGroup'
         summarizable:
           description: Whether or not the object is summarizable
           type: boolean
@@ -5324,7 +5324,7 @@ components:
           type: string
           description: The URL to an image to be displayed if applicable, e.g. the URL for `iconType.URL` icons.
       example:
-        color: "#343CED"
+        color: '#343CED'
         key: person_icon
         iconType: GLYPH
         name: user
@@ -5341,7 +5341,7 @@ components:
           type: string
           description: The URL of the action.
         iconConfig:
-          $ref: "#/components/schemas/IconConfig"
+          $ref: '#/components/schemas/IconConfig'
           description: The config for the icon for this quicklink
         id:
           type: string
@@ -5393,7 +5393,7 @@ components:
           description: The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
         urlRegex:
           type: string
-          description: "Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**"
+          description: 'Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**'
           example: https://example-company.datasource.com/.*
         iconUrl:
           type: string
@@ -5402,7 +5402,7 @@ components:
           type: array
           description: The list of top-level `objectType`s for the datasource.
           items:
-            $ref: "#/components/schemas/ObjectDefinition"
+            $ref: '#/components/schemas/ObjectDefinition'
         suggestionText:
           type: string
           description: Example text for what to search for in this datasource
@@ -5431,25 +5431,25 @@ components:
           type: array
           description: A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
           items:
-            $ref: "#/components/schemas/CanonicalizingRegexType"
+            $ref: '#/components/schemas/CanonicalizingRegexType'
         canonicalizingTitleRegex:
           type: array
           description: A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
           items:
-            $ref: "#/components/schemas/CanonicalizingRegexType"
+            $ref: '#/components/schemas/CanonicalizingRegexType'
         redlistTitleRegex:
           type: string
           description: A regex that identifies titles that should not be indexed
         connectorType:
           allOf:
-            - $ref: "#/components/schemas/ConnectorType"
+            - $ref: '#/components/schemas/ConnectorType'
           type: string
           deprecated: false
         quicklinks:
           type: array
           description: List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
           items:
-            $ref: "#/components/schemas/Quicklink"
+            $ref: '#/components/schemas/Quicklink'
         renderConfigPreset:
           type: string
           description: The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
@@ -5475,7 +5475,7 @@ components:
     CustomDatasourceConfig:
       description: Structure describing config properties of a custom datasource
       allOf:
-        - $ref: "#/components/schemas/SharedDatasourceConfigNoInstance"
+        - $ref: '#/components/schemas/SharedDatasourceConfigNoInstance'
         - type: object
           properties:
             identityDatasourceName:
@@ -5544,7 +5544,7 @@ components:
           description: The time the shortcut was updated in epoch seconds.
     ExternalShortcut:
       allOf:
-        - $ref: "#/components/schemas/ShortcutProperties"
+        - $ref: '#/components/schemas/ShortcutProperties'
         - type: object
           required:
             - destinationUrl
@@ -5570,7 +5570,7 @@ components:
     SharedDatasourceConfig:
       description: Structure describing shared config properties of the datasource (including multi-instance support)
       allOf:
-        - $ref: "#/components/schemas/SharedDatasourceConfigNoInstance"
+        - $ref: '#/components/schemas/SharedDatasourceConfigNoInstance'
         - type: object
           properties:
             datasourceName:
@@ -5584,7 +5584,7 @@ components:
               description: A human readable string identifying this instance as compared to its peers, e.g. "github.com/askscio" or "github.askscio.com"
     IndexingShortcut:
       allOf:
-        - $ref: "#/components/schemas/ShortcutProperties"
+        - $ref: '#/components/schemas/ShortcutProperties'
         - type: object
           required:
             - destinationUrl

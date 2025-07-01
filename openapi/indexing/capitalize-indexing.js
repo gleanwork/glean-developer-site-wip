@@ -6,6 +6,8 @@
  */
 
 const fs = require('fs');
+const https = require('https');
+const http = require('http');
 const yaml = require('js-yaml');
 
 function capitalizeLanguageName(lang) {
@@ -14,7 +16,7 @@ function capitalizeLanguageName(lang) {
     'python': 'Python',
     'java': 'Java',
     'javascript': 'JavaScript',
-    'typescript': 'TypeScript',
+    'typescript': 'JavaScript',
     'go': 'Go',
     'ruby': 'Ruby',
     'php': 'PHP',
@@ -61,16 +63,61 @@ function processCodeSamples(obj) {
   });
 }
 
-function capitalizeCodeSamples(inputFile, outputFile) {
+// Function to fetch content from URL
+function fetchFromUrl(url) {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith('https:') ? https : http;
+    
+    client.get(url, (res) => {
+      let data = '';
+      
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(data);
+        } else {
+          reject(new Error(`HTTP ${res.statusCode}: ${res.statusMessage}`));
+        }
+      });
+    }).on('error', (err) => {
+      reject(err);
+    });
+  });
+}
+
+// Function to read content from file or URL
+async function readContent(input) {
+  if (input.startsWith('http://') || input.startsWith('https://')) {
+    console.log(`📡 Fetching from URL: ${input}...`);
+    return await fetchFromUrl(input);
+  } else {
+    console.log(`📖 Reading local file: ${input}...`);
+    return fs.readFileSync(input, 'utf8');
+  }
+}
+
+async function capitalizeCodeSamples(inputFile, outputFile) {
   try {
-    console.log(`📖 Reading ${inputFile}...`);
-    const fileContent = fs.readFileSync(inputFile, 'utf8');
+    const fileContent = await readContent(inputFile);
     const apiSpec = yaml.load(fileContent);
 
     console.log('🔤 Processing x-codeSamples...');
     processCodeSamples(apiSpec);
 
-    const output = outputFile || inputFile;
+    // For URL inputs, use a default filename if no output specified
+    let output = outputFile;
+    if (!output) {
+      if (inputFile.startsWith('http://') || inputFile.startsWith('https://')) {
+        output = 'api-capitalized.yaml';
+        console.log(`💡 No output file specified for URL input, using: ${output}`);
+      } else {
+        output = inputFile;
+      }
+    }
+    
     console.log(`💾 Writing to ${output}...`);
     
     fs.writeFileSync(output, yaml.dump(apiSpec, {
@@ -91,20 +138,24 @@ if (require.main === module) {
   const args = process.argv.slice(2);
   
   if (args.length < 1) {
-    console.log('Usage: node capitalize-code-samples.js <input.yaml> [output.yaml]');
+    console.log('Usage: node capitalize-indexing.js <input.yaml|url> [output.yaml]');
     console.log('');
     console.log('Examples:');
-    console.log('  node capitalize-code-samples.js api.yaml');
-    console.log('  node capitalize-code-samples.js api.yaml api-updated.yaml');
+    console.log('  node capitalize-indexing.js indexing.yaml');
+    console.log('  node capitalize-indexing.js indexing.yaml indexing-capitalized.yaml');
+    console.log('  node capitalize-indexing.js https://gleanwork.github.io/open-api/specs/final/indexing.yaml indexing-capitalized.yaml');
     console.log('');
-    console.log('If output file is not specified, the input file will be updated in place.');
+    console.log('If output file is not specified:');
+    console.log('  - Local files will be updated in place');
+    console.log('  - URLs will create "api-capitalized.yaml" in current directory');
     process.exit(1);
   }
 
   const inputFile = args[0];
   const outputFile = args[1];
   
-  if (!fs.existsSync(inputFile)) {
+  // For local files, check if they exist
+  if (!inputFile.startsWith('http://') && !inputFile.startsWith('https://') && !fs.existsSync(inputFile)) {
     console.error(`❌ Input file not found: ${inputFile}`);
     process.exit(1);
   }

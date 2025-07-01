@@ -5,216 +5,67 @@ description: "Replaces all the currently indexed teams using paginated batch API
 sidebar_label: "Bulk index teams"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
-info_path: docs/api/indexing-api/glean-api
+info_path: api/indexing-api/glean-api
 custom_edit_url: null
 ---
 
-# Bulk index teams
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bulk index teams"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/index/v1/bulkindexteams"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
 
 Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
 
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
 
-## Code Samples
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
 
-### Python (API Client)
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json; charset=UTF-8":{"schema":{"type":"object","description":"Describes the request body of the /bulkindexteams API call","allOf":[{"type":"object","description":"Describes the request body of a bulk upload API call","required":["uploadId"],"properties":{"uploadId":{"type":"string","description":"Unique id that must be used for this bulk upload instance"},"isFirstPage":{"type":"boolean","description":"true if this is the first page of the upload. Defaults to false"},"isLastPage":{"type":"boolean","description":"true if this is the last page of the upload. Defaults to false"},"forceRestartUpload":{"type":"boolean","description":"Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true"}},"title":"BulkIndexRequest"},{"type":"object","properties":{"teams":{"description":"Batch of team information","type":"array","items":{"type":"object","description":"Information about an employee's team","properties":{"id":{"type":"string","description":"The unique ID of the team"},"name":{"type":"string","description":"Human-readable team name"},"description":{"type":"string","description":"The description of this team"},"businessUnit":{"type":"string","description":"Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses."},"department":{"type":"string","description":"An organizational unit where everyone has a similar task, e.g. `Engineering`."},"photoUrl":{"type":"string","format":"uri","description":"A link to the team's photo"},"externalLink":{"type":"string","format":"uri","description":"A link to an external team page. If set, team results will link to it.\n"},"emails":{"type":"array","description":"The emails of the team","items":{"type":"object","description":"Information about a team's email","properties":{"email":{"type":"string","format":"email","description":"An email address"},"type":{"type":"string","description":"An enum of `PRIMARY`, `SECONDARY`, `ONCALL`, `OTHER`","default":"OTHER"}},"required":["email","type"],"title":"TeamEmail"}},"datasourceProfiles":{"type":"array","description":"The datasource profiles of the team, e.g. `Slack`,`Github`.","items":{"required":["datasource","handle"],"properties":{"datasource":{"type":"string","example":"github","description":"The datasource the profile is of."},"handle":{"type":"string","description":"The display name of the entity in the given datasource."},"url":{"type":"string","description":"URL to view the entity's profile."},"nativeAppUrl":{"type":"string","description":"A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...)."},"isUserGenerated":{"type":"boolean","description":"For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)"}},"title":"DatasourceProfile"}},"members":{"type":"array","description":"The members of the team","items":{"type":"object","description":"Information about a team's member","properties":{"email":{"type":"string","description":"The member's email","format":"email"},"relationship":{"type":"string","description":"The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`","default":"MEMBER"},"join_date":{"type":"string","format":"date","description":"The member's start date"}},"required":["email"],"title":"TeamMember"}},"additionalFields":{"type":"array","description":"List of additional fields with more information about the team.","items":{"type":"object","description":"Additional information about the employee or team.","properties":{"key":{"type":"string","description":"Key to reference this field, e.g. \"languages\". Note that the key should be all lowercase alphabetic characters with no numbers, spaces, hyphens or underscores."},"value":{"type":"array","description":"List of type string or HypertextField.\n\nHypertextField is defined as\n```\n{\n  anchor: string,    // Anchor text for the hypertext field.\n  hyperlink: string, // URL for the hypertext field.\n}\n```\nExample: ```{\"anchor\":\"Glean\",\"hyperlink\":\"https://glean.com\"}```\n\nWhen OpenAPI Generator supports oneOf, we will semantically enforce this in the docs.\n\n**Note**: If using the Python SDK to pass in a list of strings, the value may need to be a list of dictionaries. In that case, the key in that dictionary will be ignored.\nExample: ```\"languages\": [{\"lang\":\"English\",\"lang\":\"Spanish\",...}]```. In this case, the key \"lang\" will be ignored and can even be passed in as an empty string.\n","items":{"type":"object","description":"Either a string or HypertextField. When OpenAPI Generator supports oneOf, we can semantically enforce this in the docs."}}},"title":"AdditionalFieldDefinition"}}},"required":["id","members","name"],"title":"TeamInfoDefinition"}}},"required":["teams"]}],"title":"BulkIndexTeamsRequest"}}},"required":true,"x-exportParamName":"BulkIndexTeamsRequest"}}
+>
+  
+</RequestSchema>
 
-```python
-from glean.api_client import Glean
-import os
-
-
-with Glean(
-    api_token=os.getenv("GLEAN_API_TOKEN", ""),
-    instance=os.getenv("GLEAN_INSTANCE", ""),
-) as glean:
-
-    glean.indexing.people.bulk_index_teams(upload_id="<id>", teams=[
-        {
-            "id": "<id>",
-            "name": "<value>",
-            "datasource_profiles": [
-                {
-                    "datasource": "github",
-                    "handle": "<value>",
-                },
-            ],
-            "members": [
-                {
-                    "email": "Nina_Erdman16@gmail.com",
-                },
-            ],
-        },
-    ])
-
-    # Use the SDK ...
-```
-
-### Typescript (API Client)
-
-```typescript
-import { Glean } from "@gleanwork/api-client";
-
-const glean = new Glean({
-  apiToken: process.env["GLEAN_API_TOKEN"] ?? "",
-  instance: process.env["GLEAN_INSTANCE"] ?? "",
-});
-
-async function run() {
-  await glean.indexing.people.bulkIndexTeams({
-    uploadId: "<id>",
-    teams: [
-      {
-        id: "<id>",
-        name: "<value>",
-        datasourceProfiles: [
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-        ],
-        members: [],
-      },
-      {
-        id: "<id>",
-        name: "<value>",
-        datasourceProfiles: [
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-        ],
-        members: [],
-      },
-      {
-        id: "<id>",
-        name: "<value>",
-        datasourceProfiles: [
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-          {
-            datasource: "github",
-            handle: "<value>",
-          },
-        ],
-        members: [],
-      },
-    ],
-  });
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"400":{"description":"Bad Request"},"401":{"description":"Not Authorized"},"409":{"description":"Conflict"}}}
+>
+  
+</StatusCodes>
 
 
-}
-
-run();
-```
-
-### Java (API Client)
-
-```java
-package hello.world;
-
-import java.lang.Exception;
-import java.util.List;
-import org.openapis.openapi.Glean;
-import org.openapis.openapi.models.components.*;
-import org.openapis.openapi.models.operations.PostApiIndexV1BulkindexteamsResponse;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                .instance("<YOUR_GLEAN_INSTANCE_HERE>")
-            .build();
-
-        BulkIndexTeamsRequest req = BulkIndexTeamsRequest.builder()
-                .uploadId("<id>")
-                .teams(List.of(
-                    TeamInfoDefinition.builder()
-                        .id("<id>")
-                        .name("<value>")
-                        .members(List.of(
-                            TeamMember.builder()
-                                .email("Nina_Erdman16@gmail.com")
-                                .build()))
-                        .datasourceProfiles(List.of(
-                            DatasourceProfile.builder()
-                                .datasource("github")
-                                .handle("<value>")
-                                .build()))
-                        .build()))
-                .build();
-
-        PostApiIndexV1BulkindexteamsResponse res = sdk.indexing().people().bulkIndexTeams()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Go (API Client)
-
-```go
-package main
-
-import(
-	"context"
-	"os"
-	apiclientgo "github.com/gleanwork/api-client-go"
-	"github.com/gleanwork/api-client-go/models/components"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := apiclientgo.New(
-        apiclientgo.WithSecurity(os.Getenv("GLEAN_API_TOKEN")),
-        apiclientgo.WithInstance(os.Getenv("GLEAN_INSTANCE")),
-    )
-
-    res, err := s.Indexing.People.BulkIndexTeams(ctx, components.BulkIndexTeamsRequest{
-        UploadID: "<id>",
-        Teams: []components.TeamInfoDefinition{
-            components.TeamInfoDefinition{
-                ID: "<id>",
-                Name: "<value>",
-                DatasourceProfiles: []components.DatasourceProfile{
-                    components.DatasourceProfile{
-                        Datasource: "github",
-                        Handle: "<value>",
-                    },
-                },
-                Members: []components.TeamMember{
-                    components.TeamMember{
-                        Email: "Nina_Erdman16@gmail.com",
-                    },
-                },
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-undefined
       

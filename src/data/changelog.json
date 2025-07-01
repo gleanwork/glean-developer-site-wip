@@ -8,8 +8,8 @@
       "categories": [
         "Indexing API"
       ],
-      "summary": "<ul>\n<li><a href=\"api-info/indexing/debugging/datasource-document\"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</li>\n</ul>\n",
-      "fullContent": "<ul>\n<li><p><a href=\"api-info/indexing/debugging/datasource-document\"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>\n</li>\n<li><p><a href=\"api-info/indexing/debugging/datasource-document\"><code>/debug/{datasource}/documents</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>\n</li>\n</ul>\n",
+      "summary": "<ul>\n<li><a href=\"/api-info/indexing/debugging/datasource-document\"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</li>\n</ul>\n",
+      "fullContent": "<ul>\n<li><p><a href=\"/api-info/indexing/debugging/datasource-document\"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>\n</li>\n<li><p><a href=\"/api-info/indexing/debugging/datasource-document\"><code>/debug/{datasource}/documents</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>\n</li>\n</ul>\n",
       "hasTruncation": true,
       "fileName": "2025-04-17-placeholder.md"
     },
@@ -22,7 +22,7 @@
         "Website"
       ],
       "summary": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n",
-      "fullContent": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n<ul>\n<li>This documentation site is now open sourced on <a href=\"https://github.com/gleanwork/glean-developer-site\">GitHub</a></li>\n<li>This changelog page, which gives you a single place to see updates across the platform.</li>\n<li>Ability to switch between light and dark mode.</li>\n<li>A new <a href=\"libraries/api-clients\">API Clients</a> page with documentation for all available API Clients.</li>\n<li>Enhanced documentation and resources to help you get started with Glean.</li>\n<li>Each API has its own documentation page with detailed information.</li>\n</ul>\n<p>And much more...</p>\n",
+      "fullContent": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n<ul>\n<li>This documentation site is now open sourced on <a href=\"https://github.com/gleanwork/glean-developer-site\">GitHub</a></li>\n<li>This changelog page, which gives you a single place to see updates across the platform.</li>\n<li>Ability to switch between light and dark mode.</li>\n<li>A new <a href=\"/libraries/api-clients\">API Clients</a> page with documentation for all available API Clients.</li>\n<li>Enhanced documentation and resources to help you get started with Glean.</li>\n<li>Each API has its own documentation page with detailed information.</li>\n</ul>\n<p>And much more...</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-26-update-dev-site.md"
     },
@@ -34,8 +34,8 @@
       "categories": [
         "MCP"
       ],
-      "summary": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"guides/agents/\">Agents</a> for more information.</p>\n",
-      "fullContent": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"guides/agents/\">Agents</a> for more information.</p>\n",
+      "summary": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"/guides/agents/\">Agents</a> for more information.</p>\n",
+      "fullContent": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"/guides/agents/\">Agents</a> for more information.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-11-add-mcp.md"
     },
@@ -47,8 +47,8 @@
       "categories": [
         "LangChain SDK"
       ],
-      "summary": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"guides/agents/\">Agents</a> for more information.</p>\n",
-      "fullContent": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"guides/agents/\">Agents</a> for more information.</p>\n",
+      "summary": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"/guides/agents/\">Agents</a> for more information.</p>\n",
+      "fullContent": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"/guides/agents/\">Agents</a> for more information.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-05-general-updates.md"
     },
@@ -60,8 +60,8 @@
       "categories": [
         "Indexing API"
       ],
-      "summary": "<p><a href=\"api/indexing-api/update-document-permissions\"><code>/updatepermissions</code></a></p>\n<ul>\n<li>Beta launch of new endpoint to update document permissions -<br>  <a href=\"api-info/indexing/debugging/datasource-document\"><code>/debug/[datasource]/documents</code></a></li>\n<li>Beta launch of new troubleshooting endpoint for batch queries</li>\n</ul>\n",
-      "fullContent": "<p><a href=\"api/indexing-api/update-document-permissions\"><code>/updatepermissions</code></a></p>\n<ul>\n<li>Beta launch of new endpoint to update document permissions -<br>  <a href=\"api-info/indexing/debugging/datasource-document\"><code>/debug/[datasource]/documents</code></a></li>\n<li>Beta launch of new troubleshooting endpoint for batch queries</li>\n</ul>\n",
+      "summary": "<p><a href=\"/api/indexing-api/update-document-permissions\"><code>/updatepermissions</code></a></p>\n<ul>\n<li>Beta launch of new endpoint to update document permissions -<br>  <a href=\"/api-info/indexing/debugging/datasource-document\"><code>/debug/[datasource]/documents</code></a></li>\n<li>Beta launch of new troubleshooting endpoint for batch queries</li>\n</ul>\n",
+      "fullContent": "<p><a href=\"/api/indexing-api/update-document-permissions\"><code>/updatepermissions</code></a></p>\n<ul>\n<li>Beta launch of new endpoint to update document permissions -<br>  <a href=\"/api-info/indexing/debugging/datasource-document\"><code>/debug/[datasource]/documents</code></a></li>\n<li>Beta launch of new troubleshooting endpoint for batch queries</li>\n</ul>\n",
       "hasTruncation": true,
       "fileName": "2025-02-19-update-permissions.md"
     }
@@ -72,6 +72,6 @@
     "MCP",
     "Website"
   ],
-  "generatedAt": "2025-07-01T23:06:51.859Z",
+  "generatedAt": "2025-07-01T23:31:45.890Z",
   "totalEntries": 5
 }

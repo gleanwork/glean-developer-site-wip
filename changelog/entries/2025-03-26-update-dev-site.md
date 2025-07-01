@@ -9,7 +9,7 @@ The developer site has been updated with a new look, content, and features. Some
 - This documentation site is now open sourced on [GitHub](https://github.com/gleanwork/glean-developer-site)
 - This changelog page, which gives you a single place to see updates across the platform.
 - Ability to switch between light and dark mode.
-- A new [API Clients](libraries/api-clients) page with documentation for all available API Clients.
+- A new [API Clients](/libraries/api-clients) page with documentation for all available API Clients.
 - Enhanced documentation and resources to help you get started with Glean.
 - Each API has its own documentation page with detailed information.
 

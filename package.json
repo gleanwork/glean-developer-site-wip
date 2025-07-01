@@ -48,6 +48,7 @@
     "swiper": "^11.2.8"
   },
   "devDependencies": {
+    "@docusaurus/faster": "^3.8.1",
     "@docusaurus/module-type-aliases": "^3.8.1",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "^3.8.1",

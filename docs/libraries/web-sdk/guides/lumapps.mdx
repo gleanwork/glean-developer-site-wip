@@ -32,9 +32,11 @@ To integrate Glean's modal search interface into your LumApps environment, you'l
 
 <script>
   window.addEventListener('load', async () => {
-    const getSearchBox = () => document.querySelector(".header-top__search")
-    while(!getSearchBox()) { await new Promise(r => setTimeout(r, 300)) }
-    window.GleanWebSDK.attach(getSearchBox())
+    const getSearchBox = () => document.querySelector(".header-top__search");
+    while(!getSearchBox()) {
+      await new Promise(r => setTimeout(r, 300));
+    }
+    window.GleanWebSDK.attach(getSearchBox());
   })
 </script>
 ```

@@ -146,6 +146,11 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'doc',
+              id: 'guides/agents/langchain',
+              label: 'LangChain Integration',
+            },
+            {
+              type: 'doc',
               id: 'guides/agents/toolkit',
               label: 'Agent Toolkit',
             },
@@ -155,15 +160,6 @@ const sidebars: SidebarsConfig = {
               label: 'NVIDIA NIM Example',
             },
           ],
-        },
-        {
-          type: 'doc',
-          id: 'guides/langchain/langchain',
-          label: 'LangChain',
-          customProps: {
-            icon: 'langchain',
-            iconSet: 'glean',
-          },
         },
         {
           type: 'doc',

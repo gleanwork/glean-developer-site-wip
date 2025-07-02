@@ -77,13 +77,84 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'guides/agents/agents',
+          type: 'category',
+          label: 'Chat',
+          customProps: {
+            icon: 'chat',
+            iconSet: 'glean',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/chat/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/chat/chatbot-example',
+              label: 'Chatbot Example',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Search',
+          customProps: {
+            icon: 'Search',
+            iconSet: 'feather',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/search/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/search/filtering-results',
+              label: 'Filtering Results',
+            },
+            {
+              type: 'doc',
+              id: 'guides/search/datasource-filters',
+              label: 'Datasource Filters',
+            },
+            {
+              type: 'doc',
+              id: 'guides/search/faceted-filters',
+              label: 'Faceted Filtering',
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: 'Agents',
           customProps: {
             icon: 'agent',
             iconSet: 'glean',
           },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/agents/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/direct-api',
+              label: 'Direct API Integration',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/toolkit',
+              label: 'Agent Toolkit',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/nvidia-example',
+              label: 'NVIDIA NIM Example',
+            },
+          ],
         },
         {
           type: 'doc',

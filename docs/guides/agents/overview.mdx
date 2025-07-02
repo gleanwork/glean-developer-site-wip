@@ -1,0 +1,106 @@
+---
+title: Building Agents with Glean
+description: Complete guide to building AI agents using Glean's ecosystem of tools and libraries
+---
+
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# Building Agents with Glean
+
+Glean provides multiple ways to build AI agents that can search and reason over your organization's knowledge. This guide helps you choose the right approach and get started with building agent-powered applications.
+
+## Choose Your Approach
+
+<CardGroup cols={2}>
+  <Card 
+    title="Direct API Integration"
+    icon="Cloud"
+    href="/guides/agents/direct-api"
+  >
+    Use Glean's REST APIs directly for maximum control and customization
+  </Card>
+  
+  <Card 
+    title="LangChain Integration" 
+    icon="langchain"
+    iconSet="glean"
+    href="/guides/langchain/langchain"
+  >
+    Python LangChain integration for Glean's search and chat capabilities
+  </Card>
+  
+  <Card 
+    title="MCP Integration"
+    icon="mcp"
+    iconSet="glean"
+    href="/guides/mcp/mcp"
+  >
+    Connect AI models and IDEs to Glean via standardized protocol
+  </Card>
+  
+  <Card 
+    title="Glean Agent Toolkit"
+    icon="User"
+    href="/guides/agents/toolkit"
+  >
+    Pre-built Glean tools that work across multiple agent frameworks
+  </Card>
+</CardGroup>
+
+## Comparison & Decision Guide
+
+| Approach | Complexity | Flexibility | Time to Deploy | Best For |
+|----------|------------|-------------|----------------|----------|
+| **Direct API** | High | Maximum | Medium | Custom integrations, multi-language |
+| **LangChain** | Medium | High | Fast | Python ecosystem, rich tooling |
+| **MCP** | Low | Medium | Fast | IDE integration, standardized tools |
+| **Glean Agent Toolkit** | Medium | High | Medium | Cross-platform compatibility, multi-framework tools |
+
+### Questions to Consider
+
+1. **What's your technical background?**
+   - Non-technical → [Agent Builder](https://docs.glean.com/agents/home)
+   - Python developer → LangChain
+   - Multi-language → Direct API
+
+2. **Where will the agent run?**
+   - IDE/Editor → MCP
+   - Web application → Direct API
+   - Multiple frameworks → Glean Agent Toolkit
+
+3. **How much customization do you need?**
+   - Simple Q&A → [Agent Builder](https://docs.glean.com/agents/home)
+   - Complex workflows → Direct API
+   - Multi-framework tools → Glean Agent Toolkit
+
+## Authentication & Setup
+
+All approaches require Glean API credentials:
+
+1. **Get API Token**: Request a [user-scoped API token](/api-info/client/authentication/glean-issued#available-scopes)
+2. **Required Scopes**: `chat`, `search`, `agents` (depending on usage)
+3. **Environment Setup**: Configure your Glean instance and token
+
+## Need a No-Code Solution?
+
+For creating agents without writing code, use Glean's built-in Agent Builder:
+
+<Card 
+  title="Glean Agent Builder"
+  icon="User"
+  href="https://docs.glean.com/agents/home"
+>
+  Create agents with drag-and-drop interface, pre-built templates, and custom instructions. Perfect for business users and rapid prototyping.
+</Card>
+
+The Agent Builder provides a visual interface for creating agents directly in Glean. Agents created this way can still be accessed programmatically via the [Agents API](/api/client-api/agents/overview) for integration with your applications.
+
+## Next Steps
+
+- **New to Glean?** Start with [Agent Builder](https://docs.glean.com/agents/home) (no-code solution)
+- **Python Developer?** Try [LangChain Integration](/guides/langchain/langchain)  
+- **IDE User?** Set up [MCP Integration](/guides/mcp/mcp)
+- **Multi-Framework?** Explore [Glean Agent Toolkit](/guides/agents/toolkit)
+- **Custom Needs?** Use [Direct API Integration](/guides/agents/direct-api)
+- **Need Help?** Check the [API Reference](/api/client-api/agents/overview) for technical details 

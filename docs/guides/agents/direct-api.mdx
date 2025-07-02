@@ -1,0 +1,342 @@
+---
+title: Direct API Integration
+description: Build custom agents using Glean's REST APIs with our official client libraries
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# Direct API Integration
+
+Build custom agents using Glean's REST APIs with our official client libraries. This approach gives you full control over the agent logic while leveraging Glean's search and chat capabilities.
+
+## When to Use
+- Custom business logic requirements
+- Integration with existing systems
+- Fine-grained control over agent behavior
+- Multi-language support needs
+
+## Available Client Libraries
+
+<CardGroup cols={2}>
+  <Card 
+    title="Python SDK"
+    icon="Code"
+    href="https://github.com/gleanwork/api-client-python"
+  >
+    ```bash
+    pip install glean-api-client
+    ```
+  </Card>
+  
+  <Card 
+    title="TypeScript SDK"
+    icon="Code" 
+    href="https://github.com/gleanwork/api-client-typescript"
+  >
+    ```bash
+    npm install @gleanwork/api-client
+    ```
+  </Card>
+  
+  <Card 
+    title="Go SDK"
+    icon="Code"
+    href="https://github.com/gleanwork/api-client-go"
+  >
+    ```bash
+    go get github.com/gleanwork/api-client-go
+    ```
+  </Card>
+  
+  <Card 
+    title="Java SDK"
+    icon="Code"
+    href="https://github.com/gleanwork/api-client-java"
+  >
+    ```xml
+    <dependency>
+      <groupId>com.glean.api-client</groupId>
+      <artifactId>glean-api-client</artifactId>
+      <version>0.x.x</version>
+    </dependency>
+    ```
+  </Card>
+</CardGroup>
+
+## Key APIs for Agent Building
+
+| API | Purpose | Use Case |
+|-----|---------|----------|
+| **[Agents API](/api/client-api/agents/overview)** | Manage and execute pre-built agents | Use agents created in Agent Builder |
+| **[Chat API](/api/client-api/chat/overview)** | Conversational AI with context | Build chat-based agents |
+| **[Search API](/guides/search/filtering-results)** | Enterprise search capabilities | Retrieve relevant documents |
+| **[Summarization API](/api/client-api/summarize/overview)** | AI-powered content summarization | Process and digest information |
+
+## Example: Python Agent
+
+<Tabs>
+<TabItem value="basic" label="Basic Agent">
+
+```python
+import os
+import requests
+
+class CustomAgent:
+    def __init__(self):
+        self.api_token = os.getenv("GLEAN_API_TOKEN")
+        self.instance = os.getenv("GLEAN_INSTANCE")
+        self.base_url = f"https://{self.instance}-be.glean.com/rest/api/v1"
+        
+        if not self.api_token or not self.instance:
+            raise ValueError("GLEAN_API_TOKEN and GLEAN_INSTANCE must be set")
+    
+    def process_query(self, query: str) -> str:
+        headers = {
+            "Authorization": f"Bearer {self.api_token}",
+            "Content-Type": "application/json"
+        }
+        
+        # First search for relevant documents
+        search_response = requests.post(
+            f"{self.base_url}/search",
+            headers=headers,
+            json={"query": query, "pageSize": 5}
+        )
+        search_response.raise_for_status()
+        search_results = search_response.json().get("results", [])
+        
+        # Then use chat to answer based on search results
+        chat_response = requests.post(
+            f"{self.base_url}/chat",
+            headers=headers,
+            json={
+                "messages": [{
+                    "author": "USER",
+                    "messageType": "CONTENT", 
+                    "fragments": [{"text": query}]
+                }],
+                "stream": False
+            }
+        )
+        chat_response.raise_for_status()
+        
+        # Extract response text
+        messages = chat_response.json().get("messages", [])
+        for message in messages:
+            if message.get("messageType") == "CONTENT":
+                fragments = message.get("fragments", [])
+                for fragment in fragments:
+                    if "text" in fragment:
+                        return fragment["text"]
+        
+        return "No response received"
+
+agent = CustomAgent()
+result = agent.process_query("What is our vacation policy?")
+print(result)
+```
+
+</TabItem>
+<TabItem value="advanced" label="Advanced Agent">
+
+```python
+from glean.api_client import Glean
+from typing import List, Dict
+import os
+
+class AdvancedAgent:
+    def __init__(self):
+        self.client = Glean(
+            api_token=os.getenv("GLEAN_API_TOKEN"),
+            instance=os.getenv("GLEAN_INSTANCE")
+        )
+        self.conversation_history = []
+    
+    async def search_with_filters(self, query: str, filters: Dict = None) -> List[Dict]:
+        """Search with optional filters"""
+        search_params = {
+            "query": query,
+            "page_size": 10
+        }
+        
+        if filters:
+            search_params["requestOptions"] = {"facetFilters": filters}
+        
+        response = await self.client.search.search(search_params)
+        return response.results
+    
+    async def chat_with_context(self, query: str, context_docs: List[Dict] = None) -> str:
+        """Chat with document context"""
+        messages = self.conversation_history.copy()
+        
+        if context_docs:
+            context_text = "\n".join([doc.get("title", "") + ": " + doc.get("snippet", "") 
+                                    for doc in context_docs[:3]])
+            system_message = {
+                "author": "SYSTEM",
+                "fragments": [{"text": f"Context: {context_text}"}]
+            }
+            messages.append(system_message)
+        
+        user_message = {
+            "author": "USER", 
+            "fragments": [{"text": query}]
+        }
+        messages.append(user_message)
+        
+        response = await self.client.chat.chat({
+            "messages": messages,
+            "stream": False
+        })
+        
+        self.conversation_history.extend([user_message, {
+            "author": "GLEAN_AI",
+            "fragments": [{"text": response.message}]
+        }])
+        
+        return response.message
+    
+    async def process_complex_query(self, query: str, department: str = None) -> Dict:
+        """Process query with department filtering and context"""
+        filters = {}
+        if department:
+            filters["department"] = [department]
+        
+        search_results = await self.search_with_filters(query, filters)
+        
+        answer = await self.chat_with_context(query, search_results)
+        
+        return {
+            "answer": answer,
+            "sources": search_results[:3],
+            "conversation_id": len(self.conversation_history)
+        }
+
+agent = AdvancedAgent()
+result = await agent.process_complex_query(
+    "What are the remote work guidelines?", 
+    department="HR"
+)
+```
+
+</TabItem>
+</Tabs>
+
+## TypeScript Example
+
+```typescript
+import { Glean } from '@gleanwork/api-client';
+
+class TypeScriptAgent {
+  private client: Glean;
+  
+  constructor() {
+    this.client = new Glean({
+      apiToken: process.env.GLEAN_API_TOKEN!,
+      instance: process.env.GLEAN_INSTANCE!
+    });
+  }
+  
+  async processQuery(query: string): Promise<string> {
+    const searchResponse = await this.client.search.search({
+      query,
+      pageSize: 5
+    });
+    
+    const chatResponse = await this.client.chat.chat({
+      messages: [{
+        author: 'USER',
+        fragments: [{ text: query }]
+      }],
+      stream: false
+    });
+    
+    return chatResponse.message;
+  }
+}
+
+const agent = new TypeScriptAgent();
+const result = await agent.processQuery("What is our vacation policy?");
+```
+
+## Best Practices
+
+### Error Handling
+```python
+import asyncio
+from glean.exceptions import GleanAPIError
+
+async def robust_agent_call(agent, query):
+    try:
+        return await agent.process_query(query)
+    except GleanAPIError as e:
+        if e.status_code == 429:  # Rate limited
+            await asyncio.sleep(1)
+            return await agent.process_query(query)
+        else:
+            return f"Error processing query: {e.message}"
+```
+
+### Caching Results
+```python
+from functools import lru_cache
+import hashlib
+
+class CachedAgent(CustomAgent):
+    def __init__(self):
+        super().__init__()
+        self._cache = {}
+    
+    def _cache_key(self, query: str) -> str:
+        return hashlib.md5(query.encode()).hexdigest()
+    
+    async def process_query(self, query: str) -> str:
+        cache_key = self._cache_key(query)
+        
+        if cache_key in self._cache:
+            return self._cache[cache_key]
+        
+        result = await super().process_query(query)
+        self._cache[cache_key] = result
+        return result
+```
+
+### Rate Limiting
+```python
+import asyncio
+from datetime import datetime, timedelta
+
+class RateLimitedAgent(CustomAgent):
+    def __init__(self, requests_per_minute: int = 60):
+        super().__init__()
+        self.requests_per_minute = requests_per_minute
+        self.request_times = []
+    
+    async def _wait_if_needed(self):
+        now = datetime.now()
+        
+        self.request_times = [
+            req_time for req_time in self.request_times 
+            if now - req_time < timedelta(minutes=1)
+        ]
+        
+        if len(self.request_times) >= self.requests_per_minute:
+            sleep_time = 60 - (now - self.request_times[0]).seconds
+            await asyncio.sleep(sleep_time)
+        
+        self.request_times.append(now)
+    
+    async def process_query(self, query: str) -> str:
+        await self._wait_if_needed()
+        return await super().process_query(query)
+```
+
+## Next Steps
+
+- Explore the [Chat Guide](/guides/chat/overview) for building conversational agents
+- Check out [Search Examples](/guides/search/filtering-results) for advanced search capabilities
+- See [Agent Examples](/guides/agents/nvidia-example) for real-world implementations
+- Review the [API Reference](/api/client-api/agents/overview) for complete API documentation 

@@ -1,7 +1,7 @@
 ---
 slug: update-permissions
 title: Update Permissions Endpoint
-categories: [Indexing API]
+categories: [API]
 ---
 
   [`/updatepermissions`](../api/indexing-api/update-document-permissions)

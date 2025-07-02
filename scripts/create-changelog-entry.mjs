@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const CHANGELOG_DIR = path.join(__dirname, '..', 'changelog', 'entries');
 const TEMPLATE_FILE = path.join(__dirname, 'templates', 'changelog-entry.md');
 
-const PRIMARY_CATEGORIES = ['API', 'SDK', 'Website', 'Documentation'];
+const PRIMARY_CATEGORIES = ['API', 'SDK', 'MCP', 'Website', 'Documentation'];
 
 const SECONDARY_CATEGORIES = [
   'Feature',

@@ -1,7 +1,7 @@
 ---
 slug: langchain-sdk-release
 title: LangChain SDK Release
-categories: [LangChain SDK]
+categories: [SDK]
 ---
 
 Added LangChain SDK for Python on [GitHub](https://github.com/gleanwork/langchain-glean). This SDK provides a simple interface for interacting with Glean's search and chat capabilities when using LangChain.

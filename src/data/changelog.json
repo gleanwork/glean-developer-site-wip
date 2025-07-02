@@ -1,6 +1,19 @@
 {
   "entries": [
     {
+      "id": "2025-06-17-oauth-for-remote-mcp-server-private-beta",
+      "slug": "oauth-for-remote-mcp-server-private-beta",
+      "title": "OAuth for Remote MCP Server (Private Beta)",
+      "date": "2025-06-17",
+      "categories": [
+        "MCP"
+      ],
+      "summary": "<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>\n<p><a href=\"/agents/mcp#using-oauth\">See here for setup instructions</a></p>\n<p>Note: OAuth is also enabled for the local MCP server.</p>\n",
+      "fullContent": "<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>\n<p><a href=\"/agents/mcp#using-oauth\">See here for setup instructions</a></p>\n<p>Note: OAuth is also enabled for the local MCP server.</p>\n",
+      "hasTruncation": true,
+      "fileName": "2025-06-17-oauth-for-remote-mcp-server-private-beta.md"
+    },
+    {
       "id": "2025-06-06-go-api-client-v060",
       "slug": "go-api-client-v060",
       "title": "Go API Client v0.6.0",
@@ -216,6 +229,6 @@
     "SDK",
     "Website"
   ],
-  "generatedAt": "2025-07-02T16:48:55.952Z",
-  "totalEntries": 16
+  "generatedAt": "2025-07-02T16:51:33.962Z",
+  "totalEntries": 17
 }

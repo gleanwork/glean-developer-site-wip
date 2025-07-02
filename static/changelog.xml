@@ -4,7 +4,7 @@
         <title>Glean Developer Changelog</title>
         <link>https://glean-developer-site.vercel.app</link>
         <description>Updates and changes to the Glean Developer Platform</description>
-        <lastBuildDate>Wed, 02 Jul 2025 16:48:55 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 02 Jul 2025 16:51:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Glean Developer Site</generator>
         <language>en</language>
@@ -14,6 +14,21 @@
             <link>https://glean-developer-site.vercel.app</link>
         </image>
         <copyright>Copyright © 2025 Glean</copyright>
+        <item>
+            <title><![CDATA[OAuth for Remote MCP Server (Private Beta)]]></title>
+            <link>https://glean-developer-site.vercel.app/changelog#oauth-for-remote-mcp-server-private-beta</link>
+            <guid isPermaLink="false">2025-06-17-oauth-for-remote-mcp-server-private-beta</guid>
+            <pubDate>Tue, 17 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>
+<p><a href="/agents/mcp#using-oauth">See here for setup instructions</a></p>
+<p>Note: OAuth is also enabled for the local MCP server.</p>
+]]></description>
+            <content:encoded><![CDATA[<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>
+<p><a href="/agents/mcp#using-oauth">See here for setup instructions</a></p>
+<p>Note: OAuth is also enabled for the local MCP server.</p>
+]]></content:encoded>
+            <category>MCP</category>
+        </item>
         <item>
             <title><![CDATA[Go API Client v0.6.0]]></title>
             <link>https://glean-developer-site.vercel.app/changelog#go-api-client-v060</link>

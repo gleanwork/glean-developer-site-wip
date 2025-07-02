@@ -29,7 +29,7 @@ function generateRSSFeed() {
   );
   const { entries } = changelogData;
 
-  const siteUrl = 'https://gleanwork.github.io/glean-developer-site-wip';
+  const siteUrl = 'https://glean-developer-site.vercel.app';
   const changelogUrl = `${siteUrl}/changelog`;
 
   const feed = new Feed({

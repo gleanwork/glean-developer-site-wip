@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Glean Developer Changelog</title>
-        <link>https://gleanwork.github.io/glean-developer-site-wip</link>
+        <link>https://glean-developer-site.vercel.app</link>
         <description>Updates and changes to the Glean Developer Platform</description>
-        <lastBuildDate>Wed, 02 Jul 2025 01:59:25 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 02 Jul 2025 01:49:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Glean Developer Site</generator>
         <language>en</language>
         <image>
             <title>Glean Developer Changelog</title>
-            <url>https://gleanwork.github.io/glean-developer-site-wip/img/glean-developer-logo-light.svg</url>
-            <link>https://gleanwork.github.io/glean-developer-site-wip</link>
+            <url>https://glean-developer-site.vercel.app/img/glean-developer-logo-light.svg</url>
+            <link>https://glean-developer-site.vercel.app</link>
         </image>
         <copyright>Copyright © 2025 Glean</copyright>
         <item>
             <title><![CDATA[Debug Endpoints Permission Status]]></title>
-            <link>https://gleanwork.github.io/glean-developer-site-wip/changelog#placeholder</link>
+            <link>https://glean-developer-site.vercel.app/changelog#placeholder</link>
             <guid isPermaLink="false">2025-04-17-placeholder</guid>
             <pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<ul>
@@ -34,7 +34,7 @@
         </item>
         <item>
             <title><![CDATA[Update Developer Site]]></title>
-            <link>https://gleanwork.github.io/glean-developer-site-wip/changelog#update-dev-site</link>
+            <link>https://glean-developer-site.vercel.app/changelog#update-dev-site</link>
             <guid isPermaLink="false">2025-03-26-update-dev-site</guid>
             <pubDate>Wed, 26 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>
@@ -54,7 +54,7 @@
         </item>
         <item>
             <title><![CDATA[Add MCP]]></title>
-            <link>https://gleanwork.github.io/glean-developer-site-wip/changelog#add-mcp</link>
+            <link>https://glean-developer-site.vercel.app/changelog#add-mcp</link>
             <guid isPermaLink="false">2025-03-11-add-mcp</guid>
             <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href="https://github.com/gleanwork/mcp-server">GitHub</a>.</p>
@@ -69,7 +69,7 @@
         </item>
         <item>
             <title><![CDATA[LangChain SDK Release]]></title>
-            <link>https://gleanwork.github.io/glean-developer-site-wip/changelog#general-updates</link>
+            <link>https://glean-developer-site.vercel.app/changelog#general-updates</link>
             <guid isPermaLink="false">2025-03-05-general-updates</guid>
             <pubDate>Wed, 05 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>Added LangChain SDK for Python on <a href="https://github.com/gleanwork/langchain-glean">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>
@@ -82,7 +82,7 @@
         </item>
         <item>
             <title><![CDATA[Update Permissions Endpoint]]></title>
-            <link>https://gleanwork.github.io/glean-developer-site-wip/changelog#update-permissions</link>
+            <link>https://glean-developer-site.vercel.app/changelog#update-permissions</link>
             <guid isPermaLink="false">2025-02-19-update-permissions</guid>
             <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<p><a href="../api/indexing-api/update-document-permissions"><code>/updatepermissions</code></a></p>

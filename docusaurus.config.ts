@@ -20,15 +20,9 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://gleanwork.github.io',
+  url: 'https://glean-developer-site.vercel.app',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/glean-developer-site-wip/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'gleanwork', // Usually your GitHub org/user name.
-  projectName: 'glean-developer-site-wip', // Usually your repo name.
+  baseUrl: '/',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -133,7 +127,7 @@ const config: Config = {
           rel: 'alternate',
           type: 'application/rss+xml',
           title: 'Glean Developer Changelog',
-          href: '/glean-developer-site-wip/changelog.xml',
+          href: '/changelog.xml',
         },
       },
     ],

@@ -52,6 +52,7 @@
   "devDependencies": {
     "@docusaurus/faster": "^3.8.1",
     "@docusaurus/module-type-aliases": "^3.8.1",
+    "@docusaurus/theme-mermaid": "^3.8.1",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "^3.8.1",
     "@types/xml2js": "^0.4.14",

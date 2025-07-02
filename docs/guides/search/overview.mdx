@@ -1,0 +1,399 @@
+---
+title: Search Integration
+description: Learn how to integrate Glean's powerful search capabilities into your applications
+---
+
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# Search Integration
+
+Glean's Search API provides powerful enterprise search capabilities that you can integrate into your applications. Whether you're building a search interface, adding search functionality to existing tools, or creating intelligent agents, Glean's search capabilities can help users find the information they need.
+
+## Key Features
+
+- **Enterprise Search**: Search across all your organization's connected data sources
+- **Intelligent Ranking**: AI-powered relevance scoring and result ranking
+- **Faceted Filtering**: Filter results by source, type, date, and custom attributes
+- **Real-time Results**: Fast search with sub-second response times
+- **Permission Awareness**: Results respect user permissions and data access controls
+
+## Getting Started
+
+<CardGroup cols={2}>
+  <Card 
+    title="Search API Overview"
+    icon="Search"
+    href="/api/client-api/search/overview"
+  >
+    Learn about the Search API endpoints and capabilities
+  </Card>
+  
+  <Card 
+    title="Filtering Results"
+    icon="Filter"
+    href="/guides/search/filtering-results"
+  >
+    Advanced filtering techniques and examples
+  </Card>
+  
+  <Card 
+    title="Datasource Filters"
+    icon="Database"
+    href="/guides/search/datasource-filters"
+  >
+    Filter search results by specific data sources
+  </Card>
+  
+  <Card 
+    title="Faceted Filtering"
+    icon="Layers"
+    href="/guides/search/faceted-filtering"
+  >
+    Use facets to create dynamic search interfaces
+  </Card>
+</CardGroup>
+
+## Common Use Cases
+
+### Knowledge Base Search
+Build a search interface for your internal documentation, wikis, and knowledge repositories.
+
+### Code Search
+Search through your organization's source code, documentation, and development resources.
+
+### Document Discovery
+Help users find relevant documents, presentations, and files across all connected systems.
+
+### Expert Finding
+Locate subject matter experts and colleagues with specific knowledge or experience.
+
+## Search Patterns
+
+### Basic Search
+Simple text-based search across all available content:
+
+```python
+import requests
+import os
+
+api_token = os.getenv("GLEAN_API_TOKEN")
+instance = os.getenv("GLEAN_INSTANCE")
+base_url = f"https://{instance}-be.glean.com/rest/api/v1"
+
+headers = {
+    "Authorization": f"Bearer {api_token}",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(
+    f"{base_url}/search",
+    headers=headers,
+    json={
+        "query": "vacation policy",
+        "pageSize": 10
+    }
+)
+response.raise_for_status()
+
+results = response.json().get("results", [])
+for result in results:
+    print(f"Title: {result.get('title', 'No title')}")
+    print(f"URL: {result.get('url', 'No URL')}")
+    print(f"Snippet: {result.get('snippet', 'No snippet')}")
+```
+
+### Filtered Search
+Search with specific filters to narrow results:
+
+```python
+response = await client.search.search({
+    "query": "quarterly results",
+    "pageSize": 10,
+    "requestOptions": {
+        "facetFilters": [
+            {
+                "facetName": "datasource",
+                "values": ["confluence", "sharepoint"]
+            },
+            {
+                "facetName": "objectType", 
+                "values": ["document"]
+            }
+        ]
+    }
+})
+```
+
+### Search with Date Filters
+Find recent or time-specific content:
+
+```python
+from datetime import datetime, timedelta
+
+last_month = datetime.now() - timedelta(days=30)
+
+response = await client.search.search({
+    "query": "product updates",
+    "requestOptions": {
+        "facetFilters": [
+            {
+                "facetName": "updatedAfter",
+                "values": [last_month.isoformat()]
+            }
+        ]
+    }
+})
+```
+
+## Advanced Features
+
+### Autocomplete Search
+Implement search suggestions and autocomplete:
+
+```python
+autocomplete_response = await client.search.autocomplete({
+    "query": "vacat",
+    "maxResults": 5
+})
+
+for suggestion in autocomplete_response.suggestions:
+    print(f"Suggestion: {suggestion.text}")
+```
+
+### Search Analytics
+Track search performance and user behavior:
+
+```python
+response = await client.search.search({
+    "query": "benefits",
+    "trackingToken": "user-session-123",
+    "requestOptions": {
+        "enableAnalytics": True
+    }
+})
+
+# Track click events
+await client.activity.activity({
+    "trackingToken": response.trackingToken,
+    "action": "CLICK",
+    "documentId": clicked_result.id
+})
+```
+
+### Federated Search
+Search across multiple instances or systems:
+
+```python
+async def federated_search(query: str):
+    # Search primary instance
+    primary_results = await primary_client.search.search({"query": query})
+    
+    # Search secondary instance
+    secondary_results = await secondary_client.search.search({"query": query})
+    
+    # Combine and rank results
+    all_results = primary_results.results + secondary_results.results
+    return sorted(all_results, key=lambda x: x.relevanceScore, reverse=True)
+```
+
+## Building Search Interfaces
+
+### React Search Component
+```typescript
+import { useState, useEffect } from 'react';
+import { Glean } from '@gleanwork/api-client';
+
+const SearchComponent = () => {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  
+  const client = new Glean({
+    apiToken: process.env.REACT_APP_GLEAN_TOKEN,
+    instance: process.env.REACT_APP_GLEAN_INSTANCE
+  });
+  
+  const handleSearch = async (searchQuery: string) => {
+    if (!searchQuery.trim()) return;
+    
+    setLoading(true);
+    try {
+      const response = await client.search.search({
+        query: searchQuery,
+        pageSize: 20
+      });
+      setResults(response.results || []);
+    } catch (error) {
+      console.error('Search error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  return (
+    <div>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={(e) => e.key === 'Enter' && handleSearch(query)}
+        placeholder="Search your organization's knowledge..."
+      />
+      
+      {loading && <div>Searching...</div>}
+      
+      <div>
+        {results.map((result, index) => (
+          <div key={index} className="search-result">
+            <h3><a href={result.url}>{result.title}</a></h3>
+            <p>{result.snippet}</p>
+            <small>{result.datasource} • {result.lastModified}</small>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+```
+
+### Search with Filters UI
+```typescript
+const FilteredSearchComponent = () => {
+  const [filters, setFilters] = useState({
+    datasources: [],
+    dateRange: null,
+    objectTypes: []
+  });
+  
+  const applyFilters = async (query: string) => {
+    const facetFilters = [];
+    
+    if (filters.datasources.length > 0) {
+      facetFilters.push({
+        facetName: "datasource",
+        values: filters.datasources
+      });
+    }
+    
+    if (filters.objectTypes.length > 0) {
+      facetFilters.push({
+        facetName: "objectType", 
+        values: filters.objectTypes
+      });
+    }
+    
+    const response = await client.search.search({
+      query,
+      requestOptions: { facetFilters }
+    });
+    
+    return response.results;
+  };
+  
+  // UI implementation...
+};
+```
+
+## Performance Optimization
+
+### Caching Search Results
+```python
+import asyncio
+from functools import lru_cache
+import hashlib
+
+class CachedSearchClient:
+    def __init__(self, client: Glean):
+        self.client = client
+        self._cache = {}
+    
+    def _cache_key(self, query: str, filters: dict = None) -> str:
+        key_data = f"{query}:{filters or {}}"
+        return hashlib.md5(key_data.encode()).hexdigest()
+    
+    async def search(self, query: str, filters: dict = None, cache_ttl: int = 300):
+        cache_key = self._cache_key(query, filters)
+        
+        if cache_key in self._cache:
+            cached_result, timestamp = self._cache[cache_key]
+            if time.time() - timestamp < cache_ttl:
+                return cached_result
+        
+        result = await self.client.search.search({
+            "query": query,
+            "requestOptions": {"facetFilters": filters or []}
+        })
+        
+        self._cache[cache_key] = (result, time.time())
+        return result
+```
+
+### Pagination and Infinite Scroll
+```python
+async def paginated_search(client, query: str, page_size: int = 20):
+    cursor = None
+    all_results = []
+    
+    while True:
+        request = {
+            "query": query,
+            "pageSize": page_size
+        }
+        
+        if cursor:
+            request["cursor"] = cursor
+        
+        response = await client.search.search(request)
+        all_results.extend(response.results or [])
+        
+        if not response.hasMoreResults:
+            break
+            
+        cursor = response.cursor
+    
+    return all_results
+```
+
+## Error Handling
+
+```python
+from glean.exceptions import GleanAPIError
+import asyncio
+
+async def robust_search(client, query: str, max_retries: int = 3):
+    for attempt in range(max_retries):
+        try:
+            return await client.search.search({"query": query})
+        except GleanAPIError as e:
+            if e.status_code == 429:  # Rate limited
+                wait_time = 2 ** attempt
+                await asyncio.sleep(wait_time)
+                continue
+            elif e.status_code >= 500:  # Server error
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(1)
+                    continue
+            raise e
+        except Exception as e:
+            if attempt < max_retries - 1:
+                await asyncio.sleep(1)
+                continue
+            raise e
+    
+    raise Exception(f"Search failed after {max_retries} attempts")
+```
+
+## Next Steps
+
+1. **Explore Examples**: Check out specific filtering and search examples
+2. **Try the API**: Test search queries in your environment
+3. **Build Interfaces**: Create search UIs for your applications
+4. **Optimize**: Implement caching and performance improvements
+
+## Related Resources
+
+- [Search API Reference](/api/client-api/search/overview)
+- [Authentication Guide](/api-info/client/authentication/overview)
+- [Chat Integration](/guides/chat/overview) - Combine search with conversational AI
+- [Agent Examples](/guides/agents/overview) - Use search in intelligent agents 

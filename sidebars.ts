@@ -77,22 +77,89 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'guides/agents/agents',
+          type: 'category',
+          label: 'Chat',
+          customProps: {
+            icon: 'chat',
+            iconSet: 'glean',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/chat/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/chat/chatbot-example',
+              label: 'Chatbot Example',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Search',
+          customProps: {
+            icon: 'Search',
+            iconSet: 'feather',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/search/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/search/filtering-results',
+              label: 'Filtering Results',
+            },
+            {
+              type: 'doc',
+              id: 'guides/search/datasource-filters',
+              label: 'Datasource Filters',
+            },
+            {
+              type: 'doc',
+              id: 'guides/search/faceted-filters',
+              label: 'Faceted Filtering',
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: 'Agents',
           customProps: {
             icon: 'agent',
             iconSet: 'glean',
           },
-        },
-        {
-          type: 'doc',
-          id: 'guides/langchain/langchain',
-          label: 'LangChain',
-          customProps: {
-            icon: 'langchain',
-            iconSet: 'glean',
-          },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/agents/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/direct-api',
+              label: 'Direct API Integration',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/langchain',
+              label: 'LangChain Integration',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/toolkit',
+              label: 'Agent Toolkit',
+            },
+            {
+              type: 'doc',
+              id: 'guides/agents/nvidia-example',
+              label: 'NVIDIA NIM Example',
+            },
+          ],
         },
         {
           type: 'doc',
@@ -157,34 +224,13 @@ const sidebars: SidebarsConfig = {
                 items: [
                   {
                     type: 'doc',
-                    id: 'api-info/client/examples/chatbot',
+                    id: 'guides/chat/chatbot-example',
                     label: 'Chatbot',
                   },
                   {
                     type: 'doc',
-                    id: 'api-info/client/examples/nvidia-enterprise-kb-chatbot',
+                    id: 'guides/agents/nvidia-example',
                     label: 'Agentic AI With NVIDIA NIM',
-                  },
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Search',
-                items: [
-                  {
-                    type: 'doc',
-                    id: 'api-info/client/search/filtering-results',
-                    label: 'Filtering Results',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'api-info/client/search/datasource-filters',
-                    label: 'Datasource Filters',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'api-info/client/search/faceted-filters',
-                    label: 'Faceted Filtering',
                   },
                 ],
               },

@@ -182,14 +182,17 @@ export default function CarouselSection() {
                 </ul>
                 <Link
                   to={slide.ctaHref}
-                  className={clsx("button button--primary button--lg", styles.carouselButton)}
+                  className={clsx(
+                    'button button--primary button--lg',
+                    styles.carouselButton,
+                  )}
                 >
-                  <Icon 
-                    name={slide.ctaIcon} 
-                    iconSet={slide.ctaIconSet} 
-                    width={20} 
-                    height={20} 
-                    className="margin-right--sm" 
+                  <Icon
+                    name={slide.ctaIcon}
+                    iconSet={slide.ctaIconSet}
+                    width={20}
+                    height={20}
+                    className="margin-right--sm"
                   />
                   {slide.ctaText}
                 </Link>

@@ -48,10 +48,10 @@ export default function DocSidebarItemLink({
         {...props}
       >
         {(item as any).customProps?.icon && (
-                      <Icon 
-              name={(item as any).customProps.icon} 
-              iconSet={(item as any).customProps?.iconSet || 'feather'}
-              className={styles.sidebarIcon}
+          <Icon
+            name={(item as any).customProps.icon}
+            iconSet={(item as any).customProps?.iconSet || 'feather'}
+            className={styles.sidebarIcon}
           />
         )}
         {label}

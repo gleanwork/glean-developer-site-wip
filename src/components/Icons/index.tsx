@@ -13,7 +13,7 @@ interface IconProps {
 const AVAILABLE_GLEAN_ICONS = [
   'agent',
   'chat',
-  'tools', 
+  'tools',
   'platform',
   'sparkles',
   'mcp',
@@ -33,21 +33,27 @@ const AVAILABLE_GLEAN_ICONS = [
   'maven',
 ] as const;
 
-export type GleanIconName = typeof AVAILABLE_GLEAN_ICONS[number];
+export type GleanIconName = (typeof AVAILABLE_GLEAN_ICONS)[number];
 
 interface IconComponentProps extends IconProps {
   name: string;
   iconSet?: 'feather' | 'glean';
 }
 
-function GleanIcon({ name, width, height, className, color }: IconProps & { name: string }) {
+function GleanIcon({
+  name,
+  width,
+  height,
+  className,
+  color,
+}: IconProps & { name: string }) {
   const iconUrl = useBaseUrl(`/img/glean/${name}.svg`);
   const [svgContent, setSvgContent] = useState<string>('');
-  
+
   useEffect(() => {
     fetch(iconUrl)
-      .then(response => response.text())
-      .then(text => {
+      .then((response) => response.text())
+      .then((text) => {
         // Remove hardcoded fill and stroke attributes to allow CSS control
         // Also preserve viewBox and remove fixed width/height to allow proper scaling
         const cleanedSvg = text
@@ -58,7 +64,7 @@ function GleanIcon({ name, width, height, className, color }: IconProps & { name
           .replace(/<svg/, '<svg style="width: 100%; height: 100%"');
         setSvgContent(cleanedSvg);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(`Failed to load SVG icon: ${name}`, error);
       });
   }, [iconUrl, name]);
@@ -91,18 +97,23 @@ function GleanIcon({ name, width, height, className, color }: IconProps & { name
 export function getIcon(
   iconName: string,
   iconSet: 'feather' | 'glean' = 'feather',
-  props?: IconProps
+  props?: IconProps,
 ): React.ReactNode {
   if (iconSet === 'glean') {
     if (AVAILABLE_GLEAN_ICONS.includes(iconName as GleanIconName)) {
       return <GleanIcon name={iconName} {...props} />;
     }
-    console.warn(`Glean icon "${iconName}" not found. Available icons:`, AVAILABLE_GLEAN_ICONS);
+    console.warn(
+      `Glean icon "${iconName}" not found. Available icons:`,
+      AVAILABLE_GLEAN_ICONS,
+    );
     return null;
   }
 
-  const FeatherIconComponent = FeatherIcons[iconName as keyof typeof FeatherIcons] as React.ComponentType<any>;
-  
+  const FeatherIconComponent = FeatherIcons[
+    iconName as keyof typeof FeatherIcons
+  ] as React.ComponentType<any>;
+
   if (FeatherIconComponent) {
     const style: React.CSSProperties = {};
     if (props?.width !== undefined) style.width = props.width;
@@ -122,13 +133,13 @@ export function getIcon(
   return null;
 }
 
-export function Icon({ 
-  name, 
+export function Icon({
+  name,
   iconSet = 'feather',
-  ...props 
+  ...props
 }: IconComponentProps) {
   return getIcon(name, iconSet, props) as React.ReactElement;
 }
 
 // Export the list of available icons for reference
-export { AVAILABLE_GLEAN_ICONS }; 
+export { AVAILABLE_GLEAN_ICONS };

@@ -31,24 +31,24 @@ interface ApiOverviewProps {
 function MethodBadge({ method }: { method: string }) {
   const methodClass = method.toLowerCase();
   const badgeClass = `${styles.methodBadge} ${styles[methodClass] || styles.default}`;
-  
-  return (
-    <span className={badgeClass}>
-      {method}
-    </span>
-  );
+
+  return <span className={badgeClass}>{method}</span>;
 }
 
 function camelToKebab(str: string): string {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-function getDocLinkForEndpoint(apiType: string, apiFamily: string, operationId: string): string {
+function getDocLinkForEndpoint(
+  apiType: string,
+  apiFamily: string,
+  operationId: string,
+): string {
   if (apiType === 'indexing-api') {
     const kebabCaseId = camelToKebab(operationId);
     return `/api/indexing-api/${kebabCaseId}`;
   }
-  
+
   const kebabCaseId = camelToKebab(operationId);
   return `/api/client-api/${apiFamily.toLowerCase()}/${kebabCaseId}`;
 }
@@ -305,15 +305,14 @@ export default function ApiOverview({
   apiFamily,
   apiType = 'client-api',
 }: ApiOverviewProps) {
-  const endpoints = apiType === 'indexing-api' 
-    ? getIndexingApiEndpoints(apiFamily)
-    : getEndpointsForApi(apiFamily);
+  const endpoints =
+    apiType === 'indexing-api'
+      ? getIndexingApiEndpoints(apiFamily)
+      : getEndpointsForApi(apiFamily);
 
   return (
     <div>
-      <p className="margin-bottom--lg">
-        {description}
-      </p>
+      <p className="margin-bottom--lg">{description}</p>
 
       <div className="margin-bottom--xl">
         <h2>Use Cases</h2>
@@ -345,7 +344,11 @@ export default function ApiOverview({
               </thead>
               <tbody>
                 {endpoints.map((endpoint, index) => {
-                  const docLink = getDocLinkForEndpoint(apiType, apiFamily, endpoint.operationId);
+                  const docLink = getDocLinkForEndpoint(
+                    apiType,
+                    apiFamily,
+                    endpoint.operationId,
+                  );
                   return (
                     <tr key={index}>
                       <td className="text--center">
@@ -357,13 +360,14 @@ export default function ApiOverview({
                         </Link>
                       </td>
                       <td>
-                        <Link to={docLink} className="text--no-decoration text--bold">
+                        <Link
+                          to={docLink}
+                          className="text--no-decoration text--bold"
+                        >
                           {endpoint.summary}
                         </Link>
                         {endpoint.description && (
-                          <div>
-                            {endpoint.description}
-                          </div>
+                          <div>{endpoint.description}</div>
                         )}
                       </td>
                     </tr>
@@ -376,4 +380,4 @@ export default function ApiOverview({
       )}
     </div>
   );
-} 
+}

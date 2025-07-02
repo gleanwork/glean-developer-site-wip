@@ -13,12 +13,7 @@ const __dirname = path.dirname(__filename);
 const CHANGELOG_DIR = path.join(__dirname, '..', 'changelog', 'entries');
 const TEMPLATE_FILE = path.join(__dirname, 'templates', 'changelog-entry.md');
 
-const PRIMARY_CATEGORIES = [
-  'API',
-  'SDK',
-  'Website',
-  'Documentation',
-];
+const PRIMARY_CATEGORIES = ['API', 'SDK', 'Website', 'Documentation'];
 
 const SECONDARY_CATEGORIES = [
   'Feature',
@@ -179,7 +174,10 @@ categories: [{{CATEGORIES}}]
 
     const variables = {
       TITLE: answers.title,
-      CATEGORIES: formatCategories(answers.primaryCategory, answers.secondaryCategories),
+      CATEGORIES: formatCategories(
+        answers.primaryCategory,
+        answers.secondaryCategories,
+      ),
       SUMMARY: answers.summary.trim(),
       DETAILED_CONTENT: answers.detailedContent.trim(),
     };

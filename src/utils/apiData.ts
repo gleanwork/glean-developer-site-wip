@@ -26,7 +26,7 @@ function loadApiData(): { [key: string]: ApiFamily } {
   }
 
   apiDataCache = {};
-  
+
   splitInfo.tags.forEach((tag) => {
     apiDataCache![tag.configId] = tag as ApiFamily;
     apiDataCache![tag.name.toLowerCase()] = tag as ApiFamily;
@@ -42,16 +42,16 @@ export function getApiFamily(apiFamily: string): ApiFamily | null {
 
 export function getEndpointsForApi(apiFamily: string): Endpoint[] {
   const apiData = getApiFamily(apiFamily);
-  
+
   if (!apiData || !apiData.endpoints) {
     console.warn(`No endpoint data found for API family: ${apiFamily}`);
     return [];
   }
-  
+
   return apiData.endpoints;
 }
 
 export function getAllApiFamilies(): ApiFamily[] {
   const apiData = loadApiData();
   return splitInfo.tags as ApiFamily[];
-} 
+}

@@ -8,7 +8,13 @@ import { Feed } from 'feed';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const CHANGELOG_DATA_FILE = path.join(__dirname, '..', 'src', 'data', 'changelog.json');
+const CHANGELOG_DATA_FILE = path.join(
+  __dirname,
+  '..',
+  'src',
+  'data',
+  'changelog.json',
+);
 const RSS_OUTPUT_DIR = path.join(__dirname, '..', 'static');
 const RSS_OUTPUT_FILE = path.join(RSS_OUTPUT_DIR, 'changelog.xml');
 
@@ -18,7 +24,9 @@ function generateRSSFeed() {
     process.exit(1);
   }
 
-  const changelogData = JSON.parse(fs.readFileSync(CHANGELOG_DATA_FILE, 'utf-8'));
+  const changelogData = JSON.parse(
+    fs.readFileSync(CHANGELOG_DATA_FILE, 'utf-8'),
+  );
   const { entries } = changelogData;
 
   const siteUrl = 'https://gleanwork.github.io/glean-developer-site-wip';
@@ -61,7 +69,7 @@ function generateRSSFeed() {
         },
       ],
       date: pubDate,
-      category: entry.categories.map(cat => ({ name: cat })),
+      category: entry.categories.map((cat) => ({ name: cat })),
     });
   });
 
@@ -70,7 +78,9 @@ function generateRSSFeed() {
   const rssXml = feed.rss2();
   fs.writeFileSync(RSS_OUTPUT_FILE, rssXml);
 
-  console.log(`Generated RSS feed with ${entries.length} entries at ${RSS_OUTPUT_FILE}`);
+  console.log(
+    `Generated RSS feed with ${entries.length} entries at ${RSS_OUTPUT_FILE}`,
+  );
 }
 
-generateRSSFeed(); 
+generateRSSFeed();

@@ -210,10 +210,10 @@ export default function DocSidebarItemCategory({
           {...props}
         >
           {(item as any).customProps?.icon && (
-                          <Icon 
-                name={(item as any).customProps.icon} 
-                iconSet={(item as any).customProps?.iconSet || 'feather'}
-                className="sidebar-category-icon"
+            <Icon
+              name={(item as any).customProps.icon}
+              iconSet={(item as any).customProps?.iconSet || 'feather'}
+              className="sidebar-category-icon"
             />
           )}
           {label}

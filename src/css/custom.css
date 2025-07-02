@@ -205,23 +205,23 @@ article li a:hover,
 }
 
 /* Feather icons from react-feather should inherit color but keep their sizing */
-.button svg[stroke="currentColor"] {
+.button svg[stroke='currentColor'] {
   color: inherit !important;
 }
 
 /* Make sure our custom Glean icon containers pass through color */
-.button div[style*="currentColor"] {
+.button div[style*='currentColor'] {
   color: inherit !important;
 }
 
-.button div[style*="currentColor"] svg {
+.button div[style*='currentColor'] svg {
   color: inherit !important;
 }
 
-.button div[style*="currentColor"] svg path,
-.button div[style*="currentColor"] svg circle,
-.button div[style*="currentColor"] svg rect,
-.button div[style*="currentColor"] svg polygon {
+.button div[style*='currentColor'] svg path,
+.button div[style*='currentColor'] svg circle,
+.button div[style*='currentColor'] svg rect,
+.button div[style*='currentColor'] svg polygon {
   fill: currentColor !important;
   stroke: currentColor !important;
 }
@@ -265,7 +265,7 @@ article li a:hover,
 }
 
 /* Ensure custom Glean icons in sidebar respect the sizing */
-.sidebar-category-icon[style*="currentColor"] {
+.sidebar-category-icon[style*='currentColor'] {
   width: 1rem !important;
   height: 1rem !important;
 }
@@ -290,7 +290,7 @@ article li a:hover,
 }
 
 /* Hide external link arrows from navbar dropdown items with custom icons */
-.navbar-dropdown-with-icon svg[class*="lucide"],
+.navbar-dropdown-with-icon svg[class*='lucide'],
 .navbar-dropdown-with-icon .lucide-arrow-up-right {
   display: none !important;
 }
@@ -669,7 +669,9 @@ article h1,
   color: white; /* White text on blue in dark mode */
 }
 
-.tabs-container.openapi-tabs__code-container.openapi-tabs__code-container-inner:nth-child(2) {
+.tabs-container.openapi-tabs__code-container.openapi-tabs__code-container-inner:nth-child(
+    2
+  ) {
   display: none;
 }
 

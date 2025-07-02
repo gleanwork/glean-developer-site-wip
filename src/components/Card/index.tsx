@@ -32,10 +32,10 @@ export default function Card({
     if (!icon) return null;
 
     if (typeof icon === 'string') {
-      const iconElement = getIcon(icon, iconSet, { 
+      const iconElement = getIcon(icon, iconSet, {
         color,
         width: 24,
-        height: 24
+        height: 24,
       });
 
       return (

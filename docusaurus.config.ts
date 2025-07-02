@@ -64,9 +64,6 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: false,
     },
-    markdown: {
-      mermaid: true,
-    },
     navbar: {
       logo: {
         alt: 'Glean Developer Logo',
@@ -378,6 +375,9 @@ const config: Config = {
       : []),
   ],
   themes: ['docusaurus-theme-openapi-docs', '@docusaurus/theme-mermaid'],
+  markdown: {
+    mermaid: true,
+  },
 };
 
 export default config;

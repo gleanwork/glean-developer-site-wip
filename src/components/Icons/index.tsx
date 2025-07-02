@@ -56,12 +56,16 @@ function GleanIcon({
       .then((text) => {
         // Remove hardcoded fill and stroke attributes to allow CSS control
         // Also preserve viewBox and remove fixed width/height to allow proper scaling
-        const cleanedSvg = text
+        let cleanedSvg = text
           .replace(/fill="[^"]*"/g, 'fill="currentColor"')
           .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
           .replace(/<svg([^>]*)\s+width="[^"]*"/, '<svg$1')
           .replace(/<svg([^>]*)\s+height="[^"]*"/, '<svg$1')
           .replace(/<svg/, '<svg style="width: 100%; height: 100%"');
+        
+        // Add fill="currentColor" to path elements that don't have fill specified
+        cleanedSvg = cleanedSvg.replace(/<path(?![^>]*fill=)([^>]*)>/g, '<path$1 fill="currentColor">');
+        
         setSvgContent(cleanedSvg);
       })
       .catch((error) => {

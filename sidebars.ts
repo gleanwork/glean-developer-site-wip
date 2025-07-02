@@ -224,34 +224,13 @@ const sidebars: SidebarsConfig = {
                 items: [
                   {
                     type: 'doc',
-                    id: 'api-info/client/examples/chatbot',
+                    id: 'guides/chat/chatbot-example',
                     label: 'Chatbot',
                   },
                   {
                     type: 'doc',
-                    id: 'api-info/client/examples/nvidia-enterprise-kb-chatbot',
+                    id: 'guides/agents/nvidia-example',
                     label: 'Agentic AI With NVIDIA NIM',
-                  },
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Search',
-                items: [
-                  {
-                    type: 'doc',
-                    id: 'api-info/client/search/filtering-results',
-                    label: 'Filtering Results',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'api-info/client/search/datasource-filters',
-                    label: 'Datasource Filters',
-                  },
-                  {
-                    type: 'doc',
-                    id: 'api-info/client/search/faceted-filters',
-                    label: 'Faceted Filtering',
                   },
                 ],
               },

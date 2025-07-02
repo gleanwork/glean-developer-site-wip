@@ -4,7 +4,7 @@
         <title>Glean Developer Changelog</title>
         <link>https://gleanwork.github.io/glean-developer-site-wip</link>
         <description>Updates and changes to the Glean Developer Platform</description>
-        <lastBuildDate>Wed, 02 Jul 2025 01:02:23 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 02 Jul 2025 01:59:25 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Glean Developer Site</generator>
         <language>en</language>
@@ -45,7 +45,7 @@
 <li>This changelog page, which gives you a single place to see updates across the platform.</li>
 <li>Ability to switch between light and dark mode.</li>
 <li>A new <a href="../libraries/api-clients">API Clients</a> page with documentation for all available API Clients.</li>
-<li>A list of <a href="../community">community projects and resources</a> to help you get started with Glean.</li>
+<li>A list of <a href="/community">community projects and resources</a> to help you get started with Glean.</li>
 <li>Each API has its own documentation page with detailed information.</li>
 </ul>
 <p>And much more...</p>

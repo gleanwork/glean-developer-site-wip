@@ -5,7 +5,9 @@
       "slug": "placeholder",
       "title": "Debug Endpoints Permission Status",
       "date": "2025-04-17",
-      "categories": ["Indexing API"],
+      "categories": [
+        "Indexing API"
+      ],
       "summary": "<ul>\n<li><a href=\"../api/indexing-api/beta-get-document-information\"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</li>\n</ul>\n",
       "fullContent": "<ul>\n<li><p><a href=\"../api/indexing-api/beta-get-document-information\"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>\n</li>\n<li><p><a href=\"../api/indexing-api/beta-get-document-information\"><code>/debug/{datasource}/documents</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>\n</li>\n</ul>\n",
       "hasTruncation": true,
@@ -16,9 +18,11 @@
       "slug": "update-dev-site",
       "title": "Update Developer Site",
       "date": "2025-03-26",
-      "categories": ["Website"],
+      "categories": [
+        "Website"
+      ],
       "summary": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n",
-      "fullContent": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n<ul>\n<li>This documentation site is now open sourced on <a href=\"https://github.com/gleanwork/glean-developer-site\">GitHub</a></li>\n<li>This changelog page, which gives you a single place to see updates across the platform.</li>\n<li>Ability to switch between light and dark mode.</li>\n<li>A new <a href=\"../libraries/api-clients\">API Clients</a> page with documentation for all available API Clients.</li>\n<li>A list of <a href=\"../community\">community projects and resources</a> to help you get started with Glean.</li>\n<li>Each API has its own documentation page with detailed information.</li>\n</ul>\n<p>And much more...</p>\n",
+      "fullContent": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n<ul>\n<li>This documentation site is now open sourced on <a href=\"https://github.com/gleanwork/glean-developer-site\">GitHub</a></li>\n<li>This changelog page, which gives you a single place to see updates across the platform.</li>\n<li>Ability to switch between light and dark mode.</li>\n<li>A new <a href=\"../libraries/api-clients\">API Clients</a> page with documentation for all available API Clients.</li>\n<li>A list of <a href=\"/community\">community projects and resources</a> to help you get started with Glean.</li>\n<li>Each API has its own documentation page with detailed information.</li>\n</ul>\n<p>And much more...</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-26-update-dev-site.md"
     },
@@ -27,7 +31,9 @@
       "slug": "add-mcp",
       "title": "Add MCP",
       "date": "2025-03-11",
-      "categories": ["MCP"],
+      "categories": [
+        "MCP"
+      ],
       "summary": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
       "fullContent": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
       "hasTruncation": true,
@@ -38,7 +44,9 @@
       "slug": "general-updates",
       "title": "LangChain SDK Release",
       "date": "2025-03-05",
-      "categories": ["LangChain SDK"],
+      "categories": [
+        "LangChain SDK"
+      ],
       "summary": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
       "fullContent": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
       "hasTruncation": true,
@@ -49,14 +57,21 @@
       "slug": "update-permissions",
       "title": "Update Permissions Endpoint",
       "date": "2025-02-19",
-      "categories": ["Indexing API"],
+      "categories": [
+        "Indexing API"
+      ],
       "summary": "<p><a href=\"../api/indexing-api/update-document-permissions\"><code>/updatepermissions</code></a></p>\n<ul>\n<li>Beta launch of new endpoint to update document permissions -<br>  <a href=\"../api/indexing-api/beta-get-information-of-a-batch-of-documents\"><code>/debug/[datasource]/documents</code></a></li>\n<li>Beta launch of new troubleshooting endpoint for batch queries</li>\n</ul>\n",
       "fullContent": "<p><a href=\"../api/indexing-api/update-document-permissions\"><code>/updatepermissions</code></a></p>\n<ul>\n<li>Beta launch of new endpoint to update document permissions -<br>  <a href=\"../api/indexing-api/beta-get-information-of-a-batch-of-documents\"><code>/debug/[datasource]/documents</code></a></li>\n<li>Beta launch of new troubleshooting endpoint for batch queries</li>\n</ul>\n",
       "hasTruncation": true,
       "fileName": "2025-02-19-update-permissions.md"
     }
   ],
-  "categories": ["Indexing API", "LangChain SDK", "MCP", "Website"],
-  "generatedAt": "2025-07-02T01:02:23.920Z",
+  "categories": [
+    "Indexing API",
+    "LangChain SDK",
+    "MCP",
+    "Website"
+  ],
+  "generatedAt": "2025-07-02T01:59:25.219Z",
   "totalEntries": 5
 }

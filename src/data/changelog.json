@@ -8,8 +8,8 @@
       "categories": [
         "MCP"
       ],
-      "summary": "<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>\n<p><a href=\"/agents/mcp#using-oauth\">See here for setup instructions</a></p>\n<p>Note: OAuth is also enabled for the local MCP server.</p>\n",
-      "fullContent": "<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>\n<p><a href=\"/agents/mcp#using-oauth\">See here for setup instructions</a></p>\n<p>Note: OAuth is also enabled for the local MCP server.</p>\n",
+      "summary": "<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>\n<p><a href=\"../guides/mcp/#configuration\">See here for setup instructions</a></p>\n<p>Note: OAuth is also enabled for the local MCP server.</p>\n",
+      "fullContent": "<p>You can now use the Device Authorization Flow with the same SSO provider configured in Glean to authenticate users connecting their clients to Glean’s remote MCP server.</p>\n<p><a href=\"../guides/mcp/#configuration\">See here for setup instructions</a></p>\n<p>Note: OAuth is also enabled for the local MCP server.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-06-17-oauth-for-remote-mcp-server-private-beta.md"
     },
@@ -34,8 +34,8 @@
       "categories": [
         "Documentation"
       ],
-      "summary": "<p>Update the generated code snippets that are displayed throughout the <a href=\"https://developers.glean.com/client/api/\">Client<br>API Reference</a> and <a href=\"https://developers.glean.com/indexing/api/\">Indexing API<br>Reference</a> docs to include the<br>required <code>instance</code> parameter in the API client constructor.</p>\n",
-      "fullContent": "<p>Update the generated code snippets that are displayed throughout the <a href=\"https://developers.glean.com/client/api/\">Client<br>API Reference</a> and <a href=\"https://developers.glean.com/indexing/api/\">Indexing API<br>Reference</a> docs to include the<br>required <code>instance</code> parameter in the API client constructor.</p>\n",
+      "summary": "<p>Update the generated code snippets that are displayed throughout the <a href=\"../api/client-api/activity/overview\">Client<br>API Reference</a> and <a href=\"../api/indexing-api/authentication-overview\">Indexing API<br>Reference</a> docs to include the<br>required <code>instance</code> parameter in the API client constructor.</p>\n",
+      "fullContent": "<p>Update the generated code snippets that are displayed throughout the <a href=\"../api/client-api/activity/overview\">Client<br>API Reference</a> and <a href=\"../api/indexing-api/authentication-overview\">Indexing API<br>Reference</a> docs to include the<br>required <code>instance</code> parameter in the API client constructor.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-05-31-updates-to-api-reference-code-snippets.md"
     },
@@ -60,8 +60,8 @@
       "categories": [
         "API"
       ],
-      "summary": "<p>We fixed a bug that caused <a href=\"https://developers.glean.com/client/api/agents/create-run-wait-for-output\">Run Agent Wait for Output</a><br>(<code>/agents/run/wait</code>) to return empty responses when used with the API Client<br>libraries.</p>\n",
-      "fullContent": "<p>We fixed a bug that caused <a href=\"https://developers.glean.com/client/api/agents/create-run-wait-for-output\">Run Agent Wait for Output</a><br>(<code>/agents/run/wait</code>) to return empty responses when used with the API Client<br>libraries.</p>\n<p>We also fixed a bug that produced non-SSE compliant output when<br>using the <a href=\"https://developers.glean.com/client/api/agents/create-run-stream-output\">Run Agent Stream Output</a><br>(<code>/agents/run/stream</code>) endpoint.</p>\n",
+      "summary": "<p>We fixed a bug that caused <a href=\"../api/client-api/agents/create-and-wait-run\">Run Agent Wait for Output</a><br>(<code>/agents/run/wait</code>) to return empty responses when used with the API Client<br>libraries.</p>\n",
+      "fullContent": "<p>We fixed a bug that caused <a href=\"../api/client-api/agents/create-and-wait-run\">Run Agent Wait for Output</a><br>(<code>/agents/run/wait</code>) to return empty responses when used with the API Client<br>libraries.</p>\n<p>We also fixed a bug that produced non-SSE compliant output when<br>using the <a href=\"../api/client-api/agents/create-and-stream-run\">Run Agent Stream Output</a><br>(<code>/agents/run/stream</code>) endpoint.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-05-27-run-agent-api-bug-fix-in-client-libraries.md"
     },
@@ -113,7 +113,7 @@
         "SDK"
       ],
       "summary": "<ul>\n<li>Released official API clients for Glean in multiple languages, replacing the<br>previous OpenAPI Generator-based SDK approach</li>\n</ul>\n",
-      "fullContent": "<ul>\n<li><p>Released official API clients for Glean in multiple languages, replacing the<br>previous OpenAPI Generator-based SDK approach</p>\n</li>\n<li><p>New API clients are now<br>available for:</p>\n<ul>\n<li><a href=\"https://github.com/gleanwork/api-client-python\">Python</a></li>\n<li><a href=\"https://github.com/gleanwork/api-client-typescript\">TypeScript</a></li>\n<li><a href=\"https://github.com/gleanwork/api-client-go\">Go</a></li>\n<li><a href=\"https://github.com/gleanwork/api-client-java\">Java</a></li>\n</ul>\n</li>\n<li><p>Updated documentation with new installation instructions and usage examples</p>\n</li>\n<li><p>Visit the <a href=\"/api-clients\">API Clients</a> page for more information</p>\n</li>\n</ul>\n",
+      "fullContent": "<ul>\n<li><p>Released official API clients for Glean in multiple languages, replacing the<br>previous OpenAPI Generator-based SDK approach</p>\n</li>\n<li><p>New API clients are now<br>available for:</p>\n<ul>\n<li><a href=\"https://github.com/gleanwork/api-client-python\">Python</a></li>\n<li><a href=\"https://github.com/gleanwork/api-client-typescript\">TypeScript</a></li>\n<li><a href=\"https://github.com/gleanwork/api-client-go\">Go</a></li>\n<li><a href=\"https://github.com/gleanwork/api-client-java\">Java</a></li>\n</ul>\n</li>\n<li><p>Updated documentation with new installation instructions and usage examples</p>\n</li>\n<li><p>Visit the <a href=\"../libraries/api-clients\">API Clients</a> page for more information</p>\n</li>\n</ul>\n",
       "hasTruncation": true,
       "fileName": "2025-05-10-official-api-clients-release.md"
     },
@@ -125,8 +125,8 @@
       "categories": [
         "API"
       ],
-      "summary": "<ul>\n<li><a href=\"https://developers.glean.com/api-reference/indexing/documents/update-document-permissions\">/updatepermissions</a> Endpoint to update document permissions: Generally available</li>\n<li><a href=\"https://developers.glean.com/api-reference/indexing/troubleshooting/beta:-get-information-of-a-batch-of-documents\">/debug/datasource/documents</a> Troubleshooting endpoint for batch queries: Generally available</li>\n</ul>\n",
-      "fullContent": "<ul>\n<li><a href=\"https://developers.glean.com/api-reference/indexing/documents/update-document-permissions\">/updatepermissions</a> Endpoint to update document permissions: Generally available</li>\n<li><a href=\"https://developers.glean.com/api-reference/indexing/troubleshooting/beta:-get-information-of-a-batch-of-documents\">/debug/datasource/documents</a> Troubleshooting endpoint for batch queries: Generally available</li>\n</ul>\n",
+      "summary": "<ul>\n<li><a href=\"../api/indexing-api/update-document-permissions\">/updatepermissions</a> Endpoint to update document permissions: Generally available</li>\n<li><a href=\"../api/indexing-api/beta-get-information-of-a-batch-of-documents\">/debug/datasource/documents</a> Troubleshooting endpoint for batch queries: Generally available</li>\n</ul>\n",
+      "fullContent": "<ul>\n<li><a href=\"../api/indexing-api/update-document-permissions\">/updatepermissions</a> Endpoint to update document permissions: Generally available</li>\n<li><a href=\"../api/indexing-api/beta-get-information-of-a-batch-of-documents\">/debug/datasource/documents</a> Troubleshooting endpoint for batch queries: Generally available</li>\n</ul>\n",
       "hasTruncation": true,
       "fileName": "2025-05-02-new-indexing-api-endpoints-for-documents-and-troubleshooting copy.md"
     },
@@ -139,7 +139,7 @@
         "API"
       ],
       "summary": "<p>In the /chat API, the previous way of processing the response message stream has been deprecated as a result of the launch of LLM-generated citations.</p>\n",
-      "fullContent": "<p>In the /chat API, the previous way of processing the response message stream has been deprecated as a result of the launch of LLM-generated citations.</p>\n<ul>\n<li>LLM citations are interleaved within the response text fragments. Each fragment can have &quot;text&quot; or &quot;citation&quot;.</li>\n<li>If streaming is set to False, the response may still be broken up into across multiple fragments.</li>\n<li>The citations interleaved inside the response do not have reference ranges (start and end indices) or snippets as they used to.</li>\n<li>For backwards compatibility, we still return a chat message with citations at the end in the old format, except there will be no startIndex and no snippets.</li>\n</ul>\n<p>Visit the <a href=\"https://developers.glean.com/client/guides/chatbot#python-example\">Simple Chatbot Guide</a> for more information and an example.</p>\n",
+      "fullContent": "<p>In the /chat API, the previous way of processing the response message stream has been deprecated as a result of the launch of LLM-generated citations.</p>\n<ul>\n<li>LLM citations are interleaved within the response text fragments. Each fragment can have &quot;text&quot; or &quot;citation&quot;.</li>\n<li>If streaming is set to False, the response may still be broken up into across multiple fragments.</li>\n<li>The citations interleaved inside the response do not have reference ranges (start and end indices) or snippets as they used to.</li>\n<li>For backwards compatibility, we still return a chat message with citations at the end in the old format, except there will be no startIndex and no snippets.</li>\n</ul>\n<p>Visit the <a href=\"../guides/chat/chatbot-example\">Simple Chatbot Guide</a> for more information and an example.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-04-24-deprecate-previous-processing-message-stream.md"
     },
@@ -178,7 +178,7 @@
         "Website"
       ],
       "summary": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n",
-      "fullContent": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n<ul>\n<li>This documentation site is now open sourced on <a href=\"https://github.com/gleanwork/glean-developer-site\">GitHub</a></li>\n<li>This changelog page, which gives you a single place to see updates across the platform.</li>\n<li>Ability to switch between light and dark mode.</li>\n<li>A new <a href=\"../libraries/api-clients\">API Clients</a> page with documentation for all available API Clients.</li>\n<li>A list of <a href=\"/community\">community projects and resources</a> to help you get started with Glean.</li>\n<li>Each API has its own documentation page with detailed information.</li>\n</ul>\n<p>And much more...</p>\n",
+      "fullContent": "<p>The developer site has been updated with a new look, content, and features. Some new features include:</p>\n<ul>\n<li>This documentation site is now open sourced on <a href=\"https://github.com/gleanwork/glean-developer-site\">GitHub</a></li>\n<li>This changelog page, which gives you a single place to see updates across the platform.</li>\n<li>Ability to switch between light and dark mode.</li>\n<li>A new <a href=\"../libraries/api-clients\">API Clients</a> page with documentation for all available API Clients.</li>\n<li>A list of <a href=\"https://community.glean.com/\">community projects and resources</a> to help you get started with Glean.</li>\n<li>Each API has its own documentation page with detailed information.</li>\n</ul>\n<p>And much more...</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-26-update-dev-site.md"
     },
@@ -190,8 +190,8 @@
       "categories": [
         "MCP"
       ],
-      "summary": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
-      "fullContent": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
+      "summary": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"../guides/agents/overview\">Agents</a> for more information.</p>\n",
+      "fullContent": "<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href=\"https://github.com/gleanwork/mcp-server\">GitHub</a>.</p>\n<p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>\n<p>Visit the <a href=\"../guides/agents/overview\">Agents</a> for more information.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-11-add-mcp.md"
     },
@@ -203,8 +203,8 @@
       "categories": [
         "SDK"
       ],
-      "summary": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
-      "fullContent": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"../guides/agents/\">Agents</a> for more information.</p>\n",
+      "summary": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"../guides/agents/overview\">Agents</a> for more information.</p>\n",
+      "fullContent": "<p>Added LangChain SDK for Python on <a href=\"https://github.com/gleanwork/langchain-glean\">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>\n<p>Visit the <a href=\"../guides/agents/overview\">Agents</a> for more information.</p>\n",
       "hasTruncation": true,
       "fileName": "2025-03-05-general-updates.md"
     },
@@ -229,6 +229,6 @@
     "SDK",
     "Website"
   ],
-  "generatedAt": "2025-07-02T16:51:33.962Z",
+  "generatedAt": "2025-07-02T18:22:32.032Z",
   "totalEntries": 17
 }

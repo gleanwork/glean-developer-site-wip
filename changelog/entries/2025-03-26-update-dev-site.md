@@ -10,7 +10,7 @@ The developer site has been updated with a new look, content, and features. Some
 - This changelog page, which gives you a single place to see updates across the platform.
 - Ability to switch between light and dark mode.
 - A new [API Clients](../libraries/api-clients) page with documentation for all available API Clients.
-- A list of [community projects and resources](/community) to help you get started with Glean.
+- A list of [community projects and resources](https://community.glean.com/) to help you get started with Glean.
 - Each API has its own documentation page with detailed information.
 
 And much more...

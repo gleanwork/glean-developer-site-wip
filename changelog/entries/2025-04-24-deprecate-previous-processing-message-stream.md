@@ -12,4 +12,4 @@ In the /chat API, the previous way of processing the response message stream has
 - The citations interleaved inside the response do not have reference ranges (start and end indices) or snippets as they used to.
 - For backwards compatibility, we still return a chat message with citations at the end in the old format, except there will be no startIndex and no snippets.
 
-Visit the [Simple Chatbot Guide](https://developers.glean.com/client/guides/chatbot#python-example) for more information and an example. 
+Visit the [Simple Chatbot Guide](../guides/chat/chatbot-example) for more information and an example. 

@@ -24,7 +24,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Announcements",
@@ -57,7 +57,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Answers",
@@ -104,7 +104,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Authentication",
@@ -123,7 +123,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Chat",
@@ -205,7 +205,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Agents",
@@ -252,7 +252,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Collections",
@@ -320,7 +320,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Documents",
@@ -353,7 +353,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Insights",
@@ -372,7 +372,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Messages",
@@ -391,7 +391,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Pins",
@@ -438,7 +438,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Search",
@@ -485,7 +485,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Entities",
@@ -511,7 +511,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Shortcuts",
@@ -558,7 +558,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Summarize",
@@ -577,7 +577,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Verification",
@@ -610,7 +610,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Tools",
@@ -636,7 +636,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     },
     {
       "name": "Governance",
@@ -718,7 +718,7 @@
         }
       ],
       "fullyInlined": true,
-      "circularReferencesFixed": false
+      "circularReferencesFixed": true
     }
   ]
 }

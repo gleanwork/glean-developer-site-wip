@@ -725,6 +725,7 @@ async function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
           description: `${currentTagInfo.description || tag} operations for ${apiSpec.info.title}`
         },
         servers: apiSpec.servers || [],
+        security: apiSpec.security || [],
         // Include the tag definition in the new API
         tags: [{
           name: currentTagInfo.name,

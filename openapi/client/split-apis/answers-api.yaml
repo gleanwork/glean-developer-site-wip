@@ -12,6 +12,8 @@ servers:
       instance:
         default: instance-name
         description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
+security:
+  - APIToken: []
 tags:
   - name: Answers
     description: Answers

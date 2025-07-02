@@ -4,7 +4,7 @@
         <title>Glean Developer Changelog</title>
         <link>https://gleanwork.github.io/glean-developer-site-wip</link>
         <description>Updates and changes to the Glean Developer Platform</description>
-        <lastBuildDate>Tue, 01 Jul 2025 23:31:45 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 02 Jul 2025 00:00:49 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Glean Developer Site</generator>
         <language>en</language>
@@ -20,13 +20,13 @@
             <guid isPermaLink="false">2025-04-17-placeholder</guid>
             <pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<ul>
-<li><a href="/api-info/indexing/debugging/datasource-document"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</li>
+<li><a href="/glean-developer-site-wip/api-info/indexing/debugging/datasource-document"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</li>
 </ul>
 ]]></description>
             <content:encoded><![CDATA[<ul>
-<li><p><a href="/api-info/indexing/debugging/datasource-document"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>
+<li><p><a href="/glean-developer-site-wip/api-info/indexing/debugging/datasource-document"><code>/debug/{datasource}/document</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>
 </li>
-<li><p><a href="/api-info/indexing/debugging/datasource-document"><code>/debug/{datasource}/documents</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>
+<li><p><a href="/glean-developer-site-wip/api-info/indexing/debugging/datasource-document"><code>/debug/{datasource}/documents</code></a> - New response field <code>permissionIdentityStatus</code> under <code>status</code>: Provides information regarding upload status of users and groups specified in document permissions</p>
 </li>
 </ul>
 ]]></content:encoded>
@@ -44,7 +44,7 @@
 <li>This documentation site is now open sourced on <a href="https://github.com/gleanwork/glean-developer-site">GitHub</a></li>
 <li>This changelog page, which gives you a single place to see updates across the platform.</li>
 <li>Ability to switch between light and dark mode.</li>
-<li>A new <a href="/libraries/api-clients">API Clients</a> page with documentation for all available API Clients.</li>
+<li>A new <a href="/glean-developer-site-wip/libraries/api-clients">API Clients</a> page with documentation for all available API Clients.</li>
 <li>Enhanced documentation and resources to help you get started with Glean.</li>
 <li>Each API has its own documentation page with detailed information.</li>
 </ul>
@@ -59,11 +59,11 @@
             <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href="https://github.com/gleanwork/mcp-server">GitHub</a>.</p>
 <p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>
-<p>Visit the <a href="/guides/agents/">Agents</a> for more information.</p>
+<p>Visit the <a href="/glean-developer-site-wip/guides/agents/">Agents</a> for more information.</p>
 ]]></description>
             <content:encoded><![CDATA[<p>Added a Model Context Protocol (MCP) server implementation for Glean&#39;s search and chat capabilities on <a href="https://github.com/gleanwork/mcp-server">GitHub</a>.</p>
 <p>This server provides a standardized interface for AI models to interact with Glean&#39;s content search and conversational AI features through stdio communication.</p>
-<p>Visit the <a href="/guides/agents/">Agents</a> for more information.</p>
+<p>Visit the <a href="/glean-developer-site-wip/guides/agents/">Agents</a> for more information.</p>
 ]]></content:encoded>
             <category>MCP</category>
         </item>
@@ -73,10 +73,10 @@
             <guid isPermaLink="false">2025-03-05-general-updates</guid>
             <pubDate>Wed, 05 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>Added LangChain SDK for Python on <a href="https://github.com/gleanwork/langchain-glean">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>
-<p>Visit the <a href="/guides/agents/">Agents</a> for more information.</p>
+<p>Visit the <a href="/glean-developer-site-wip/guides/agents/">Agents</a> for more information.</p>
 ]]></description>
             <content:encoded><![CDATA[<p>Added LangChain SDK for Python on <a href="https://github.com/gleanwork/langchain-glean">GitHub</a>. This SDK provides a simple interface for interacting with Glean&#39;s search and chat capabilities when using LangChain.</p>
-<p>Visit the <a href="/guides/agents/">Agents</a> for more information.</p>
+<p>Visit the <a href="/glean-developer-site-wip/guides/agents/">Agents</a> for more information.</p>
 ]]></content:encoded>
             <category>LangChain SDK</category>
         </item>
@@ -85,15 +85,15 @@
             <link>https://gleanwork.github.io/glean-developer-site-wip/changelog#update-permissions</link>
             <guid isPermaLink="false">2025-02-19-update-permissions</guid>
             <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<p><a href="/api/indexing-api/update-document-permissions"><code>/updatepermissions</code></a></p>
+            <description><![CDATA[<p><a href="/glean-developer-site-wip/api/indexing-api/update-document-permissions"><code>/updatepermissions</code></a></p>
 <ul>
-<li>Beta launch of new endpoint to update document permissions -<br>  <a href="/api-info/indexing/debugging/datasource-document"><code>/debug/[datasource]/documents</code></a></li>
+<li>Beta launch of new endpoint to update document permissions -<br>  <a href="/glean-developer-site-wip/api-info/indexing/debugging/datasource-document"><code>/debug/[datasource]/documents</code></a></li>
 <li>Beta launch of new troubleshooting endpoint for batch queries</li>
 </ul>
 ]]></description>
-            <content:encoded><![CDATA[<p><a href="/api/indexing-api/update-document-permissions"><code>/updatepermissions</code></a></p>
+            <content:encoded><![CDATA[<p><a href="/glean-developer-site-wip/api/indexing-api/update-document-permissions"><code>/updatepermissions</code></a></p>
 <ul>
-<li>Beta launch of new endpoint to update document permissions -<br>  <a href="/api-info/indexing/debugging/datasource-document"><code>/debug/[datasource]/documents</code></a></li>
+<li>Beta launch of new endpoint to update document permissions -<br>  <a href="/glean-developer-site-wip/api-info/indexing/debugging/datasource-document"><code>/debug/[datasource]/documents</code></a></li>
 <li>Beta launch of new troubleshooting endpoint for batch queries</li>
 </ul>
 ]]></content:encoded>

@@ -12,6 +12,20 @@ const __dirname = path.dirname(__filename);
 const CHANGELOG_DIR = path.join(__dirname, '..', 'changelog', 'entries');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'data', 'changelog.json');
 
+// Read baseUrl from docusaurus config
+const CONFIG_FILE = path.join(__dirname, '..', 'docusaurus.config.ts');
+let baseUrl = '/glean-developer-site-wip/'; // fallback
+
+try {
+  const configContent = fs.readFileSync(CONFIG_FILE, 'utf-8');
+  const baseUrlMatch = configContent.match(/baseUrl:\s*['"]([^'"]+)['"]/);
+  if (baseUrlMatch) {
+    baseUrl = baseUrlMatch[1];
+  }
+} catch (error) {
+  console.warn('Could not read baseUrl from config, using fallback:', baseUrl);
+}
+
 marked.setOptions({
   breaks: true,
   gfm: true,
@@ -19,10 +33,28 @@ marked.setOptions({
   mangle: false,
 });
 
-// No mapping needed - read categories directly from frontmatter
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+  headerIds: false,
+  mangle: false,
+});
 
 function markdownToHtml(markdown) {
-  return marked(markdown);
+  let html = marked(markdown);
+  
+  // Post-process HTML to add baseUrl to internal links
+  html = html.replace(/href="(\/[^"]*?)"/g, (match, href) => {
+    // Skip if it's already absolute (starts with //) or already has baseUrl
+    if (href.startsWith('//') || href.startsWith(baseUrl)) {
+      return match;
+    }
+    // Add baseUrl to internal links
+    const fullHref = baseUrl.replace(/\/$/, '') + href;
+    return `href="${fullHref}"`;
+  });
+  
+  return html;
 }
 
 function processChangelogContent(content) {

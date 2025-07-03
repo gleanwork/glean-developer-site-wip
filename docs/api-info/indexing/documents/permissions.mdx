@@ -21,7 +21,7 @@ For example, the following request to index a document would lead to the documen
 curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 #...
    "permissions": {
-	"allowAnonymousAccess" = "true"
+	"allowAnonymousAccess": "true"
    }
 #... Rest of the document
 ```
@@ -71,7 +71,7 @@ Once the users are indexed, we can create a document with its [`allowedUsers`](h
 
 Based on the [`isUserReferencedByEmail`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/#!path=isUserReferencedByEmail&t=request) field set to **true** or **false** in the datasource config, we can follow one of the two scenarious below:
 
-#### <h4 id = 'scenario-1a'> Scenario 1.2-A: [`isUserReferencedByEmail`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/#!path=isUserReferencedByEmail&t=request) field set to <ins>**true**</ins> in the datasource config </h4>
+#### Scenario 1.2-A: [`isUserReferencedByEmail`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/#!path=isUserReferencedByEmail&t=request) field set to <ins>**true**</ins> in the datasource config {#scenario-1a}
 
 ---
 
@@ -92,7 +92,7 @@ curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 # ... Rest of the document
 ```
 
-#### <h4 id = 'scenario-1b'> Scenario 1.2-B: [`isUserReferencedByEmail`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/#!path=isUserReferencedByEmail&t=request) field set to <ins>**false**</ins> in the datasource config </h4>
+#### Scenario 1.2-B: [`isUserReferencedByEmail`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/#!path=isUserReferencedByEmail&t=request) field set to <ins>**false**</ins> in the datasource config {#scenario-1b}
 
 ---
 
@@ -113,7 +113,7 @@ curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 # ... Rest of the document
 ```
 
-## <h2 id='scenario-2'> Scenario 2: Allowing all users of the datasource to search a document </h2>
+## Scenario 2: Allowing all users of the datasource to search a document {#scenario-2}
 
 ---
 
@@ -143,7 +143,7 @@ Next, we should set the [`allowAllDatasourceUsersAccess`](https://developers.gle
 curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 # ...
    "permissions": {
-	"allowAllDatasourceUsersAccess" = "true"
+	"allowAllDatasourceUsersAccess": "true"
    }
 # ... Rest of the document
 ```

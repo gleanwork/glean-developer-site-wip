@@ -107,7 +107,7 @@ with Glean(
       'Custom properties and metadata',
     ],
     ctaText: 'View Indexing APIs',
-    ctaHref: '/indexing/getting-started/overview',
+    ctaHref: '/api-info/indexing/getting-started/overview',
     ctaIcon: 'Database',
     ctaIconSet: 'feather',
     codeLanguage: 'python',

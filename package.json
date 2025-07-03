@@ -82,5 +82,8 @@
   },
   "engines": {
     "node": ">=22.0"
+  },
+  "resolutions": {
+    "docusaurus-plugin-search-glean": "portal:/Users/steve.calvert/workspace/personal/docusaurus-plugin-search-glean"
   }
 }

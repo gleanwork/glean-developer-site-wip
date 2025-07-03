@@ -187,6 +187,13 @@ const config: Config = {
         enableAnonymousAuth: true,
       },
     ],
+    [
+      'vercel-analytics',
+      {
+        debug: true,
+        mode: 'auto',
+      },
+    ],
     // Conditionally include OpenAPI docs plugin
     ...(shouldGenerateApiDocs ? [[
       'docusaurus-plugin-openapi-docs',

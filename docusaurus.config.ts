@@ -116,13 +116,6 @@ const config: Config = {
     },
     headTags: [
       {
-        tagName: 'script',
-        attributes: {
-          defer: true,
-          src: 'https://app.glean.com/embedded-search-latest.min.js',
-        },
-      },
-      {
         tagName: 'link',
         attributes: {
           rel: 'alternate',
@@ -181,7 +174,7 @@ const config: Config = {
         searchOptions: {
           backend: 'https://glean-public-external-be.glean.com',
           webAppUrl: 'https://glean-public-external.glean.com',
-          datasourcesFilter: ['webc7bwoqqgleandeveloperdocsnew'],
+          datasourcesFilter: ['webxtp3t2lgleandeveloperdocs'],
         },
         chatOptions: false,
         enableAnonymousAuth: true,

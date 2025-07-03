@@ -6,7 +6,9 @@ import ApiOverview from '@site/src/components/ApiOverview';
 
 # Governance API
 
-The Governance API enables administrators to create and manage data governance policies, generate compliance reports, and maintain oversight of content access and usage within your organization. Ensure data security and regulatory compliance through comprehensive governance controls. Configure in the Glean UI under Admin → Governance. You can also configure the same using the APIs provided. Each policy or report scans every indexed document according to its settings and surfaces any violations for review.
+The Governance API enables administrators to create and manage data governance policies, generate compliance reports, and maintain oversight of content access and usage within your organization.
+Ensure data security and regulatory compliance through comprehensive governance controls. Configure in the Glean UI under Admin → Governance. You can also configure the same using the APIs provided. 
+Each policy or report scans every indexed document according to its settings and surfaces any violations for review.
 
 ## Authorization
 
@@ -48,7 +50,7 @@ Reports created using this endpoint will appear in the "Sensitive Content Report
 
 ### Content hiding APIs
 
-Content hiding works by setting a "visibility override" to a particular document. These overrides can come from different sources, such as: 
+Content hiding works by setting "visibility overrides" to a particular document. These overrides can come from different sources, such as: 
 
 1. Existing policies that might flag a document meeting its requirements if "auto-hide" is enabled.
 
@@ -56,7 +58,9 @@ Content hiding works by setting a "visibility override" to a particular document
 
 3. If a document is present in the CSV for hiding it.
 
-Each of these overrides is distinct and if any one of them hide a document, it will be hidden. This rest endpoint only gives you control over the "manual override by user".
+On manually hiding, the document will have a visibility override set with source type "user".
+On manually unhiding, the document will be unhidden from all sources (not just the user source).
+All its visibility overrides will be removed and the document will be visible on Glean.
 
 <ApiOverview
   title="Governance API"

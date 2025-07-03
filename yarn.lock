@@ -7643,9 +7643,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-plugin-search-glean@portal:/Users/steve.calvert/workspace/personal/docusaurus-plugin-search-glean::locator=glean-developer-site-revamp%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "docusaurus-plugin-search-glean@portal:/Users/steve.calvert/workspace/personal/docusaurus-plugin-search-glean::locator=glean-developer-site-revamp%40workspace%3A."
+"docusaurus-plugin-search-glean@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "docusaurus-plugin-search-glean@npm:0.5.1"
   dependencies:
     "@gleanwork/web-sdk": "npm:^2.1.0"
     lodash.mergewith: "npm:^4.6.2"
@@ -7655,8 +7655,9 @@ __metadata:
     "@docusaurus/utils-validation": ">=3.0.0"
     react: ">=18.2.0"
     react-dom: ">=18.2.0"
+  checksum: 10/4af5e5e44ede18c356e84c754369eb6213ef10d28dddbcd5d1aae1f76b95865781dd6bfccb0827e38c5f2d36ab7faeacf426d465c75ff547e95cede0c80b52f0
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "docusaurus-theme-openapi-docs@npm:^4.4.0":
   version: 4.4.0
@@ -8849,7 +8850,7 @@ __metadata:
     chalk: "npm:^5.4.1"
     clsx: "npm:^2.1.1"
     docusaurus-plugin-openapi-docs: "npm:^4.4.0"
-    docusaurus-plugin-search-glean: "npm:^0.5.0"
+    docusaurus-plugin-search-glean: "npm:^0.5.1"
     docusaurus-theme-openapi-docs: "npm:^4.4.0"
     fast-levenshtein: "npm:^3.0.0"
     feed: "npm:^5.1.0"

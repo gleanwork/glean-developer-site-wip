@@ -36,7 +36,7 @@
     "@signalwire/docusaurus-plugin-llms-txt": "^1.1.0",
     "clsx": "^2.1.1",
     "docusaurus-plugin-openapi-docs": "^4.4.0",
-    "docusaurus-plugin-search-glean": "^0.5.0",
+    "docusaurus-plugin-search-glean": "^0.5.1",
     "docusaurus-theme-openapi-docs": "^4.4.0",
     "feed": "^5.1.0",
     "gray-matter": "^4.0.3",
@@ -82,8 +82,5 @@
   },
   "engines": {
     "node": ">=22.0"
-  },
-  "resolutions": {
-    "docusaurus-plugin-search-glean": "portal:/Users/steve.calvert/workspace/personal/docusaurus-plugin-search-glean"
   }
 }

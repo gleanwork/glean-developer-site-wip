@@ -176,10 +176,15 @@ const config: Config = {
       },
     ],
     [
-      require.resolve('docusaurus-plugin-search-local'),
+      require.resolve("docusaurus-plugin-search-glean"),
       {
-        indexDocs: true,
-        hashed: true,
+        searchOptions: {
+          backend: 'https://glean-public-external-be.glean.com',
+          webAppUrl: 'https://glean-public-external.glean.com',
+          datasourcesFilter: ['webc7bwoqqgleandeveloperdocsnew'],
+        },
+        chatOptions: false,
+        enableAnonymousAuth: true,
       },
     ],
     // Conditionally include OpenAPI docs plugin

@@ -2508,6 +2508,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/plugin-vercel-analytics@npm:^3.8.1":
+  version: 3.8.1
+  resolution: "@docusaurus/plugin-vercel-analytics@npm:3.8.1"
+  dependencies:
+    "@docusaurus/core": "npm:3.8.1"
+    "@docusaurus/logger": "npm:3.8.1"
+    "@docusaurus/types": "npm:3.8.1"
+    "@docusaurus/utils": "npm:3.8.1"
+    "@docusaurus/utils-validation": "npm:3.8.1"
+    "@vercel/analytics": "npm:^1.1.1"
+    tslib: "npm:^2.6.0"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10/282d083bf1d170435198aa9bac2e0c49ca2195a45f26a52eccd8eeb17867e2001b15785a8de03149fdefaff9bf88bbd944aa2d8672316ef94f65c9a3f0cc9f4a
+  languageName: node
+  linkType: hard
+
 "@docusaurus/preset-classic@npm:^3.8.1":
   version: 3.8.1
   resolution: "@docusaurus/preset-classic@npm:3.8.1"
@@ -5164,6 +5182,36 @@ __metadata:
   version: 1.3.0
   resolution: "@ungap/structured-clone@npm:1.3.0"
   checksum: 10/80d6910946f2b1552a2406650051c91bbd1f24a6bf854354203d84fe2714b3e8ce4618f49cc3410494173a1c1e8e9777372fe68dce74bd45faf0a7a1a6ccf448
+  languageName: node
+  linkType: hard
+
+"@vercel/analytics@npm:^1.1.1":
+  version: 1.5.0
+  resolution: "@vercel/analytics@npm:1.5.0"
+  peerDependencies:
+    "@remix-run/react": ^2
+    "@sveltejs/kit": ^1 || ^2
+    next: ">= 13"
+    react: ^18 || ^19 || ^19.0.0-rc
+    svelte: ">= 4"
+    vue: ^3
+    vue-router: ^4
+  peerDependenciesMeta:
+    "@remix-run/react":
+      optional: true
+    "@sveltejs/kit":
+      optional: true
+    next:
+      optional: true
+    react:
+      optional: true
+    svelte:
+      optional: true
+    vue:
+      optional: true
+    vue-router:
+      optional: true
+  checksum: 10/ae13f10585ffd458e2e00b7e3711f62fc5806447b119e3a6bc19cb1e8a1971527b434343e63207155bef5e4a170b7be6b83822ab94f4716df243cbc2a3fff3b4
   languageName: node
   linkType: hard
 
@@ -8835,6 +8883,7 @@ __metadata:
     "@docusaurus/module-type-aliases": "npm:^3.8.1"
     "@docusaurus/plugin-client-redirects": "npm:^3.8.1"
     "@docusaurus/plugin-content-docs": "npm:^3.8.1"
+    "@docusaurus/plugin-vercel-analytics": "npm:^3.8.1"
     "@docusaurus/preset-classic": "npm:^3.8.1"
     "@docusaurus/theme-classic": "npm:^3.8.1"
     "@docusaurus/theme-common": "npm:^3.8.1"

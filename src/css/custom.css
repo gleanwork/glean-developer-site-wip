@@ -582,7 +582,8 @@ article h1,
   color: #1d4ed8;
 }
 
-.post > .menu__link--active::before, .badge--success {
+.post > .menu__link--active::before,
+.badge--success {
   background-color: #3064e3;
   color: #ffffff;
   --ifm-badge-border-color: none;
@@ -594,7 +595,8 @@ article h1,
   color: #15803d;
 }
 
-.get > .menu__link--active::before, .badge--primary {
+.get > .menu__link--active::before,
+.badge--primary {
   background-color: #16a34a;
   color: #ffffff;
   --ifm-badge-border-color: none;
@@ -606,7 +608,8 @@ article h1,
   color: #dc2626;
 }
 
-.delete > .menu__link--active::before, .badge--danger {
+.delete > .menu__link--active::before,
+.badge--danger {
   background-color: #dc2626;
   color: #ffffff;
   --ifm-badge-border-color: none;
@@ -618,7 +621,8 @@ article h1,
   color: #a16207;
 }
 
-.put > .menu__link--active::before, .badge--info {
+.put > .menu__link--active::before,
+.badge--info {
   background-color: #d97706;
   color: #ffffff;
   --ifm-badge-border-color: none;
@@ -628,7 +632,8 @@ article h1,
   color: #60a5fa;
 }
 
-[data-theme='dark'] .post > .menu__link--active::before, .badge--success {
+[data-theme='dark'] .post > .menu__link--active::before,
+.badge--success {
   background-color: #3b82f6;
   color: #ffffff;
 }
@@ -637,7 +642,8 @@ article h1,
   color: #4ade80;
 }
 
-[data-theme='dark'] .get > .menu__link--active::before, .badge--primary {
+[data-theme='dark'] .get > .menu__link--active::before,
+.badge--primary {
   background-color: #22c55e;
   color: #ffffff;
 }
@@ -646,7 +652,8 @@ article h1,
   color: #fbbf24;
 }
 
-[data-theme='dark'] .put > .menu__link--active::before, .badge--info {
+[data-theme='dark'] .put > .menu__link--active::before,
+.badge--info {
   background-color: #f59e0b;
   color: #ffffff;
 }
@@ -719,7 +726,8 @@ li.tabs__item.openapi-tabs__code-item.openapi-tabs__code-item--javascript span {
   color: transparent;
 }
 
-li.tabs__item.openapi-tabs__code-item.openapi-tabs__code-item--javascript span::before {
+li.tabs__item.openapi-tabs__code-item.openapi-tabs__code-item--javascript
+  span::before {
   content: 'typescript';
   font-size: 10px;
   color: initial;

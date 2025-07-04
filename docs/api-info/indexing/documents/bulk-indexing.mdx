@@ -143,10 +143,10 @@ with Glean(
 Let's look at the different fields you need to successfully index documents to
 Glean. Note that this is just a sample request with minimal fields required to index content. For
 exhaustive list of fields, please
-refer [here](https://developers.glean.com/indexing/tag/Documents/paths/~1bulkindexdocuments/post/).
+refer [here](/api/indexing-api/bulk-index-documents).
 
 ## Next steps
 
-- You can check the status of your document using our debugging/troubleshooting APIs. Please refer [here](https://developers.glean.com/docs/indexing_api_troubleshooting/) for documentation on how to use these APIs.
+- You can check the status of your document using our debugging/troubleshooting APIs. Please refer [here](/api/indexing-api/troubleshooting-overview) for documentation on how to use these APIs.
 - For the indexed document to show up in Glean UI, the datasource must be enabled for search. For now, Glean will need to enable it internally, but in future this will be made available via Glean Admin Console. Once these steps are done, you should be able to search for the indexed document in Glean when logged in as the user having permissions to view the documents.
 - Note that it takes around 15-20 minutes for the documents to be indexed and appear on your Glean UI.

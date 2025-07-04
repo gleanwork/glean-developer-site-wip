@@ -7,7 +7,7 @@ This guide covers token rotation for the indexing API. You'll learn how to excha
 
 With token rotation, you'll provide an extra layer of security for your access tokens.
 
-To use the rotate token endpoint, you must first create a rotatable token from the admin console by specifying a rotation period in minutes. Please refer to [Managing API Tokens](https://developers.glean.com/docs/indexing_api_tokens/) documentation on how to create a rotatable token.
+To use the rotate token endpoint, you must first create a rotatable token from the admin console by specifying a rotation period in minutes. Please refer to [Managing API Tokens](/api-info/indexing/authentication/overview) documentation on how to create a rotatable token.
 
 ## Rotate token endpoint `/rotatetoken`
 

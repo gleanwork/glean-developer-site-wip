@@ -9,7 +9,7 @@ This guide will focus on our general filters and how to utilize them.
 
 ## How to Use
 
-In order to filter search results to show documents that match certain fields via the [/search REST API](https://developers.glean.com/client/operation/search/), you need to construct a list of `facetFilter` objects and pass it into the [`requestOptions`](https://developers.glean.com/client/operation/search/#tag/Search/operation/search!path=requestOptions&t=request) object.
+In order to filter search results to show documents that match certain fields via the [/search REST API](/api/client-api/search/overview), you need to construct a list of `facetFilter` objects and pass it into the [`requestOptions`](/api/client-api/search/search#request-requestoptions) object.
 
 Each facetFilter object has the following relevant fields:
 
@@ -188,7 +188,7 @@ We factor in user’s timezone for all queries except when you use the value `pa
 
 ### From filter (or any user filter):
 
-If you would like to specify a specific user, for example, if there are 2 people with the same name, “User one”, you can specify which one you mean by using the email address they authenticated with Glean as the `value` . IE [user@glean.com](mailto:user@nvidia.com) and [userone@glean.com](mailto:userone@nvidia.com) would facet by different “User One”s even if they have the same name.
+If you would like to specify a specific user, for example, if there are 2 people with the same name, “User one”, you can specify which one you mean by using the email address they authenticated with Glean as the `value` . IE user[at]glean.com and userone[at]glean.com would facet by different “User One”s even if they have the same name.
 
 Sample query:
 

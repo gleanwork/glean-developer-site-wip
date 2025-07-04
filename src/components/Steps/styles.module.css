@@ -66,6 +66,15 @@
   margin: 0;
 }
 
+.step__body ol {
+  margin-bottom: 0;
+  padding-left: 1rem;
+}
+
+.step__body p:has(+ ul) {
+  margin-bottom: 0;
+}
+
 .step__custom_icon {
   display: inline-flex;
   align-items: center;

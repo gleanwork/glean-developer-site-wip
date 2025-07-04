@@ -38,7 +38,7 @@ Before custom properties can be uploaded for documents, we must configure the da
 The configuration can be done in 2 ways:
 
 1. [Admin console](https://app.glean.com/admin/setup/apps/) (_recommended_)
-2. API calls to [`/adddatasource`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/)
+2. API calls to [`/adddatasource`](/api/indexing-api/add-or-update-datasource)
 
 ### Using admin console
 
@@ -129,8 +129,7 @@ Note: propertyTypes `"DATE"` and `"INT"` are not faceted.
 
 ## Uploading custom properties
 
-After you have defined the properties, you can set the properties values while uploading the document. A sample API call for /indexdocument([link](https://developers.glean.com/indexing/tag/Documents/paths/~1indexdocument/post/)) where we illustrate how this is done is:
-
+After you have defined the properties, you can set the properties values while uploading the document. A sample API call for [`/indexdocument`](/api/indexing-api/index-document) where we illustrate how this is done is:
 Here is a sample API call for the above example:
 
 <Tabs>
@@ -230,7 +229,7 @@ Once you follow the steps above in defining custom properties and uploading them
 
 :::info
 
-If you wish to hide the facet from showing up in the UI, you may select the 'Hide UI Facet' option in the admin console for the property (or) set hideUiFacet to true in the API call.
+If you wish to hide the facet from showing up in the UI, you may select the 'Hide UI Facet' option in the admin console for the property (or) set `hideUiFacet` to true in the API call.
 
 :::
 
@@ -246,13 +245,13 @@ Apart from the above mentioned steps for configuring and uploading custom proper
 
 ![rendering-custom-result](./images/rendering-custom-result.png)
 
-**For more details on rendering of search result refer [here](https://developers.glean.com/docs/rendering_search_results/)**
+**For more details on rendering of search result refer [here](/api-info/indexing/datasource/rendering-search-results/)**
 
 :::warning
 
 If you have already uploaded documents with a custom property, before setting the UI options for the property to include the Search result - please expect a delay (could be multiple hours, depending on the volume of documents) before the documents' properties are visible in the search results.
 
-To propagate this update quicker - it is recommended to re-upload the documents (or) call the [`/processalldocuments`](https://developers.glean.com/indexing/tag/Documents/paths/~1processalldocuments/post/) endpoint for the datasource.
+To propagate this update quicker - it is recommended to re-upload the documents (or) call the [`/processalldocuments`](/api/indexing-api/schedules-the-processing-of-uploaded-documents) endpoint for the datasource.
 
 :::
 

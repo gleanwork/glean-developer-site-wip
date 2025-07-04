@@ -16,7 +16,7 @@ Setting up a test datasource is quite easy, you have to go through almost the sa
 
 ### 1. Setting `isTestDatasource` to true
 
-When setting up the datasource using `/adddatasource` ([link](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/)), remember to set the isTestDatasource field to true.
+When setting up the datasource using [`/adddatasource`](/api/indexing-api/add-or-update-datasource), remember to set the isTestDatasource field to true.
 
 <Tabs>
 <TabItem value="curl" label="curl">
@@ -26,7 +26,6 @@ curl -X POST https://customer-be.glean.com/api/index/v1/adddatasource \
 ...
 	"isTestDatasource" : "true”
 ...
-}
 ```
 
 </TabItem>
@@ -55,7 +54,7 @@ Glean turns off ranking signals from a test datasource. For example, Glean uses 
 
 ### 2. Using `/betausers` endpoint to give select visibilty to users.
 
-At this stage your test datasource is not affecting the production and it is neither visible to anyone. Now you would like to give selective visibility to it. This can be done using the `/betausers`([link](https://developers.glean.com/indexing/tag/Permissions/paths/~1betausers/post/)) endpoint. This endpoint allows you to control the people who can have visibility to the test datasource. An example command would look like :
+At this stage your test datasource is not affecting the production and it is neither visible to anyone. Now you would like to give selective visibility to it. This can be done using the [`/betausers`](/api/indexing-api/beta-users) endpoint. This endpoint allows you to control the people who can have visibility to the test datasource. An example command would look like:
 
 <Tabs>
 <TabItem value="curl" label="curl">
@@ -101,4 +100,4 @@ except glean_indexing_api_client.ApiException as e:
 
 This command would give visibility of the test datasource to user1 and user2. This would allow you to test your custom datasource among a small number of users.
 
-Note: For a document to be visible to beta users, they must also have appropriate permissions to view it. For more details about setting permissions, follow the [Setting Permissions](https://developers.glean.com/docs/indexing_api_permissions/) tutorial.
+Note: For a document to be visible to beta users, they must also have appropriate permissions to view it. For more details about setting permissions, follow the [Setting Permissions](/api-info/indexing/documents/permissions) tutorial.

@@ -7,11 +7,11 @@ We allow the option of allowing developers to push activity information for docu
 
 ## Getting started with the activity endpoint
 
-First note that, the [activity endpoint](https://developers.glean.com/client/operation/activity/) needs to be called with a **client API** bearer token (as opposed to an indexing API bearer token for other endpoints). This is because, we expect activity to be provided server-to-server on a per-user basis (eg. when a user views a document from a custom datasource, you may report this view back to us from your server).
+First note that, the [activity endpoint](/api/client-api/activity/activity) needs to be called with a **client API** bearer token (as opposed to an indexing API bearer token for other endpoints). This is because, we expect activity to be provided server-to-server on a per-user basis (eg. when a user views a document from a custom datasource, you may report this view back to us from your server).
 
 For pushing activity for any user from your organization, we need a _Global_ client API token scoped to _ACTIVITY_.
 
-To fetch a scoped client API token, please follow the instructions in the [Authentication page for Client API](https://developers.glean.com/docs/client_api_scopes/).
+To fetch a scoped client API token, please follow the instructions in the [Authentication page for Client API](/api-info/client/authentication/glean-issued#available-scopes).
 
 ### Making your first request
 

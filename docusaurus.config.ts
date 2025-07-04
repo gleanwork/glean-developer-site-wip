@@ -176,7 +176,7 @@ const config: Config = {
       },
     ],
     [
-      require.resolve("docusaurus-plugin-search-glean"),
+      require.resolve('docusaurus-plugin-search-glean'),
       {
         searchOptions: {
           backend: 'https://glean-public-external-be.glean.com',
@@ -188,187 +188,210 @@ const config: Config = {
       },
     ],
     // Conditionally include OpenAPI docs plugin
-    ...(shouldGenerateApiDocs ? [[
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: 'api',
-        docsPluginId: 'classic',
-        config: {
-          indexing: {
-            specPath:
-              './openapi/indexing/indexing-capitalized.yaml',
-            outputDir: 'docs/api/indexing-api',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
+    ...(shouldGenerateApiDocs
+      ? [
+          [
+            'docusaurus-plugin-openapi-docs',
+            {
+              id: 'api',
+              docsPluginId: 'classic',
+              config: {
+                indexing: {
+                  specPath: './openapi/indexing/indexing-capitalized.yaml',
+                  outputDir: 'docs/api/indexing-api',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                activity: {
+                  // ok
+                  specPath: './openapi/client/split-apis/activity-api.yaml',
+                  outputDir: 'docs/api/client-api/activity',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                announcements: {
+                  // circular
+                  specPath:
+                    './openapi/client/split-apis/announcements-api.yaml',
+                  outputDir: 'docs/api/client-api/announcements',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                answers: {
+                  // ok
+                  specPath: './openapi/client/split-apis/answers-api.yaml',
+                  outputDir: 'docs/api/client-api/answers',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                authentication: {
+                  // ok
+                  specPath:
+                    './openapi/client/split-apis/authentication-api.yaml',
+                  outputDir: 'docs/api/client-api/authentication',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                chat: {
+                  // circular
+                  specPath: './openapi/client/split-apis/chat-api.yaml',
+                  outputDir: 'docs/api/client-api/chat',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                agents: {
+                  // ok
+                  specPath: './openapi/client/split-apis/agents-api.yaml',
+                  outputDir: 'docs/api/client-api/agents',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                collections: {
+                  // circular
+                  specPath: './openapi/client/split-apis/collections-api.yaml',
+                  outputDir: 'docs/api/client-api/collections',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                documents: {
+                  // circular
+                  specPath: './openapi/client/split-apis/documents-api.yaml',
+                  outputDir: 'docs/api/client-api/documents',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                insights: {
+                  // circular
+                  specPath: './openapi/client/split-apis/insights-api.yaml',
+                  outputDir: 'docs/api/client-api/insights',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                messages: {
+                  // circular
+                  specPath: './openapi/client/split-apis/messages-api.yaml',
+                  outputDir: 'docs/api/client-api/messages',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                pins: {
+                  // circular
+                  specPath: './openapi/client/split-apis/pins-api.yaml',
+                  outputDir: 'docs/api/client-api/pins',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                search: {
+                  // circular
+                  specPath: './openapi/client/split-apis/search-api.yaml',
+                  outputDir: 'docs/api/client-api/search',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                entities: {
+                  // circular
+                  specPath: './openapi/client/split-apis/entities-api.yaml',
+                  outputDir: 'docs/api/client-api/entities',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                shortcuts: {
+                  // circular
+                  specPath: './openapi/client/split-apis/shortcuts-api.yaml',
+                  outputDir: 'docs/api/client-api/shortcuts',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                summarize: {
+                  // ok
+                  specPath: './openapi/client/split-apis/summarize-api.yaml',
+                  outputDir: 'docs/api/client-api/summarize',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                verification: {
+                  // circular
+                  specPath: './openapi/client/split-apis/verification-api.yaml',
+                  outputDir: 'docs/api/client-api/verification',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                tools: {
+                  // ok
+                  specPath: './openapi/client/split-apis/tools-api.yaml',
+                  outputDir: 'docs/api/client-api/tools',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+                governance: {
+                  // ok
+                  specPath: './openapi/client/split-apis/governance-api.yaml',
+                  outputDir: 'docs/api/client-api/governance',
+                  sidebarOptions: {
+                    groupPathsBy: 'tag',
+                    categoryLinkSource: 'tag',
+                  },
+                  markdownGenerators: { createApiPageMD: customApiMdGenerator },
+                } satisfies OpenApiPlugin.Options,
+              },
             },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          activity: { // ok
-            specPath: './openapi/client/split-apis/activity-api.yaml',
-            outputDir: 'docs/api/client-api/activity',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          announcements: { // circular
-            specPath: './openapi/client/split-apis/announcements-api.yaml',
-            outputDir: 'docs/api/client-api/announcements',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          answers: { // ok
-            specPath: './openapi/client/split-apis/answers-api.yaml',
-            outputDir: 'docs/api/client-api/answers',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          authentication: { // ok
-            specPath: './openapi/client/split-apis/authentication-api.yaml',
-            outputDir: 'docs/api/client-api/authentication',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          chat: { // circular
-            specPath: './openapi/client/split-apis/chat-api.yaml',
-            outputDir: 'docs/api/client-api/chat',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          agents: { // ok
-            specPath: './openapi/client/split-apis/agents-api.yaml',
-            outputDir: 'docs/api/client-api/agents',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          collections: { // circular
-            specPath: './openapi/client/split-apis/collections-api.yaml',
-            outputDir: 'docs/api/client-api/collections',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          documents: { // circular
-            specPath: './openapi/client/split-apis/documents-api.yaml',
-            outputDir: 'docs/api/client-api/documents',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          insights: { // circular
-            specPath: './openapi/client/split-apis/insights-api.yaml',
-            outputDir: 'docs/api/client-api/insights',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            }, 
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          messages: { // circular
-            specPath: './openapi/client/split-apis/messages-api.yaml',
-            outputDir: 'docs/api/client-api/messages',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },    
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          pins: { // circular
-            specPath: './openapi/client/split-apis/pins-api.yaml',
-            outputDir: 'docs/api/client-api/pins',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          search: { // circular
-            specPath: './openapi/client/split-apis/search-api.yaml',
-            outputDir: 'docs/api/client-api/search',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          entities: { // circular
-            specPath: './openapi/client/split-apis/entities-api.yaml',
-            outputDir: 'docs/api/client-api/entities',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          shortcuts: { // circular
-            specPath: './openapi/client/split-apis/shortcuts-api.yaml',
-            outputDir: 'docs/api/client-api/shortcuts',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          summarize: { // ok
-            specPath: './openapi/client/split-apis/summarize-api.yaml',
-            outputDir: 'docs/api/client-api/summarize',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          verification: { // circular
-            specPath: './openapi/client/split-apis/verification-api.yaml',
-            outputDir: 'docs/api/client-api/verification',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          tools: { // ok
-            specPath: './openapi/client/split-apis/tools-api.yaml',
-            outputDir: 'docs/api/client-api/tools',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-          governance: { // ok
-            specPath: './openapi/client/split-apis/governance-api.yaml',
-            outputDir: 'docs/api/client-api/governance',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
-            },
-            markdownGenerators: { createApiPageMD: customApiMdGenerator },
-          } satisfies OpenApiPlugin.Options,
-        },
-      },
-    ]] : []),
+          ],
+        ]
+      : []),
   ],
   themes: ['docusaurus-theme-openapi-docs', '@docusaurus/theme-mermaid'],
   markdown: {

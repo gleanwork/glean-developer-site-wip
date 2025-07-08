@@ -2,7 +2,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
-import { redirects } from './redirects';
+import redirects from './redirects.json';
 import { customApiMdGenerator } from './scripts/generator/customMdGenerators';
 
 // Environment variable to control API docs generation
@@ -21,7 +21,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://glean-developer-site.vercel.app',
+  url: 'https://developers.glean.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
 

@@ -29,7 +29,7 @@ Clone the repository and install dependencies:
 
 ```bash
 git clone <repository-url>
-cd glean-developer-site-wip
+cd glean-developer-site
 yarn install
 ```
 

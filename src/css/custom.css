@@ -704,7 +704,9 @@ article h1,
 
 /* hide language selection tabs */
 
-.openapi-tabs__code-item--sample {
+.openapi-tabs__code-item--sample,
+.openapi-tabs__code-item--variant
+{
   display: none !important;
 }
 

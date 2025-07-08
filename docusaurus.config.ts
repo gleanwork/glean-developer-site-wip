@@ -146,6 +146,11 @@ const config: Config = {
         language: 'javascript',
         logoClass: 'javascript',
       },
+      {
+        highlight: 'curl',
+        language: 'curl',
+        logoClass: 'curl',
+      },
     ],
   } satisfies Preset.ThemeConfig,
 

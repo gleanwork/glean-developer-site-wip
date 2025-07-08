@@ -1,5 +1,9 @@
 [
   {
+    "from": "/home",
+    "to": "/"
+  },
+  {
     "from": "/actions/authentication",
     "to": "/get-started/authentication"
   },

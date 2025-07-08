@@ -4,6 +4,14 @@
     "to": "/"
   },
   {
+    "from": "/oas/client",
+    "to": "https://gleanwork.github.io/open-api/specs/final/client_rest.yaml"
+  },
+  {
+    "from": "/oas/indexing",
+    "to": "https://gleanwork.github.io/open-api/specs/final/indexing.yaml"
+  },
+  {
     "from": "/actions/authentication",
     "to": "/get-started/authentication"
   },

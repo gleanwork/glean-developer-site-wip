@@ -965,7 +965,7 @@ const sidebars: SidebarsConfig = {
               },
               {
                 type: 'link',
-                href: 'https://developers.glean.com/oas/indexing',
+                href: 'https://developers.glean.com/oas/client',
                 label: 'OpenAPI Spec',
               },
             ],

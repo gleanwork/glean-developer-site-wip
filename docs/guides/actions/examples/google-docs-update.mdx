@@ -5,7 +5,7 @@ description: Learn how to create an execution action that allows Glean Assistant
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
-import { Steps } from '@site/src/components/Steps';
+import { Steps, Step } from '@site/src/components/Steps';
 
 # Google Docs Update Action
 
@@ -26,8 +26,7 @@ Before proceeding, ensure you have:
 ## Implementation Guide
 
 <Steps>
-  <div>
-    <h3>Step 1: Action Manifest Configuration</h3>
+  <Step title="Action Manifest Configuration">
     <p>Navigate to <a href="https://app.glean.com/admin/platform/tools">Admin console > Platform > Actions</a> and create a new action from scratch.</p>
 
     <h4>Basic Information Configuration</h4>
@@ -52,10 +51,9 @@ Before proceeding, ensure you have:
       <li>Examples of appropriate user queries</li>
       <li>Cases where the action should not be used</li>
     </ul>
-  </div>
+  </Step>
 
-  <div>
-    <h3>Step 2: API Specification Development</h3>
+  <Step title="API Specification Development">
     <p>The first step involves creating a properly formatted OpenAPI specification that defines how Glean Assistant will interact with the Google Docs API. We'll use the following endpoint:</p>
 
     <pre><code>POST https://docs.googleapis.com/v1/documents/{`{documentId}`}:batchUpdate</code></pre>
@@ -169,10 +167,9 @@ paths:
     ![Functionality Dialog Box](./images/google-docs-update/functionality.png)
 
     <p>Paste the OpenAPI specification you prepared above. Since we're using Google's API directly, leave the "Use existing on-premise server" option unchecked.</p>
-  </div>
+  </Step>
 
-  <div>
-    <h3>Step 3: Authentication Setup</h3>
+  <Step title="Authentication Setup">
     <p>The action requires OAuth 2.0 authentication to interact with Google Docs securely.</p>
 
     <h4>Google Cloud Console Configuration</h4>
@@ -206,10 +203,9 @@ Scopes: https://www.googleapis.com/auth/documents`}</code></pre>
     2. Enable the Google Docs API for your project:
 
        ![GCP Google Docs API Settings](./images/google-docs-update/google_docs_api.png)
-  </div>
+  </Step>
 
-  <div>
-    <h3>Step 4: Testing and Deployment</h3>
+  <Step title="Testing and Deployment">
     <p>After configuration, thoroughly test the action before deployment.</p>
 
     <h4>Testing Process</h4>
@@ -239,7 +235,7 @@ Scopes: https://www.googleapis.com/auth/documents`}</code></pre>
       <li>Restrict access to specific teammates</li>
       <li>Configure deployment settings for Chat or AI Apps integration</li>
     </ul>
-  </div>
+  </Step>
 </Steps>
 
 ## Best Practices

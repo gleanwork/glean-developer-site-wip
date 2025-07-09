@@ -1,0 +1,145 @@
+---
+title: FAQ
+description: Frequently asked questions about implementing and using Actions on Glean's platform
+---
+
+# Actions FAQ
+
+## Common Questions
+
+<details>
+<summary>Which fields are interpreted by LLM?</summary>
+
+The "Unique Identifier" and "Trigger Condition (including Example Queries)" fields are used by the LLM to identify which action it should invoke/use for a user's query.
+
+Make sure to give a detailed trigger condition and example queries, to ensure LLM knows exactly what user queries this action should be used for.
+
+</details>
+
+<details>
+<summary>How to authenticate Actions built using Glean's Jira template?</summary>
+
+Please follow the steps described on [this page](https://help.glean.com/en/articles/9006099-authenticate-actions-in-jira) to setup authentication for Jira.
+
+</details>
+
+<details>
+<summary>What are type hints?</summary>
+
+Type hints are like instructions that help the Glean AI understand and work with different actions better. They're clues that tell the AI what each part of an action does, making it easier for the AI to get the right information or do the right thing with those actions.
+
+### Benefits of Implementing Type Hints
+
+Type hints provide two key advantages:
+
+- **Simplified Action Creation**: Type hints make it easier for developers to describe their actions' capabilities and requirements.
+- **Better at Getting Information and Doing Tasks**: Type hints give clear instructions on gathering data or performing actions, leading to more accurate and relevant results from the AI.
+
+### How to Use Type Hints
+
+To use type-hints, consider the following steps:
+
+1. Identify Relevant Type Hints: Review the list of supported type hints to determine which ones align with your action's functionality.
+2. Incorporate Type Hints into Your API Specs: Add the selected type hints as structured details in your action's API specifications.
+
+### Supported Type Hints
+
+Here are the type hints currently supported by Glean:
+
+#### Content
+Applied to fields that deal with large amounts of text or content. Ideal for tools that generate, modify, or display content.
+
+```yaml
+description:
+  x-glean-typehint: 'Content'
+  type: string
+  description: Rich description.
+```
+
+#### EmailAddress
+Used for fields that capture the email address of the user.
+
+```yaml
+assignee:
+  x-glean-typehint: 'EmailAddress'
+  type: string
+  description: User to which the issue is assigned.
+```
+
+#### JiraComponentId
+Designated for fields involving a JIRA component ID.
+
+```yaml
+components:
+  x-glean-typehint: 'JiraComponentId'
+  type: string
+  description: Component Id where the ticket should be filed.
+```
+
+#### JiraIssueId
+Used for fields that interact with a specific JIRA issue.
+
+```yaml
+issue:
+  x-glean-typehint: 'JiraIssueId'
+  type: string
+  description: Issue Id on which comment should be posted.
+```
+
+#### JiraIssuePriority
+For fields that denote the priority of a Jira issue.
+
+```yaml
+priority:
+  x-glean-typehint: 'JiraIssuePriority'
+  type: integer
+  description: Numeric priority. 1 (Highest) to 5 (Lowest)
+  minimum: 1
+  maximum: 5
+```
+
+#### JiraIssueType
+For fields that denote a Jira issue type.
+
+```yaml
+issue_type:
+  x-glean-typehint: 'JiraIssueType'
+  type: integer
+  description: Issue type. 10000 refers to Epic, 10001 to Story, 10002 to Task, 10003 to Sub-Task, 10004 to Bug.
+```
+
+#### JiraProjectID
+For fields requiring a JIRA project ID.
+
+```yaml
+pid:
+  x-glean-typehint: 'JiraProjectID'
+  type: string
+  description: Project ID where the ticket is created.
+```
+
+#### ResultUrl
+For fields containing the URL of created objects from write actions.
+
+```yaml
+jiraTicketUrl:
+  x-glean-typehint: 'ResultUrl'
+  type: string
+  description: Url of the created object.
+```
+
+</details>
+
+<details>
+<summary>Do Actions work for endpoints behind VPN?</summary>
+
+Yes, please contact our team for information on how to do this.
+
+</details>
+
+<details>
+<summary>How much data can my service return (for retrieval actions)?</summary>
+
+The response from the service you're connecting to retrieve content using your retrieval action will be sent to the LLM to create the final response. Hence, please ensure that the data returned is not larger than ~8000 characters. Depending on the LLM model being used, larger responses will be truncated from the end.
+
+</details> 

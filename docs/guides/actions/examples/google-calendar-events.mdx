@@ -1,0 +1,340 @@
+---
+title: Google Calendar Events Retrieval Action
+description: Create a retrieval action that enables Glean Assistant to fetch and display Google Calendar events
+---
+
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+import { Steps } from '@site/src/components/Steps';
+
+# Google Calendar Events Retrieval Action
+
+## Overview
+
+This guide walks through creating a retrieval action that allows Glean Assistant to access and display Google Calendar events. This integration enables users to query their calendar events directly through Glean's interface.
+
+:::note
+Before beginning this implementation, ensure you have:
+- Administrator access to your Glean instance
+- Access to Google Cloud Console with appropriate permissions
+- Understanding of OAuth 2.0 authentication flows
+:::
+
+## Implementation Steps
+
+<Steps>
+  <div>
+    <h3>Step 1: Creating the Base Action</h3>
+    <p>Begin by navigating to <a href="https://app.glean.com/admin/platform/tools">Admin console > Platform > Actions</a> and selecting "New Action".</p>
+
+    <div className="admonition admonition-info">
+      <p>Choose "start from scratch" since the Google Calendar action isn't available in the templates.</p>
+    </div>
+
+    <h4>Basic Information Configuration</h4>
+    [![Basic Info Dialog Box](./images/google-calendar-events/calendar_action_basic_info.png)](./images/google-calendar-events/calendar_action_basic_info.png)
+
+    <p>Configure these essential details:</p>
+    <ul>
+      <li><strong>Display Name</strong>: Choose a clear, descriptive name (e.g., "Calendar Events Retrieval")</li>
+      <li><strong>Description</strong>: Explain the action's purpose and capabilities</li>
+      <li><strong>Unique Identifier</strong>: Set a unique ID (e.g., "retrieveCalendarEvents")</li>
+      <li><strong>Action Type</strong>: Select "Retrieval" since this action reads calendar data</li>
+    </ul>
+
+    <h4>Trigger Condition Setup</h4>
+    [![Trigger Condition Dialog Box](./images/google-calendar-events/calendar_action_trigger_condition.png)](./images/google-calendar-events/calendar_action_trigger_condition.png)
+
+    <p>Your trigger condition should clearly specify:</p>
+    <ul>
+      <li>When Glean Assistant should use this action</li>
+      <li>Expected user query patterns</li>
+      <li>Scenarios where the action shouldn't be used</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Step 2: Configuring the API Specification</h3>
+    <p>Add this OpenAPI specification to define how Glean Assistant interacts with the Google Calendar API:</p>
+
+    <details>
+      <summary>Click to expand the complete OpenAPI specification</summary>
+
+    <pre><code>{`openapi: 3.0.1
+servers:
+  - url: 'https://www.googleapis.com/calendar/v3/'
+info:
+  title: Google Calendar Events API
+  description: This API returns events on the primary calendar of the currently logged-in user.
+  version: 1.0.0
+paths:
+  /calendars/primary/events:
+    get:
+      summary: List Events
+      description: Retrieves events from the primary calendar.
+      parameters:
+        - name: timeMin
+          in: query
+          description: |
+            Lower bound (exclusive) for an event's start time to filter by. Must be an RFC3339 timestamp with a mandatory time zone offset. Its very important to have timestamp in Z format
+            Example: 2011-06-03T10:00:00Z
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: timeMax
+          in: query
+          description: |
+            Upper bound (exclusive) for an event's start time to filter by. Must be an RFC3339 timestamp with a mandatory time zone offset. Its very important to have timestamp in Z format
+            Example: 2011-06-03T10:00:00Z
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: q
+          in: query
+          description: Free text search terms to find events that match these terms in various fields such as summary, description, location, etc.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Identifier of the event.
+                        status:
+                          type: string
+                          description: Status of the event (confirmed, tentative, cancelled).
+                        summary:
+                          type: string
+                          description: Title of the event.
+                        description:
+                          type: string
+                          description: Description of the event.
+                        start:
+                          type: object
+                          properties:
+                            dateTime:
+                              type: string
+                              format: date-time
+                              description: The start time of the event.
+                        end:
+                          type: object
+                          properties:
+                            dateTime:
+                              type: string
+                              format: date-time
+                              description: The end time of the event.`}</code></pre>
+
+    </details>
+
+    [![Functionality Dialog Box](./images/google-calendar-events/calendar_action_functionality.png)](./images/google-calendar-events/calendar_action_functionality.png)
+
+    <div className="admonition admonition-warning">
+      <p>Leave the "Use existing on-premise server" option unchecked since we're accessing Google's API directly.</p>
+    </div>
+  </div>
+
+  <div>
+    <h3>Step 3: Setting Up Authorization</h3>
+    <p>This action requires OAuth User authentication to access individual users' calendar data.</p>
+
+    <h4>Google Cloud Console Setup</h4>
+    
+    1. Access the [Google Cloud Console Credentials page](https://console.cloud.google.com/apis/credentials)
+    2. Create OAuth credentials:
+
+       ![GCP Credentials Dialog Box](./images/google-calendar-events/calendar_action_gcs_cloud_create_cred.png)
+    
+    3. Configure as a web application:
+
+       ![Create OAuth Client](./images/google-calendar-events/calendar_action_create_oauth_client.png)
+
+    <h4>Redirect URI Configuration</h4>
+    <p>Add this URI to your OAuth client (Note your instance name is typically the email domain without the TLD):</p>
+    <pre><code>https://{`{instance-name}-be.glean.com/tools/oauth/verify_code/{your-action-unique-identifier-name}`}</code></pre>
+
+    <h4>OAuth Settings</h4>
+    <p>Configure these parameters in Glean:</p>
+    <pre><code>{`Client URL: https://accounts.google.com/o/oauth2/auth?prompt=consent&access_type=offline
+Authorization URL: https://accounts.google.com/o/oauth2/token
+Scopes: https://www.googleapis.com/auth/calendar.readonly`}</code></pre>
+
+    [![Authentication Dialogue Box](./images/google-calendar-events/calendar_action_authentication.png)](./images/google-calendar-events/calendar_action_authentication.png)
+
+    <h4>Enable Google Calendar API</h4>
+    
+    1. Access your Google Cloud Console
+    2. Enable the Calendar API:
+
+       ![GCP Google Calendar API Settings](./images/google-calendar-events/calendar_action_google_api.png)
+  </div>
+
+  <div>
+    <h3>Step 4: Testing and Deployment</h3>
+    <p>Test the action thoroughly before deployment.</p>
+
+    <h4>Initial Testing</h4>
+    
+    1. Use the provided testing URL
+    2. You'll see the connection banner:
+
+       ![Connect Action Banner](./images/google-calendar-events/calendar_action_connect_banner.png)
+    
+    3. Authenticate with Google
+    4. Verify event retrieval:
+
+       ![Calendar Events Result](./images/google-calendar-events/calendar_action_calendar_events.png)
+
+    <h4>Deployment</h4>
+    <p>Configure deployment settings:</p>
+    [![Deploy Action View](./images/google-calendar-events/deploy_window.png)](./images/google-calendar-events/deploy_window.png)
+
+    <p>Set appropriate access controls:</p>
+    <ul>
+      <li>Enable for all teammates or</li>
+      <li>Restrict to specific team members</li>
+    </ul>
+  </div>
+</Steps>
+
+## Implementation Guidelines
+
+### API Specification Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Parameter Configuration" icon="Sliders">
+    When configuring the Calendar API parameters:
+    
+    - Use RFC3339 format for all date-time fields
+    - Include timezone offsets in timestamp examples
+    - Provide clear descriptions for search parameters
+    - Consider default values for time ranges
+  </Card>
+
+  <Card title="Response Handling" icon="ArrowLeftRight">
+    Important considerations for handling calendar data:
+    
+    - Process multiple calendar event types (recurring, all-day, etc.)
+    - Handle timezone conversions appropriately
+    - Consider pagination for large result sets
+    - Process cancelled or declined events properly
+  </Card>
+</CardGroup>
+
+### Authentication Considerations
+
+<Card title="OAuth Setup" icon="Key">
+  Critical OAuth implementation details:
+  
+  - Always use `access_type=offline` for refresh token support
+  - Request minimal scopes (readonly for calendar access)
+  - Handle token refresh scenarios gracefully
+  - Implement proper token storage and security
+</Card>
+
+### Common Implementation Challenges
+
+:::warning
+Watch out for these common issues:
+
+1. **Time Zone Handling**
+   - Inconsistent timezone formatting
+   - Missing timezone offsets
+   - Incorrect local time conversions
+
+2. **Calendar Access**
+   - Primary vs. secondary calendar confusion
+   - Shared calendar permissions
+   - Resource calendar access
+
+3. **Event Filtering**
+   - Inefficient time range queries
+   - Missing recurring event instances
+   - Incomplete search term matching
+:::
+
+### Performance Optimization
+
+<Card title="Query Optimization" icon="Gauge">
+  Optimize calendar queries by:
+  
+  - Using appropriate time ranges
+  - Implementing result caching
+  - Limiting returned fields
+  - Managing API quota usage
+</Card>
+
+### Testing Strategy
+
+<Card title="Comprehensive Testing" icon="TestTube">
+  Test these scenarios thoroughly:
+  
+  - Different calendar types (primary, shared, resource)
+  - Various event types (single, recurring, all-day)
+  - Different time zones and formats
+  - Search functionality across event fields
+  - Error handling and recovery
+</Card>
+
+## Maintenance and Operations
+
+### Monitoring Considerations
+
+Regular monitoring should include:
+
+- API quota usage tracking
+- Authentication success rates
+- Query performance metrics
+- Error rate monitoring
+- User feedback collection
+
+### Regular Maintenance Tasks
+
+Establish these routine procedures:
+
+- OAuth credential rotation
+- API version compatibility checks
+- Performance optimization reviews
+- User permission audits
+- Documentation updates
+
+## Troubleshooting Guide
+
+If you encounter issues:
+
+1. **Verify OAuth configuration**
+   - Check credential settings
+   - Confirm correct scopes
+   - Validate redirect URIs
+
+2. **Check API access**
+   - Confirm API is enabled
+   - Verify quota availability
+   - Check user permissions
+
+3. **Review implementation**
+   - Validate timestamp formats
+   - Check parameter formatting
+   - Verify error handling
+
+## Next Steps
+
+After implementation:
+
+1. Create user documentation
+2. Set up monitoring dashboards
+3. Establish support procedures
+4. Plan for feature enhancements
+5. Schedule regular reviews 

@@ -13,7 +13,7 @@
   },
   {
     "from": "/actions/authentication",
-    "to": "/get-started/authentication"
+    "to": "/guides/actions/authentication"
   },
   {
     "from": "/api-clients",
@@ -555,5 +555,49 @@
   {
     "from": "/web/guides/zendesk",
     "to": "/libraries/web-sdk/guides/zendesk"
+  },
+  {
+    "from": "/actions",
+    "to": "/guides/actions/overview"
+  },
+  {
+    "from": "/actions/overview",
+    "to": "/guides/actions/overview"
+  },
+  {
+    "from": "/actions/create-actions",
+    "to": "/guides/actions/create-actions"
+  },
+  {
+    "from": "/actions/creating-actions",
+    "to": "/guides/actions/create-actions"
+  },
+  {
+    "from": "/actions/faq",
+    "to": "/guides/actions/faq"
+  },
+  {
+    "from": "/actions/examples",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/examples/jira-issue-creation",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/examples/jira-issue-creation-redirect",
+    "to": "/guides/actions/examples/jira-issue-creation-redirect"
+  },
+  {
+    "from": "/actions/examples/google-calendar-events",
+    "to": "/guides/actions/examples/google-calendar-events"
+  },
+  {
+    "from": "/actions/examples/google-docs-update",
+    "to": "/guides/actions/examples/google-docs-update"
+  },
+  {
+    "from": "/actions/examples/zendesk-ticket-redirection",
+    "to": "/guides/actions/examples/zendesk-ticket-redirection"
   }
 ]

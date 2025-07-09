@@ -152,6 +152,67 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
+          type: 'category',
+          label: 'Actions',
+          customProps: {
+            icon: 'Zap',
+            iconSet: 'feather',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'guides/actions/overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              id: 'guides/actions/authentication',
+              label: 'Authentication',
+            },
+            {
+              type: 'doc',
+              id: 'guides/actions/create-actions',
+              label: 'Creating Actions',
+            },
+            {
+              type: 'category',
+              label: 'Examples',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'guides/actions/examples/jira-issue-creation',
+                  label: 'Jira Issue Creation',
+                },
+                {
+                  type: 'doc',
+                  id: 'guides/actions/examples/jira-issue-creation-redirect',
+                  label: 'Jira Issue Creation Redirect',
+                },
+                {
+                  type: 'doc',
+                  id: 'guides/actions/examples/google-calendar-events',
+                  label: 'Google Calendar Events',
+                },
+                {
+                  type: 'doc',
+                  id: 'guides/actions/examples/google-docs-update',
+                  label: 'Google Docs Update',
+                },
+                {
+                  type: 'doc',
+                  id: 'guides/actions/examples/zendesk-ticket-redirection',
+                  label: 'Zendesk Ticket Redirection',
+                },
+              ],
+            },
+            {
+              type: 'doc',
+              id: 'guides/actions/faq',
+              label: 'FAQ',
+            },
+          ],
+        },
+        {
           type: 'doc',
           id: 'guides/mcp/mcp',
           label: 'MCP',

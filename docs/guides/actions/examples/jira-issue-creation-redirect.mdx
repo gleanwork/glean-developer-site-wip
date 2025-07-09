@@ -1,0 +1,308 @@
+---
+title: Jira Issue Creation Using Redirect Action
+description: Implement a redirect action that enables Glean Assistant to create Jira issues through the native Jira interface
+---
+
+import Card from '@site/src/components/Card';
+import CardGroup from '@site/src/components/CardGroup';
+
+# Jira Issue Creation Using Redirect Action
+
+## Overview
+
+This guide explains how to implement a redirect action that allows users to create Jira issues through Glean Assistant. Unlike execution actions that create issues programmatically, this approach directs users to Jira's native interface with pre-populated fields. This implementation maintains the familiar Jira environment while streamlining the issue creation process.
+
+## Understanding the Redirect Approach
+
+The redirect implementation for Jira issue creation offers several distinct advantages over direct API integration. When users trigger the action through Glean Assistant, they are directed to Jira's issue creation interface with relevant information already filled in. This approach provides a seamless experience while leveraging Jira's native functionality and maintaining user familiarity with the platform.
+
+## Action Manifest Implementation
+
+The action manifest defines the fundamental properties of your Jira redirect action. This configuration establishes how the action behaves within the Glean ecosystem.
+
+<details>
+  <summary>Click to expand the action manifest configuration</summary>
+
+```json
+{
+  "type": "ACTION",
+  "name": "JiraCreateTicket",
+  "description": "This action allows you to create a new issue in Jira. You can specify the project, issue type, and other details.",
+  "enablePreview": true,
+  "actionType": "REDIRECT"
+}
+```
+
+</details>
+
+The manifest configuration is intentionally simpler than that of execution actions because redirect actions don't require OAuth authentication or complex server implementations. This simplicity reduces implementation overhead while maintaining functionality.
+
+## API Specification Development
+
+The OpenAPI specification serves as the blueprint for how Glean Assistant interacts with your redirect action. This specification must clearly define all parameters and their behaviors to ensure accurate field population.
+
+<details>
+  <summary>Click to expand the complete OpenAPI specification</summary>
+
+```yaml
+openapi: '3.0.0'
+info:
+  title: 'Jira Create Ticket'
+  version: '1.0.0'
+servers:
+  - url: 'https://{YOUR-ATLASSIAN-DOMAIN}.atlassian.net/secure/CreateIssueDetails!init.jspa?'
+paths:
+  /:
+    post:
+      summary: 'Creates an issue or a sub-task from a JSON representation'
+      description: |
+        This API allows you to create a ticket or an issue in Jira.
+      parameters:
+        - name: 'pid'
+          in: 'query'
+          required: true
+          schema:
+            type: 'string'
+            x-glean-typehint: 'JiraProjectID'
+            default: '10000'
+          description: 'Project ID where the ticket is created. 10000 refers to Engineering project.'
+        - name: 'issuetype'
+          in: 'query'
+          required: true
+          schema:
+            type: 'integer'
+            enum:
+              - 10002
+              - 10004
+          description: 'Issue type. 10002 refers to Task, 10004 refers to Bug.'
+        - name: 'priority'
+          in: 'query'
+          schema:
+            type: 'integer'
+            minimum: 1
+            maximum: 5
+          description: 'Numeric priority. 1 (highest) to 5 (lowest).'
+        - name: 'summary'
+          in: 'query'
+          required: true
+          schema:
+            type: 'string'
+            x-glean-typehint: 'Content'
+          description: 'Title of the issue.'
+        - name: 'components'
+          in: 'query'
+          schema:
+            type: 'string'
+            x-glean-typehint: 'JiraComponent'
+          description: 'Component name where the ticket should be filed.'
+        - name: 'description'
+          in: 'query'
+          schema:
+            type: 'string'
+            x-glean-typehint: 'Content'
+          description: 'Body of the issue.'
+        - name: 'assignee'
+          in: 'query'
+          schema:
+            type: 'string'
+            x-glean-typehint: 'JiraId'
+          description: 'User to which the issue is assigned.'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: 'string'
+```
+
+</details>
+
+## Parameter Configuration Strategy
+
+The specification includes carefully designed parameters that guide Glean Assistant in populating the Jira issue creation form. Each parameter serves a specific purpose and includes clear instructions for value generation.
+
+<CardGroup cols={2}>
+  <Card title="Project Identification" icon="FolderTree">
+    The project ID parameter (`pid`) requires specific attention as it determines where issues are created. The specification includes a default value and clear description to ensure proper project targeting. For example, setting "10000" as the Engineering project helps maintain consistent issue organization.
+  </Card>
+
+  <Card title="Issue Type Classification" icon="Tag">
+    The issue type parameter uses enumerated values to ensure accurate categorization. The specification maps numeric values to specific issue types, such as 10002 for Tasks and 10004 for Bugs. This mapping ensures that issues are properly classified within your Jira instance.
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Priority Assignment" icon="ArrowUp">
+    The priority parameter implements a numeric scale from 1 to 5, with built-in validation to prevent invalid values. This structured approach maintains consistency with Jira's priority system while allowing for flexible assignment based on issue urgency.
+  </Card>
+
+  <Card title="Content Generation" icon="FileText">
+    Content-related parameters like summary and description use the `x-glean-typehint: "Content"` directive to guide Glean Assistant in generating appropriate text. This hint ensures that generated content matches the expected format and style for Jira issues.
+  </Card>
+</CardGroup>
+
+## Implementation Guidelines
+
+Several key considerations ensure successful implementation of the Jira redirect action.
+
+### Parameter Value Management
+
+The specification implements various methods for managing parameter values effectively:
+
+<Card title="Value Management Strategy" icon="Settings">
+  **Default Values**: Provide sensible defaults where appropriate to streamline the creation process.
+
+  **Value Constraints**: Use enumerated values and ranges to ensure valid input.
+
+  **Type Hints**: Leverage Glean-specific type hints to guide content generation.
+
+  **Required Fields**: Mark essential parameters as required to ensure complete issue creation.
+</Card>
+
+### URL Construction
+
+The redirect action builds URLs that properly integrate with Jira's interface. This process involves:
+
+<Card title="URL Construction Process" icon="Link">
+  1. **Parameter Encoding**: Proper parameter encoding to handle special characters and spaces.
+  
+  2. **Parameter Ordering**: Correct ordering of query parameters for optimal compatibility.
+  
+  3. **Separators and Delimiters**: Implementation of appropriate parameter separators and delimiters.
+  
+  4. **Length Validation**: Validation of URL length to prevent truncation issues.
+</Card>
+
+### Error Prevention
+
+The implementation includes several measures to prevent common issues:
+
+<Card title="Error Prevention Strategies" icon="Shield">
+  - Parameter validation before URL construction
+  - Proper encoding of special characters
+  - Length validation for generated content
+  - Type checking for numeric values
+</Card>
+
+## Testing Procedures
+
+A comprehensive testing strategy should verify all aspects of the redirect action's functionality.
+
+<CardGroup cols={3}>
+  <Card title="Functional Testing" icon="TestTube">
+    **Verify that:**
+    - URLs are properly constructed with all parameters
+    - Field values are correctly populated in Jira's interface
+    - Required fields are properly enforced
+    - Default values are appropriately applied
+  </Card>
+
+  <Card title="Integration Testing" icon="Puzzle">
+    **Confirm that:**
+    - Redirects function properly across different browsers
+    - Parameter values are properly encoded
+    - Jira's interface receives and displays all values correctly
+    - The user experience remains smooth and intuitive
+  </Card>
+
+  <Card title="User Experience Testing" icon="User">
+    **Evaluate:**
+    - The clarity of pre-populated fields
+    - The ease of modifying pre-populated values
+    - The overall flow from Glean Assistant to Jira
+    - The handling of various issue types and priorities
+  </Card>
+</CardGroup>
+
+## Maintenance Considerations
+
+Regular maintenance ensures continued effectiveness of the redirect action.
+
+<CardGroup cols={2}>
+  <Card title="Monitoring Requirements" icon="ChartLine">
+    **Establish monitoring for:**
+    - Successful redirect rates
+    - Parameter population accuracy
+    - User interaction patterns
+    - Error occurrence frequencies
+  </Card>
+
+  <Card title="Update Procedures" icon="RefreshCw">
+    **Maintain the implementation by:**
+    - Reviewing and updating parameter configurations
+    - Adjusting type hints based on user feedback
+    - Updating project and issue type mappings
+    - Refining content generation guidance
+  </Card>
+</CardGroup>
+
+## Advanced Configuration Options
+
+<Card title="Enhanced Parameter Configuration" icon="Cog">
+  For more sophisticated implementations, consider these advanced configuration options:
+
+  - **Dynamic Project Selection**: Implement logic for automatic project selection based on user context
+  - **Template-Based Descriptions**: Use predefined templates for common issue types
+  - **Conditional Field Population**: Populate fields based on trigger conditions or user roles
+  - **Multi-Domain Support**: Configure for multiple Jira instances or Atlassian Cloud domains
+</Card>
+
+## Troubleshooting Common Issues
+
+:::warning
+Common implementation challenges and solutions:
+
+1. **Parameter Encoding Issues**
+   - Ensure special characters are properly URL-encoded
+   - Test with various content types including non-ASCII characters
+   - Verify encoding compatibility with Jira's interface
+
+2. **Field Mapping Problems**
+   - Confirm project IDs and issue type IDs match your Jira configuration
+   - Validate component names and assignee IDs
+   - Test with different user permission levels
+
+3. **URL Length Limitations**
+   - Monitor generated URL lengths to prevent truncation
+   - Implement content trimming for long descriptions
+   - Consider parameter prioritization for essential fields
+:::
+
+## Performance Optimization
+
+<Card title="Optimization Strategies" icon="Gauge">
+  To ensure optimal performance and user experience:
+
+  - **Caching**: Implement caching for frequently used project and component mappings
+  - **Validation**: Add client-side validation to prevent invalid redirects
+  - **Monitoring**: Track redirect success rates and identify common failure patterns
+  - **Fallbacks**: Implement fallback mechanisms for parameter population failures
+</Card>
+
+## Security Considerations
+
+<Card title="Security Best Practices" icon="Lock">
+  Important security considerations for redirect actions:
+
+  - **URL Validation**: Ensure generated URLs point only to authorized Jira instances
+  - **Parameter Sanitization**: Sanitize all parameter values to prevent injection attacks
+  - **Access Control**: Verify users have appropriate permissions for target projects
+  - **Audit Logging**: Implement logging for action usage and parameter values
+</Card>
+
+## Conclusion
+
+The redirect action implementation for Jira issue creation provides a robust solution that balances ease of use with functionality. By leveraging Jira's native interface while streamlining the population of fields, this approach delivers an optimal user experience while maintaining flexibility and familiarity.
+
+## Next Steps
+
+To ensure ongoing success with your implementation:
+
+1. **Documentation**: Develop comprehensive user documentation
+2. **Monitoring**: Establish regular monitoring procedures
+3. **Feedback**: Create a feedback collection system
+4. **Reviews**: Plan for periodic review and updates
+5. **Enhancements**: Consider potential feature enhancements
+
+This implementation provides a solid foundation for streamlined issue creation while maintaining the flexibility and familiarity of the Jira interface. Regular monitoring and maintenance will ensure continued effectiveness and user satisfaction. 

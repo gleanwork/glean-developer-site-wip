@@ -742,16 +742,33 @@ li.tabs__item.openapi-tabs__code-item.openapi-tabs__code-item--javascript
   background: url('/img/glean/python.svg') !important;
 }
 
+[data-theme='dark'] .openapi-tabs__code-item--python::after {
+  background: url('/img/glean/python-darkmode.svg') !important;
+}
+
 .openapi-tabs__code-item--go::after {
   background: url('/img/glean/go.svg') !important;
+}
+
+[data-theme='dark'] .openapi-tabs__code-item--go::after {
+  background: url('/img/glean/go-darkmode.svg') !important;
 }
 
 .openapi-tabs__code-item--java::after {
   background: url('/img/glean/java.svg') !important;
 }
 
+[data-theme='dark'] .openapi-tabs__code-item--java::after {
+  background: url('/img/glean/java-darkmode.svg') !important;
+}
+
+
 .openapi-tabs__code-item--javascript::after {
   background: url('/img/glean/typescript.svg') !important;
+}
+
+[data-theme='dark'] .openapi-tabs__code-item--javascript::after {
+  background: url('/img/glean/typescript-darkmode.svg') !important;
 }
 
 .openapi-explorer__code-block {

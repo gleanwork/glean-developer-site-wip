@@ -316,6 +316,10 @@
     "to": "/guides/search/filtering-results"
   },
   {
+    "from": "/docs/client_api/client_api_scopes",
+    "to": "/api-info/client/authentication/glean-issued#available-scopes"
+  },
+  {
     "from": "/indexing/overview",
     "to": "/api-info/indexing/getting-started/overview"
   },

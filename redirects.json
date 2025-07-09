@@ -17,7 +17,7 @@
   },
   {
     "from": "/agents/mcp",
-    "to": "/guides/mcp/mcp"
+    "to": "/guides/mcp"
   },
   {
     "from": "/api-clients",

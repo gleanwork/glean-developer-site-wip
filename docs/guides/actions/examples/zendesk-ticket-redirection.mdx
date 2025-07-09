@@ -1,326 +1,371 @@
 ---
-title: Zendesk Ticket Creation
-description: Learn how to implement a redirect action that enables Glean Assistant to create pre-populated Zendesk tickets efficiently
+title: Zendesk Ticket Redirection Action
+description: Implement a redirect action that enables Glean Assistant to create Zendesk tickets through the native Zendesk interface
 ---
 
 import Card from '@site/src/components/Card';
 import CardGroup from '@site/src/components/CardGroup';
+import { Steps, Step } from '@site/src/components/Steps';
 
-# Zendesk Ticket Creation
+# Zendesk Ticket Redirection Action
 
 ## Overview
 
-This guide explains how to create a redirect action that allows users to create Zendesk tickets through Glean Assistant. The implementation uses Glean's Redirect URL Builder to construct properly formatted URLs that pre-populate ticket fields in Zendesk's interface. This approach provides a streamlined experience for users while maintaining the familiar Zendesk environment for ticket creation.
+This guide demonstrates how to create a redirect action that allows users to create Zendesk tickets through Glean Assistant. This implementation leverages Zendesk's URL-based ticket creation parameters to provide a seamless experience that directs users to the familiar Zendesk interface with pre-populated ticket fields.
 
-## Understanding Redirect Actions
+This is a **redirect action** that directs users to Zendesk's ticket creation interface with pre-populated fields using URL parameters.
 
-Before diving into the implementation, it's important to understand that redirect actions differ from execution actions. Instead of directly creating tickets via API calls, redirect actions construct URLs that guide users to Zendesk's ticket creation interface with relevant information already filled in. This approach offers several advantages:
+## Prerequisites
 
-<Card title="Redirect Action Benefits" icon="ArrowRight">
-  - **User Control**: Users can review and modify ticket details before submission
-  - **Simplified Setup**: No need for complex API authentication handling
-  - **Familiar Interface**: Maintains familiar Zendesk interface for end users
-  - **Low Maintenance**: Reduces implementation complexity and maintenance overhead
+Before implementing this action, ensure you have:
+
+- Administrator access to your Zendesk and Glean instances
+- Understanding of Zendesk's URL parameter structure and ticket creation interface
+- Access to Zendesk API documentation for field mappings
+- Knowledge of redirect action configuration principles
+
+## Implementation Guide
+
+<Steps>
+  <Step title="Action Manifest Configuration">
+    <p>The action manifest defines the essential properties for your Zendesk redirect action. This configuration establishes the action's identity and behavior within the Glean ecosystem.</p>
+
+    <details>
+      <summary>Click to expand the action manifest configuration</summary>
+
+    ```json
+    {
+      "type": "ACTION",
+      "name": "CreateZendeskTicket",
+      "displayName": "Create Zendesk Ticket",
+      "description": "Creates a new support ticket in Zendesk with specified details including subject, description, priority, and requester information.",
+      "enablePreview": true,
+      "actionType": "REDIRECT"
+    }
+    ```
+
+    </details>
+
+    <p>The simplicity of this manifest reflects the streamlined nature of redirect actions. Unlike execution actions, redirect actions don't require complex authentication schemes or server implementations, making them easier to deploy and maintain.</p>
+  </Step>
+
+  <Step title="OpenAPI Specification Design">
+    <p>The OpenAPI specification serves as the blueprint for parameter handling and URL construction. This specification must accurately reflect Zendesk's parameter structure and validation requirements.</p>
+
+    <details>
+      <summary>Click to expand the complete OpenAPI specification</summary>
+
+    ```yaml
+    openapi: 3.0.0
+    info:
+      title: Create Zendesk Ticket Action
+      version: 1.0.0
+    servers:
+      - url: https://{ZENDESK_SUBDOMAIN}.zendesk.com/agent/tickets/new?
+        variables:
+          ZENDESK_SUBDOMAIN:
+            default: your-subdomain
+            description: Your Zendesk subdomain
+    paths:
+      /:
+        post:
+          summary: Create a new support ticket in Zendesk
+          description: |
+            This action redirects to Zendesk's ticket creation interface with pre-populated fields
+            for efficient ticket creation and management.
+          parameters:
+            - name: ticket[requester]
+              in: query
+              required: true
+              schema:
+                type: string
+                x-glean-typehint: EmailAddress
+              description: Email address of the person requesting support
+            - name: ticket[subject]
+              in: query
+              required: true
+              schema:
+                type: string
+                x-glean-typehint: Content
+              description: Brief summary of the issue or request
+            - name: ticket[description]
+              in: query
+              required: true
+              schema:
+                type: string
+                x-glean-typehint: Content
+              description: Detailed description of the issue or request
+            - name: ticket[priority]
+              in: query
+              schema:
+                type: string
+                enum:
+                  - low
+                  - normal
+                  - high
+                  - urgent
+                default: normal
+              description: Priority level of the ticket
+            - name: ticket[type]
+              in: query
+              schema:
+                type: string
+                enum:
+                  - question
+                  - incident
+                  - problem
+                  - task
+                default: question
+              description: Type of ticket being created
+            - name: ticket[status]
+              in: query
+              schema:
+                type: string
+                enum:
+                  - new
+                  - open
+                  - pending
+                  - hold
+                  - solved
+                  - closed
+                default: new
+              description: Initial status of the ticket
+          responses:
+            '200':
+              description: Successful redirect to Zendesk ticket creation interface
+              content:
+                text/html:
+                  schema:
+                    type: string
+    ```
+
+    </details>
+  </Step>
+
+  <Step title="URL Construction Strategy">
+    <p>The URL construction process is the core functionality of this redirect action. Understanding how Zendesk processes URL parameters ensures that tickets are created with the correct information.</p>
+
+    <h4>Parameter Structure</h4>
+    <p>Zendesk uses a nested parameter structure where ticket fields are prefixed with <code>ticket[]</code>. This format ensures that parameters are properly interpreted by Zendesk's ticket creation interface. For example, <code>ticket[subject]</code> sets the ticket's subject field.</p>
+
+    <h4>Required vs Optional Parameters</h4>
+    <p>The specification defines three required parameters that ensure basic ticket functionality:</p>
+    <ul>
+      <li><strong>ticket[requester]</strong>: The email address of the person requesting support</li>
+      <li><strong>ticket[subject]</strong>: A brief summary of the issue or request</li>
+      <li><strong>ticket[description]</strong>: Detailed information about the issue</li>
+    </ul>
+
+    <p>Optional parameters provide additional context and workflow control:</p>
+    <ul>
+      <li><strong>ticket[priority]</strong>: Allows setting urgency levels (low, normal, high, urgent)</li>
+      <li><strong>ticket[type]</strong>: Categorizes the ticket (question, incident, problem, task)</li>
+      <li><strong>ticket[status]</strong>: Sets initial workflow state (typically "new")</li>
+    </ul>
+
+    <h4>Content Generation Guidelines</h4>
+    <p>The <code>x-glean-typehint</code> directives guide Glean Assistant in generating appropriate content:</p>
+    <ul>
+      <li><strong>EmailAddress</strong>: Ensures valid email format for the requester field</li>
+      <li><strong>Content</strong>: Generates contextually appropriate text for subject and description</li>
+    </ul>
+  </Step>
+
+  <Step title="Testing and Deployment">
+    <p>Thorough testing ensures that the redirect action functions correctly across different scenarios and user types.</p>
+
+    <h4>Testing Process</h4>
+    
+    1. Test URL generation with various parameter combinations
+    2. Verify that redirects properly reach Zendesk's interface
+    3. Confirm that all fields are correctly populated in Zendesk's form
+    4. Test with different user types and permission levels
+    5. Validate parameter encoding for special characters and long content
+    6. Test edge cases such as missing optional parameters
+
+    <h4>Deployment Configuration</h4>
+    <p>Configure deployment settings to ensure appropriate access control and user experience.</p>
+  </Step>
+</Steps>
+
+## Best Practices
+
+### Parameter Management
+
+<Card title="Effective Parameter Design" icon="Settings">
+  The specification implements several best practices for parameter management:
+
+  - **Clear Naming**: Use descriptive parameter names that match Zendesk's expectations
+  - **Appropriate Defaults**: Provide sensible default values for optional parameters
+  - **Type Validation**: Use enums to constrain values to valid options
+  - **Content Hints**: Leverage type hints to guide content generation
 </Card>
 
-## Implementation Process
-
-### Initial Setup
-
-Begin at the Actions settings page in your Glean administration console. When creating a new action, you'll find the Redirect URL Builder option among the available choices.
-
-![Create new action interface](./images/zendesk-ticket-redirection/RedirectURLBuilder_1.png)
-
-The Redirect URL Builder provides a user-friendly interface for configuring URL parameters and their behaviors. This tool significantly simplifies the process of creating redirect actions compared to manual URL construction.
-
-### Basic Configuration
-
-The initial configuration requires several key pieces of information that establish the foundation of your redirect action.
-
-<Card title="Basic Action Configuration" icon="Settings">
-  **Display Name**: Choose a clear, descriptive name that helps users understand the action's purpose
-
-  **Description**: Explain when and how the action should be used
-
-  **Unique Identifier**: Create a distinctive identifier for system reference
-
-  **Trigger Conditions**: Define the scenarios that should activate this action
-</Card>
-
-When selecting the action type, the system automatically sets this to "Redirect" based on your use of the URL Builder.
-
-### URL Structure Setup
-
-The foundation of the redirect action is the Zendesk ticket creation URL. The standard format follows this structure:
-
-```text
-https://your-org.zendesk.com/hc/en-us/requests/new
-```
-
-When you include query parameters for field population, the URL expands to include these values:
-
-<details>
-  <summary>Click to see example URL with parameters</summary>
-
-```text
-https://your-org.zendesk.com/hc/en-us/requests/new?tf_description=new+customer+request&tf_subject=new+customer
-```
-
-</details>
-
-![Redirect URL Builder Initial State](./images/zendesk-ticket-redirection/RedirectURLBuilder_2.png)
-
-### Parameter Configuration
-
-The effectiveness of your redirect action depends heavily on proper parameter configuration. Each parameter requires careful consideration to ensure Glean Assistant can populate it appropriately.
-
-<Card title="Parameter Configuration Steps" icon="List">
-  1. **Clear Static Values**: Remove any static values from the "Allowed Values" field
-  2. **Provide LLM Guidance**: Add detailed instructions in the "Description for LLM" field
-  3. **Set Requirements**: Configure requirement settings based on your ticketing workflow
-</Card>
-
-![Configuring Dynamic Parameters](./images/zendesk-ticket-redirection/RedirectURLBuilder_3.png)
-
-Essential parameters for Zendesk ticket creation typically include:
+### URL Construction and Encoding
 
 <CardGroup cols={2}>
-  <Card title="Description Field" icon="FileText">
-    **Parameter Name**: `tf_description`
+  <Card title="Proper URL Encoding" icon="Link">
+    URL construction requires careful attention to encoding:
 
-    **Purpose**: Contains the detailed explanation of the issue or request
-
-    **Configuration**: Enable dynamic population with clear LLM instructions
-
-    **Requirement**: Usually marked as required for meaningful ticket creation
+    - Encode special characters to prevent URL parsing errors
+    - Handle spaces and line breaks in description fields
+    - Ensure parameter values don't exceed URL length limits
+    - Validate parameter order for optimal compatibility
   </Card>
 
-  <Card title="Subject Field" icon="Hash">
-    **Parameter Name**: `tf_subject`
+  <Card title="Content Length Management" icon="FileText">
+    Manage content length to ensure successful redirects:
 
-    **Purpose**: Provides a concise summary of the ticket content
-
-    **Configuration**: Allow dynamic generation based on ticket context
-
-    **Requirement**: Typically required for proper ticket organization
+    - Monitor description length to prevent URL truncation
+    - Implement content summarization for long descriptions
+    - Consider character encoding implications
+    - Test with various content types and formats
   </Card>
 </CardGroup>
 
-### Extending Parameter Functionality
+### Security Considerations
 
-The system provides two methods for adding additional parameters to enhance ticket creation functionality.
+<Card title="Security Best Practices" icon="Shield">
+  Important security measures for redirect actions:
 
-**Method 1: Add Parameter Link**
-
-![Adding Parameters Manually](./images/zendesk-ticket-redirection/RedirectURLBuilder_4.png)
-
-**Method 2: Direct URL Modification**
-
-![Adding Parameters via URL](./images/zendesk-ticket-redirection/RedirectURLBuilder_5.png)
-
-### Parameter Value Controls
-
-For parameters that require specific values, the system provides robust control mechanisms:
-
-![Configuring Allowed Values](./images/zendesk-ticket-redirection/RedirectURLBuilder_6.png)
-
-<Card title="Value Control Implementation" icon="CheckSquare">
-  When implementing value controls:
-
-  1. **Enter Values Systematically**: Use the Enter key to separate individual entries
-  2. **Provide Clear Instructions**: Include context about value selection criteria
-  3. **Ensure Compatibility**: Values must align exactly with Zendesk's expectations
-  4. **Include Usage Context**: Explain when each value should be used
+  - **Domain Validation**: Ensure redirects only target authorized Zendesk instances
+  - **Parameter Sanitization**: Clean parameter values to prevent injection attacks
+  - **Access Control**: Verify users have appropriate permissions to create tickets
+  - **Audit Logging**: Log action usage for security monitoring and compliance
 </Card>
-
-### Advanced URL Configuration
-
-For implementations requiring path parameters:
-
-![Path Parameter Configuration](./images/zendesk-ticket-redirection/RedirectURLBuilder_7.png)
-
-<Card title="Path Parameters" icon="Route">
-  Path parameters become integral parts of the URL structure and require careful handling to ensure proper functionality. These parameters must be marked as required since they form essential components of the URL construction.
-</Card>
-
-## Implementation Considerations
-
-### Security Aspects
-
-While redirect actions don't require direct API authentication, several security considerations remain important:
-
-<CardGroup cols={3}>
-  <Card title="URL Parameter Validation" icon="Shield">
-    - Implement proper encoding for all parameter values
-    - Validate parameter content before inclusion
-    - Consider length limitations for URL parameters
-  </Card>
-
-  <Card title="User Authorization" icon="UserCheck">
-    - Ensure users have appropriate Zendesk access
-    - Consider implementing additional authorization checks if needed
-    - Monitor usage patterns for security anomalies
-  </Card>
-
-  <Card title="Data Protection" icon="Lock">
-    - Validate that sensitive data isn't exposed in URLs
-    - Implement appropriate data sanitization
-    - Monitor for potential data leakage
-  </Card>
-</CardGroup>
 
 ### Performance Optimization
 
-Several factors contribute to optimal performance:
-
 <CardGroup cols={2}>
-  <Card title="URL Construction Efficiency" icon="Gauge">
-    - Minimize parameter count to reduce URL length
-    - Implement efficient parameter value generation
-    - Consider caching frequently used values
+  <Card title="Redirect Efficiency" icon="Zap">
+    Optimize redirect performance:
+
+    - Minimize the number of parameters to reduce URL complexity
+    - Cache parameter validation logic where possible
+    - Implement client-side validation to prevent invalid redirects
+    - Monitor redirect success rates and failure patterns
   </Card>
 
-  <Card title="Response Time Management" icon="Clock">
-    - Monitor redirect timing metrics
-    - Optimize parameter generation processes
-    - Implement appropriate timeout handling
-  </Card>
-</CardGroup>
+  <Card title="User Experience" icon="User">
+    Enhance the user experience:
 
-### User Experience Enhancement
-
-Consider these aspects to provide an optimal user experience:
-
-<CardGroup cols={2}>
-  <Card title="Parameter Population Clarity" icon="Eye">
-    - Provide clear feedback about parameter values
-    - Allow for user modification when needed
-    - Maintain consistent parameter behavior
-  </Card>
-
-  <Card title="Error Handling" icon="AlertTriangle">
-    - Implement clear error messages
-    - Provide guidance for error resolution
-    - Monitor common error patterns
+    - Provide clear feedback during the redirect process
+    - Ensure smooth transitions between Glean and Zendesk interfaces
+    - Handle error scenarios gracefully with appropriate messaging
+    - Consider mobile compatibility for redirect URLs
   </Card>
 </CardGroup>
 
-## Implementation Testing
+## Advanced Configuration
 
-Comprehensive testing should include:
+### Multi-Subdomain Support
 
-<CardGroup cols={3}>
-  <Card title="Functionality Verification" icon="TestTube">
-    **Test Areas:**
-    - Parameter population accuracy
-    - Redirect behavior
-    - Field pre-population in Zendesk
-  </Card>
+<Card title="Multiple Zendesk Instances" icon="Globe">
+  For organizations with multiple Zendesk instances:
 
-  <Card title="Error Scenario Testing" icon="AlertCircle">
-    **Test Scenarios:**
-    - Invalid parameter combinations
-    - Error handling mechanisms
-    - User feedback systems
-  </Card>
-
-  <Card title="Performance Assessment" icon="BarChart">
-    **Performance Metrics:**
-    - Response times
-    - Behavior under load
-    - Various parameter combinations
-  </Card>
-</CardGroup>
-
-## Maintenance Procedures
-
-Establish regular maintenance practices:
-
-<CardGroup cols={3}>
-  <Card title="Parameter Monitoring" icon="Search">
-    - Review parameter usage patterns
-    - Update parameter descriptions as needed
-    - Adjust value constraints based on feedback
-  </Card>
-
-  <Card title="Performance Tracking" icon="TrendingUp">
-    - Monitor redirect success rates
-    - Track parameter population accuracy
-    - Assess user satisfaction metrics
-  </Card>
-
-  <Card title="Documentation Management" icon="BookOpen">
-    - Maintain current parameter documentation
-    - Update user guides as needed
-    - Document common issues and solutions
-  </Card>
-</CardGroup>
-
-## Advanced Features
-
-<Card title="Enhanced Functionality Options" icon="Plus">
-  For more sophisticated implementations, consider:
-
-  - **Dynamic Field Mapping**: Implement context-aware field population based on request type
-  - **Template Integration**: Use predefined templates for common ticket types
-  - **Multi-Org Support**: Configure for multiple Zendesk organizations
-  - **Custom Field Support**: Include organization-specific custom fields
-  - **Conditional Logic**: Implement parameter population based on user roles or departments
+  - **Dynamic Subdomain Selection**: Implement logic to determine the correct Zendesk subdomain based on user context
+  - **Configuration Management**: Maintain mappings between user groups and Zendesk instances
+  - **URL Template Flexibility**: Design URL templates that accommodate different subdomain patterns
+  - **Error Handling**: Provide fallback mechanisms when subdomain determination fails
 </Card>
 
-## Troubleshooting Guide
+### Custom Field Integration
+
+<Card title="Enhanced Field Mapping" icon="Database">
+  Support for Zendesk custom fields:
+
+  - **Custom Field Parameters**: Add parameters for organization-specific custom fields
+  - **Field Validation**: Implement validation for custom field values and formats
+  - **Dynamic Field Discovery**: Consider mechanisms for automatically discovering available custom fields
+  - **Field Mapping Logic**: Create mappings between Glean context and Zendesk custom fields
+</Card>
+
+## Testing & Validation
+
+<CardGroup cols={3}>
+  <Card title="Functional Testing" icon="Beaker">
+    **Core functionality validation:**
+    - URL construction accuracy
+    - Parameter encoding correctness
+    - Field population verification
+    - Required field enforcement
+  </Card>
+
+  <Card title="Integration Testing" icon="Puzzle">
+    **Cross-system verification:**
+    - Zendesk interface compatibility
+    - Browser redirect behavior
+    - Parameter preservation during redirect
+    - Error handling across systems
+  </Card>
+
+  <Card title="User Acceptance Testing" icon="UserCheck">
+    **User experience validation:**
+    - Workflow intuitiveness
+    - Field pre-population accuracy
+    - Error message clarity
+    - Mobile device compatibility
+  </Card>
+</CardGroup>
+
+### Common Pitfalls to Avoid
 
 :::warning
-Common implementation challenges and solutions:
+Common challenges and their solutions:
 
-1. **Parameter Encoding Issues**
-   - Ensure special characters are properly URL-encoded
-   - Test with various content types and languages
-   - Verify encoding compatibility with Zendesk
+1. **URL Length Limitations**
+   - Monitor total URL length to prevent truncation
+   - Implement content summarization for long descriptions
+   - Consider parameter prioritization for essential fields
 
-2. **Field Mapping Problems**
-   - Confirm field names match Zendesk configuration
-   - Test with different user permission levels
-   - Validate custom field accessibility
+2. **Character Encoding Issues**
+   - Properly encode special characters and Unicode content
+   - Test with various languages and character sets
+   - Validate encoding compatibility with Zendesk
 
-3. **URL Length Limitations**
-   - Monitor generated URL lengths
-   - Implement content truncation for long descriptions
-   - Consider parameter prioritization strategies
+3. **Parameter Mapping Errors**
+   - Verify parameter names match Zendesk's expectations
+   - Test with different ticket types and field configurations
+   - Validate enum values against current Zendesk setup
+
+4. **Redirect Failures**
+   - Implement fallback mechanisms for failed redirects
+   - Provide clear error messages for troubleshooting
+   - Monitor redirect success rates and common failure points
 :::
 
-## Monitoring and Analytics
+## Troubleshooting
 
-<Card title="Key Metrics to Track" icon="BarChart3">
-  Establish monitoring for these critical metrics:
+If you encounter issues during implementation or operation:
 
-  - **Redirect Success Rate**: Percentage of successful redirects to Zendesk
-  - **Parameter Population Accuracy**: How often fields are correctly populated
-  - **User Completion Rate**: Percentage of users who submit tickets after redirect
-  - **Error Frequency**: Common error patterns and their resolution
-  - **Performance Metrics**: Response times and system load impacts
-</Card>
+1. **Verify Parameter Configuration**
+   - Check parameter names against Zendesk documentation
+   - Validate enum values match your Zendesk configuration
+   - Ensure required parameters are properly marked
 
-## Best Practices Summary
+2. **Test URL Construction**
+   - Manually test generated URLs in browsers
+   - Verify parameter encoding and formatting
+   - Check URL length against browser limitations
 
-<Card title="Implementation Best Practices" icon="CheckCircle">
-  Follow these guidelines for optimal results:
+3. **Debug Zendesk Integration**
+   - Confirm Zendesk subdomain and URL structure
+   - Test with different user permission levels
+   - Validate field mappings and custom field configurations
 
-  - **Clear Parameter Descriptions**: Provide comprehensive LLM guidance for each parameter
-  - **User Testing**: Conduct thorough testing with real users before deployment
-  - **Gradual Rollout**: Implement phased deployment to identify issues early
-  - **Feedback Collection**: Establish channels for user feedback and improvement suggestions
-  - **Regular Reviews**: Schedule periodic reviews of parameter accuracy and user satisfaction
-</Card>
+4. **Monitor Performance**
+   - Track redirect success and failure rates
+   - Monitor user feedback and error reports
+   - Analyze usage patterns for optimization opportunities
 
 ## Next Steps
 
-After implementing the Zendesk ticket creation redirect action:
+To ensure ongoing success:
 
-1. **Documentation**: Create comprehensive user documentation
-2. **Monitoring**: Establish monitoring systems
-3. **Maintenance**: Define maintenance schedules
-4. **Enhancement**: Plan future enhancements
-5. **Feedback**: Configure feedback collection mechanisms
+- **Documentation**: Create comprehensive user guides and troubleshooting resources
+- **Monitoring**: Establish metrics tracking for redirect success rates and user satisfaction
+- **Feedback**: Implement feedback collection mechanisms for continuous improvement
+- **Maintenance**: Plan regular reviews of parameter configurations and Zendesk compatibility
+- **Enhancement**: Consider additional features such as template-based ticket creation
 
-This implementation provides a robust foundation for streamlined ticket creation while maintaining the flexibility and familiarity of the Zendesk interface. Regular monitoring and maintenance will ensure continued effectiveness and user satisfaction. 
+This implementation provides a solid foundation for streamlined ticket creation while maintaining the familiar Zendesk interface. Regular monitoring and user feedback will guide future enhancements and ensure continued effectiveness. 

@@ -92,11 +92,11 @@ curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 # ... Rest of the document
 ```
 
-#### <h4 id = 'scenario-1b'> Scenario 1.2-B: [`isUserReferencedByEmail`](https://developers.glean.com/indexing/tag/Datasources/paths/~1adddatasource/post/#!path=isUserReferencedByEmail&t=request) field set to <ins>**false**</ins> in the datasource config </h4>
+#### Scenario 1.2-B: [`isUserReferencedByEmail`](/api/indexing-api/add-or-update-datasource#request-isuserreferencedbyemail) field set to <ins>**false**</ins> in the datasource config {#scenario-1b}
 
 ---
 
-In case [`isUserReferencedByEmail`](/api/indexing-api/add-or-update-datasource#request-isuserreferencedbyemail) is set to **false**, users should be referenced by their datasourceUserId when adding permissions to a document. This can be done by setting [`datasourceUserId`](/api/indexing-api/index-document#request-document-permissions-allowedusers-datasourceuserid) under the [`allowedUsers`](/api/indexing-api/index-document#request-document-permissions-allowedusers-datasourceuserid) field for each user that we want to give permissions to.
+In case [`isUserReferencedByEmail`](/api/indexing-api/add-or-update-datasource#request-isuserreferencedbyemail) is set to **false**, users should be referenced by their datasourceUserId when adding permissions to a document. This can be done by setting [`datasourceUserId`](/api/indexing-api/index-document#request-document-permissions-allowedusers-datasourceuserid) under the [`allowedUsers`](/api/indexing-api/index-document#request-document-permissions-allowedusers) field for each user that we want to give permissions to.
 
 The following sample creates a document, giving permissions to only `gleantest_user_1` (**assuming a user with this userId has been indexed**) to search for this document:
 
@@ -113,7 +113,7 @@ curl -X POST https://customer-be.glean.com/api/index/v1/indexdocument \
 # ... Rest of the document
 ```
 
-## <h2 id='scenario-2'> Scenario 2: Allowing all users of the datasource to search a document </h2>
+## Scenario 2: Allowing all users of the datasource to search a document {#scenario-2}
 
 ---
 

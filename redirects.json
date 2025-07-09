@@ -580,10 +580,6 @@
     "to": "/guides/actions/overview"
   },
   {
-    "from": "/actions/create-actions",
-    "to": "/guides/actions/create-actions"
-  },
-  {
     "from": "/actions/creating-actions",
     "to": "/guides/actions/create-actions"
   },

@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import matter from 'gray-matter';
 import { marked } from 'marked';
@@ -11,6 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const CHANGELOG_DIR = path.join(__dirname, '..', 'changelog', 'entries');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'data', 'changelog.json');
+const CACHE_FILE = path.join(__dirname, '..', '.changelog-cache.json');
 
 marked.setOptions({
   breaks: true,
@@ -19,7 +21,61 @@ marked.setOptions({
   mangle: false,
 });
 
-// No mapping needed - read categories directly from frontmatter
+function getFileHash(filePath) {
+  if (!fs.existsSync(filePath)) return null;
+  const content = fs.readFileSync(filePath, 'utf-8');
+  return crypto.createHash('md5').update(content).digest('hex');
+}
+
+function getDirectoryHash(dirPath) {
+  if (!fs.existsSync(dirPath)) return null;
+  
+  const files = fs.readdirSync(dirPath)
+    .filter(file => file.endsWith('.md'))
+    .sort();
+  
+  const fileHashes = files.map(file => {
+    const filePath = path.join(dirPath, file);
+    const stats = fs.statSync(filePath);
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return {
+      file,
+      hash: crypto.createHash('md5').update(content).digest('hex'),
+      mtime: stats.mtime.toISOString()
+    };
+  });
+  
+  return crypto.createHash('md5').update(JSON.stringify(fileHashes)).digest('hex');
+}
+
+function loadCache() {
+  if (!fs.existsSync(CACHE_FILE)) return null;
+  
+  try {
+    return JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
+  } catch (error) {
+    console.warn('Failed to load changelog cache:', error.message);
+    return null;
+  }
+}
+
+function saveCache(cache) {
+  try {
+    fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2));
+  } catch (error) {
+    console.warn('Failed to save changelog cache:', error.message);
+  }
+}
+
+function hasChanges() {
+  const cache = loadCache();
+  if (!cache) return true;
+  
+  const currentHash = getDirectoryHash(CHANGELOG_DIR);
+  const outputExists = fs.existsSync(OUTPUT_FILE);
+  
+  return !outputExists || cache.directoryHash !== currentHash;
+}
 
 function markdownToHtml(markdown) {
   return marked(markdown);
@@ -89,7 +145,6 @@ function parseChangelogEntry(fileName, rawContent) {
 
   const processedContent = processChangelogContent(content);
 
-  // Read categories directly from frontmatter (no more tags/mapping)
   const categories = data.categories || [];
 
   return {
@@ -108,6 +163,11 @@ function parseChangelogEntry(fileName, rawContent) {
 function generateChangelogData() {
   if (!fs.existsSync(CHANGELOG_DIR)) {
     console.error('Changelog entries directory does not exist:', CHANGELOG_DIR);
+    return;
+  }
+
+  if (!hasChanges()) {
+    console.log('No changes detected in changelog entries, skipping generation');
     return;
   }
 
@@ -139,16 +199,24 @@ function generateChangelogData() {
     ...new Set(entries.flatMap((entry) => entry.categories)),
   ].sort();
 
+  const mostRecentDate = entries.length > 0 ? entries[0].date : new Date().toISOString().split('T')[0];
+
   const changelogData = {
     entries,
     categories: allCategories,
-    generatedAt: new Date().toISOString(),
+    generatedAt: new Date(mostRecentDate + 'T00:00:00.000Z').toISOString(),
     totalEntries: entries.length,
   };
 
   fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
-
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(changelogData, null, 2));
+
+  const cache = {
+    directoryHash: getDirectoryHash(CHANGELOG_DIR),
+    generatedAt: new Date().toISOString(),
+  };
+  saveCache(cache);
+
   console.log(`Generated changelog data with ${entries.length} entries`);
 }
 

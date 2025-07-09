@@ -13,18 +13,49 @@ import { Steps } from '@site/src/components/Steps';
 
 This guide demonstrates how to create an execution action that enables Glean Assistant to update Google Documents. You'll learn how to configure the OpenAPI specification, set up OAuth authentication, and deploy the action for use within your organization.
 
-:::note
+This is an **execution action** that performs operations directly within Glean by making API calls to Google Docs on behalf of users.
+
+## Prerequisites
+
 Before proceeding, ensure you have:
+
 - Admin or app developer access to Glean
 - Access to Google Cloud Console
 - Familiarity with OAuth 2.0 authentication flows
-:::
 
-## Implementation Steps
+## Implementation Guide
 
 <Steps>
   <div>
-    <h3>Step 1: Preparing the OpenAPI Specification</h3>
+    <h3>Step 1: Action Manifest Configuration</h3>
+    <p>Navigate to <a href="https://app.glean.com/admin/platform/tools">Admin console > Platform > Actions</a> and create a new action from scratch.</p>
+
+    <h4>Basic Information Configuration</h4>
+    
+    ![Basic Info Dialog Box](./images/google-docs-update/basic_info.png)
+
+    <p>Configure the following settings:</p>
+    <ul>
+      <li>Display name: Choose a descriptive name (e.g., "Google Docs Updater")</li>
+      <li>Description: Explain the action's functionality</li>
+      <li>Unique identifier: Set a unique ID (e.g., "googleDocsUpdate")</li>
+      <li>Action type: Select "Action" since this will modify documents</li>
+    </ul>
+
+    <h4>Trigger Condition Setup</h4>
+    
+    ![Trigger Condition Dialog Box](./images/google-docs-update/trigger_condition.png)
+
+    <p>In the trigger condition, provide comprehensive guidance for when Glean Assistant should use this action. Include:</p>
+    <ul>
+      <li>Specific use cases that should trigger the action</li>
+      <li>Examples of appropriate user queries</li>
+      <li>Cases where the action should not be used</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Step 2: API Specification Development</h3>
     <p>The first step involves creating a properly formatted OpenAPI specification that defines how Glean Assistant will interact with the Google Docs API. We'll use the following endpoint:</p>
 
     <pre><code>POST https://docs.googleapis.com/v1/documents/{`{documentId}`}:batchUpdate</code></pre>
@@ -132,41 +163,16 @@ paths:
           description: Successful response`}</code></pre>
 
     </details>
-  </div>
-
-  <div>
-    <h3>Step 2: Creating the Action</h3>
-    <p>Navigate to <a href="https://app.glean.com/admin/platform/tools">Admin console > Platform > Actions</a> and create a new action from scratch.</p>
-
-    <h4>Basic Information Configuration</h4>
-    <img src="./images/google-docs-update/basic_info.png" alt="Basic Info Dialog Box" />
-
-    <p>Configure the following settings:</p>
-    <ul>
-      <li>Display name: Choose a descriptive name (e.g., "Google Docs Updater")</li>
-      <li>Description: Explain the action's functionality</li>
-      <li>Unique identifier: Set a unique ID (e.g., "googleDocsUpdate")</li>
-      <li>Action type: Select "Action" since this will modify documents</li>
-    </ul>
-
-    <h4>Trigger Condition Setup</h4>
-    <img src="./images/google-docs-update/trigger_condition.png" alt="Trigger Condition Dialog Box" />
-
-    <p>In the trigger condition, provide comprehensive guidance for when Glean Assistant should use this action. Include:</p>
-    <ul>
-      <li>Specific use cases that should trigger the action</li>
-      <li>Examples of appropriate user queries</li>
-      <li>Cases where the action should not be used</li>
-    </ul>
 
     <h4>Functionality Configuration</h4>
-    <img src="./images/google-docs-update/functionality.png" alt="Functionality Dialog Box" />
+    
+    ![Functionality Dialog Box](./images/google-docs-update/functionality.png)
 
-    <p>Paste the OpenAPI specification you prepared in Step 1. Since we're using Google's API directly, leave the "Use existing on-premise server" option unchecked.</p>
+    <p>Paste the OpenAPI specification you prepared above. Since we're using Google's API directly, leave the "Use existing on-premise server" option unchecked.</p>
   </div>
 
   <div>
-    <h3>Step 3: Setting Up Authorization</h3>
+    <h3>Step 3: Authentication Setup</h3>
     <p>The action requires OAuth 2.0 authentication to interact with Google Docs securely.</p>
 
     <h4>Google Cloud Console Configuration</h4>
@@ -236,11 +242,9 @@ Scopes: https://www.googleapis.com/auth/documents`}</code></pre>
   </div>
 </Steps>
 
----
+## Best Practices
 
-## Implementation Guidelines
-
-### OpenAPI Specification Best Practices
+### API Configuration Best Practices
 
 When preparing your OpenAPI specification for Google Docs integration:
 
@@ -264,7 +268,40 @@ When preparing your OpenAPI specification for Google Docs integration:
   </Card>
 </CardGroup>
 
-### Google Docs API Considerations
+### Authentication Considerations
+
+<Card title="OAuth Configuration" icon="Key">
+  Important considerations for OAuth setup:
+
+  - Always use `access_type=offline` to enable refresh tokens
+  - Include appropriate error handling for token expiration
+  - Consider implementing token rotation for security
+  - Monitor token usage and implement proper logging
+</Card>
+
+### Performance Optimization
+
+<CardGroup cols={2}>
+  <Card title="User Experience" icon="User">
+    Optimize the action for user interaction:
+
+    - Provide clear feedback when the action is processing
+    - Include meaningful error messages
+    - Allow users to preview changes before applying them
+    - Maintain consistent behavior across different document types
+  </Card>
+
+  <Card title="Efficient Operations" icon="Gauge">
+    Ensure efficient operation:
+
+    - Batch related operations when possible
+    - Implement appropriate timeouts
+    - Cache frequently used document metadata
+    - Monitor action execution times
+  </Card>
+</CardGroup>
+
+### Error Handling
 
 When working with the Google Docs API:
 
@@ -278,7 +315,7 @@ When working with the Google Docs API:
     - Handle formatting through plain text markers (like asterisks for bullets)
   </Card>
 
-  <Card title="Error Handling" icon="Bug">
+  <Card title="Common Issues" icon="Bug">
     Common issues to watch for:
 
     - Document permissions mismatches
@@ -288,38 +325,17 @@ When working with the Google Docs API:
   </Card>
 </CardGroup>
 
-### Authentication Setup Tips
+## Testing & Validation
 
-<Card title="OAuth Configuration" icon="Key">
-  Important considerations for OAuth setup:
+<Card title="Comprehensive Testing" icon="TestTube">
+  Implement thorough testing across these scenarios:
 
-  - Always use `access_type=offline` to enable refresh tokens
-  - Include appropriate error handling for token expiration
-  - Consider implementing token rotation for security
-  - Monitor token usage and implement proper logging
+  - Different document types and sizes
+  - Various content modification patterns
+  - Edge cases in text replacement
+  - Multiple user permission levels
+  - Concurrent access situations
 </Card>
-
-### Integration Best Practices
-
-<CardGroup cols={2}>
-  <Card title="User Experience" icon="User">
-    Optimize the action for user interaction:
-
-    - Provide clear feedback when the action is processing
-    - Include meaningful error messages
-    - Allow users to preview changes before applying them
-    - Maintain consistent behavior across different document types
-  </Card>
-
-  <Card title="Performance Optimization" icon="Gauge">
-    Ensure efficient operation:
-
-    - Batch related operations when possible
-    - Implement appropriate timeouts
-    - Cache frequently used document metadata
-    - Monitor action execution times
-  </Card>
-</CardGroup>
 
 ### Common Pitfalls to Avoid
 
@@ -342,19 +358,26 @@ Watch out for these common implementation mistakes:
    - Incorrect handling of line breaks and paragraphs
 :::
 
-### Testing Recommendations
+## Troubleshooting
 
-<Card title="Comprehensive Testing" icon="TestTube">
-  Implement thorough testing across these scenarios:
+If you encounter issues during setup or execution:
 
-  - Different document types and sizes
-  - Various content modification patterns
-  - Edge cases in text replacement
-  - Multiple user permission levels
-  - Concurrent access situations
-</Card>
+1. **Verify OAuth Configuration**
+   - Check OAuth credentials are correctly configured
+   - Ensure the Google Docs API is enabled
+   - Validate that the redirect URI exactly matches your action's configuration
 
-### Maintenance and Monitoring
+2. **Check Permissions**
+   - Verify the user has appropriate permissions in both Glean and Google Docs
+   - Confirm document access permissions
+   - Check API quota and rate limits
+
+3. **Debug Implementation**
+   - Validate document ID extraction and formatting
+   - Test with different document types and sizes
+   - Monitor API response codes and error messages
+
+## Maintenance
 
 <Card title="Ongoing Operations" icon="ChartLine">
   Establish these operational practices:
@@ -366,20 +389,20 @@ Watch out for these common implementation mistakes:
   - Performance metric monitoring
 </Card>
 
-## Troubleshooting
+### Regular Maintenance Tasks
 
-If you encounter issues during setup or execution:
-
-1. Verify OAuth credentials are correctly configured
-2. Ensure the Google Docs API is enabled
-3. Check that the redirect URI exactly matches your action's configuration
-4. Verify the user has appropriate permissions in both Glean and Google Docs
+- Monitor OAuth token usage and implement proper rotation schedules
+- Track API usage against rate limits
+- Review and update API specifications as needed
+- Collect and analyze user feedback
+- Plan for Google Docs API version updates
 
 ## Next Steps
 
 After successful implementation, consider:
 
-- Creating documentation for end users
-- Setting up monitoring for action usage
-- Establishing a process for maintaining OAuth credentials
-- Planning for periodic reviews of API specifications as the Google Docs API evolves 
+- **Documentation**: Creating documentation for end users
+- **Monitoring**: Setting up monitoring for action usage
+- **Credentials**: Establishing a process for maintaining OAuth credentials
+- **Reviews**: Planning for periodic reviews of API specifications as the Google Docs API evolves
+- **Enhancements**: Expanding functionality based on user feedback 

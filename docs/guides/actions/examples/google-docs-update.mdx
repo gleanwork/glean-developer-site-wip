@@ -360,22 +360,36 @@ Watch out for these common implementation mistakes:
 
 ## Troubleshooting
 
-If you encounter issues during setup or execution:
+If you encounter issues during setup or execution, follow these diagnostic steps:
 
-1. **Verify OAuth Configuration**
-   - Check OAuth credentials are correctly configured
-   - Ensure the Google Docs API is enabled
-   - Validate that the redirect URI exactly matches your action's configuration
+<Steps>
+  <div>
+    <h3>Step 1: Verify OAuth Configuration</h3>
+    <ul>
+      <li>Check OAuth credentials are correctly configured</li>
+      <li>Ensure the Google Docs API is enabled</li>
+      <li>Validate that the redirect URI exactly matches your action's configuration</li>
+    </ul>
+  </div>
 
-2. **Check Permissions**
-   - Verify the user has appropriate permissions in both Glean and Google Docs
-   - Confirm document access permissions
-   - Check API quota and rate limits
+  <div>
+    <h3>Step 2: Check Permissions</h3>
+    <ul>
+      <li>Verify the user has appropriate permissions in both Glean and Google Docs</li>
+      <li>Confirm document access permissions</li>
+      <li>Check API quota and rate limits</li>
+    </ul>
+  </div>
 
-3. **Debug Implementation**
-   - Validate document ID extraction and formatting
-   - Test with different document types and sizes
-   - Monitor API response codes and error messages
+  <div>
+    <h3>Step 3: Debug Implementation</h3>
+    <ul>
+      <li>Validate document ID extraction and formatting</li>
+      <li>Test with different document types and sizes</li>
+      <li>Monitor API response codes and error messages</li>
+    </ul>
+  </div>
+</Steps>
 
 ## Maintenance
 

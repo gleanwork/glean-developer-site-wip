@@ -18,10 +18,30 @@ const CHANGELOG_DATA_FILE = path.join(
 const RSS_OUTPUT_DIR = path.join(__dirname, '..', 'static');
 const RSS_OUTPUT_FILE = path.join(RSS_OUTPUT_DIR, 'changelog.xml');
 
+function needsRegeneration() {
+  if (!fs.existsSync(RSS_OUTPUT_FILE)) {
+    return true;
+  }
+
+  if (!fs.existsSync(CHANGELOG_DATA_FILE)) {
+    return true;
+  }
+
+  const changelogStats = fs.statSync(CHANGELOG_DATA_FILE);
+  const rssStats = fs.statSync(RSS_OUTPUT_FILE);
+
+  return changelogStats.mtime > rssStats.mtime;
+}
+
 function generateRSSFeed() {
   if (!fs.existsSync(CHANGELOG_DATA_FILE)) {
     console.error('Changelog data file does not exist:', CHANGELOG_DATA_FILE);
     process.exit(1);
+  }
+
+  if (!needsRegeneration()) {
+    console.log('No changes detected in changelog data, skipping RSS generation');
+    return;
   }
 
   const changelogData = JSON.parse(

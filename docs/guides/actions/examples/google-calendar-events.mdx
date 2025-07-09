@@ -27,36 +27,32 @@ Before beginning this implementation, ensure you have:
 
 <Steps>
   <Step title="Creating the Base Action">
-    <p>Begin by navigating to <a href="https://app.glean.com/admin/platform/tools">Admin console > Platform > Actions</a> and selecting "New Action".</p>
+    Begin by navigating to [Admin console > Platform > Actions](https://app.glean.com/admin/platform/tools) and selecting "New Action".
 
     :::info
     Choose "start from scratch" since the Google Calendar action isn't available in the templates.
     :::
 
-    <h4>Basic Information Configuration</h4>
+    #### Basic Information Configuration
     [![Basic Info Dialog Box](./images/google-calendar-events/calendar_action_basic_info.png)](./images/google-calendar-events/calendar_action_basic_info.png)
 
-    <p>Configure these essential details:</p>
-    <ul>
-      <li><strong>Display Name</strong>: Choose a clear, descriptive name (e.g., "Calendar Events Retrieval")</li>
-      <li><strong>Description</strong>: Explain the action's purpose and capabilities</li>
-      <li><strong>Unique Identifier</strong>: Set a unique ID (e.g., "retrieveCalendarEvents")</li>
-      <li><strong>Action Type</strong>: Select "Retrieval" since this action reads calendar data</li>
-    </ul>
+    Configure these essential details:
+    - **Display Name**: Choose a clear, descriptive name (e.g., "Calendar Events Retrieval")
+    - **Description**: Explain the action's purpose and capabilities
+    - **Unique Identifier**: Set a unique ID (e.g., "retrieveCalendarEvents")
+    - **Action Type**: Select "Retrieval" since this action reads calendar data
 
-    <h4>Trigger Condition Setup</h4>
+    #### Trigger Condition Setup
     [![Trigger Condition Dialog Box](./images/google-calendar-events/calendar_action_trigger_condition.png)](./images/google-calendar-events/calendar_action_trigger_condition.png)
 
-    <p>Your trigger condition should clearly specify:</p>
-    <ul>
-      <li>When Glean Assistant should use this action</li>
-      <li>Expected user query patterns</li>
-      <li>Scenarios where the action shouldn't be used</li>
-    </ul>
+    Your trigger condition should clearly specify:
+    - When Glean Assistant should use this action
+    - Expected user query patterns
+    - Scenarios where the action shouldn't be used
   </Step>
 
   <Step title="Configuring the API Specification">
-    <p>Add this OpenAPI specification to define how Glean Assistant interacts with the Google Calendar API:</p>
+    Add this OpenAPI specification to define how Glean Assistant interacts with the Google Calendar API:
 
     <details>
       <summary>Click to expand the complete OpenAPI specification</summary>
@@ -150,9 +146,9 @@ Before beginning this implementation, ensure you have:
   </Step>
 
   <Step title="Setting Up OAuth Authentication">
-    <p>This action requires OAuth User authentication to access individual users' calendar data.</p>
+    This action requires OAuth User authentication to access individual users' calendar data.
 
-    <h4>Google Cloud Console Setup</h4>
+    #### Google Cloud Console Setup
     
     1. Access the [Google Cloud Console Credentials page](https://console.cloud.google.com/apis/credentials)
     2. Create OAuth credentials:
@@ -163,19 +159,23 @@ Before beginning this implementation, ensure you have:
 
        [![Create OAuth Client](./images/google-calendar-events/calendar_action_create_oauth_client.png)](./images/google-calendar-events/calendar_action_create_oauth_client.png)
 
-    <h4>Redirect URI Configuration</h4>
-    <p>Add this URI to your OAuth client (Note your instance name is typically the email domain without the TLD):</p>
-    <pre><code>https://{`{instance-name}-be.glean.com/tools/oauth/verify_code/{your-action-unique-identifier-name}`}</code></pre>
+    #### Redirect URI Configuration
+    Add this URI to your OAuth client (Note your instance name is typically the email domain without the TLD):
+    ```
+    https://{instance-name}-be.glean.com/tools/oauth/verify_code/{your-action-unique-identifier-name}
+    ```
 
-    <h4>OAuth Settings in Glean</h4>
-    <p>Configure these parameters in Glean:</p>
-    <pre><code>{`Client URL: https://accounts.google.com/o/oauth2/auth?prompt=consent&access_type=offline
-Authorization URL: https://accounts.google.com/o/oauth2/token
-Scopes: https://www.googleapis.com/auth/calendar.readonly`}</code></pre>
+    #### OAuth Settings in Glean
+    Configure these parameters in Glean:
+    ```
+    Client URL: https://accounts.google.com/o/oauth2/auth?prompt=consent&access_type=offline
+    Authorization URL: https://accounts.google.com/o/oauth2/token
+    Scopes: https://www.googleapis.com/auth/calendar.readonly
+    ```
 
     [![Authentication Dialogue Box](./images/google-calendar-events/calendar_action_authentication.png)](./images/google-calendar-events/calendar_action_authentication.png)
 
-    <h4>Enable Google Calendar API</h4>
+    #### Enable Google Calendar API
     
     1. Access your Google Cloud Console
     2. Enable the Calendar API:
@@ -184,9 +184,9 @@ Scopes: https://www.googleapis.com/auth/calendar.readonly`}</code></pre>
   </Step>
 
   <Step title="Testing and Deployment">
-    <p>Test the action thoroughly before deployment.</p>
+    Test the action thoroughly before deployment.
 
-    <h4>Initial Testing</h4>
+    #### Initial Testing
     
     1. Use the provided testing URL
     2. You'll see the connection banner:
@@ -198,15 +198,13 @@ Scopes: https://www.googleapis.com/auth/calendar.readonly`}</code></pre>
 
        [![Calendar Events Result](./images/google-calendar-events/calendar_action_calendar_events.png)](./images/google-calendar-events/calendar_action_calendar_events.png)
 
-    <h4>Deployment</h4>
-    <p>Configure deployment settings:</p>
+    #### Deployment
+    Configure deployment settings:
     [![Deploy Action View](./images/google-calendar-events/deploy_window.png)](./images/google-calendar-events/deploy_window.png)
 
-    <p>Set appropriate access controls:</p>
-    <ul>
-      <li>Enable for all teammates or</li>
-      <li>Restrict to specific team members</li>
-    </ul>
+    Set appropriate access controls:
+    - Enable for all teammates or
+    - Restrict to specific team members
   </Step>
 </Steps>
 

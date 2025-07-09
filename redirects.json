@@ -16,10 +16,17 @@
     "to": "/guides/actions/authentication"
   },
   {
+    "from": "/agents/mcp",
+    "to": "/guides/mcp"
+  },
+  {
     "from": "/api-clients",
     "to": "/libraries/api-clients"
   },
-
+  {
+    "from": "/actions/create-actions",
+    "to": "/guides/actions/create-actions"
+  },
   {
     "from": "/client/api/activity/report-client-activity",
     "to": "/api/client-api/activity/activity"
@@ -307,6 +314,10 @@
   {
     "from": "/client/search/filtering-results",
     "to": "/guides/search/filtering-results"
+  },
+  {
+    "from": "/indexing/overview",
+    "to": "/api-info/indexing/getting-started/overview"
   },
   {
     "from": "/indexing/api/authentication/rotate-token",
@@ -599,5 +610,93 @@
   {
     "from": "/actions/examples/zendesk-ticket-redirection",
     "to": "/guides/actions/examples/zendesk-ticket-redirection"
+  },
+  {
+    "from": "/actions/examples/overview",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/examples/index",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/index",
+    "to": "/guides/actions/overview"
+  },
+  {
+    "from": "/actions/getting-started",
+    "to": "/guides/actions/overview"
+  },
+  {
+    "from": "/actions/guide",
+    "to": "/guides/actions/overview"
+  },
+  {
+    "from": "/actions/docs",
+    "to": "/guides/actions/overview"
+  },
+  {
+    "from": "/actions/examples/google-docs",
+    "to": "/guides/actions/examples/google-docs-update"
+  },
+  {
+    "from": "/actions/examples/google-docs-action",
+    "to": "/guides/actions/examples/google-docs-update"
+  },
+  {
+    "from": "/actions/examples/jira",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/examples/jira-creation",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/examples/jira-redirect",
+    "to": "/guides/actions/examples/jira-issue-creation-redirect"
+  },
+  {
+    "from": "/actions/examples/zendesk",
+    "to": "/guides/actions/examples/zendesk-ticket-redirection"
+  },
+  {
+    "from": "/actions/examples/zendesk-redirect",
+    "to": "/guides/actions/examples/zendesk-ticket-redirection"
+  },
+  {
+    "from": "/actions/examples/calendar",
+    "to": "/guides/actions/examples/google-calendar-events"
+  },
+  {
+    "from": "/actions/examples/google-calendar",
+    "to": "/guides/actions/examples/google-calendar-events"
+  },
+  {
+    "from": "/actions/setup",
+    "to": "/guides/actions/create-actions"
+  },
+  {
+    "from": "/actions/configuration",
+    "to": "/guides/actions/create-actions"
+  },
+  {
+    "from": "/actions/auth",
+    "to": "/guides/actions/authentication"
+  },
+  {
+    "from": "/actions/authentication-guide",
+    "to": "/guides/actions/authentication"
+  },
+  {
+    "from": "/actions/help",
+    "to": "/guides/actions/faq"
+  },
+  {
+    "from": "/actions/troubleshooting",
+    "to": "/guides/actions/faq"
+  },
+  {
+    "from": "/actions/questions",
+    "to": "/guides/actions/faq"
   }
 ]

@@ -4,6 +4,14 @@
     "to": "/"
   },
   {
+    "from": "/agents/mcp",
+    "to": "/guides/mcp"
+  },
+  {
+    "from": "/agents/langchain",
+    "to": "/guides/agents/langchain"
+  },
+  {
     "from": "/oas/client",
     "to": "https://gleanwork.github.io/open-api/specs/final/client_rest.yaml"
   },
@@ -12,20 +20,160 @@
     "to": "https://gleanwork.github.io/open-api/specs/final/indexing.yaml"
   },
   {
+    "from": "/docs/client_api",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/client/overview",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/client_platform_preview/overview",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/client",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/docs/indexing_api/indexing_api_getting_started",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/docs/indexing_api",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/indexing/overview",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/indexing",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/indexing/people-teams-identity",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/docs/browser_api",
+    "to": "/libraries/web-sdk/overview"
+  },
+  {
+    "from": "/web",
+    "to": "/libraries/web-sdk/overview"
+  },
+  {
+    "from": "/home/community",
+    "to": "https://community.glean.com"
+  },
+  {
+    "from": "/docs/actions/getting_started",
+    "to": "/guides/actions/faq"
+  },
+  {
+    "from": "/docs/browser_api/chat",
+    "to": "/libraries/web-sdk/components/chat"
+  },
+  {
+    "from": "/docs/browser_api/third_party_cookies",
+    "to": "/libraries/web-sdk/3rd-party-cookies"
+  },
+  {
+    "from": "/docs/client_api/chat_api",
+    "to": "/api/client-api/chat/chat"
+  },
+  {
+    "from": "/docs/indexing_api_bulk_indexing",
+    "to": "/api-info/indexing/documents/bulk-indexing"
+  },
+  {
+    "from": "/docs/indexing_api_datasource_category",
+    "to": "/api-info/indexing/datasource/category"
+  },
+  {
+    "from": "/docs/indexing_api_token_rotation",
+    "to": "/api-info/indexing/authentication/token-rotation"
+  },
+  {
+    "from": "/docs/indexing_api/indexing_api_datasource_category",
+    "to": "/api-info/indexing/datasource/category"
+  },
+  {
+    "from": "/docs/indexing_api_permissions",
+    "to": "/api-info/indexing/authentication/token-rotation"
+  },
+  {
+    "from": "/docs/indexing_api_tokens",
+    "to": "/api-info/indexing/authentication/token-rotation"
+  },
+  {
+    "from": "/docs/rendering_search_results",
+    "to": "/api-info/indexing/datasource/rendering-search-results"
+  },
+  {
+    "from": "/indexing/tag/Datasources/paths/~1adddatasource/post",
+    "to": "/api/indexing-api/add-or-update-datasource"
+  },
+  {
+    "from": "/docs/tools/introduction",
+    "to": "/guides/actions/create-actions"
+  },
+  {
+    "from": "/docs/indexing_api/setting_test_datasource",
+    "to": "/api-info/indexing/datasource/test-datasource"
+  },
+  {
+    "from": "/docs/tools/getting_started",
+    "to": "/guides/actions/faq"
+  },
+  {
+    "from": "/docs/tools/authentication",
+    "to": "/guides/actions/authentication"
+  },
+  {
+    "from": "/actions",
+    "to": "/guides/actions/faq"
+  },
+  {
     "from": "/actions/authentication",
     "to": "/guides/actions/authentication"
   },
   {
-    "from": "/agents/mcp",
-    "to": "/guides/mcp"
+    "from": "/actions/create-actions",
+    "to": "/guides/actions/create-actions"
+  },
+  {
+    "from": "/actions/examples/google-calendar-events",
+    "to": "/guides/actions/examples/google-calendar-events"
+  },
+  {
+    "from": "/actions/examples/google-docs-update",
+    "to": "/guides/actions/examples/google-docs-update"
+  },
+  {
+    "from": "/actions/examples/jira-issue-creation",
+    "to": "/guides/actions/examples/jira-issue-creation"
+  },
+  {
+    "from": "/actions/examples/jira-issue-creation-redirect",
+    "to": "/guides/actions/examples/jira-issue-creation-redirect"
+  },
+  {
+    "from": "/actions/examples/zendesk-ticket-redirection",
+    "to": "/guides/actions/examples/zendesk-ticket-redirection"
+  },
+  {
+    "from": "/actions/faq",
+    "to": "/guides/actions/faq"
+  },
+  {
+    "from": "/agents/index",
+    "to": "/guides/agents/overview"
   },
   {
     "from": "/api-clients",
     "to": "/libraries/api-clients"
-  },
-  {
-    "from": "/actions/create-actions",
-    "to": "/guides/actions/create-actions"
   },
   {
     "from": "/client/api/activity/report-client-activity",
@@ -36,12 +184,20 @@
     "to": "/api/client-api/activity/activity"
   },
   {
-    "from": "/client/api/agents/list-an-agents-schemas",
-    "to": "/api/client-api/agents/get-agent-schemas"
+    "from": "/client/api/agents/create-run-stream-output",
+    "to": "/api/client-api/agents/create-and-stream-run"
   },
   {
-    "from": "/client/api/agents/retrieve-an-agent",
-    "to": "/api/client-api/agents/search-agents"
+    "from": "/client/api/agents/create-run-wait-for-output",
+    "to": "/api/client-api/agents/create-and-wait-run"
+  },
+  {
+    "from": "/client/api/agents/get-agent",
+    "to": "/api/client-api/agents/get-agent"
+  },
+  {
+    "from": "/client/api/agents/get-agent-schemas",
+    "to": "/api/client-api/agents/get-agent-schemas"
   },
   {
     "from": "/client/api/agents/search-agents",
@@ -81,7 +237,7 @@
   },
   {
     "from": "/client/api/authentication/create-authentication-token",
-    "to": "/api-info/client/authentication/oauth"
+    "to": "/api/client-api/authentication/createauthtoken"
   },
   {
     "from": "/client/api/chat/chat",
@@ -93,7 +249,11 @@
   },
   {
     "from": "/client/api/chat/delete-files-uploaded-by-a-user-for-chat",
-    "to": "/api/client-api/chat/chat"
+    "to": "/api/client-api/chat/deleteallchats"
+  },
+  {
+    "from": "/client/api/chat/deletes-all-saved-chats-owned-by-a-user",
+    "to": "/api/client-api/chat/deleteallchats"
   },
   {
     "from": "/client/api/chat/deletes-saved-chats",
@@ -112,8 +272,12 @@
     "to": "/api/client-api/chat/chat"
   },
   {
+    "from": "/client/api/chat/retrieves-all-saved-chats",
+    "to": "/api/client-api/chat/deleteallchats"
+  },
+  {
     "from": "/client/api/chat/upload-files-for-chat",
-    "to": "/api/client-api/chat/chat"
+    "to": "/api/client-api/chat/uploadchatfiles"
   },
   {
     "from": "/client/api/collections/add-collection-item",
@@ -168,11 +332,19 @@
     "to": "/api/client-api/entities/people"
   },
   {
+    "from": "/client/api/governance/creates-new-one-time-report",
+    "to": "/api/client-api/governance/createreport"
+  },
+  {
     "from": "/client/api/governance/creates-new-policy",
     "to": "/api/client-api/governance/createpolicy"
   },
   {
     "from": "/client/api/governance/downloads-violations-csv-for-policy",
+    "to": "/api/client-api/governance/downloadpolicycsv"
+  },
+  {
+    "from": "/client/api/governance/downloads-violations-csv-for-report",
     "to": "/api/client-api/governance/downloadpolicycsv"
   },
   {
@@ -185,15 +357,19 @@
   },
   {
     "from": "/client/api/governance/gets-specified-policy",
-    "to": "/api/client-api/governance/getdocvisibility"
+    "to": "/api/client-api/governance/getpolicy"
   },
   {
     "from": "/client/api/governance/hide-or-unhide-docs",
-    "to": "/api/client-api/governance/downloadpolicycsv"
+    "to": "/api/client-api/governance/listpolicies"
   },
   {
     "from": "/client/api/governance/lists-policies",
     "to": "/api/client-api/governance/listpolicies"
+  },
+  {
+    "from": "/client/api/governance/updates-an-existing-policy",
+    "to": "/api/client-api/governance/updatepolicy"
   },
   {
     "from": "/client/api/insights/read-insights",
@@ -228,11 +404,19 @@
     "to": "/api/client-api/search/autocomplete"
   },
   {
+    "from": "/client/api/search/feed-of-documents-and-events",
+    "to": "/api/client-api/search/recommendations"
+  },
+  {
     "from": "/client/api/search/recommend-documents",
     "to": "/api/client-api/search/recommendations"
   },
   {
     "from": "/client/api/search/search",
+    "to": "/api/client-api/search/search"
+  },
+  {
+    "from": "/client/api/search/search-the-index-admin",
     "to": "/api/client-api/search/search"
   },
   {
@@ -260,7 +444,7 @@
     "to": "/api/client-api/summarize/summarize"
   },
   {
-    "from": "/client/api/tools/execute-the-specified-tool",
+    "from": "/client/ap%5B48%3B43%3B148%3B1720%3B2960ti/tools/execute-the-specified-tool",
     "to": "/api/client-api/tools/execute-the-specified-tool"
   },
   {
@@ -280,28 +464,12 @@
     "to": "/api/client-api/verification/listverifications"
   },
   {
-    "from": "/client/authentication/oauth",
+    "from": "/client/authentication",
     "to": "/api-info/client/authentication/oauth"
   },
   {
-    "from": "/client/authentication/overview",
-    "to": "/api-info/client/authentication/overview"
-  },
-  {
-    "from": "/client/authentication/permissions",
-    "to": "/api-info/client/authentication/glean-issued"
-  },
-  {
-    "from": "/client/governance",
-    "to": "/api/client-api/governance/overview"
-  },
-  {
-    "from": "/client/guides/chatbot",
-    "to": "/guides/chat/chatbot-example"
-  },
-  {
-    "from": "/client/guides/nvidia-enterprise-kb-chatbot",
-    "to": "/guides/agents/nvidia-example"
+    "from": "/client/chat",
+    "to": "/api/client-api/chat/chat"
   },
   {
     "from": "/client/search/datasource-filters",
@@ -316,16 +484,8 @@
     "to": "/guides/search/filtering-results"
   },
   {
-    "from": "/docs/client_api/client_api_scopes",
-    "to": "/api-info/client/authentication/glean-issued#available-scopes"
-  },
-  {
-    "from": "/indexing/overview",
-    "to": "/api-info/indexing/getting-started/overview"
-  },
-  {
     "from": "/indexing/api/authentication/rotate-token",
-    "to": "/api/indexing-api/rotate-token"
+    "to": "/api/client-api/authentication/createauthtoken"
   },
   {
     "from": "/indexing/api/datasources/add-or-update-datasource",
@@ -440,8 +600,20 @@
     "to": "/api/indexing-api/upload-shortcuts"
   },
   {
-    "from": "/indexing/api/troubleshooting/beta:-get-information-of-a-batch-of-documents",
+    "from": "/indexing/api/troubleshooting/beta%3A-get-datasource-status",
+    "to": "/api/indexing-api/beta-get-datasource-status"
+  },
+  {
+    "from": "/indexing/api/troubleshooting/beta%3A-get-document-information",
+    "to": "/api/indexing-api/beta-get-document-information"
+  },
+  {
+    "from": "/indexing/api/troubleshooting/beta%3A-get-information-of-a-batch-of-documents",
     "to": "/api/indexing-api/beta-get-information-of-a-batch-of-documents"
+  },
+  {
+    "from": "/indexing/api/troubleshooting/beta%3A-get-user-information",
+    "to": "/api/indexing-api/beta-get-user-information"
   },
   {
     "from": "/indexing/api/troubleshooting/check-document-access",
@@ -461,6 +633,10 @@
   },
   {
     "from": "/indexing/authentication/managing-tokens",
+    "to": "/api-info/indexing/authentication/token-rotation"
+  },
+  {
+    "from": "/indexing/authentication/permissions",
     "to": "/api-info/indexing/authentication/token-rotation"
   },
   {
@@ -528,12 +704,24 @@
     "to": "/api-info/indexing/documents/supported-mimetypes"
   },
   {
+    "from": "/indexing/guides/indexing-documents",
+    "to": "/api-info/indexing/getting-started/index-documents"
+  },
+  {
     "from": "/indexing/guides/setup-datasource",
     "to": "/api-info/indexing/getting-started/setup-datasource"
   },
   {
     "from": "/indexing/rendering-search-results",
     "to": "/api-info/indexing/datasource/rendering-search-results"
+  },
+  {
+    "from": "/rate-limits",
+    "to": "/get-started/rate-limits"
+  },
+  {
+    "from": "/web/3rd-party-cookies",
+    "to": "/libraries/web-sdk/3rd-party-cookies"
   },
   {
     "from": "/web/components/autocomplete",
@@ -570,133 +758,5 @@
   {
     "from": "/web/guides/zendesk",
     "to": "/libraries/web-sdk/guides/zendesk"
-  },
-  {
-    "from": "/actions",
-    "to": "/guides/actions/overview"
-  },
-  {
-    "from": "/actions/overview",
-    "to": "/guides/actions/overview"
-  },
-  {
-    "from": "/actions/creating-actions",
-    "to": "/guides/actions/create-actions"
-  },
-  {
-    "from": "/actions/faq",
-    "to": "/guides/actions/faq"
-  },
-  {
-    "from": "/actions/examples",
-    "to": "/guides/actions/examples/jira-issue-creation"
-  },
-  {
-    "from": "/actions/examples/jira-issue-creation",
-    "to": "/guides/actions/examples/jira-issue-creation"
-  },
-  {
-    "from": "/actions/examples/jira-issue-creation-redirect",
-    "to": "/guides/actions/examples/jira-issue-creation-redirect"
-  },
-  {
-    "from": "/actions/examples/google-calendar-events",
-    "to": "/guides/actions/examples/google-calendar-events"
-  },
-  {
-    "from": "/actions/examples/google-docs-update",
-    "to": "/guides/actions/examples/google-docs-update"
-  },
-  {
-    "from": "/actions/examples/zendesk-ticket-redirection",
-    "to": "/guides/actions/examples/zendesk-ticket-redirection"
-  },
-  {
-    "from": "/actions/examples/overview",
-    "to": "/guides/actions/examples/jira-issue-creation"
-  },
-  {
-    "from": "/actions/examples/index",
-    "to": "/guides/actions/examples/jira-issue-creation"
-  },
-  {
-    "from": "/actions/index",
-    "to": "/guides/actions/overview"
-  },
-  {
-    "from": "/actions/getting-started",
-    "to": "/guides/actions/overview"
-  },
-  {
-    "from": "/actions/guide",
-    "to": "/guides/actions/overview"
-  },
-  {
-    "from": "/actions/docs",
-    "to": "/guides/actions/overview"
-  },
-  {
-    "from": "/actions/examples/google-docs",
-    "to": "/guides/actions/examples/google-docs-update"
-  },
-  {
-    "from": "/actions/examples/google-docs-action",
-    "to": "/guides/actions/examples/google-docs-update"
-  },
-  {
-    "from": "/actions/examples/jira",
-    "to": "/guides/actions/examples/jira-issue-creation"
-  },
-  {
-    "from": "/actions/examples/jira-creation",
-    "to": "/guides/actions/examples/jira-issue-creation"
-  },
-  {
-    "from": "/actions/examples/jira-redirect",
-    "to": "/guides/actions/examples/jira-issue-creation-redirect"
-  },
-  {
-    "from": "/actions/examples/zendesk",
-    "to": "/guides/actions/examples/zendesk-ticket-redirection"
-  },
-  {
-    "from": "/actions/examples/zendesk-redirect",
-    "to": "/guides/actions/examples/zendesk-ticket-redirection"
-  },
-  {
-    "from": "/actions/examples/calendar",
-    "to": "/guides/actions/examples/google-calendar-events"
-  },
-  {
-    "from": "/actions/examples/google-calendar",
-    "to": "/guides/actions/examples/google-calendar-events"
-  },
-  {
-    "from": "/actions/setup",
-    "to": "/guides/actions/create-actions"
-  },
-  {
-    "from": "/actions/configuration",
-    "to": "/guides/actions/create-actions"
-  },
-  {
-    "from": "/actions/auth",
-    "to": "/guides/actions/authentication"
-  },
-  {
-    "from": "/actions/authentication-guide",
-    "to": "/guides/actions/authentication"
-  },
-  {
-    "from": "/actions/help",
-    "to": "/guides/actions/faq"
-  },
-  {
-    "from": "/actions/troubleshooting",
-    "to": "/guides/actions/faq"
-  },
-  {
-    "from": "/actions/questions",
-    "to": "/guides/actions/faq"
   }
 ]

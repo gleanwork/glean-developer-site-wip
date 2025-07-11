@@ -812,17 +812,32 @@ html {
   background-color: rgba(59, 130, 246, 0.1) !important;
 } 
 
-/* Search button overrides */
-.DocSearch-Button {
-  border-radius: 8px !important;
-  padding: 0 12px 0 6px !important;
+/* Search button overrides - scoped to navbar for better specificity */
+.navbar .DocSearch-Button {
+  border-radius: 10px;
+  padding: 0 12px 0 0;
+  width: 110px;
 }
 
-.DocSearch-Search-Icon {
-  display: none !important;
+.navbar .DocSearch-Button-Input {
+  padding: 0 16px 0 48px;
 }
 
-.DocSearch-Button-Container::before {
+.navbar .DocSearch-Button-Input::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0;
+}
+
+.navbar .DocSearch-Search-Icon {
+  display: none;
+}
+
+.navbar .DocSearch-Button-Icon {
+  left: 2px;
+}
+
+.navbar .DocSearch-Button-Icon::before {
   content: '';
   width: 32px;
   height: 32px;
@@ -836,44 +851,44 @@ html {
   flex-shrink: 0;
 }
 
-[data-theme='dark'] .DocSearch-Button-Container::before {
+/* Dark mode */
+[data-theme='dark'] .navbar .DocSearch-Button-Icon::before {
   background-color: #5c62f1;
-}
-
-.DocSearch-Button-Placeholder {
-  font-size: 1rem !important;
-  font-weight: 400 !important;
-  padding: 0 !important;
 }
 
 /* Mobile responsive adjustments */
 @media (max-width: 750px) {
-  .DocSearch-Button {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 10px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  .navbar .DocSearch-Button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .DocSearch-Button:hover,
-  .DocSearch-Button:focus,
-  .DocSearch-Button:active {
-    background: transparent !important;
-    box-shadow: none !important;
+  .navbar .DocSearch-Button:hover,
+  .navbar .DocSearch-Button:focus,
+  .navbar .DocSearch-Button:active {
+    background: transparent;
+    box-shadow: none;
   }
   
-  .DocSearch-Button-Container {
-    margin: 0 !important;
-    padding: 0 !important;
+  .navbar .DocSearch-Button-Input {
+    padding: 0 8px 0 32px;
   }
   
-  .DocSearch-Button-Container::before {
+  .navbar .DocSearch-Button-Icon {
+    margin: 0;
+    padding: 0;
+    left: 2px;
+  }
+  
+  .navbar .DocSearch-Button-Icon::before {
     width: 36px;
     height: 36px;
     margin: 0;

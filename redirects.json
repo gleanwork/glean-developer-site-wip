@@ -12,6 +12,14 @@
     "to": "/guides/agents/langchain"
   },
   {
+    "source": "/oas/client",
+    "destination": "https://gleanwork.github.io/open-api/specs/final/client_rest.yaml"
+  },
+  {
+    "source": "/oas/indexing",
+    "destination": "https://gleanwork.github.io/open-api/specs/final/indexing.yaml"
+  },
+  {
     "from": "/docs/actions/getting_started",
     "to": "/guides/actions/faq"
   },
@@ -118,6 +126,10 @@
   {
     "from": "/api-clients",
     "to": "/libraries/api-clients"
+  },
+  {
+    "from": "/changelog",
+    "to": "/changelog"
   },
   {
     "from": "/client/api/activity/report-client-activity",

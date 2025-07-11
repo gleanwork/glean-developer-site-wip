@@ -811,3 +811,88 @@ html {
   animation: highlight-flash 2s ease-out;
   background-color: rgba(59, 130, 246, 0.1) !important;
 } 
+
+/* Search button overrides - scoped to navbar for better specificity */
+.navbar .DocSearch-Button {
+  border-radius: 10px;
+  padding: 0 12px 0 0;
+  width: 110px;
+}
+
+.navbar .DocSearch-Button-Input {
+  padding: 0 16px 0 48px;
+}
+
+.navbar .DocSearch-Button-Input::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0;
+}
+
+.navbar .DocSearch-Search-Icon {
+  display: none;
+}
+
+.navbar .DocSearch-Button-Icon {
+  left: 2px;
+}
+
+.navbar .DocSearch-Button-Icon::before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  background-color: #343ced;
+  border-radius: 8px;
+  background-image: url('/img/glean-logo-white.svg');
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+/* Dark mode */
+[data-theme='dark'] .navbar .DocSearch-Button-Icon::before {
+  background-color: #5c62f1;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 750px) {
+  .navbar .DocSearch-Button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar .DocSearch-Button:hover,
+  .navbar .DocSearch-Button:focus,
+  .navbar .DocSearch-Button:active {
+    background: transparent;
+    box-shadow: none;
+  }
+  
+  .navbar .DocSearch-Button-Input {
+    padding: 0 8px 0 32px;
+  }
+  
+  .navbar .DocSearch-Button-Icon {
+    margin: 0;
+    padding: 0;
+    left: 2px;
+  }
+  
+  .navbar .DocSearch-Button-Icon::before {
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    border-radius: 10px;
+    background-size: 16px 16px;
+  }
+}

@@ -20,6 +20,38 @@
     "to": "https://gleanwork.github.io/open-api/specs/final/indexing.yaml"
   },
   {
+    "from": "/docs/client_api",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/client/overview",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/client_platform_preview/overview",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/client",
+    "to": "/api-info/client/getting-started/overview"
+  },
+  {
+    "from": "/docs/indexing_api/indexing_api_getting_started",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/docs/indexing_api",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/indexing/overview",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/indexing",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
     "from": "/docs/actions/getting_started",
     "to": "/guides/actions/faq"
   },

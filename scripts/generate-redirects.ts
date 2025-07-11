@@ -17,6 +17,11 @@ interface Redirect {
   to: string;
 }
 
+interface ExistingRedirect {
+  source: string;
+  destination: string;
+}
+
 function extractPath(url: string): string {
   try {
     const urlObj = new URL(url);
@@ -105,6 +110,65 @@ function findBestMatch(
   return bestMatch;
 }
 
+function compressRedirects(redirects: Array<Redirect>): Array<Redirect> {
+  // Create a map for quick lookups
+  const redirectMap = new Map<string, string>();
+  redirects.forEach(redirect => {
+    redirectMap.set(redirect.from, redirect.to);
+  });
+
+  // Function to follow redirect chains
+  function followChain(start: string, visited = new Set<string>()): string {
+    if (visited.has(start)) {
+      // Circular reference detected, return the start to avoid infinite loop
+      console.warn(`Circular redirect detected: ${Array.from(visited).join(' -> ')} -> ${start}`);
+      return start;
+    }
+
+    const next = redirectMap.get(start);
+    if (!next) {
+      return start; // End of chain
+    }
+
+    visited.add(start);
+    return followChain(next, visited);
+  }
+
+  // Compress redirects
+  const compressedRedirects: Array<Redirect> = [];
+  
+  for (const redirect of redirects) {
+    const finalDestination = followChain(redirect.to);
+    
+    compressedRedirects.push({
+      from: redirect.from,
+      to: finalDestination
+    });
+  }
+
+  return compressedRedirects;
+}
+
+function loadExistingRedirects(): Array<Redirect> {
+  try {
+    if (!fs.existsSync('mintlify-redirects.json')) {
+      return [];
+    }
+
+    const content = fs.readFileSync('mintlify-redirects.json', 'utf-8');
+    const data = JSON.parse(content);
+
+    // Handle both formats: {source, destination} and {from, to}
+    return data.map((item: any) => ({
+      from: item.source || item.from,
+      to: item.destination || item.to
+    }));
+  } catch (error) {
+    console.warn('Could not load existing redirects:', error);
+    return [];
+  }
+}
+
 async function parseSitemap(filePath: string): Promise<Array<string>> {
   const xmlContent = fs.readFileSync(filePath, 'utf-8');
 
@@ -131,8 +195,11 @@ async function parseSitemap(filePath: string): Promise<Array<string>> {
 
 async function generateRedirects(): Promise<void> {
   try {
-    console.log('🔍 Parsing sitemap files...');
+    console.log('📥 Loading existing redirects...');
+    const existingRedirects = loadExistingRedirects();
+    console.log(`Found ${existingRedirects.length} existing redirects`);
 
+    console.log('\n🔍 Parsing sitemap files...');
     const oldPaths = await parseSitemap('old-developer-sitemap.xml');
     const newPaths = await parseSitemap('new-developer-sitemap.xml');
 
@@ -141,13 +208,22 @@ async function generateRedirects(): Promise<void> {
     );
 
     console.log('\n🔗 Finding best matches...');
-    const redirects: Array<Redirect> = [];
+    const newRedirects: Array<Redirect> = [];
+
+    // Create a set of existing "from" paths to avoid duplicates
+    const existingFromPaths = new Set(existingRedirects.map(r => r.from));
 
     for (const oldPath of oldPaths) {
+      // Skip if we already have a redirect for this path
+      if (existingFromPaths.has(oldPath)) {
+        console.log(`⏭️  Skipping ${oldPath} (already has redirect)`);
+        continue;
+      }
+
       const bestMatch = findBestMatch(oldPath, newPaths);
 
       if (bestMatch) {
-        redirects.push({
+        newRedirects.push({
           from: oldPath,
           to: bestMatch,
         });
@@ -155,18 +231,40 @@ async function generateRedirects(): Promise<void> {
     }
 
     console.log(
-      `\n✅ Generated ${redirects.length} redirects out of ${oldPaths.length} old paths`,
+      `\n✅ Generated ${newRedirects.length} new redirects out of ${oldPaths.length} old paths`,
     );
 
-    const redirectsJson = JSON.stringify(redirects, null, 2);
+    // Combine existing and new redirects
+    const allRedirects = [...existingRedirects, ...newRedirects];
+    console.log(`📋 Total redirects before compression: ${allRedirects.length}`);
+
+    // Compress redirect chains
+    console.log('\n🔄 Compressing redirect chains...');
+    const compressedRedirects = compressRedirects(allRedirects);
+    
+    console.log(`✅ Compressed ${allRedirects.length} redirects to ${compressedRedirects.length}`);
+
+    // Convert back to the original format for consistency
+    const finalRedirects = compressedRedirects.map(redirect => ({
+      source: redirect.from,
+      destination: redirect.to
+    }));
+
+    const redirectsJson = JSON.stringify(finalRedirects, null, 2);
     fs.writeFileSync('redirects.json', redirectsJson);
 
-    console.log('📝 Saved redirects to redirects.json');
+    console.log('📝 Saved compressed redirects to redirects.json');
 
-    console.log('\n📋 Sample redirects:');
-    redirects.slice(0, 10).forEach((redirect) => {
-      console.log(`  ${redirect.from} -> ${redirect.to}`);
+    console.log('\n📋 Sample final redirects:');
+    finalRedirects.slice(0, 10).forEach((redirect) => {
+      console.log(`  ${redirect.source} -> ${redirect.destination}`);
     });
+
+    // Show compression statistics
+    const compressionStats = allRedirects.length - compressedRedirects.length;
+    if (compressionStats > 0) {
+      console.log(`\n🎯 Compression eliminated ${compressionStats} redirect chains`);
+    }
   } catch (error) {
     console.error('❌ Error generating redirects:', error);
     process.exit(1);

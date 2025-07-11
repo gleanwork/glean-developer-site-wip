@@ -4,699 +4,767 @@
     "to": "/"
   },
   {
-    "from": "/oas/client",
-    "to": "https://gleanwork.github.io/open-api/specs/final/client_rest.yaml"
+    "source": "/oas/client",
+    "destination": "https://gleanwork.github.io/open-api/specs/final/client_rest.yaml"
   },
   {
-    "from": "/oas/indexing",
-    "to": "https://gleanwork.github.io/open-api/specs/final/indexing.yaml"
+    "source": "/oas/indexing",
+    "destination": "https://gleanwork.github.io/open-api/specs/final/indexing.yaml"
   },
   {
-    "from": "/actions/authentication",
-    "to": "/guides/actions/authentication"
+    "source": "/agents/mcp",
+    "destination": "/guides/mcp"
   },
   {
-    "from": "/agents/mcp",
-    "to": "/guides/mcp"
+    "source": "/agents/langchain",
+    "destination": "/guides/agents/langchain"
   },
   {
-    "from": "/api-clients",
-    "to": "/libraries/api-clients"
+    "source": "/client/overview",
+    "destination": "/client"
   },
   {
-    "from": "/actions/create-actions",
-    "to": "/guides/actions/create-actions"
+    "source": "/client_platform_preview/overview",
+    "destination": "/client"
   },
   {
-    "from": "/client/api/activity/report-client-activity",
-    "to": "/api/client-api/activity/activity"
+    "source": "/docs/actions/getting_started",
+    "destination": "/guides/actions/faq"
   },
   {
-    "from": "/client/api/activity/report-document-activity",
-    "to": "/api/client-api/activity/activity"
+    "source": "/docs/browser_api",
+    "destination": "/web"
   },
   {
-    "from": "/client/api/agents/list-an-agents-schemas",
-    "to": "/api/client-api/agents/get-agent-schemas"
+    "source": "/docs/browser_api/chat",
+    "destination": "/libraries/web-sdk/components/chat"
   },
   {
-    "from": "/client/api/agents/retrieve-an-agent",
-    "to": "/api/client-api/agents/search-agents"
+    "source": "/docs/browser_api/third_party_cookies",
+    "destination": "/libraries/web-sdk/3rd-party-cookies"
   },
   {
-    "from": "/client/api/agents/search-agents",
-    "to": "/api/client-api/agents/search-agents"
+    "source": "/docs/client_api",
+    "destination": "/client"
   },
   {
-    "from": "/client/api/announcements/create-announcement",
-    "to": "/api/client-api/announcements/createannouncement"
+    "source": "/docs/client_api/client_api_scopes",
+    "destination": "/client/authentication#scopes"
   },
   {
-    "from": "/client/api/announcements/delete-announcement",
-    "to": "/api/client-api/announcements/deleteannouncement"
+    "source": "/docs/client_api_scopes",
+    "destination": "/client/authentication#scopes"
   },
   {
-    "from": "/client/api/announcements/update-announcement",
-    "to": "/api/client-api/announcements/updateannouncement"
+    "source": "/docs/client_api/chat_api",
+    "destination": "/api/client-api/chat/chat"
   },
   {
-    "from": "/client/api/answers/create-answer",
-    "to": "/api/client-api/answers/createanswer"
+    "source": "/docs/indexing_api/indexing_api_getting_started",
+    "destination": "/indexing"
   },
   {
-    "from": "/client/api/answers/delete-answer",
-    "to": "/api/client-api/answers/deleteanswer"
+    "source": "/docs/facets_and_operators_for_custom_datasources",
+    "destination": "/indexing/datasource/custom-properties#operators-and-facets"
   },
   {
-    "from": "/client/api/answers/list-answers",
-    "to": "/api/client-api/answers/listanswers"
+    "source": "/docs/indexing_api/indexing_api_troubleshooting",
+    "destination": "/indexing/debugging"
   },
   {
-    "from": "/client/api/answers/read-answer",
-    "to": "/api/client-api/answers/createanswer"
+    "source": "/docs/indexing_api_bulk_indexing",
+    "destination": "/api-info/indexing/documents/bulk-indexing"
   },
   {
-    "from": "/client/api/answers/update-answer",
-    "to": "/api/client-api/answers/createanswer"
+    "source": "/docs/indexing_api_datasource_category",
+    "destination": "/api-info/indexing/datasource/category"
   },
   {
-    "from": "/client/api/authentication/create-authentication-token",
-    "to": "/api-info/client/authentication/oauth"
+    "source": "/docs/indexing_api_token_rotation",
+    "destination": "/api-info/indexing/authentication/token-rotation"
   },
   {
-    "from": "/client/api/chat/chat",
-    "to": "/api/client-api/chat/chat"
+    "source": "/docs/indexing_api",
+    "destination": "/indexing"
   },
   {
-    "from": "/client/api/chat/chat-1",
-    "to": "/api/client-api/chat/chat"
+    "source": "/docs/indexing_api/indexing_api_datasource_category",
+    "destination": "/api-info/indexing/datasource/category"
   },
   {
-    "from": "/client/api/chat/delete-files-uploaded-by-a-user-for-chat",
-    "to": "/api/client-api/chat/chat"
+    "source": "/docs/indexing_api_permissions",
+    "destination": "/api-info/indexing/authentication/token-rotation"
   },
   {
-    "from": "/client/api/chat/deletes-saved-chats",
-    "to": "/api/client-api/chat/deleteallchats"
+    "source": "/docs/indexing_api_tokens",
+    "destination": "/api-info/indexing/authentication/token-rotation"
   },
   {
-    "from": "/client/api/chat/get-files-uploaded-by-a-user-for-chat",
-    "to": "/api/client-api/chat/chat"
+    "source": "/docs/rendering_search_results",
+    "destination": "/api-info/indexing/datasource/rendering-search-results"
   },
   {
-    "from": "/client/api/chat/gets-the-metadata-for-a-custom-chat-application",
-    "to": "/api/client-api/chat/getchatapplication"
+    "source": "/indexing/overview",
+    "destination": "/indexing"
   },
   {
-    "from": "/client/api/chat/retrieves-a-chat",
-    "to": "/api/client-api/chat/chat"
+    "source": "/indexing/tag/Datasources/paths/~1adddatasource/post",
+    "destination": "/api/indexing-api/add-or-update-datasource"
   },
   {
-    "from": "/client/api/chat/upload-files-for-chat",
-    "to": "/api/client-api/chat/chat"
+    "source": "/docs/tools/introduction",
+    "destination": "/guides/actions/create-actions"
   },
   {
-    "from": "/client/api/collections/add-collection-item",
-    "to": "/api/client-api/collections/addcollectionitems"
+    "source": "/docs/indexing_api/setting_test_datasource",
+    "destination": "/api-info/indexing/datasource/test-datasource"
   },
   {
-    "from": "/client/api/collections/create-collection",
-    "to": "/api/client-api/collections/createcollection"
+    "source": "/docs/tools/getting_started",
+    "destination": "/guides/actions/faq"
   },
   {
-    "from": "/client/api/collections/delete-collection",
-    "to": "/api/client-api/collections/deletecollection"
+    "source": "/docs/tools/authentication",
+    "destination": "/guides/actions/authentication"
   },
   {
-    "from": "/client/api/collections/delete-collection-item",
-    "to": "/api/client-api/collections/deletecollectionitem"
+    "source": "/api-reference/client",
+    "destination": "/client/api"
   },
   {
-    "from": "/client/api/collections/list-collections",
-    "to": "/api/client-api/collections/listcollections"
+    "source": "/api-reference/indexing",
+    "destination": "/indexing/api"
   },
   {
-    "from": "/client/api/collections/read-collection",
-    "to": "/api/client-api/collections/createcollection"
+    "source": "/actions",
+    "destination": "/guides/actions/faq"
   },
   {
-    "from": "/client/api/collections/update-collection",
-    "to": "/api/client-api/collections/createcollection"
+    "source": "/actions/authentication",
+    "destination": "/guides/actions/authentication"
   },
   {
-    "from": "/client/api/collections/update-collection-item",
-    "to": "/api/client-api/collections/deletecollectionitem"
+    "source": "/actions/create-actions",
+    "destination": "/guides/actions/create-actions"
   },
   {
-    "from": "/client/api/documents/read-document-permissions",
-    "to": "/api/client-api/documents/getdocpermissions"
+    "source": "/actions/examples/google-calendar-events",
+    "destination": "/guides/actions/examples/google-calendar-events"
   },
   {
-    "from": "/client/api/documents/read-documents",
-    "to": "/api/client-api/documents/getdocuments"
+    "source": "/actions/examples/google-docs-update",
+    "destination": "/guides/actions/examples/google-docs-update"
   },
   {
-    "from": "/client/api/documents/read-documents-by-facets",
-    "to": "/api/client-api/documents/getdocumentsbyfacets"
+    "source": "/actions/examples/jira-issue-creation",
+    "destination": "/guides/actions/examples/jira-issue-creation"
   },
   {
-    "from": "/client/api/entities/list-entities",
-    "to": "/api/client-api/entities/listentities"
+    "source": "/actions/examples/jira-issue-creation-redirect",
+    "destination": "/guides/actions/examples/jira-issue-creation-redirect"
   },
   {
-    "from": "/client/api/entities/read-people",
-    "to": "/api/client-api/entities/people"
+    "source": "/actions/examples/zendesk-ticket-redirection",
+    "destination": "/guides/actions/examples/zendesk-ticket-redirection"
   },
   {
-    "from": "/client/api/governance/creates-new-policy",
-    "to": "/api/client-api/governance/createpolicy"
+    "source": "/actions/faq",
+    "destination": "/guides/actions/faq"
   },
   {
-    "from": "/client/api/governance/downloads-violations-csv-for-policy",
-    "to": "/api/client-api/governance/downloadpolicycsv"
+    "source": "/agents/index",
+    "destination": "/guides/agents/overview"
   },
   {
-    "from": "/client/api/governance/fetches-documents-visibility",
-    "to": "/api/client-api/governance/getdocvisibility"
+    "source": "/api-clients",
+    "destination": "/libraries/api-clients"
   },
   {
-    "from": "/client/api/governance/fetches-report-run-status",
-    "to": "/api/client-api/governance/getreportstatus"
+    "source": "/changelog",
+    "destination": "/changelog"
   },
   {
-    "from": "/client/api/governance/gets-specified-policy",
-    "to": "/api/client-api/governance/getdocvisibility"
+    "source": "/client/api/activity/report-client-activity",
+    "destination": "/api/client-api/activity/activity"
   },
   {
-    "from": "/client/api/governance/hide-or-unhide-docs",
-    "to": "/api/client-api/governance/downloadpolicycsv"
+    "source": "/client/api/activity/report-document-activity",
+    "destination": "/api/client-api/activity/activity"
   },
   {
-    "from": "/client/api/governance/lists-policies",
-    "to": "/api/client-api/governance/listpolicies"
+    "source": "/client/api/agents/create-run-stream-output",
+    "destination": "/api/client-api/agents/create-and-stream-run"
   },
   {
-    "from": "/client/api/insights/read-insights",
-    "to": "/api/client-api/insights/insights"
+    "source": "/client/api/agents/create-run-wait-for-output",
+    "destination": "/api/client-api/agents/create-and-wait-run"
   },
   {
-    "from": "/client/api/messages/read-messages",
-    "to": "/api/client-api/messages/messages"
+    "source": "/client/api/agents/get-agent",
+    "destination": "/api/client-api/agents/get-agent"
   },
   {
-    "from": "/client/api/pins/create-pin",
-    "to": "/api/client-api/pins/getpin"
+    "source": "/client/api/agents/get-agent-schemas",
+    "destination": "/api/client-api/agents/get-agent-schemas"
   },
   {
-    "from": "/client/api/pins/delete-pin",
-    "to": "/api/client-api/pins/editpin"
+    "source": "/client/api/agents/search-agents",
+    "destination": "/api/client-api/agents/search-agents"
   },
   {
-    "from": "/client/api/pins/list-pins",
-    "to": "/api/client-api/pins/listpins"
+    "source": "/client/api/announcements/create-announcement",
+    "destination": "/api/client-api/announcements/createannouncement"
   },
   {
-    "from": "/client/api/pins/read-pin",
-    "to": "/api/client-api/pins/editpin"
+    "source": "/client/api/announcements/delete-announcement",
+    "destination": "/api/client-api/announcements/deleteannouncement"
   },
   {
-    "from": "/client/api/pins/update-pin",
-    "to": "/api/client-api/pins/editpin"
+    "source": "/client/api/announcements/update-announcement",
+    "destination": "/api/client-api/announcements/updateannouncement"
   },
   {
-    "from": "/client/api/search/autocomplete",
-    "to": "/api/client-api/search/autocomplete"
+    "source": "/client/api/answers/create-answer",
+    "destination": "/api/client-api/answers/createanswer"
   },
   {
-    "from": "/client/api/search/recommend-documents",
-    "to": "/api/client-api/search/recommendations"
+    "source": "/client/api/answers/delete-answer",
+    "destination": "/api/client-api/answers/deleteanswer"
   },
   {
-    "from": "/client/api/search/search",
-    "to": "/api/client-api/search/search"
+    "source": "/client/api/answers/list-answers",
+    "destination": "/api/client-api/answers/listanswers"
   },
   {
-    "from": "/client/api/shortcuts/create-shortcut",
-    "to": "/api/client-api/shortcuts/createshortcut"
+    "source": "/client/api/answers/read-answer",
+    "destination": "/api/client-api/answers/createanswer"
   },
   {
-    "from": "/client/api/shortcuts/delete-shortcut",
-    "to": "/api/client-api/shortcuts/deleteshortcut"
+    "source": "/client/api/answers/update-answer",
+    "destination": "/api/client-api/answers/createanswer"
   },
   {
-    "from": "/client/api/shortcuts/list-shortcuts",
-    "to": "/api/client-api/shortcuts/listshortcuts"
+    "source": "/client/api/authentication/create-authentication-token",
+    "destination": "/api/client-api/authentication/createauthtoken"
   },
   {
-    "from": "/client/api/shortcuts/read-shortcut",
-    "to": "/api/client-api/shortcuts/createshortcut"
+    "source": "/client/api/chat/chat",
+    "destination": "/api/client-api/chat/chat"
   },
   {
-    "from": "/client/api/shortcuts/update-shortcut",
-    "to": "/api/client-api/shortcuts/updateshortcut"
+    "source": "/client/api/chat/chat-1",
+    "destination": "/api/client-api/chat/chat"
   },
   {
-    "from": "/client/api/summarize/summarize-documents",
-    "to": "/api/client-api/summarize/summarize"
+    "source": "/client/api/chat/delete-files-uploaded-by-a-user-for-chat",
+    "destination": "/api/client-api/chat/deleteallchats"
   },
   {
-    "from": "/client/api/tools/execute-the-specified-tool",
-    "to": "/api/client-api/tools/execute-the-specified-tool"
+    "source": "/client/api/chat/deletes-all-saved-chats-owned-by-a-user",
+    "destination": "/api/client-api/chat/deleteallchats"
   },
   {
-    "from": "/client/api/tools/list-available-tools",
-    "to": "/api/client-api/tools/list-available-tools"
+    "source": "/client/api/chat/deletes-saved-chats",
+    "destination": "/api/client-api/chat/deleteallchats"
   },
   {
-    "from": "/client/api/verification/create-verification",
-    "to": "/api/client-api/verification/listverifications"
+    "source": "/client/api/chat/get-files-uploaded-by-a-user-for-chat",
+    "destination": "/api/client-api/chat/chat"
   },
   {
-    "from": "/client/api/verification/list-verifications",
-    "to": "/api/client-api/verification/listverifications"
+    "source": "/client/api/chat/gets-the-metadata-for-a-custom-chat-application",
+    "destination": "/api/client-api/chat/getchatapplication"
   },
   {
-    "from": "/client/api/verification/update-verification",
-    "to": "/api/client-api/verification/listverifications"
+    "source": "/client/api/chat/retrieves-a-chat",
+    "destination": "/api/client-api/chat/chat"
   },
   {
-    "from": "/client/authentication/oauth",
-    "to": "/api-info/client/authentication/oauth"
+    "source": "/client/api/chat/retrieves-all-saved-chats",
+    "destination": "/api/client-api/chat/deleteallchats"
   },
   {
-    "from": "/client/authentication/overview",
-    "to": "/api-info/client/authentication/overview"
+    "source": "/client/api/chat/upload-files-for-chat",
+    "destination": "/api/client-api/chat/uploadchatfiles"
   },
   {
-    "from": "/client/authentication/permissions",
-    "to": "/api-info/client/authentication/glean-issued"
+    "source": "/client/api/collections/add-collection-item",
+    "destination": "/api/client-api/collections/addcollectionitems"
   },
   {
-    "from": "/client/governance",
-    "to": "/api/client-api/governance/overview"
+    "source": "/client/api/collections/create-collection",
+    "destination": "/api/client-api/collections/createcollection"
   },
   {
-    "from": "/client/guides/chatbot",
-    "to": "/guides/chat/chatbot-example"
+    "source": "/client/api/collections/delete-collection",
+    "destination": "/api/client-api/collections/deletecollection"
   },
   {
-    "from": "/client/guides/nvidia-enterprise-kb-chatbot",
-    "to": "/guides/agents/nvidia-example"
+    "source": "/client/api/collections/delete-collection-item",
+    "destination": "/api/client-api/collections/deletecollectionitem"
   },
   {
-    "from": "/client/search/datasource-filters",
-    "to": "/guides/search/datasource-filters"
+    "source": "/client/api/collections/list-collections",
+    "destination": "/api/client-api/collections/listcollections"
   },
   {
-    "from": "/client/search/faceted-filters",
-    "to": "/guides/search/faceted-filters"
+    "source": "/client/api/collections/read-collection",
+    "destination": "/api/client-api/collections/createcollection"
   },
   {
-    "from": "/client/search/filtering-results",
-    "to": "/guides/search/filtering-results"
+    "source": "/client/api/collections/update-collection",
+    "destination": "/api/client-api/collections/createcollection"
   },
   {
-    "from": "/docs/client_api/client_api_scopes",
-    "to": "/api-info/client/authentication/glean-issued#available-scopes"
+    "source": "/client/api/collections/update-collection-item",
+    "destination": "/api/client-api/collections/deletecollectionitem"
   },
   {
-    "from": "/indexing/overview",
-    "to": "/api-info/indexing/getting-started/overview"
+    "source": "/client/api/documents/read-document-permissions",
+    "destination": "/api/client-api/documents/getdocpermissions"
   },
   {
-    "from": "/indexing/api/authentication/rotate-token",
-    "to": "/api/indexing-api/rotate-token"
+    "source": "/client/api/documents/read-documents",
+    "destination": "/api/client-api/documents/getdocuments"
   },
   {
-    "from": "/indexing/api/datasources/add-or-update-datasource",
-    "to": "/api/indexing-api/add-or-update-datasource"
+    "source": "/client/api/documents/read-documents-by-facets",
+    "destination": "/api/client-api/documents/getdocumentsbyfacets"
   },
   {
-    "from": "/indexing/api/datasources/get-datasource-config",
-    "to": "/api/indexing-api/get-datasource-config"
+    "source": "/client/api/entities/list-entities",
+    "destination": "/api/client-api/entities/listentities"
   },
   {
-    "from": "/indexing/api/documents/bulk-index-documents",
-    "to": "/api/indexing-api/bulk-index-documents"
+    "source": "/client/api/entities/read-people",
+    "destination": "/api/client-api/entities/people"
   },
   {
-    "from": "/indexing/api/documents/delete-document",
-    "to": "/api/indexing-api/delete-document"
+    "source": "/client/api/governance/creates-new-one-time-report",
+    "destination": "/api/client-api/governance/createreport"
   },
   {
-    "from": "/indexing/api/documents/index-document",
-    "to": "/api/indexing-api/index-document"
+    "source": "/client/api/governance/creates-new-policy",
+    "destination": "/api/client-api/governance/createpolicy"
   },
   {
-    "from": "/indexing/api/documents/index-documents",
-    "to": "/api/indexing-api/index-documents"
+    "source": "/client/api/governance/downloads-violations-csv-for-policy",
+    "destination": "/api/client-api/governance/downloadpolicycsv"
   },
   {
-    "from": "/indexing/api/documents/schedules-the-processing-of-uploaded-documents",
-    "to": "/api/indexing-api/schedules-the-processing-of-uploaded-documents"
+    "source": "/client/api/governance/downloads-violations-csv-for-report",
+    "destination": "/api/client-api/governance/downloadpolicycsv"
   },
   {
-    "from": "/indexing/api/documents/update-document-permissions",
-    "to": "/api/indexing-api/update-document-permissions"
+    "source": "/client/api/governance/fetches-documents-visibility",
+    "destination": "/api/client-api/governance/getdocvisibility"
   },
   {
-    "from": "/indexing/api/people/bulk-index-employees",
-    "to": "/api/indexing-api/bulk-index-employees"
+    "source": "/client/api/governance/fetches-report-run-status",
+    "destination": "/api/client-api/governance/getreportstatus"
   },
   {
-    "from": "/indexing/api/people/bulk-index-teams",
-    "to": "/api/indexing-api/bulk-index-teams"
+    "source": "/client/api/governance/gets-specified-policy",
+    "destination": "/api/client-api/governance/getpolicy"
   },
   {
-    "from": "/indexing/api/people/delete-employee",
-    "to": "/api/indexing-api/delete-employee"
+    "source": "/client/api/governance/hide-or-unhide-docs",
+    "destination": "/api/client-api/governance/listpolicies"
   },
   {
-    "from": "/indexing/api/people/delete-team",
-    "to": "/api/indexing-api/delete-team"
+    "source": "/client/api/governance/lists-policies",
+    "destination": "/api/client-api/governance/listpolicies"
   },
   {
-    "from": "/indexing/api/people/index-employee",
-    "to": "/api/indexing-api/index-employee"
+    "source": "/client/api/governance/updates-an-existing-policy",
+    "destination": "/api/client-api/governance/updatepolicy"
   },
   {
-    "from": "/indexing/api/people/index-team",
-    "to": "/api/indexing-api/index-team"
+    "source": "/client/api/insights/read-insights",
+    "destination": "/api/client-api/insights/insights"
   },
   {
-    "from": "/indexing/api/people/schedules-the-processing-of-uploaded-employees-and-teams",
-    "to": "/api/indexing-api/schedules-the-processing-of-uploaded-employees-and-teams"
+    "source": "/client/api/messages/read-messages",
+    "destination": "/api/client-api/messages/messages"
   },
   {
-    "from": "/indexing/api/permissions/beta-users",
-    "to": "/api/indexing-api/beta-users"
+    "source": "/client/api/pins/create-pin",
+    "destination": "/api/client-api/pins/getpin"
   },
   {
-    "from": "/indexing/api/permissions/bulk-index-groups",
-    "to": "/api/indexing-api/bulk-index-groups"
+    "source": "/client/api/pins/delete-pin",
+    "destination": "/api/client-api/pins/editpin"
   },
   {
-    "from": "/indexing/api/permissions/bulk-index-memberships-for-a-group",
-    "to": "/api/indexing-api/bulk-index-memberships-for-a-group"
+    "source": "/client/api/pins/list-pins",
+    "destination": "/api/client-api/pins/listpins"
   },
   {
-    "from": "/indexing/api/permissions/bulk-index-users",
-    "to": "/api/indexing-api/bulk-index-users"
+    "source": "/client/api/pins/read-pin",
+    "destination": "/api/client-api/pins/editpin"
   },
   {
-    "from": "/indexing/api/permissions/delete-group",
-    "to": "/api/indexing-api/delete-group"
+    "source": "/client/api/pins/update-pin",
+    "destination": "/api/client-api/pins/editpin"
   },
   {
-    "from": "/indexing/api/permissions/delete-membership",
-    "to": "/api/indexing-api/delete-membership"
+    "source": "/client/api/search/autocomplete",
+    "destination": "/api/client-api/search/autocomplete"
   },
   {
-    "from": "/indexing/api/permissions/delete-user",
-    "to": "/api/indexing-api/delete-user"
+    "source": "/client/api/search/feed-of-documents-and-events",
+    "destination": "/api/client-api/search/recommendations"
   },
   {
-    "from": "/indexing/api/permissions/index-group",
-    "to": "/api/indexing-api/index-group"
+    "source": "/client/api/search/recommend-documents",
+    "destination": "/api/client-api/search/recommendations"
   },
   {
-    "from": "/indexing/api/permissions/index-membership",
-    "to": "/api/indexing-api/index-membership"
+    "source": "/client/api/search/search",
+    "destination": "/api/client-api/search/search"
   },
   {
-    "from": "/indexing/api/permissions/index-user",
-    "to": "/api/indexing-api/index-user"
+    "source": "/client/api/search/search-the-index-admin",
+    "destination": "/api/client-api/search/search"
   },
   {
-    "from": "/indexing/api/permissions/schedules-the-processing-of-group-memberships",
-    "to": "/api/indexing-api/schedules-the-processing-of-group-memberships"
+    "source": "/client/api/shortcuts/create-shortcut",
+    "destination": "/api/client-api/shortcuts/createshortcut"
   },
   {
-    "from": "/indexing/api/shortcuts/bulk-index-external-shortcuts",
-    "to": "/api/indexing-api/bulk-index-external-shortcuts"
+    "source": "/client/api/shortcuts/delete-shortcut",
+    "destination": "/api/client-api/shortcuts/deleteshortcut"
   },
   {
-    "from": "/indexing/api/shortcuts/upload-shortcuts",
-    "to": "/api/indexing-api/upload-shortcuts"
+    "source": "/client/api/shortcuts/list-shortcuts",
+    "destination": "/api/client-api/shortcuts/listshortcuts"
   },
   {
-    "from": "/indexing/api/troubleshooting/beta:-get-information-of-a-batch-of-documents",
-    "to": "/api/indexing-api/beta-get-information-of-a-batch-of-documents"
+    "source": "/client/api/shortcuts/read-shortcut",
+    "destination": "/api/client-api/shortcuts/createshortcut"
   },
   {
-    "from": "/indexing/api/troubleshooting/check-document-access",
-    "to": "/api/indexing-api/check-document-access"
+    "source": "/client/api/shortcuts/update-shortcut",
+    "destination": "/api/client-api/shortcuts/updateshortcut"
   },
   {
-    "from": "/indexing/api/troubleshooting/get-document-count",
-    "to": "/api/indexing-api/get-document-count"
+    "source": "/client/api/summarize/summarize-documents",
+    "destination": "/api/client-api/summarize/summarize"
   },
   {
-    "from": "/indexing/api/troubleshooting/get-document-upload-and-indexing-status",
-    "to": "/api/indexing-api/get-document-upload-and-indexing-status"
+    "source": "/client/ap%5B48%3B43%3B148%3B1720%3B2960ti/tools/execute-the-specified-tool",
+    "destination": "/api/client-api/tools/execute-the-specified-tool"
   },
   {
-    "from": "/indexing/api/troubleshooting/get-user-count",
-    "to": "/api/indexing-api/get-user-count"
+    "source": "/client/api/tools/list-available-tools",
+    "destination": "/api/client-api/tools/list-available-tools"
   },
   {
-    "from": "/indexing/authentication/managing-tokens",
-    "to": "/api-info/indexing/authentication/token-rotation"
+    "source": "/client/api/verification/create-verification",
+    "destination": "/api/client-api/verification/listverifications"
   },
   {
-    "from": "/indexing/authentication/token-rotation",
-    "to": "/api-info/indexing/authentication/token-rotation"
+    "source": "/client/api/verification/list-verifications",
+    "destination": "/api/client-api/verification/listverifications"
   },
   {
-    "from": "/indexing/datasource/category",
-    "to": "/api-info/indexing/datasource/category"
+    "source": "/client/api/verification/update-verification",
+    "destination": "/api/client-api/verification/listverifications"
   },
   {
-    "from": "/indexing/datasource/custom-properties",
-    "to": "/api-info/indexing/datasource/custom-properties"
+    "source": "/client/authentication",
+    "destination": "/api-info/client/authentication/oauth"
   },
   {
-    "from": "/indexing/datasource/test-datasource",
-    "to": "/api-info/indexing/datasource/test-datasource"
+    "source": "/client/chat",
+    "destination": "/api/client-api/chat/chat"
   },
   {
-    "from": "/indexing/debugging/datasource-config",
-    "to": "/api-info/indexing/debugging/datasource-config"
+    "source": "/client/search/datasource-filters",
+    "destination": "/guides/search/datasource-filters"
   },
   {
-    "from": "/indexing/debugging/datasource-document",
-    "to": "/api-info/indexing/debugging/datasource-document"
+    "source": "/client/search/faceted-filters",
+    "destination": "/guides/search/faceted-filters"
   },
   {
-    "from": "/indexing/debugging/datasource-status",
-    "to": "/api-info/indexing/debugging/datasource-status"
+    "source": "/client/search/filtering-results",
+    "destination": "/guides/search/filtering-results"
   },
   {
-    "from": "/indexing/debugging/datasource-user",
-    "to": "/api-info/indexing/debugging/datasource-user"
+    "source": "/indexing/api/authentication/rotate-token",
+    "destination": "/api/client-api/authentication/createauthtoken"
   },
   {
-    "from": "/indexing/debugging/document-access",
-    "to": "/api-info/indexing/debugging/document-access"
+    "source": "/indexing/api/datasources/add-or-update-datasource",
+    "destination": "/api/indexing-api/add-or-update-datasource"
   },
   {
-    "from": "/indexing/debugging/document-count",
-    "to": "/api-info/indexing/debugging/document-count"
+    "source": "/indexing/api/datasources/get-datasource-config",
+    "destination": "/api/indexing-api/get-datasource-config"
   },
   {
-    "from": "/indexing/documents/activity",
-    "to": "/api-info/indexing/documents/activity"
+    "source": "/indexing/api/documents/bulk-index-documents",
+    "destination": "/api/indexing-api/bulk-index-documents"
   },
   {
-    "from": "/indexing/documents/bulk-indexing",
-    "to": "/api-info/indexing/documents/bulk-indexing"
+    "source": "/indexing/api/documents/delete-document",
+    "destination": "/api/indexing-api/delete-document"
   },
   {
-    "from": "/indexing/documents/bulk-upload-model",
-    "to": "/api-info/indexing/documents/bulk-upload-model"
+    "source": "/indexing/api/documents/index-document",
+    "destination": "/api/indexing-api/index-document"
   },
   {
-    "from": "/indexing/documents/document-model",
-    "to": "/api-info/indexing/documents/document-model"
+    "source": "/indexing/api/documents/index-documents",
+    "destination": "/api/indexing-api/index-documents"
   },
   {
-    "from": "/indexing/documents/permissions",
-    "to": "/api-info/indexing/documents/permissions"
+    "source": "/indexing/api/documents/schedules-the-processing-of-uploaded-documents",
+    "destination": "/api/indexing-api/schedules-the-processing-of-uploaded-documents"
   },
   {
-    "from": "/indexing/documents/supported-mimetypes",
-    "to": "/api-info/indexing/documents/supported-mimetypes"
+    "source": "/indexing/api/documents/update-document-permissions",
+    "destination": "/api/indexing-api/update-document-permissions"
   },
   {
-    "from": "/indexing/guides/setup-datasource",
-    "to": "/api-info/indexing/getting-started/setup-datasource"
+    "source": "/indexing/api/people/bulk-index-employees",
+    "destination": "/api/indexing-api/bulk-index-employees"
   },
   {
-    "from": "/indexing/rendering-search-results",
-    "to": "/api-info/indexing/datasource/rendering-search-results"
+    "source": "/indexing/api/people/bulk-index-teams",
+    "destination": "/api/indexing-api/bulk-index-teams"
   },
   {
-    "from": "/web/components/autocomplete",
-    "to": "/libraries/web-sdk/components/autocomplete"
+    "source": "/indexing/api/people/delete-employee",
+    "destination": "/api/indexing-api/delete-employee"
   },
   {
-    "from": "/web/components/chat",
-    "to": "/libraries/web-sdk/components/chat"
+    "source": "/indexing/api/people/delete-team",
+    "destination": "/api/indexing-api/delete-team"
   },
   {
-    "from": "/web/components/modal-search",
-    "to": "/libraries/web-sdk/components/modal-search"
+    "source": "/indexing/api/people/index-employee",
+    "destination": "/api/indexing-api/index-employee"
   },
   {
-    "from": "/web/components/recommendations",
-    "to": "/libraries/web-sdk/components/recommendations"
+    "source": "/indexing/api/people/index-team",
+    "destination": "/api/indexing-api/index-team"
   },
   {
-    "from": "/web/components/sidebar",
-    "to": "/libraries/web-sdk/components/sidebar"
+    "source": "/indexing/api/people/schedules-the-processing-of-uploaded-employees-and-teams",
+    "destination": "/api/indexing-api/schedules-the-processing-of-uploaded-employees-and-teams"
   },
   {
-    "from": "/web/guides/brightspot",
-    "to": "/libraries/web-sdk/guides/brightspot"
+    "source": "/indexing/api/permissions/beta-users",
+    "destination": "/api/indexing-api/beta-users"
   },
   {
-    "from": "/web/guides/lumapps",
-    "to": "/libraries/web-sdk/guides/lumapps"
+    "source": "/indexing/api/permissions/bulk-index-groups",
+    "destination": "/api/indexing-api/bulk-index-groups"
   },
   {
-    "from": "/web/guides/react",
-    "to": "/libraries/web-sdk/guides/react"
+    "source": "/indexing/api/permissions/bulk-index-memberships-for-a-group",
+    "destination": "/api/indexing-api/bulk-index-memberships-for-a-group"
   },
   {
-    "from": "/web/guides/zendesk",
-    "to": "/libraries/web-sdk/guides/zendesk"
+    "source": "/indexing/api/permissions/bulk-index-users",
+    "destination": "/api/indexing-api/bulk-index-users"
   },
   {
-    "from": "/actions",
-    "to": "/guides/actions/overview"
+    "source": "/indexing/api/permissions/delete-group",
+    "destination": "/api/indexing-api/delete-group"
   },
   {
-    "from": "/actions/overview",
-    "to": "/guides/actions/overview"
+    "source": "/indexing/api/permissions/delete-membership",
+    "destination": "/api/indexing-api/delete-membership"
   },
   {
-    "from": "/actions/creating-actions",
-    "to": "/guides/actions/create-actions"
+    "source": "/indexing/api/permissions/delete-user",
+    "destination": "/api/indexing-api/delete-user"
   },
   {
-    "from": "/actions/faq",
-    "to": "/guides/actions/faq"
+    "source": "/indexing/api/permissions/index-group",
+    "destination": "/api/indexing-api/index-group"
   },
   {
-    "from": "/actions/examples",
-    "to": "/guides/actions/examples/jira-issue-creation"
+    "source": "/indexing/api/permissions/index-membership",
+    "destination": "/api/indexing-api/index-membership"
   },
   {
-    "from": "/actions/examples/jira-issue-creation",
-    "to": "/guides/actions/examples/jira-issue-creation"
+    "source": "/indexing/api/permissions/index-user",
+    "destination": "/api/indexing-api/index-user"
   },
   {
-    "from": "/actions/examples/jira-issue-creation-redirect",
-    "to": "/guides/actions/examples/jira-issue-creation-redirect"
+    "source": "/indexing/api/permissions/schedules-the-processing-of-group-memberships",
+    "destination": "/api/indexing-api/schedules-the-processing-of-group-memberships"
   },
   {
-    "from": "/actions/examples/google-calendar-events",
-    "to": "/guides/actions/examples/google-calendar-events"
+    "source": "/indexing/api/shortcuts/bulk-index-external-shortcuts",
+    "destination": "/api/indexing-api/bulk-index-external-shortcuts"
   },
   {
-    "from": "/actions/examples/google-docs-update",
-    "to": "/guides/actions/examples/google-docs-update"
+    "source": "/indexing/api/shortcuts/upload-shortcuts",
+    "destination": "/api/indexing-api/upload-shortcuts"
   },
   {
-    "from": "/actions/examples/zendesk-ticket-redirection",
-    "to": "/guides/actions/examples/zendesk-ticket-redirection"
+    "source": "/indexing/api/troubleshooting/beta%3A-get-datasource-status",
+    "destination": "/api/indexing-api/beta-get-datasource-status"
   },
   {
-    "from": "/actions/examples/overview",
-    "to": "/guides/actions/examples/jira-issue-creation"
+    "source": "/indexing/api/troubleshooting/beta%3A-get-document-information",
+    "destination": "/api/indexing-api/beta-get-document-information"
   },
   {
-    "from": "/actions/examples/index",
-    "to": "/guides/actions/examples/jira-issue-creation"
+    "source": "/indexing/api/troubleshooting/beta%3A-get-information-of-a-batch-of-documents",
+    "destination": "/api/indexing-api/beta-get-information-of-a-batch-of-documents"
   },
   {
-    "from": "/actions/index",
-    "to": "/guides/actions/overview"
+    "source": "/indexing/api/troubleshooting/beta%3A-get-user-information",
+    "destination": "/api/indexing-api/beta-get-user-information"
   },
   {
-    "from": "/actions/getting-started",
-    "to": "/guides/actions/overview"
+    "source": "/indexing/api/troubleshooting/check-document-access",
+    "destination": "/api/indexing-api/check-document-access"
   },
   {
-    "from": "/actions/guide",
-    "to": "/guides/actions/overview"
+    "source": "/indexing/api/troubleshooting/get-document-count",
+    "destination": "/api/indexing-api/get-document-count"
   },
   {
-    "from": "/actions/docs",
-    "to": "/guides/actions/overview"
+    "source": "/indexing/api/troubleshooting/get-document-upload-and-indexing-status",
+    "destination": "/api/indexing-api/get-document-upload-and-indexing-status"
   },
   {
-    "from": "/actions/examples/google-docs",
-    "to": "/guides/actions/examples/google-docs-update"
+    "source": "/indexing/api/troubleshooting/get-user-count",
+    "destination": "/api/indexing-api/get-user-count"
   },
   {
-    "from": "/actions/examples/google-docs-action",
-    "to": "/guides/actions/examples/google-docs-update"
+    "source": "/indexing/authentication/managing-tokens",
+    "destination": "/api-info/indexing/authentication/token-rotation"
   },
   {
-    "from": "/actions/examples/jira",
-    "to": "/guides/actions/examples/jira-issue-creation"
+    "source": "/indexing/authentication/permissions",
+    "destination": "/api-info/indexing/authentication/token-rotation"
   },
   {
-    "from": "/actions/examples/jira-creation",
-    "to": "/guides/actions/examples/jira-issue-creation"
+    "source": "/indexing/authentication/token-rotation",
+    "destination": "/api-info/indexing/authentication/token-rotation"
   },
   {
-    "from": "/actions/examples/jira-redirect",
-    "to": "/guides/actions/examples/jira-issue-creation-redirect"
+    "source": "/indexing/datasource/category",
+    "destination": "/api-info/indexing/datasource/category"
   },
   {
-    "from": "/actions/examples/zendesk",
-    "to": "/guides/actions/examples/zendesk-ticket-redirection"
+    "source": "/indexing/datasource/custom-properties",
+    "destination": "/api-info/indexing/datasource/custom-properties"
   },
   {
-    "from": "/actions/examples/zendesk-redirect",
-    "to": "/guides/actions/examples/zendesk-ticket-redirection"
+    "source": "/indexing/datasource/test-datasource",
+    "destination": "/api-info/indexing/datasource/test-datasource"
   },
   {
-    "from": "/actions/examples/calendar",
-    "to": "/guides/actions/examples/google-calendar-events"
+    "source": "/indexing/debugging/datasource-config",
+    "destination": "/api-info/indexing/debugging/datasource-config"
   },
   {
-    "from": "/actions/examples/google-calendar",
-    "to": "/guides/actions/examples/google-calendar-events"
+    "source": "/indexing/debugging/datasource-document",
+    "destination": "/api-info/indexing/debugging/datasource-document"
   },
   {
-    "from": "/actions/setup",
-    "to": "/guides/actions/create-actions"
+    "source": "/indexing/debugging/datasource-status",
+    "destination": "/api-info/indexing/debugging/datasource-status"
   },
   {
-    "from": "/actions/configuration",
-    "to": "/guides/actions/create-actions"
+    "source": "/indexing/debugging/datasource-user",
+    "destination": "/api-info/indexing/debugging/datasource-user"
   },
   {
-    "from": "/actions/auth",
-    "to": "/guides/actions/authentication"
+    "source": "/indexing/debugging/document-access",
+    "destination": "/api-info/indexing/debugging/document-access"
   },
   {
-    "from": "/actions/authentication-guide",
-    "to": "/guides/actions/authentication"
+    "source": "/indexing/debugging/document-count",
+    "destination": "/api-info/indexing/debugging/document-count"
   },
   {
-    "from": "/actions/help",
-    "to": "/guides/actions/faq"
+    "source": "/indexing/documents/activity",
+    "destination": "/api-info/indexing/documents/activity"
   },
   {
-    "from": "/actions/troubleshooting",
-    "to": "/guides/actions/faq"
+    "source": "/indexing/documents/bulk-indexing",
+    "destination": "/api-info/indexing/documents/bulk-indexing"
   },
   {
-    "from": "/actions/questions",
-    "to": "/guides/actions/faq"
+    "source": "/indexing/documents/bulk-upload-model",
+    "destination": "/api-info/indexing/documents/bulk-upload-model"
+  },
+  {
+    "source": "/indexing/documents/document-model",
+    "destination": "/api-info/indexing/documents/document-model"
+  },
+  {
+    "source": "/indexing/documents/permissions",
+    "destination": "/api-info/indexing/documents/permissions"
+  },
+  {
+    "source": "/indexing/documents/supported-mimetypes",
+    "destination": "/api-info/indexing/documents/supported-mimetypes"
+  },
+  {
+    "source": "/indexing/guides/indexing-documents",
+    "destination": "/api-info/indexing/getting-started/index-documents"
+  },
+  {
+    "source": "/indexing/guides/setup-datasource",
+    "destination": "/api-info/indexing/getting-started/setup-datasource"
+  },
+  {
+    "source": "/indexing/rendering-search-results",
+    "destination": "/api-info/indexing/datasource/rendering-search-results"
+  },
+  {
+    "source": "/rate-limits",
+    "destination": "/get-started/rate-limits"
+  },
+  {
+    "source": "/web/3rd-party-cookies",
+    "destination": "/libraries/web-sdk/3rd-party-cookies"
+  },
+  {
+    "source": "/web/components/autocomplete",
+    "destination": "/libraries/web-sdk/components/autocomplete"
+  },
+  {
+    "source": "/web/components/chat",
+    "destination": "/libraries/web-sdk/components/chat"
+  },
+  {
+    "source": "/web/components/modal-search",
+    "destination": "/libraries/web-sdk/components/modal-search"
+  },
+  {
+    "source": "/web/components/recommendations",
+    "destination": "/libraries/web-sdk/components/recommendations"
+  },
+  {
+    "source": "/web/components/sidebar",
+    "destination": "/libraries/web-sdk/components/sidebar"
+  },
+  {
+    "source": "/web/guides/brightspot",
+    "destination": "/libraries/web-sdk/guides/brightspot"
+  },
+  {
+    "source": "/web/guides/lumapps",
+    "destination": "/libraries/web-sdk/guides/lumapps"
+  },
+  {
+    "source": "/web/guides/react",
+    "destination": "/libraries/web-sdk/guides/react"
+  },
+  {
+    "source": "/web/guides/zendesk",
+    "destination": "/libraries/web-sdk/guides/zendesk"
   }
 ]

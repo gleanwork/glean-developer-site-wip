@@ -7,6 +7,8 @@ import { customApiMdGenerator } from './scripts/generator/customMdGenerators';
 
 // Environment variable to control API docs generation
 const shouldGenerateApiDocs = process.env.GENERATE_API_DOCS !== 'false';
+// Optional environment variable for Google site verification
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
 const config: Config = {
   title: 'Glean Developer',
@@ -124,6 +126,17 @@ const config: Config = {
           href: '/changelog.xml',
         },
       },
+      ...(googleSiteVerification
+        ? [
+            {
+              tagName: 'meta',
+              attributes: {
+                name: 'google-site-verification',
+                content: googleSiteVerification,
+              },
+            },
+          ]
+        : []),
     ],
     languageTabs: [
       {

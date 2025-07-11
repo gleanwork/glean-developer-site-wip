@@ -83,6 +83,19 @@ yarn changelog:new
 
 The site automatically generates API documentation from OpenAPI specifications located in the `openapi/` directory.
 
+## Environment Variables
+
+The build optionally includes a Google verification meta tag. Set the
+`GOOGLE_SITE_VERIFICATION` environment variable with your verification token if
+you want this tag injected at build time:
+
+```bash
+export GOOGLE_SITE_VERIFICATION=your-token
+yarn build
+```
+
+If the variable is not set, the tag is omitted.
+
 ## 🧪 Testing
 
 Run the build command to test for any issues:

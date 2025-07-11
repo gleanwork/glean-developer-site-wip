@@ -238,11 +238,13 @@ async function generateRedirects(): Promise<void> {
 
       const bestMatch = findBestMatch(oldPath, newPaths);
 
-      if (bestMatch) {
+      if (bestMatch && bestMatch !== oldPath) {
         newRedirects.push({
           from: oldPath,
           to: bestMatch,
         });
+      } else if (bestMatch === oldPath) {
+        console.log(`⏭️  Skipping ${oldPath} (same source and destination)`);
       }
     }
 

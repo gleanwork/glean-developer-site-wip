@@ -120,10 +120,6 @@
     "to": "/libraries/api-clients"
   },
   {
-    "from": "/changelog",
-    "to": "/changelog"
-  },
-  {
     "from": "/client/api/activity/report-client-activity",
     "to": "/api/client-api/activity/activity"
   },

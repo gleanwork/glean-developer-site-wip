@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   version: 0.9.0
-  title: Authentication
-  description: Authentication operations for Glean API
+  title: Glean API - Authentication
+  description: API endpoints for Authentication
   x-logo:
     url: https://app.glean.com/images/glean-text2.svg
   x-speakeasy-name: Glean API
@@ -14,9 +14,6 @@ servers:
         description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
 security:
   - APIToken: []
-tags:
-  - name: Authentication
-    description: Authentication
 paths:
   /rest/api/v1/createauthtoken:
     post:
@@ -48,7 +45,7 @@ paths:
       x-speakeasy-name-override: createToken
       x-speakeasy-group: client.authentication
       x-codeSamples:
-        - lang: Python
+        - lang: python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -64,7 +61,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: JavaScript
+        - lang: typescript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -82,10 +79,10 @@ paths:
             }
 
             run();
-        - lang: Go
+        - lang: go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Authentication.CreateToken(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CreateAuthTokenResponse != nil {\n        // handle response\n    }\n}"
-        - lang: Java
+        - lang: java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -99,8 +96,7 @@ paths:
                 public static void main(String[] args) throws Exception {
 
                     Glean sdk = Glean.builder()
-                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                            .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
                         .build();
 
                     CreateauthtokenResponse res = sdk.client().authentication().createToken()
@@ -125,14 +121,6 @@ components:
           description: Unix timestamp for when this token expires (in seconds since epoch UTC).
           type: integer
           format: int64
-      type: object
-  parameters:
-    timezoneOffset:
-      name: timezoneOffset
-      in: query
-      description: The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-      schema:
-        type: integer
   securitySchemes:
     APIToken:
       scheme: bearer

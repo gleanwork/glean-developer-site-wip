@@ -1,1246 +1,924 @@
 #!/usr/bin/env node
 
 /**
- * Split OpenAPI spec by tags into separate complete API files with circular reference breaking
- * Usage: node split-by-tags.js input.yaml output-directory [--break-circular]
+ * DETERMINISTIC Split-first approach: Split OpenAPI by tags first, then resolve circular references per-tag
+ * This version ensures 100% deterministic output by eliminating all sources of non-determinism
  */
 
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 const https = require('https');
 const http = require('http');
-const yaml = require('js-yaml');
 
-// Add this function near the top of the file, after the imports
 function capitalizeLanguageName(lang) {
-  // Common programming languages and their proper capitalization
-  const languageMap = {
-    'python': 'Python',
-    'java': 'Java',
-    'javascript': 'JavaScript',
-    'typescript': 'JavaScript',
-    'go': 'Go',
-    'ruby': 'Ruby',
-    'php': 'PHP',
-    'csharp': 'C#',
-    'cpp': 'C++',
-    'c': 'C',
-    'rust': 'Rust',
-    'swift': 'Swift',
-    'kotlin': 'Kotlin',
-    'scala': 'Scala'
-  };
-  
-  return languageMap[lang.toLowerCase()] || lang;
+    /**Common programming languages and their proper capitalization*/
+    const languageMap = {
+        'python': 'Python',
+        'java': 'Java',
+        'javascript': 'JavaScript',
+        'typescript': 'JavaScript',
+        'go': 'Go',
+        'ruby': 'Ruby',
+        'php': 'PHP',
+        'csharp': 'C#',
+        'cpp': 'C++',
+        'c': 'C',
+        'rust': 'Rust',
+        'swift': 'Swift',
+        'kotlin': 'Kotlin',
+        'dart': 'Dart',
+        'scala': 'Scala',
+        'r': 'R',
+        'matlab': 'MATLAB',
+        'shell': 'Shell',
+        'bash': 'Bash',
+        'powershell': 'PowerShell',
+        'sql': 'SQL',
+        'html': 'HTML',
+        'css': 'CSS',
+        'xml': 'XML',
+        'json': 'JSON',
+        'yaml': 'YAML',
+        'markdown': 'Markdown',
+        'latex': 'LaTeX',
+        'dockerfile': 'Dockerfile',
+    };
+    return languageMap[lang.toLowerCase()] || lang.charAt(0).toUpperCase() + lang.slice(1);
 }
 
-// Function to fetch content from URL
 function fetchFromUrl(url) {
-  return new Promise((resolve, reject) => {
-    const client = url.startsWith('https:') ? https : http;
-    
-    client.get(url, (res) => {
-      let data = '';
-      
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      
-      res.on('end', () => {
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(data);
-        } else {
-          reject(new Error(`HTTP ${res.statusCode}: ${res.statusMessage}`));
-        }
-      });
-    }).on('error', (err) => {
-      reject(err);
+    /**Fetch content from URL*/
+    return new Promise((resolve, reject) => {
+        const protocol = url.startsWith('https://') ? https : http;
+        
+        protocol.get(url, (response) => {
+            if (response.statusCode >= 200 && response.statusCode < 300) {
+                let data = '';
+                response.on('data', chunk => data += chunk);
+                response.on('end', () => resolve(data));
+            } else {
+                reject(new Error(`HTTP ${response.statusCode}: ${response.statusMessage}`));
+            }
+        }).on('error', reject);
     });
-  });
 }
 
-// Function to read content from file or URL
-async function readContent(input) {
-  if (input.startsWith('http://') || input.startsWith('https://')) {
-    console.log(`📡 Fetching from URL: ${input}...`);
-    return await fetchFromUrl(input);
-  } else {
-    console.log(`📖 Reading local file: ${input}...`);
-    return fs.readFileSync(input, 'utf8');
-  }
-}
-
-// Circular reference detection and breaking strategies
-class CircularReferenceBreaker {
-  constructor() {
-    this.circularPaths = new Set();
-    this.schemaGraph = new Map();
-    this.breakingStrategies = {
-      'id_reference': this.applyIdReferenceStrategy.bind(this),
-      'lazy_loading': this.applyLazyLoadingStrategy.bind(this),
-      'composition': this.applyCompositionStrategy.bind(this),
-      'nullable': this.applyNullableStrategy.bind(this)
-    };
-  }
-
-  // Build dependency graph of schemas
-  buildSchemaGraph(schemas) {
-    this.schemaGraph.clear();
-    
-    Object.entries(schemas).forEach(([schemaName, schema]) => {
-      this.schemaGraph.set(schemaName, this.extractSchemaReferences(schema));
-    });
-  }
-
-  // Extract all $ref references from a schema
-  extractSchemaReferences(schema, refs = new Set()) {
-    if (typeof schema !== 'object' || schema === null) return refs;
-    
-    if (schema.$ref && schema.$ref.startsWith('#/components/schemas/')) {
-      const refName = schema.$ref.replace('#/components/schemas/', '');
-      refs.add(refName);
-    }
-    
-    Object.values(schema).forEach(value => {
-      if (Array.isArray(value)) {
-        value.forEach(item => this.extractSchemaReferences(item, refs));
-      } else if (typeof value === 'object') {
-        this.extractSchemaReferences(value, refs);
-      }
-    });
-    
-    return refs;
-  }
-
-  // Detect circular references using DFS
-  detectCircularReferences(schemas) {
-    this.buildSchemaGraph(schemas);
-    const visited = new Set();
-    const recursionStack = new Set();
-    const cycles = [];
-
-    console.log('🔍 Schema dependency graph:');
-    this.schemaGraph.forEach((deps, schema) => {
-      if (deps.size > 0) {
-        console.log(`   ${schema} -> [${Array.from(deps).join(', ')}]`);
-      }
-    });
-
-    const dfs = (node, path = []) => {
-      if (recursionStack.has(node)) {
-        // Found a cycle
-        const cycleStart = path.indexOf(node);
-        const cycle = [...path.slice(cycleStart), node];
-        cycles.push(cycle);
-        console.log(`   Found cycle: ${cycle.join(' -> ')}`);
-        return;
-      }
-
-      if (visited.has(node)) return;
-
-      visited.add(node);
-      recursionStack.add(node);
-
-      const dependencies = this.schemaGraph.get(node) || new Set();
-      dependencies.forEach(dep => {
-        if (this.schemaGraph.has(dep)) {
-          dfs(dep, [...path, node]);
-        }
-      });
-
-      recursionStack.delete(node);
-    };
-
-    Object.keys(schemas).forEach(schemaName => {
-      if (!visited.has(schemaName)) {
-        dfs(schemaName);
-      }
-    });
-
-    // Also check for self-references (schema referencing itself)
-    Object.entries(schemas).forEach(([schemaName, schema]) => {
-      const refs = this.extractSchemaReferences(schema);
-      if (refs.has(schemaName)) {
-        cycles.push([schemaName, schemaName]);
-        console.log(`   Found self-reference: ${schemaName} -> ${schemaName}`);
-      }
-    });
-
-    return cycles;
-  }
-
-  // Choose best strategy for breaking a circular reference
-  chooseBestStrategy(cycle, schemas) {
-    // Analyze the cycle to determine best breaking strategy
-    const cycleInfo = this.analyzeCycle(cycle, schemas);
-    
-    if (cycleInfo.hasSimpleRelations) {
-      return 'id_reference'; // Best for simple parent-child relationships
-    } else if (cycleInfo.hasArrayReferences) {
-      return 'lazy_loading'; // Good for collection references
-    } else if (cycleInfo.hasComplexInheritance) {
-      return 'composition'; // Better for complex inheritance chains
+async function readContent(inputPath) {
+    /**Read content from file or URL*/
+    if (inputPath.startsWith('http://') || inputPath.startsWith('https://')) {
+        return await fetchFromUrl(inputPath);
     } else {
-      return 'nullable'; // Default fallback
+        console.log(`  Reading local file: ${inputPath}...`);
+        return fs.readFileSync(inputPath, 'utf-8');
     }
-  }
-
-  // Analyze cycle characteristics
-  analyzeCycle(cycle, schemas) {
-    let hasSimpleRelations = false;
-    let hasArrayReferences = false;
-    let hasComplexInheritance = false;
-
-    cycle.forEach(schemaName => {
-      const schema = schemas[schemaName];
-      if (!schema) return;
-
-      // Check for array references
-      if (this.hasArrayReferences(schema)) {
-        hasArrayReferences = true;
-      }
-
-      // Check for inheritance patterns (allOf, oneOf, anyOf)
-      if (schema.allOf || schema.oneOf || schema.anyOf) {
-        hasComplexInheritance = true;
-      }
-
-      // Check for simple property references
-      if (schema.properties && Object.keys(schema.properties).length <= 5) {
-        hasSimpleRelations = true;
-      }
-    });
-
-    return { hasSimpleRelations, hasArrayReferences, hasComplexInheritance };
-  }
-
-  // Check if schema has array references
-  hasArrayReferences(schema) {
-    if (schema.type === 'array' && schema.items?.$ref) return true;
-    
-    if (schema.properties) {
-      return Object.values(schema.properties).some(prop => 
-        prop.type === 'array' && prop.items?.$ref
-      );
-    }
-    
-    return false;
-  }
-
-  // Strategy 1: Inline schema at break point (not just ID reference)
-  applyIdReferenceStrategy(cycle, schemas) {
-    console.log(`🔧 Applying inline strategy for cycle: ${cycle.join(' -> ')}`);
-    
-    const modifiedSchemas = { ...schemas };
-    
-    // Find the best place to break the cycle (usually the "weakest" reference)
-    const breakPoint = this.findBestBreakPoint(cycle, schemas);
-    const breakIndex = cycle.indexOf(breakPoint);
-    
-    if (breakIndex !== -1) {
-      const parentSchema = cycle[breakIndex];
-      const childSchema = cycle[(breakIndex + 1) % cycle.length];
-      
-      // Inline the child schema content, but exclude the circular reference back
-      modifiedSchemas[parentSchema] = this.inlineSchemaExcludingCircular(
-        modifiedSchemas[parentSchema], 
-        childSchema,
-        modifiedSchemas[childSchema],
-        cycle
-      );
-      
-      console.log(`   Inlined ${childSchema} content into ${parentSchema}, excluding circular refs`);
-    }
-    
-    return modifiedSchemas;
-  }
-
-  // Strategy 2: Create flattened objects with inline content
-  applyLazyLoadingStrategy(cycle, schemas) {
-    console.log(`🔧 Applying inline flattening strategy for cycle: ${cycle.join(' -> ')}`);
-    
-    const modifiedSchemas = { ...schemas };
-    const breakPoint = this.findBestBreakPoint(cycle, schemas);
-    const childSchema = cycle[(cycle.indexOf(breakPoint) + 1) % cycle.length];
-    
-    // Instead of creating a reference object, inline the child schema content
-    // but exclude properties that would create the circular reference
-    modifiedSchemas[breakPoint] = this.inlineSchemaExcludingCircular(
-      modifiedSchemas[breakPoint],
-      childSchema,
-      modifiedSchemas[childSchema],
-      cycle
-    );
-    
-    console.log(`   Inlined ${childSchema} content into ${breakPoint}, excluding circular properties`);
-    return modifiedSchemas;
-  }
-
-  // Strategy 3: Create fully merged composite objects with all content inlined
-  applyCompositionStrategy(cycle, schemas) {
-    console.log(`🔧 Applying full composition strategy for cycle: ${cycle.join(' -> ')}`);
-    
-    const modifiedSchemas = { ...schemas };
-    
-    // For each schema in the cycle, create a fully flattened version
-    cycle.forEach(schemaName => {
-      const flattenedSchema = this.createFlattenedSchema(schemaName, schemas, cycle);
-      modifiedSchemas[schemaName] = flattenedSchema;
-    });
-    
-    console.log(`   Created fully flattened versions of: ${cycle.join(', ')}`);
-    return modifiedSchemas;
-  }
-
-  // Strategy 4: Inline content but make the circular part optional
-  applyNullableStrategy(cycle, schemas) {
-    console.log(`🔧 Applying nullable inline strategy for cycle: ${cycle.join(' -> ')}`);
-    
-    const modifiedSchemas = { ...schemas };
-    const breakPoint = this.findBestBreakPoint(cycle, schemas);
-    const childSchema = cycle[(cycle.indexOf(breakPoint) + 1) % cycle.length];
-    
-    // Inline the content but make the circular reference optional/nullable
-    modifiedSchemas[breakPoint] = this.inlineSchemaWithNullableCircular(
-      modifiedSchemas[breakPoint],
-      childSchema,
-      modifiedSchemas[childSchema],
-      cycle
-    );
-    
-    console.log(`   Inlined ${childSchema} into ${breakPoint} with nullable circular references`);
-    return modifiedSchemas;
-  }
-
-  // Find the best point to break the cycle
-  findBestBreakPoint(cycle, schemas) {
-    // Prefer breaking at array references or optional properties
-    for (const schemaName of cycle) {
-      const schema = schemas[schemaName];
-      if (this.hasArrayReferences(schema)) {
-        return schemaName;
-      }
-    }
-    
-    // Otherwise, break at the first schema in the cycle
-    return cycle[0];
-  }
-
-  // Helper: Inline schema content but exclude circular references
-  inlineSchemaExcludingCircular(parentSchema, childSchemaName, childSchema, cycle) {
-    const modified = JSON.parse(JSON.stringify(parentSchema));
-    
-    const inlineRef = (obj, path = [], depth = 0) => {
-      if (typeof obj !== 'object' || obj === null) return obj;
-      
-      // Prevent excessive depth even for non-circular references
-      if (depth > 15) {
-        return {
-          type: 'object',
-          description: `${childSchemaName} object`,
-          // additionalProperties: true
-        };
-      }
-      
-      // If we find a reference to the child schema, inline its content
-      if (obj.$ref === `#/components/schemas/${childSchemaName}`) {
-        console.log(`     Inlining reference to ${childSchemaName} at depth ${depth}`);
-        
-        // For circular references at depth > 0, just create a reference placeholder
-        if (cycle.includes(childSchemaName) && depth > 0) {
-          return {
-            type: 'object',
-            description: `${childSchemaName} object`,
-            // additionalProperties: true
-          };
-        }
-        
-        const inlinedChild = JSON.parse(JSON.stringify(childSchema));
-        
-        // Remove any properties that would create circular references
-        if (inlinedChild.properties) {
-          Object.keys(inlinedChild.properties).forEach(propName => {
-            const prop = inlinedChild.properties[propName];
-            if (prop.$ref) {
-              const refName = prop.$ref.replace('#/components/schemas/', '');
-              if (cycle.includes(refName)) {
-                console.log(`       Replacing circular property '${propName}' (${refName}) with reference placeholder`);
-                inlinedChild.properties[propName] = {
-                  type: 'object',
-                  description: `${refName} object`,
-                  // additionalProperties: true
-                };
-              }
-            } else if (prop.type === 'array' && prop.items && prop.items.$ref) {
-              const itemRefName = prop.items.$ref.replace('#/components/schemas/', '');
-              if (cycle.includes(itemRefName)) {
-                console.log(`       Replacing circular array items '${propName}' (${itemRefName}) with reference placeholder`);
-                inlinedChild.properties[propName] = {
-                  type: 'array',
-                  description: `Array of ${itemRefName} objects`,
-                  items: {
-                    type: 'object',
-                    description: `${itemRefName} object`,
-                    // additionalProperties: true
-                  }
-                };
-              }
-            }
-          });
-        }
-        
-        return inlinedChild;
-      }
-      
-      // Also handle array items that might be circular
-      if (obj.type === 'array' && obj.items && obj.items.$ref === `#/components/schemas/${childSchemaName}`) {
-        console.log(`     Inlining array items reference to ${childSchemaName} at depth ${depth}`);
-        
-        // For circular array items, create a reference placeholder
-        if (cycle.includes(childSchemaName) && depth > 0) {
-          return {
-            type: 'array',
-            description: obj.description || `Array of ${childSchemaName} objects`,
-            items: {
-              type: 'object',
-              description: `${childSchemaName} object`,
-              // additionalProperties: true
-            }
-          };
-        }
-        
-        const inlinedChild = JSON.parse(JSON.stringify(childSchema));
-        
-        // Process circular references in the inlined child
-        if (inlinedChild.properties) {
-          Object.keys(inlinedChild.properties).forEach(propName => {
-            const prop = inlinedChild.properties[propName];
-            if (prop.$ref) {
-              const refName = prop.$ref.replace('#/components/schemas/', '');
-              if (cycle.includes(refName)) {
-                inlinedChild.properties[propName] = {
-                  type: 'object',
-                  description: `${refName} object`,
-                  // additionalProperties: true
-                };
-              }
-            }
-          });
-        }
-        
-        return {
-          type: 'array',
-          description: obj.description || `Array of ${childSchemaName} objects`,
-          items: inlinedChild
-        };
-      }
-      
-      // Recursively process nested objects
-      Object.keys(obj).forEach(key => {
-        if (path.length < 20) { // Prevent infinite recursion
-          obj[key] = inlineRef(obj[key], [...path, key], depth + 1);
-        }
-      });
-      
-      return obj;
-    };
-    
-    return inlineRef(modified);
-  }
-
-  // Helper: Create a completely flattened schema with all references resolved
-  createFlattenedSchema(schemaName, allSchemas, cycle, visited = new Set()) {
-    if (visited.has(schemaName)) {
-      return {
-        type: 'object',
-        description: `Circular reference to ${schemaName} resolved`,
-          // additionalProperties: true
-      };
-    }
-    
-    visited.add(schemaName);
-    const schema = allSchemas[schemaName];
-    if (!schema) return null;
-    
-    const flattened = {
-      type: schema.type || 'object',
-      description: schema.description || `Flattened ${schemaName}`,
-      properties: {}
-    };
-    
-    // Copy basic properties
-    ['format', 'example', 'enum', 'minimum', 'maximum'].forEach(prop => {
-      if (schema[prop] !== undefined) {
-        flattened[prop] = schema[prop];
-      }
-    });
-    
-    // Flatten properties
-    if (schema.properties) {
-      Object.entries(schema.properties).forEach(([propName, propDef]) => {
-        if (propDef.$ref) {
-          const refName = propDef.$ref.replace('#/components/schemas/', '');
-          if (cycle.includes(refName) && refName !== schemaName) {
-            // For circular references, create a simplified version
-            flattened.properties[propName] = {
-              type: 'object',
-              description: `Inlined ${refName} content`,
-              // additionalProperties: true,
-              ...this.getBasicPropertiesFromSchema(allSchemas[refName])
-            };
-          } else if (allSchemas[refName]) {
-            // For non-circular references, fully inline
-            flattened.properties[propName] = this.createFlattenedSchema(refName, allSchemas, cycle, new Set(visited));
-          }
-        } else {
-          flattened.properties[propName] = propDef;
-        }
-      });
-    }
-    
-    // Handle allOf, oneOf, anyOf
-    if (schema.allOf) {
-      schema.allOf.forEach(subSchema => {
-        if (subSchema.$ref) {
-          const refName = subSchema.$ref.replace('#/components/schemas/', '');
-          if (allSchemas[refName] && !cycle.includes(refName)) {
-            const subProps = this.createFlattenedSchema(refName, allSchemas, cycle, new Set(visited));
-            if (subProps?.properties) {
-              Object.assign(flattened.properties, subProps.properties);
-            }
-          }
-        } else if (subSchema.properties) {
-          Object.assign(flattened.properties, subSchema.properties);
-        }
-      });
-    }
-    
-    visited.delete(schemaName);
-    return flattened;
-  }
-
-  // Helper: Extract basic properties from schema for simplified circular refs
-  getBasicPropertiesFromSchema(schema) {
-    if (!schema || !schema.properties) return {};
-    
-    const basicProps = {};
-    Object.entries(schema.properties).forEach(([propName, propDef]) => {
-      if (!propDef.$ref) {
-        // Only include simple, non-reference properties
-        if (propDef.type && ['string', 'number', 'integer', 'boolean'].includes(propDef.type)) {
-          basicProps[propName] = propDef;
-        }
-      }
-    });
-    
-    return { properties: basicProps };
-  }
-
-  // Helper: Inline schema with nullable circular references
-  inlineSchemaWithNullableCircular(parentSchema, childSchemaName, childSchema, cycle) {
-    const modified = this.inlineSchemaExcludingCircular(parentSchema, childSchemaName, childSchema, cycle);
-    
-    // Make any remaining circular references nullable
-    const makeCircularNullable = (obj) => {
-      if (typeof obj !== 'object' || obj === null) return obj;
-      
-      Object.keys(obj).forEach(key => {
-        if (obj[key] && typeof obj[key] === 'object') {
-          if (obj[key].description && typeof obj[key].description === 'string' && obj[key].description.includes('circular reference resolved')) {
-            obj[key].nullable = true;
-          }
-          makeCircularNullable(obj[key]);
-        }
-      });
-      
-      return obj;
-    };
-    
-    return makeCircularNullable(modified);
-  }
-
-  // Main method to break all circular references
-  breakCircularReferences(schemas) {
-    const cycles = this.detectCircularReferences(schemas);
-    
-    if (cycles.length === 0) {
-      console.log('✅ No circular references detected');
-      return schemas;
-    }
-    
-    console.log(`🔍 Found ${cycles.length} circular reference(s):`);
-    cycles.forEach((cycle, index) => {
-      console.log(`   ${index + 1}. ${cycle.join(' -> ')}`);
-    });
-    
-    let modifiedSchemas = { ...schemas };
-    
-    // Process cycles in order of complexity (simple self-references first)
-    const sortedCycles = cycles.sort((a, b) => a.length - b.length);
-    
-    sortedCycles.forEach((cycle, index) => {
-      console.log(`\n🛠️  Breaking cycle ${index + 1}: ${cycle.join(' -> ')}`);
-      const strategy = this.chooseBestStrategy(cycle, modifiedSchemas);
-      console.log(`   Using strategy: ${strategy}`);
-      modifiedSchemas = this.breakingStrategies[strategy](cycle, modifiedSchemas);
-    });
-    
-    // Verify no circular references remain
-    console.log('\n🔍 Verifying circular references are resolved...');
-    const remainingCycles = this.detectCircularReferences(modifiedSchemas);
-    if (remainingCycles.length > 0) {
-      console.log(`⚠️  Warning: ${remainingCycles.length} circular references still remain:`);
-      remainingCycles.forEach((cycle, index) => {
-        console.log(`   ${index + 1}. ${cycle.join(' -> ')}`);
-      });
-    } else {
-      console.log('✅ All circular references have been resolved');
-    }
-    
-    return modifiedSchemas;
-  }
-}
-
-async function splitOpenAPIByTags(inputFile, outputDir, breakCircular = false) {
-  try {
-    // Read and parse the OpenAPI file (now supports URLs)
-    const fileContent = await readContent(inputFile);
-    const apiSpec = yaml.load(fileContent);
-
-    // Create output directory if it doesn't exist
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-
-    // Initialize circular reference breaker if requested
-    let circularBreaker = null;
-    if (breakCircular) {
-      circularBreaker = new CircularReferenceBreaker();
-      console.log('🔍 Circular reference breaking enabled');
-    }
-
-    // Extract tag information from OpenAPI spec
-    const tagInfo = {};
-    if (apiSpec.tags) {
-      apiSpec.tags.forEach(tag => {
-        tagInfo[tag.name] = {
-          name: tag.name,
-          description: tag.description || tag.name,
-          externalDocs: tag.externalDocs
-        };
-      });
-    }
-
-    // Extract all unique tags from paths
-    const tags = new Set();
-    const taggedPaths = {};
-    const usedSchemas = new Set();
-
-    // Group paths by tags and clean up operations
-    Object.entries(apiSpec.paths || {}).forEach(([pathName, pathItem]) => {
-      Object.entries(pathItem).forEach(([method, operation]) => {
-        
-        if (operation.tags && operation.tags.length > 0) {
-          operation.tags.forEach(tag => {
-            tags.add(tag);
-            
-            // If tag info not found in spec, create default
-            if (!tagInfo[tag]) {
-              tagInfo[tag] = {
-                name: tag,
-                description: tag,
-                externalDocs: null
-              };
-            }
-            
-            if (!taggedPaths[tag]) {
-              taggedPaths[tag] = {};
-            }
-            
-            if (!taggedPaths[tag][pathName]) {
-              taggedPaths[tag][pathName] = {};
-            }
-            
-            taggedPaths[tag][pathName][method] = operation;
-
-            // Track used schemas for this tag
-            collectUsedSchemas(operation, usedSchemas, tag);
-          });
-        }
-      });
-    });
-
-    // Create separate API files for each tag
-    tags.forEach(tag => {
-      const currentTagInfo = tagInfo[tag];
-      
-      // Process x-codeSamples for this specific tag's paths
-      Object.values(taggedPaths[tag] || {}).forEach(pathItem => {
-        Object.values(pathItem).forEach(operation => {
-          if (operation['x-codeSamples']) {
-            operation['x-codeSamples'].forEach(sample => {
-              if (sample.lang) {
-                sample.lang = capitalizeLanguageName(sample.lang);
-              }
-            });
-          }
-        });
-      });
-      
-      let components = filterComponentsByTag(apiSpec.components, tag, taggedPaths[tag]);
-      
-      // Process schemas for this tag
-      if (components.schemas) {
-        console.log(`\n📦 Processing schemas for tag: ${tag}`);
-        console.log(`   Found ${Object.keys(components.schemas).length} schemas`);
-        
-        // ALWAYS break circular references first, regardless of flag
-        // This prevents infinite expansion during inlining
-        const hasCircularRefs = circularBreaker ? true : new CircularReferenceBreaker().detectCircularReferences(components.schemas).length > 0;
-        
-        if (hasCircularRefs) {
-          console.log(`🔄 Breaking circular references (required for inlining)...`);
-          if (!circularBreaker) {
-            circularBreaker = new CircularReferenceBreaker();
-          }
-          components.schemas = circularBreaker.breakCircularReferences(components.schemas);
-        }
-        
-        // Now safely inline all schemas
-        console.log(`🔗 Inlining all schema references...`);
-        // Use global max tracking only for messages API to prevent exponential expansion
-        const useGlobalMax = tag.toLowerCase() === 'messages';
-        if (useGlobalMax) {
-          console.log(`   Using global max tracking for messages API`);
-        }
-        components.schemas = fullyInlineAllSchemas(components.schemas, useGlobalMax);
-        console.log(`   Processed ${Object.keys(components.schemas).length} schemas`);
-      }
-      
-      const taggedAPI = {
-        openapi: apiSpec.openapi,
-        info: {
-          ...apiSpec.info,
-          title: currentTagInfo.description || currentTagInfo.name,
-          description: `${currentTagInfo.description || tag} operations for ${apiSpec.info.title}`
-        },
-        servers: apiSpec.servers || [],
-        security: apiSpec.security || [],
-        // Include the tag definition in the new API
-        tags: [{
-          name: currentTagInfo.name,
-          description: currentTagInfo.description,
-          ...(currentTagInfo.externalDocs && { externalDocs: currentTagInfo.externalDocs })
-        }],
-        paths: taggedPaths[tag] || {},
-        components: components
-      };
-
-      // Add security definitions if they exist
-      if (apiSpec.components?.securitySchemes) {
-        taggedAPI.components.securitySchemes = apiSpec.components.securitySchemes;
-      }
-
-      // Create filename from tag description/summary, fallback to tag name
-      const displayName = currentTagInfo.description || currentTagInfo.name;
-      const filename = displayName.toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '') // Remove special chars except spaces
-        .replace(/\s+/g, '-')        // Replace spaces with hyphens
-        .replace(/-+/g, '-')         // Replace multiple hyphens with single
-        .replace(/^-|-$/g, '');      // Remove leading/trailing hyphens
-      
-      const outputPath = path.join(outputDir, `${filename}-api.yaml`);
-      
-      fs.writeFileSync(outputPath, yaml.dump(taggedAPI, {
-        noRefs: true,
-        lineWidth: -1
-      }));
-
-      console.log(`✅ Created: ${outputPath}`);
-      console.log(`   Title: "${displayName}"`);
-      console.log(`   Paths: ${Object.keys(taggedPaths[tag] || {}).length}`);
-      console.log(`   Schemas: ${Object.keys(components.schemas || {}).length} (fully inlined)`);
-      console.log('');
-    });
-
-    // Create index file with all tags info
-    const indexFile = {
-      tags: Array.from(tags).map(tag => {
-        const currentTagInfo = tagInfo[tag];
-        const displayName = currentTagInfo.description || currentTagInfo.name;
-        const filename = displayName.toLowerCase()
-          .replace(/[^a-z0-9\s]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-')
-          .replace(/^-|-$/g, '');
-        
-        // Extract endpoints for this tag
-        const endpoints = [];
-        Object.entries(taggedPaths[tag] || {}).forEach(([pathName, pathItem]) => {
-          Object.entries(pathItem).forEach(([method, operation]) => {
-            endpoints.push({
-              method: method.toUpperCase(),
-              path: pathName,
-              summary: operation.summary || '',
-              description: operation.description || '',
-              operationId: operation.operationId || 
-                           (operation.summary && operation.summary.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')) ||
-                           `${method}${pathName.replace(/[^a-zA-Z0-9]/g, '')}`
-            });
-          });
-        });
-        
-        return {
-          name: tag,
-          displayName: displayName,
-          description: currentTagInfo.description,
-          file: `${filename}-api.yaml`,
-          configId: filename.replace(/-/g, '_'), // Suggested config ID for docusaurus
-          paths: Object.keys(taggedPaths[tag] || {}).length,
-          endpoints: endpoints, // Add the endpoints data
-          fullyInlined: true,
-          circularReferencesFixed: breakCircular
-        };
-      })
-    };
-
-    fs.writeFileSync(
-      path.join(outputDir, 'split-info.json'), 
-      JSON.stringify(indexFile, null, 2)
-    );
-
-    console.log(`🎉 Split complete! Created ${tags.size} API files in ${outputDir}`);
-    console.log(`🔗 All schemas have been fully inlined for self-contained files`);
-    if (breakCircular) {
-      console.log(`🔧 Circular references have been automatically resolved`);
-    }
-    console.log(`📋 See split-info.json for configuration details`);
-
-  } catch (error) {
-    console.error('❌ Error splitting OpenAPI file:', error.message);
-    process.exit(1);
-  }
-}
-
-// [Rest of the helper functions remain the same...]
-function collectUsedSchemas(operation, usedSchemas, tag) {
-  // Collect schemas from parameters
-  if (operation.parameters) {
-    operation.parameters.forEach(param => {
-      if (param.schema?.$ref) {
-        const schemaName = param.schema.$ref.replace('#/components/schemas/', '');
-        usedSchemas.add(`${tag}:${schemaName}`);
-      }
-    });
-  }
-
-  // Collect schemas from request body
-  if (operation.requestBody?.content) {
-    Object.values(operation.requestBody.content).forEach(mediaType => {
-      if (mediaType.schema?.$ref) {
-        const schemaName = mediaType.schema.$ref.replace('#/components/schemas/', '');
-        usedSchemas.add(`${tag}:${schemaName}`);
-      }
-    });
-  }
-
-  // Collect schemas from responses
-  if (operation.responses) {
-    Object.values(operation.responses).forEach(response => {
-      if (response.content) {
-        Object.values(response.content).forEach(mediaType => {
-          if (mediaType.schema?.$ref) {
-            const schemaName = mediaType.schema.$ref.replace('#/components/schemas/', '');
-            usedSchemas.add(`${tag}:${schemaName}`);
-          }
-        });
-      }
-    });
-  }
-}
-
-function filterComponentsByTag(components, tag, taggedPaths) {
-  if (!components) return {};
-
-  const filteredComponents = {};
-  
-  // Get all schema references used in this tag's operations
-  const usedSchemaRefs = new Set();
-  
-  Object.values(taggedPaths).forEach(pathItem => {
-    Object.values(pathItem).forEach(operation => {
-      collectSchemaRefs(operation, usedSchemaRefs);
-    });
-  });
-
-  // Include only schemas that are referenced
-  if (components.schemas && usedSchemaRefs.size > 0) {
-    filteredComponents.schemas = {};
-    
-    // Add directly referenced schemas
-    usedSchemaRefs.forEach(ref => {
-      const schemaName = ref.replace('#/components/schemas/', '');
-      if (components.schemas[schemaName]) {
-        filteredComponents.schemas[schemaName] = components.schemas[schemaName];
-      }
-    });
-
-    // Add nested schema dependencies
-    addNestedSchemas(filteredComponents.schemas, components.schemas);
-    
-    // Remove any unused schemas that got pulled in but aren't actually needed
-    const actuallyUsed = new Set();
-    usedSchemaRefs.forEach(ref => {
-      const schemaName = ref.replace('#/components/schemas/', '');
-      actuallyUsed.add(schemaName);
-    });
-    
-    // Recursively find all schemas that are actually used
-    let foundNew = true;
-    while (foundNew) {
-      foundNew = false;
-      const currentUsed = new Set(actuallyUsed);
-      
-      currentUsed.forEach(schemaName => {
-        if (filteredComponents.schemas[schemaName]) {
-          const nestedRefs = new Set();
-          collectSchemaRefs(filteredComponents.schemas[schemaName], nestedRefs);
-          nestedRefs.forEach(ref => {
-            const refName = ref.replace('#/components/schemas/', '');
-            if (!actuallyUsed.has(refName)) {
-              actuallyUsed.add(refName);
-              foundNew = true;
-            }
-          });
-        }
-      });
-    }
-    
-    // Filter out unused schemas
-    Object.keys(filteredComponents.schemas).forEach(schemaName => {
-      if (!actuallyUsed.has(schemaName)) {
-        console.log(`   Removing unused schema: ${schemaName}`);
-        delete filteredComponents.schemas[schemaName];
-      }
-    });
-  }
-
-  // Copy other components that might be needed
-  ['parameters', 'responses', 'headers', 'examples', 'requestBodies'].forEach(componentType => {
-    if (components[componentType]) {
-      filteredComponents[componentType] = components[componentType];
-    }
-  });
-
-  return filteredComponents;
 }
 
 function collectSchemaRefs(obj, refs) {
-  if (typeof obj !== 'object' || obj === null) return;
-  
-  if (obj.$ref && obj.$ref.startsWith('#/components/schemas/')) {
-    refs.add(obj.$ref);
-  }
-  
-  Object.values(obj).forEach(value => {
-    collectSchemaRefs(value, refs);
-  });
-}
-
-function addNestedSchemas(filteredSchemas, allSchemas) {
-  let foundNew = true;
-  
-  while (foundNew) {
-    foundNew = false;
-    const currentSchemas = { ...filteredSchemas };
-    
-    Object.values(currentSchemas).forEach(schema => {
-      const nestedRefs = new Set();
-      collectSchemaRefs(schema, nestedRefs);
-      
-      nestedRefs.forEach(ref => {
-        const schemaName = ref.replace('#/components/schemas/', '');
-        if (allSchemas[schemaName] && !filteredSchemas[schemaName]) {
-          filteredSchemas[schemaName] = allSchemas[schemaName];
-          foundNew = true;
-        }
-      });
-    });
-  }
-}
-
-// Function to fully inline all schemas - no $ref left behind
-function fullyInlineAllSchemas(schemas, useGlobalMax = false) {
-  const inlinedSchemas = {};
-  const resolutionPath = []; // Track the exact path to detect circular references
-  const globalOccurrences = useGlobalMax ? {} : null; // Track how many times each schema has been inlined globally (only for messages)
-  
-  // Function to fully resolve a single schema
-  function resolveSchema(schemaName, pathDepth = 0) {
-    // Track global occurrences to prevent exponential expansion (only for messages API)
-    if (useGlobalMax) {
-      globalOccurrences[schemaName] = (globalOccurrences[schemaName] || 0) + 1;
-      
-      // If a schema has been inlined too many times globally, stop
-      if (globalOccurrences[schemaName] > 10) {
-        console.log(`     Schema ${schemaName} inlined too many times (${globalOccurrences[schemaName]}), using placeholder`);
-        return {
-          type: 'object',
-          description: `${schemaName} object`,
-          // additionalProperties: true
-        };
-      }
-    }
-    
-    // Check if we're in a circular reference loop (same schema in current path)
-    if (resolutionPath.includes(schemaName)) {
-      console.log(`     Circular reference detected: ${resolutionPath.join(' -> ')} -> ${schemaName}`);
-      return {
-        type: 'object',
-        description: `${schemaName} object (circular reference)`,
-        // additionalProperties: true
-      };
-    }
-    
-    // Only limit depth if we're going EXTREMELY deep (prevents stack overflow)
-    if (pathDepth > 50) {
-      console.log(`     Extreme depth reached for ${schemaName} at depth ${pathDepth}`);
-      return {
-        type: 'object',
-        description: `${schemaName} object (max depth)`,
-        // additionalProperties: true
-      };
-    }
-    
-    const schema = schemas[schemaName];
-    if (!schema) {
-      return {
-        type: 'object',
-        description: `Schema ${schemaName} not found`,
-        // additionalProperties: true
-      };
-    }
-    
-    // Add to resolution path to track circular references
-    resolutionPath.push(schemaName);
-    
-    try {
-      const resolved = resolveSchemaObject(schema, pathDepth);
-      resolutionPath.pop();
-      return resolved;
-    } catch (error) {
-      console.warn(`     Error resolving ${schemaName}: ${error.message}`);
-      resolutionPath.pop();
-      
-      return {
-        type: 'object',
-        description: `Error resolving ${schemaName}: ${error.message}`,
-        // additionalProperties: true
-      };
-    }
-  }
-  
-  // Function to resolve any schema object (handles $ref, properties, etc.)
-  function resolveSchemaObject(obj, pathDepth = 0) {
+    /**Collect all schema references from an object*/
     if (typeof obj !== 'object' || obj === null) {
-      return obj;
+        return;
     }
     
-    // Handle $ref - inline the referenced schema
-    if (obj.$ref && obj.$ref.startsWith('#/components/schemas/')) {
-      const refName = obj.$ref.replace('#/components/schemas/', '');
-      return resolveSchema(refName, pathDepth + 1);
+    if ('$ref' in obj && obj['$ref'].startsWith('#/components/schemas/')) {
+        refs.add(obj['$ref']);
     }
     
-    // Create a new object to avoid mutations
-    const resolved = {};
-    
-    // Copy primitive properties first - but preserve type
-    Object.keys(obj).forEach(key => {
-      if (!['properties', 'items', 'allOf', 'oneOf', 'anyOf'].includes(key)) {
-        resolved[key] = obj[key];
-      }
-    });
-    
-    // Handle arrays - ALWAYS expand array items fully but preserve array type
-    if (obj.type === 'array' && obj.items) {
-      resolved.type = 'array'; // Explicitly preserve array type
-      const resolvedItems = resolveSchemaObject(obj.items, pathDepth + 1);
-      // Ensure array items have explicit type for better rendering
-      if (resolvedItems.properties && !resolvedItems.type) {
-        resolvedItems.type = 'object';
-      }
-      resolved.items = resolvedItems;
-    } else if (obj.items) {
-      // Handle items even if type isn't explicitly array
-      const resolvedItems = resolveSchemaObject(obj.items, pathDepth + 1);
-      if (resolvedItems.properties && !resolvedItems.type) {
-        resolvedItems.type = 'object';
-      }
-      resolved.items = resolvedItems;
-      // If we have items but no type, assume it's an array
-      if (!resolved.type) {
-        resolved.type = 'array';
-      }
-    }
-    
-    // Handle properties - ALWAYS expand properties fully
-    if (obj.properties) {
-      resolved.properties = {};
-      Object.entries(obj.properties).forEach(([propName, propDef]) => {
-        try {
-          resolved.properties[propName] = resolveSchemaObject(propDef, pathDepth + 1);
-        } catch (error) {
-          console.warn(`     Error resolving property ${propName}: ${error.message}`);
-          resolved.properties[propName] = {
-            type: 'object',
-            description: `Error resolving property ${propName}`,
-            // additionalProperties: true
-          };
-        }
-      });
-    }
-    
-    // Handle allOf - merge properties
-    if (obj.allOf) {
-      const mergedProps = {};
-      const mergedRequired = [];
-      
-      obj.allOf.forEach((subSchema, index) => {
-        try {
-          const resolvedSub = resolveSchemaObject(subSchema, pathDepth + 1);
-          if (resolvedSub.properties) {
-            Object.assign(mergedProps, resolvedSub.properties);
-          }
-          if (resolvedSub.required) {
-            mergedRequired.push(...resolvedSub.required);
-          }
-          // Copy other properties from allOf items, but don't override type
-          ['description', 'format', 'example', 'enum', 'minimum', 'maximum'].forEach(prop => {
-            if (resolvedSub[prop] && !resolved[prop]) {
-              resolved[prop] = resolvedSub[prop];
+    for (const value of Object.values(obj)) {
+        if (typeof value === 'object' && value !== null) {
+            collectSchemaRefs(value, refs);
+        } else if (Array.isArray(value)) {
+            for (const item of value) {
+                collectSchemaRefs(item, refs);
             }
-          });
-          // Only copy type if we don't have one
-          if (resolvedSub.type && !resolved.type) {
-            resolved.type = resolvedSub.type;
-          }
-        } catch (error) {
-          console.warn(`     Error resolving allOf[${index}]: ${error.message}`);
         }
-      });
-      
-      resolved.properties = { ...mergedProps, ...resolved.properties };
-      if (mergedRequired.length > 0) {
-        resolved.required = [...new Set([...mergedRequired, ...(resolved.required || [])])];
-      }
+    }
+}
+
+function collectAllReferencedSchemas(taggedPaths, allSchemas) {
+    /**Collect all schemas referenced by the tagged paths, following $ref chains*/
+    // Get all direct schema references
+    const usedSchemaRefs = new Set();
+    
+    for (const pathItem of Object.values(taggedPaths)) {
+        for (const operation of Object.values(pathItem)) {
+            collectSchemaRefs(operation, usedSchemaRefs);
+        }
     }
     
-    // Handle oneOf/anyOf - keep structure but resolve references
-    if (obj.oneOf) {
-      resolved.oneOf = obj.oneOf.map((subSchema, index) => {
+    if (usedSchemaRefs.size === 0) {
+        return {};
+    }
+    
+    // Convert refs to schema names
+    const directSchemas = new Set();
+    for (const ref of usedSchemaRefs) {
+        const schemaName = ref.replace('#/components/schemas/', '');
+        directSchemas.add(schemaName);
+    }
+    
+    // Now collect all schemas that are referenced by these schemas (following $ref chains)
+    const allNeededSchemas = new Set();
+    const toProcess = Array.from(directSchemas);
+    
+    while (toProcess.length > 0) {
+        const schemaName = toProcess.shift();
+        if (allNeededSchemas.has(schemaName) || !(schemaName in allSchemas)) {
+            continue;
+        }
+        
+        allNeededSchemas.add(schemaName);
+        
+        // Find all schemas referenced by this schema
+        const schemaRefs = new Set();
+        collectSchemaRefs(allSchemas[schemaName], schemaRefs);
+        
+        for (const ref of schemaRefs) {
+            const refName = ref.replace('#/components/schemas/', '');
+            if (!allNeededSchemas.has(refName)) {
+                toProcess.push(refName);
+            }
+        }
+    }
+    
+    // Return all needed schemas
+    const neededSchemas = {};
+    for (const schemaName of allNeededSchemas) {
+        if (schemaName in allSchemas) {
+            neededSchemas[schemaName] = allSchemas[schemaName];
+        }
+    }
+    
+    return neededSchemas;
+}
+
+function collectParameterRefs(obj, refs) {
+    /**Collect all parameter references from an object*/
+    if (typeof obj !== 'object' || obj === null) {
+        return;
+    }
+    
+    if ('$ref' in obj && obj['$ref'].startsWith('#/components/parameters/')) {
+        refs.add(obj['$ref']);
+    }
+    
+    for (const value of Object.values(obj)) {
+        if (typeof value === 'object' && value !== null) {
+            collectParameterRefs(value, refs);
+        } else if (Array.isArray(value)) {
+            for (const item of value) {
+                collectParameterRefs(item, refs);
+            }
+        }
+    }
+}
+
+function collectAllReferencedParameters(taggedPaths, allParameters) {
+    /**Collect all parameters referenced by the tagged paths*/
+    // Get all direct parameter references
+    const usedParameterRefs = new Set();
+    
+    for (const pathItem of Object.values(taggedPaths)) {
+        for (const operation of Object.values(pathItem)) {
+            collectParameterRefs(operation, usedParameterRefs);
+        }
+    }
+    
+    if (usedParameterRefs.size === 0) {
+        return {};
+    }
+    
+    // Convert refs to parameter names and collect them
+    const neededParameters = {};
+    for (const ref of usedParameterRefs) {
+        const paramName = ref.replace('#/components/parameters/', '');
+        if (paramName in allParameters) {
+            neededParameters[paramName] = allParameters[paramName];
+        }
+    }
+    
+    return neededParameters;
+}
+
+class DeterministicCircularResolver {
+    /**DETERMINISTIC: Split by tags first, then resolve circular references with 100% deterministic behavior*/
+    
+    constructor() {
+        this.schemaGraph = {};  // Use Array instead of Set for determinism
+        this.circularRefs = new Set();
+        this.resolvedCache = {};
+    }
+    
+    extractSchemaReferences(schema, refs = new Set()) {
+        /**Extract all $ref references from a schema*/
+        
+        if (typeof schema !== 'object' || schema === null) {
+            return refs;
+        }
+        
+        if ('$ref' in schema && schema['$ref'].startsWith('#/components/schemas/')) {
+            const refName = schema['$ref'].replace('#/components/schemas/', '');
+            refs.add(refName);
+        }
+        
+        for (const value of Object.values(schema)) {
+            if (Array.isArray(value)) {
+                for (const item of value) {
+                    this.extractSchemaReferences(item, refs);
+                }
+            } else if (typeof value === 'object' && value !== null) {
+                this.extractSchemaReferences(value, refs);
+            }
+        }
+        
+        return refs;
+    }
+    
+    buildSchemaGraph(schemas) {
+        /**Build dependency graph of schemas - DETERMINISTIC VERSION*/
+        this.schemaGraph = {};
+        
+        for (const [schemaName, schema] of Object.entries(schemas)) {
+            const refs = this.extractSchemaReferences(schema);
+            // Convert set to SORTED list for deterministic iteration
+            this.schemaGraph[schemaName] = Array.from(refs).sort();
+        }
+    }
+    
+    detectCircularReferences(schemas) {
+        /**Detect all circular references - DETERMINISTIC VERSION*/
+        this.buildSchemaGraph(schemas);
+        const visitedGlobal = new Set();
+        const circularSchemas = new Set();
+        
+        const dfsAllPaths = (node, path, visitedInPath) => {
+            /**DFS that explores ALL paths, not just first cycles found*/
+            if (visitedInPath.has(node)) {
+                // Found a cycle - mark all schemas in the current path as circular
+                const cycleStartIdx = path.indexOf(node);
+                const cycleSchemas = new Set(path.slice(cycleStartIdx));
+                for (const schema of cycleSchemas) {
+                    circularSchemas.add(schema);
+                }
+                return;
+            }
+            
+            // Continue exploring even if we've visited this node in other paths
+            visitedInPath.add(node);
+            path.push(node);
+            
+            // DETERMINISTIC: dependencies is now a sorted list, not a set
+            const dependencies = this.schemaGraph[node] || [];
+            for (const dep of dependencies) {  // Now iterates in sorted order!
+                if (dep in this.schemaGraph) {  // Only follow refs to schemas that exist
+                    dfsAllPaths(dep, [...path], new Set(visitedInPath));
+                }
+            }
+            
+            visitedInPath.delete(node);
+            path.pop();
+        };
+        
+        // Start DFS from every schema in SORTED order for determinism
+        for (const schemaName of Object.keys(schemas).sort()) {
+            if (!visitedGlobal.has(schemaName)) {
+                dfsAllPaths(schemaName, [], new Set());
+                visitedGlobal.add(schemaName);
+            }
+        }
+        
+        // Also check for direct self-references
+        for (const [schemaName, schema] of Object.entries(schemas)) {
+            const refs = this.extractSchemaReferences(schema);
+            if (refs.has(schemaName)) {
+                circularSchemas.add(schemaName);
+            }
+        }
+        
+        return circularSchemas;
+    }
+    
+    calculateSchemaComplexity(schemaName, schema, allSchemas) {
+        /**Calculate complexity score for a schema to optimize MDX ordering - DETERMINISTIC*/
+        let complexity = 0;
+        
+        // Major factor: Count direct references to other schemas
+        const refs = this.extractSchemaReferences(schema);
+        const schemaRefs = Array.from(refs).filter(r => r in allSchemas && r !== schemaName);
+        complexity += schemaRefs.length * 100;
+        
+        // Count total properties/fields in schema
+        const countProperties = (obj) => {
+            let count = 0;
+            if (typeof obj === 'object' && obj !== null) {
+                if ('properties' in obj) {
+                    count += Object.keys(obj['properties']).length;
+                }
+                // Process dict items in sorted order for determinism
+                for (const key of Object.keys(obj).sort()) {
+                    const value = obj[key];
+                    if (typeof value === 'object' && value !== null) {
+                        count += countProperties(value);
+                    }
+                }
+            } else if (Array.isArray(obj)) {
+                for (const item of obj) {
+                    count += countProperties(item);
+                }
+            }
+            return count;
+        };
+        
+        const propertyCount = countProperties(schema);
+        complexity += propertyCount * 5;
+        
+        // Penalize schemas with deeply nested structures
+        const countNestingDepth = (obj, depth = 0) => {
+            if (depth > 10) {  // Prevent infinite recursion
+                return depth;
+            }
+            let maxDepth = depth;
+            if (typeof obj === 'object' && obj !== null) {
+                // Process dict items in sorted order for determinism
+                for (const key of Object.keys(obj).sort()) {
+                    const value = obj[key];
+                    if (['properties', 'items', 'allOf', 'oneOf', 'anyOf'].includes(key)) {
+                        maxDepth = Math.max(maxDepth, countNestingDepth(value, depth + 1));
+                    } else {
+                        maxDepth = Math.max(maxDepth, countNestingDepth(value, depth));
+                    }
+                }
+            } else if (Array.isArray(obj)) {
+                for (const item of obj) {
+                    maxDepth = Math.max(maxDepth, countNestingDepth(item, depth + 1));
+                }
+            }
+            return maxDepth;
+        };
+        
+        const nestingDepth = countNestingDepth(schema);
+        complexity += nestingDepth * 20;
+        
+        // Penalize schemas with arrays of complex objects
+        const countArrayComplexity = (obj) => {
+            let count = 0;
+            if (typeof obj === 'object' && obj !== null) {
+                if ('type' in obj && obj['type'] === 'array' && 'items' in obj) {
+                    const items = obj['items'];
+                    if (typeof items === 'object' && items !== null && ('$ref' in items || 'properties' in items)) {
+                        count += 80;  // Array of complex objects is very expensive
+                    } else if (typeof items === 'object' && items !== null) {
+                        count += 20;  // Array of simple objects
+                    }
+                }
+                // Process dict items in sorted order for determinism
+                for (const key of Object.keys(obj).sort()) {
+                    const value = obj[key];
+                    count += countArrayComplexity(value);
+                }
+            } else if (Array.isArray(obj)) {
+                for (const item of obj) {
+                    count += countArrayComplexity(item);
+                }
+            }
+            return count;
+        };
+        
+        complexity += countArrayComplexity(schema);
+        
+        // Major bonus for simple schemas (enums, basic types)
+        if (['string', 'integer', 'boolean', 'number'].includes(schema.type)) {
+            if ('enum' in schema) {
+                complexity -= 150;
+            } else {
+                complexity -= 80;
+            }
+        }
+        
+        // Big bonus for schemas with no references
+        if (schemaRefs.length === 0) {
+            complexity -= 120;
+        }
+        
+        // Special handling for known simple patterns
+        if (schemaName.endsWith('Id') || (schemaName.endsWith('Request') && schemaRefs.length <= 1)) {
+            complexity -= 50;
+        }
+        
+        // Special penalty for known complex patterns
+        if (schemaName.includes('Document') || schemaName.includes('Result') || schemaName.includes('Metadata')) {
+            complexity += 80;
+        }
+        
+        return complexity;
+    }
+    
+    simpleDependencySort(schemas) {
+        /**Sort schemas to minimize MDX blow-up - DETERMINISTIC*/
+        
+        // Calculate complexity scores for all schemas
+        const complexityScores = {};
+        for (const [schemaName, schema] of Object.entries(schemas)) {
+            complexityScores[schemaName] = this.calculateSchemaComplexity(schemaName, schema, schemas);
+        }
+        
+        // Sort by: 1) complexity (simple first), 2) alphabetically for determinism
+        const sortedNames = Object.keys(schemas).sort((a, b) => {
+            const complexityDiff = complexityScores[a] - complexityScores[b];
+            return complexityDiff !== 0 ? complexityDiff : a.localeCompare(b);
+        });
+        
+        // Return ordered dict maintaining the sorted order
+        const result = {};
+        for (const name of sortedNames) {
+            result[name] = schemas[name];
+        }
+        return result;
+    }
+
+    getSchemasUsedByTag(apiSpec, tag) {
+        /**Get all schemas used by a specific tag*/
+        // Get all paths for this tag
+        const taggedPaths = {};
+        const paths = apiSpec.paths || {};
+        for (const [pathName, pathItem] of Object.entries(paths)) {
+            for (const [method, operation] of Object.entries(pathItem)) {
+                if (['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(method.toUpperCase())) {
+                    const operationTags = operation.tags || [];
+                    if (operationTags.includes(tag)) {
+                        if (!(pathName in taggedPaths)) {
+                            taggedPaths[pathName] = {};
+                        }
+                        taggedPaths[pathName][method] = operation;
+                    }
+                }
+            }
+        }
+        
+        const allSchemas = (apiSpec.components && apiSpec.components.schemas) || {};
+        const usedSchemas = collectAllReferencedSchemas(taggedPaths, allSchemas);
+        
+        // Return schemas in dependency-optimized order
+        return this.simpleDependencySort(usedSchemas);
+    }
+    
+    getParametersUsedByTag(apiSpec, tag) {
+        /**Get all parameters used by a specific tag*/
+        // Get all paths for this tag
+        const taggedPaths = {};
+        const paths = apiSpec.paths || {};
+        for (const [pathName, pathItem] of Object.entries(paths)) {
+            for (const [method, operation] of Object.entries(pathItem)) {
+                if (['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(method.toUpperCase())) {
+                    const operationTags = operation.tags || [];
+                    if (operationTags.includes(tag)) {
+                        if (!(pathName in taggedPaths)) {
+                            taggedPaths[pathName] = {};
+                        }
+                        taggedPaths[pathName][method] = operation;
+                    }
+                }
+            }
+        }
+        
+        const allParameters = (apiSpec.components && apiSpec.components.parameters) || {};
+        return collectAllReferencedParameters(taggedPaths, allParameters);
+    }
+    
+    resolveSchemaWithSelectiveInlining(schemaName, allSchemas, visited, depth = 0, inArray = false) {
+        /**Resolve a schema with selective inlining of circular references only*/
+        
+        // Check cache first to prevent re-resolving the same schema
+        const cacheKey = `${schemaName}_${inArray}`;
+        if (cacheKey in this.resolvedCache) {
+            return this.resolvedCache[cacheKey];
+        }
+        
+        // Prevent infinite recursion
+        if (depth > 12) {
+            let placeholder;
+            if (inArray) {
+                placeholder = {
+                    type: 'object',
+                    properties: {
+                        [schemaName]: {
+                            type: 'object',
+                            description: `${schemaName} object` // max depth
+                        }
+                    }
+                };
+            } else {
+                placeholder = {
+                    type: 'object',
+                    description: `${schemaName} object`
+                };
+            }
+            this.resolvedCache[cacheKey] = placeholder;
+            return placeholder;
+        }
+        
+        // Check if we're in a circular reference
+        if (visited.has(schemaName)) {
+            let placeholder;
+            if (inArray) {
+                placeholder = {
+                    type: 'object',
+                    properties: {
+                        [schemaName]: {
+                            type: 'object',
+                            description: `${schemaName} object` // circular reference
+                        }
+                    }
+                };
+            } else {
+                placeholder = {
+                    type: 'object',
+                    description: `${schemaName} object`
+                };
+            }
+            this.resolvedCache[cacheKey] = placeholder;
+            return placeholder;
+        }
+        
+        const schema = allSchemas[schemaName];
+        if (!schema) {
+            let placeholder;
+            if (inArray) {
+                placeholder = {
+                    type: 'object',
+                    properties: {
+                        [schemaName]: {
+                            type: 'object',
+                            description: `Schema ${schemaName} not found`
+                        }
+                    }
+                };
+            } else {
+                placeholder = {
+                    type: 'object',
+                    description: `Schema ${schemaName} not found`
+                };
+            }
+            this.resolvedCache[cacheKey] = placeholder;
+            return placeholder;
+        }
+        
+        // Add to visited set to detect circular references
+        visited.add(schemaName);
+        
         try {
-          return resolveSchemaObject(subSchema, pathDepth + 1);
-        } catch (error) {
-          console.warn(`     Error resolving oneOf[${index}]: ${error.message}`);
-          return {
-            type: 'object',
-            description: `Error resolving oneOf[${index}]`,
-            // additionalProperties: true
-          };
+            const resolved = this.resolveSchemaObjectSelectively(schema, allSchemas, visited, depth, inArray);
+            visited.delete(schemaName);
+            
+            // Cache the resolved schema
+            this.resolvedCache[cacheKey] = resolved;
+            return resolved;
+        } catch (e) {
+            visited.delete(schemaName);
+            let placeholder;
+            if (inArray) {
+                placeholder = {
+                    type: 'object',
+                    properties: {
+                        [schemaName]: {
+                            type: 'object',
+                            description: `Error resolving ${schemaName}: ${e}`
+                        }
+                    }
+                };
+            } else {
+                placeholder = {
+                    type: 'object',
+                    description: `Error resolving ${schemaName}: ${e}`
+                };
+            }
+            this.resolvedCache[cacheKey] = placeholder;
+            return placeholder;
         }
-      });
     }
     
-    if (obj.anyOf) {
-      resolved.anyOf = obj.anyOf.map((subSchema, index) => {
-        try {
-          return resolveSchemaObject(subSchema, pathDepth + 1);
-        } catch (error) {
-          console.warn(`     Error resolving anyOf[${index}]: ${error.message}`);
-          return {
-            type: 'object',
-            description: `Error resolving anyOf[${index}]`,
-              // additionalProperties: true
-          };
+    resolveSchemaObjectSelectively(obj, allSchemas, visited, depth = 0, inArray = false) {
+        /**Resolve schema object, only inlining circular references*/
+        if (typeof obj !== 'object' || obj === null) {
+            return obj;
         }
-      });
+        
+        // Handle $ref - only inline if it's part of a circular reference
+        if ('$ref' in obj && obj['$ref'].startsWith('#/components/schemas/')) {
+            const refName = obj['$ref'].replace('#/components/schemas/', '');
+            
+            // If this reference is NOT part of a circular chain, keep it as $ref
+            if (!this.circularRefs.has(refName)) {
+                return obj;  // Keep as $ref
+            }
+            
+            // Otherwise, inline it
+            return this.resolveSchemaWithSelectiveInlining(refName, allSchemas, visited, depth + 1, inArray);
+        }
+        
+        const resolved = {};
+        
+        // Copy primitive properties first - PROCESS IN SORTED ORDER FOR DETERMINISM
+        for (const key of Object.keys(obj).sort()) {
+            if (!['properties', 'items', 'allOf', 'oneOf', 'anyOf'].includes(key)) {
+                resolved[key] = obj[key];
+            }
+        }
+        
+        // Handle arrays
+        if (obj.type === 'array' && 'items' in obj) {
+            resolved['type'] = 'array';
+            const resolvedItems = this.resolveSchemaObjectSelectively(obj['items'], allSchemas, visited, depth + 1, true);
+            if ('properties' in resolvedItems && !('type' in resolvedItems)) {
+                resolvedItems['type'] = 'object';
+            }
+            resolved['items'] = resolvedItems;
+        } else if ('items' in obj) {
+            const resolvedItems = this.resolveSchemaObjectSelectively(obj['items'], allSchemas, visited, depth + 1, true);
+            if ('properties' in resolvedItems && !('type' in resolvedItems)) {
+                resolvedItems['type'] = 'object';
+            }
+            resolved['items'] = resolvedItems;
+            if (!('type' in resolved)) {
+                resolved['type'] = 'array';
+            }
+        }
+        
+        // Handle properties - PROCESS IN SORTED ORDER FOR DETERMINISM
+        if ('properties' in obj) {
+            resolved['properties'] = {};
+            for (const propName of Object.keys(obj['properties']).sort()) {
+                const propDef = obj['properties'][propName];
+                try {
+                    resolved['properties'][propName] = this.resolveSchemaObjectSelectively(
+                        propDef, allSchemas, visited, depth + 1, false
+                    );
+                } catch (e) {
+                    console.log(`     Error resolving property ${propName}: ${e}`);
+                    resolved['properties'][propName] = {
+                        type: 'object',
+                        description: `Error resolving property ${propName}`
+                    };
+                }
+            }
+        }
+        
+        // Handle allOf - merge properties
+        if ('allOf' in obj) {
+            const mergedProps = {};
+            let mergedRequired = [];
+            
+            for (let i = 0; i < obj['allOf'].length; i++) {
+                const subSchema = obj['allOf'][i];
+                try {
+                    const resolvedSub = this.resolveSchemaObjectSelectively(subSchema, allSchemas, visited, depth + 1, false);
+                    if ('properties' in resolvedSub) {
+                        Object.assign(mergedProps, resolvedSub['properties']);
+                    }
+                    if ('required' in resolvedSub) {
+                        mergedRequired = mergedRequired.concat(resolvedSub['required']);
+                    }
+                    
+                    // Copy other properties
+                    for (const prop of ['description', 'format', 'example', 'enum', 'minimum', 'maximum']) {
+                        if (prop in resolvedSub && !(prop in resolved)) {
+                            resolved[prop] = resolvedSub[prop];
+                        }
+                    }
+                    
+                    if ('type' in resolvedSub && !('type' in resolved)) {
+                        resolved['type'] = resolvedSub['type'];
+                    }
+                } catch (e) {
+                    console.log(`     Error resolving allOf[${i}]: ${e}`);
+                }
+            }
+            
+            resolved['properties'] = {...mergedProps, ...(resolved['properties'] || {})};
+            if (mergedRequired.length > 0) {
+                resolved['required'] = Array.from(new Set([...mergedRequired, ...(resolved['required'] || [])]));
+            }
+        }
+        
+        // Handle oneOf/anyOf - keep structure but resolve references selectively
+        if ('oneOf' in obj) {
+            resolved['oneOf'] = [];
+            for (let i = 0; i < obj['oneOf'].length; i++) {
+                const subSchema = obj['oneOf'][i];
+                try {
+                    resolved['oneOf'].push(this.resolveSchemaObjectSelectively(subSchema, allSchemas, visited, depth + 1, false));
+                } catch (e) {
+                    console.log(`     Error resolving oneOf[${i}]: ${e}`);
+                    resolved['oneOf'].push({
+                        type: 'object',
+                        description: `Error resolving oneOf[${i}]`
+                    });
+                }
+            }
+        }
+        
+        if ('anyOf' in obj) {
+            resolved['anyOf'] = [];
+            for (let i = 0; i < obj['anyOf'].length; i++) {
+                const subSchema = obj['anyOf'][i];
+                try {
+                    resolved['anyOf'].push(this.resolveSchemaObjectSelectively(subSchema, allSchemas, visited, depth + 1, false));
+                } catch (e) {
+                    console.log(`     Error resolving anyOf[${i}]: ${e}`);
+                    resolved['anyOf'].push({
+                        type: 'object',
+                        description: `Error resolving anyOf[${i}]`
+                    });
+                }
+            }
+        }
+        
+        // Ensure schemas with properties have object type
+        if (!('type' in resolved) && 'properties' in resolved) {
+            resolved['type'] = 'object';
+        }
+        
+        return resolved;
     }
     
-    // Ensure schemas that ended up with properties but no explicit type are marked as objects
-    if (!resolved.type && resolved.properties) {
-      resolved.type = 'object';
+    resolveCircularReferencesInTag(tagSpec) {
+        /**Resolve circular references within a single tag's API spec*/
+        const schemas = (tagSpec.components && tagSpec.components.schemas) || {};
+        
+        if (Object.keys(schemas).length === 0) {
+            console.log(`   No schemas found in this tag`);
+            return tagSpec;
+        }
+        
+        // Detect circular references within this tag's schemas
+        this.circularRefs = this.detectCircularReferences(schemas);
+        
+        if (this.circularRefs.size === 0) {
+            console.log(`   No circular references found in this tag`);
+            return tagSpec;
+        }
+        
+        console.log(`   Found ${this.circularRefs.size} circular schemas: ${Array.from(this.circularRefs).sort().join(', ')}`);
+        
+        // Clear cache for this tag to ensure fresh resolution
+        this.resolvedCache = {};
+        
+        // Create a copy to work with
+        const resolvedSchemas = JSON.parse(JSON.stringify(schemas));
+        
+        // Only resolve schemas that are part of circular references
+        for (const schemaName of Array.from(this.circularRefs).sort()) {  // Process in sorted order for determinism
+            try {
+                resolvedSchemas[schemaName] = this.resolveSchemaWithSelectiveInlining(
+                    schemaName, schemas, new Set()
+                );
+            } catch (e) {
+                console.log(`   Warning: Failed to resolve schema ${schemaName}: ${e}`);
+                resolvedSchemas[schemaName] = {
+                    type: 'object',
+                    description: `Failed to resolve ${schemaName}: ${e}`
+                };
+            }
+        }
+        
+        // Update the tag spec with resolved schemas in optimal order
+        const result = {...tagSpec};
+        if (!result.components) {
+            result.components = {};
+        }
+        
+        // Apply dependency-aware ordering to resolved schemas too
+        result.components.schemas = this.simpleDependencySort(resolvedSchemas);
+        
+        return result;
     }
     
-    return resolved;
-  }
-  
-  // Resolve all schemas
-  Object.keys(schemas).forEach(schemaName => {
+    splitByTagsFirst(apiSpec, outputDir) {
+        /**Split API spec by tags first, then resolve circular references per tag*/
+        
+        // Collect all tags
+        const tags = new Set();
+        const paths = apiSpec.paths || {};
+        
+        for (const [pathName, pathItem] of Object.entries(paths)) {
+            for (const [method, operation] of Object.entries(pathItem)) {
+                if (['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(method.toUpperCase())) {
+                    const operationTags = operation.tags || [];
+                    for (const tag of operationTags) {
+                        tags.add(tag);
+                    }
+                }
+            }
+        }
+        
+        console.log(` Found ${tags.size} tag(s): ${Array.from(tags).sort().join(', ')}`);
+        
+        // Create output directory
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
+        
+        // Process each tag IN SORTED ORDER for determinism
+        for (const tag of Array.from(tags).sort()) {
+            const tagFilename = `${tag.toLowerCase()}-api.yaml`;
+            console.log(`\n  Processing tag: ${tag}`);
+            
+            // Create tag-specific API spec - preserve all original metadata
+            const originalInfo = {...(apiSpec.info || {})};
+            
+            // Only modify the title and description to be tag-specific
+            originalInfo.title = `${originalInfo.title || 'API'} - ${tag}`;
+            originalInfo.description = `API endpoints for ${tag}`;
+            
+            const tagSpec = {
+                openapi: apiSpec.openapi || '3.0.0',
+                info: originalInfo,
+                servers: apiSpec.servers || [],
+                security: apiSpec.security || [],
+                paths: {},
+                components: {
+                    schemas: {},
+                    securitySchemes: (apiSpec.components && apiSpec.components.securitySchemes) || {}
+                }
+            };
+            
+            // Add paths for this tag
+            for (const [pathName, pathItem] of Object.entries(paths)) {
+                const tagPathItem = {};
+                for (const [method, operation] of Object.entries(pathItem)) {
+                    if (['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(method.toUpperCase())) {
+                        const operationTags = operation.tags || [];
+                        if (operationTags.includes(tag)) {
+                            tagPathItem[method] = operation;
+                        }
+                    }
+                }
+                
+                if (Object.keys(tagPathItem).length > 0) {
+                    tagSpec.paths[pathName] = tagPathItem;
+                }
+            }
+            
+            // Get schemas used by this tag
+            const usedSchemas = this.getSchemasUsedByTag(apiSpec, tag);
+            
+            // Get parameters used by this tag
+            const usedParameters = this.getParametersUsedByTag(apiSpec, tag);
+            
+            // Add only the schemas used by this tag
+            tagSpec.components.schemas = usedSchemas;
+            
+            // Add only the parameters used by this tag (if any)
+            if (Object.keys(usedParameters).length > 0) {
+                tagSpec.components.parameters = usedParameters;
+            }
+            
+            console.log(`   Tag uses ${Object.keys(usedSchemas).length} schemas and ${Object.keys(usedParameters).length} parameters`);
+            
+            // Resolve circular references within this tag's context
+            const resolvedTagSpec = this.resolveCircularReferencesInTag(tagSpec);
+            
+            // Write the tag file with deterministic YAML output
+            const outputPath = path.join(outputDir, tagFilename);
+            const yamlStr = yaml.dump(resolvedTagSpec, {
+                flowLevel: -1,
+                sortKeys: false,
+                lineWidth: -1
+            });
+            fs.writeFileSync(outputPath, yamlStr, 'utf-8');
+            
+            console.log(`  Created ${tagFilename} with ${Object.keys(resolvedTagSpec.paths).length} path(s)`);
+        }
+    }
+}
+
+async function main() {
+    const args = process.argv.slice(2);
+    
+    if (args.length !== 2) {
+        console.error('Usage: node script.js <input_file> <output_dir>');
+        process.exit(1);
+    }
+    
+    const [inputFile, outputDir] = args;
+    
+    console.log("  DETERMINISTIC Split-first approach: Tags first, then resolve circular references per-tag");
+    console.log(`  Reading file: ${inputFile}...`);
+    
     try {
-      inlinedSchemas[schemaName] = resolveSchema(schemaName, 0);
+        // Read the OpenAPI file
+        const fileContent = await readContent(inputFile);
+        const apiSpec = yaml.load(fileContent);
+
+        const resolver = new DeterministicCircularResolver();
+        resolver.splitByTagsFirst(apiSpec, outputDir);
+        
+        console.log(`\n  Split complete! Created tag files in ${outputDir}`);
     } catch (error) {
-      console.warn(`   Warning: Failed to resolve schema ${schemaName}: ${error.message}`);
-      inlinedSchemas[schemaName] = {
-        type: 'object',
-        description: `Failed to resolve ${schemaName}: ${error.message}`,
-        // additionalProperties: true
-      };
+        console.error('Error:', error);
+        process.exit(1);
     }
-  });
-  
-  return inlinedSchemas;
 }
 
-// CLI usage
-if (require.main === module) {
-  const args = process.argv.slice(2);
-  
-  console.log('Debug: args =', args);
-  
-  if (args.length < 2) {
-    console.log('Usage: node break-circular.js <input-openapi.yaml|url> <output-directory> [--break-circular]');
-    console.log('');
-    console.log('Options:');
-    console.log('  --break-circular    Detect and fix circular references in schemas');
-    console.log('');
-    console.log('Example:');
-    console.log('  node break-circular.js client_rest.yaml ./split-apis/');
-    console.log('  node break-circular.js https://gleanwork.github.io/open-api/specs/final/client_rest.yaml ./split-apis/');
-    console.log('  node break-circular.js client_rest.yaml ./split-apis/ --break-circular');
-    process.exit(1);
-  }
-
-  let inputFile, outputDir, breakCircular = false;
-  
-  // Parse arguments
-  if (args.length >= 2) {
-    inputFile = args[0];
-    outputDir = args[1];
-    
-    // Check for --break-circular flag
-    if (args.length >= 3 && args[2] === '--break-circular') {
-      breakCircular = true;
-    } else if (args.includes('--break-circular')) {
-      breakCircular = true;
-    }
-  }
-  
-  console.log('Debug: inputFile =', inputFile);
-  console.log('Debug: outputDir =', outputDir);
-  console.log('Debug: breakCircular =', breakCircular);
-  
-  if (breakCircular) {
-    console.log('🔧 Circular reference breaking enabled');
-  }
-  
-  // For local files, check if they exist
-  if (!inputFile.startsWith('http://') && !inputFile.startsWith('https://') && !fs.existsSync(inputFile)) {
-    console.error(`❌ Input file not found: ${inputFile}`);
-    process.exit(1);
-  }
-
-  splitOpenAPIByTags(inputFile, outputDir, breakCircular);
-}
-
-module.exports = { splitOpenAPIByTags, CircularReferenceBreaker };
+// Run the main function
+main().catch(console.error);

@@ -35,6 +35,7 @@
     "@docusaurus/utils-validation": "^3.8.1",
     "@mdx-js/react": "^3.0.0",
     "@signalwire/docusaurus-plugin-llms-txt": "^1.1.0",
+    "@types/node": "^24.0.13",
     "clsx": "^2.1.1",
     "docusaurus-plugin-openapi-docs": "^4.4.0",
     "docusaurus-plugin-search-glean": "^0.5.3",
@@ -48,7 +49,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
-    "swiper": "^11.2.8"
+    "swiper": "^11.2.8",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@docusaurus/faster": "^3.8.1",
@@ -66,7 +68,7 @@
     "sass-loader": "^16.0.5",
     "slugify": "^1.6.6",
     "tsx": "^4.19.2",
-    "typescript": "~5.6.2",
+    "typescript": "^5.8.3",
     "xml2js": "^0.6.2"
   },
   "browserslist": {

@@ -52,6 +52,22 @@
     "to": "/api-info/indexing/getting-started/overview"
   },
   {
+    "from": "/indexing/people-teams-identity",
+    "to": "/api-info/indexing/getting-started/overview"
+  },
+  {
+    "from": "/docs/browser_api",
+    "to": "/libraries/web-sdk/overview"
+  },
+  {
+    "from": "/web",
+    "to": "/libraries/web-sdk/overview"
+  },
+  {
+    "from": "/home/community",
+    "to": "https://community.glean.com"
+  },
+  {
     "from": "/docs/actions/getting_started",
     "to": "/guides/actions/faq"
   },

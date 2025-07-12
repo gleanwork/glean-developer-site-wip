@@ -593,7 +593,23 @@
   },
   {
     "from": "/client/authentication",
-    "to": "/api-info/client/authentication/oauth"
+    "to": "/api-info/client/authentication/overview"
+  },
+  {
+    "from": "/client/authentication/overview",
+    "to": "/api-info/client/authentication/overview"
+  },
+  {
+    "from": "/docs/client_api/client_api_scopes",
+    "to": "/api-info/client/authentication/glean-issued#available-scopes"
+  },
+  {
+    "from": "/docs/client_api_scopes",
+    "to": "/api-info/client/authentication/glean-issued#available-scopes"
+  },
+  {
+    "from": "/client/authentication#scopes",
+    "to": "/api-info/client/authentication/glean-issued#available-scopes"
   },
   {
     "from": "/client/chat",

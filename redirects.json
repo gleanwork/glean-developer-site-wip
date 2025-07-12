@@ -608,8 +608,8 @@
     "to": "/api-info/client/authentication/glean-issued#available-scopes"
   },
   {
-    "from": "/client/authentication#scopes",
-    "to": "/api-info/client/authentication/glean-issued#available-scopes"
+    "from": "/client/authentication",
+    "to": "/api-info/client/authentication/glean-issued"
   },
   {
     "from": "/client/chat",

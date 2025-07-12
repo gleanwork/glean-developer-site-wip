@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   version: 0.9.0
-  title: Tools
-  description: Tools operations for Glean API
+  title: Glean API - Tools
+  description: API endpoints for Tools
   x-logo:
     url: https://app.glean.com/images/glean-text2.svg
   x-speakeasy-name: Glean API
@@ -14,9 +14,6 @@ servers:
         description: The instance name (typically the email domain without the TLD) that determines the deployment backend.
 security:
   - APIToken: []
-tags:
-  - name: Tools
-    description: Tools
 paths:
   /rest/api/v1/tools/list:
     get:
@@ -105,8 +102,7 @@ paths:
                 public static void main(String[] args) throws Exception {
 
                     Glean sdk = Glean.builder()
-                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                            .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
                         .build();
 
                     GetRestApiV1ToolsListResponse res = sdk.client().tools().list()
@@ -211,8 +207,7 @@ paths:
                 public static void main(String[] args) throws Exception {
 
                     Glean sdk = Glean.builder()
-                            .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                            .instance("<YOUR_GLEAN_INSTANCE_HERE>")
+                            .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
                         .build();
 
                     ToolsCallRequest req = ToolsCallRequest.builder()
@@ -232,34 +227,76 @@ paths:
             }
 components:
   schemas:
-    ToolsListResponse:
+    ToolsCallResponse:
       type: object
       properties:
-        tools:
+        rawResponse:
+          additionalProperties: true
+          type: object
+          description: The raw response from the tool
+        error:
+          type: string
+          description: The error message if applicable
+    ToolParameter:
+      type: object
+      properties:
+        description:
+          description: The description of the parameter
+          type: string
+        isRequired:
+          description: Whether the parameter is required
+          type: boolean
+        items:
+          type: object
+          description: ToolParameter object
+        name:
+          description: The name of the parameter
+          type: string
+        possibleValues:
+          description: The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+          type: array
+          items:
+            type: string
+        properties:
+          additionalProperties:
+            $ref: '#/components/schemas/ToolParameter'
+          description: When type is 'object', this describes the structure of the object.
+          type: object
+        type:
+          description: Parameter type (string, number, boolean, object, array)
+          enum:
+            - string
+            - number
+            - boolean
+            - object
+            - array
+          type: string
+    ToolsCallParameter:
+      required:
+        - name
+        - value
+      type: object
+      properties:
+        items:
+          description: The value of the parameter (for array types)
           type: array
           items:
             type: object
             properties:
-              type:
-                type: string
-                description: Type of tool (READ, WRITE)
-                enum:
-                  - READ
-                  - WRITE
-              name:
-                type: string
-                description: Unique identifier for the tool
-              displayName:
-                type: string
-                description: Human-readable name
-              description:
-                type: string
-                description: LLM friendly description of the tool
-              parameters:
+              ToolsCallParameter:
                 type: object
-                description: The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
-                additionalProperties:
-                  $ref: '#/components/schemas/ToolParameter'
+                description: ToolsCallParameter object
+        name:
+          description: The name of the parameter
+          type: string
+        properties:
+          additionalProperties:
+            $ref: '#/components/schemas/ToolsCallParameter'
+          description: The value of the parameter (for object types)
+          type: object
+        value:
+          description: The value of the parameter (for primitive types)
+          type: string
     ToolsCallRequest:
       type: object
       required:
@@ -274,16 +311,6 @@ components:
           description: The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
           additionalProperties:
             $ref: '#/components/schemas/ToolsCallParameter'
-    ToolsCallResponse:
-      type: object
-      properties:
-        rawResponse:
-          additionalProperties: true
-          type: object
-          description: The raw response from the tool
-        error:
-          type: string
-          description: The error message if applicable
     Tool:
       type: object
       properties:
@@ -307,72 +334,13 @@ components:
           description: The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
           additionalProperties:
             $ref: '#/components/schemas/ToolParameter'
-    ToolsCallParameter:
-      type: object
-      required:
-        - name
-        - value
-      properties:
-        name:
-          type: string
-          description: The name of the parameter
-        value:
-          type: string
-          description: The value of the parameter (for primitive types)
-        items:
-          type: array
-          description: The value of the parameter (for array types)
-          items:
-            type: object
-            description: ToolsCallParameter object
-        properties:
-          type: object
-          description: The value of the parameter (for object types)
-          additionalProperties:
-            type: object
-            description: ToolsCallParameter object
-    ToolParameter:
+    ToolsListResponse:
       type: object
       properties:
-        type:
-          type: string
-          description: Parameter type (string, number, boolean, object, array)
-          enum:
-            - string
-            - number
-            - boolean
-            - object
-            - array
-        name:
-          type: string
-          description: The name of the parameter
-        description:
-          type: string
-          description: The description of the parameter
-        isRequired:
-          type: boolean
-          description: Whether the parameter is required
-        possibleValues:
+        tools:
           type: array
-          description: The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
           items:
-            type: string
-        items:
-          type: object
-          description: ToolParameter object
-        properties:
-          type: object
-          description: When type is 'object', this describes the structure of the object.
-          additionalProperties:
-            type: object
-            description: ToolParameter object
-  parameters:
-    timezoneOffset:
-      name: timezoneOffset
-      in: query
-      description: The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-      schema:
-        type: integer
+            $ref: '#/components/schemas/Tool'
   securitySchemes:
     APIToken:
       scheme: bearer

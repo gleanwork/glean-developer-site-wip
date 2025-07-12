@@ -245,7 +245,7 @@ const config: Config = {
                   markdownGenerators: { createApiPageMD: customApiMdGenerator },
                 } satisfies OpenApiPlugin.Options,
                 answers: {
-                  // ok
+                  // circular
                   specPath: './openapi/client/split-apis/answers-api.yaml',
                   outputDir: 'docs/api/client-api/answers',
                   sidebarOptions: {

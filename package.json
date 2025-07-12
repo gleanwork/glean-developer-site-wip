@@ -23,8 +23,33 @@
     "format:check": "prettier --check .",
 
     "openapi:transform": "yarn openapi:transform:client && yarn openapi:transform:indexing",
-    "openapi:transform:client": "node scripts/openapi-capitalize-language.mjs https://gleanwork.github.io/open-api/specs/final/client_rest.yaml openapi/client/client-capitalized.yaml && node scripts/openapi-break-circular.mjs openapi/client/client-capitalized.yaml openapi/client/split-apis",
-    "openapi:transform:indexing": "node scripts/openapi-capitalize-language.mjs https://gleanwork.github.io/open-api/specs/final/indexing.yaml openapi/indexing/indexing-capitalized.yaml"
+    "openapi:transform:client": "yarn openapi:capitalize:client && yarn openapi:break:client",
+    "openapi:capitalize:client": "node scripts/openapi-capitalize-language.mjs https://gleanwork.github.io/open-api/specs/final/client_rest.yaml openapi/client/client-capitalized.yaml",
+    "openapi:break:client": "node scripts/openapi-break-circular.mjs openapi/client/client-capitalized.yaml openapi/client/split-apis",
+    "openapi:transform:indexing": "node scripts/openapi-capitalize-language.mjs https://gleanwork.github.io/open-api/specs/final/indexing.yaml openapi/indexing/indexing-capitalized.yaml",
+
+    "openapi:generate": "yarn openapi:generate:indexing && yarn openapi:generate:client",
+    "openapi:generate:indexing": "yarn docusaurus gen-api-docs indexing",
+    "openapi:generate:client": "yarn openapi:generate:activity && yarn openapi:generate:announcements && yarn openapi:generate:answers && yarn openapi:generate:authentication && yarn openapi:generate:chat && yarn openapi:generate:agents && yarn openapi:generate:collections && yarn openapi:generate:documents && yarn openapi:generate:insights && yarn openapi:generate:messages && yarn openapi:generate:pins && yarn openapi:generate:search && yarn openapi:generate:entities && yarn openapi:generate:shortcuts && yarn openapi:generate:summarize && yarn openapi:generate:verification && yarn openapi:generate:tools && yarn openapi:generate:governance",
+    
+    "openapi:generate:activity": "yarn docusaurus gen-api-docs activity",
+    "openapi:generate:announcements": "yarn docusaurus gen-api-docs announcements",
+    "openapi:generate:answers": "yarn docusaurus gen-api-docs answers",
+    "openapi:generate:authentication": "yarn docusaurus gen-api-docs authentication",
+    "openapi:generate:chat": "yarn docusaurus gen-api-docs chat",
+    "openapi:generate:agents": "yarn docusaurus gen-api-docs agents",
+    "openapi:generate:collections": "yarn docusaurus gen-api-docs collections",
+    "openapi:generate:documents": "yarn docusaurus gen-api-docs documents",
+    "openapi:generate:insights": "yarn docusaurus gen-api-docs insights",
+    "openapi:generate:messages": "yarn docusaurus gen-api-docs messages",
+    "openapi:generate:pins": "yarn docusaurus gen-api-docs pins",
+    "openapi:generate:search": "yarn docusaurus gen-api-docs search",
+    "openapi:generate:entities": "yarn docusaurus gen-api-docs entities",
+    "openapi:generate:shortcuts": "yarn docusaurus gen-api-docs shortcuts",
+    "openapi:generate:summarize": "yarn docusaurus gen-api-docs summarize",
+    "openapi:generate:verification": "yarn docusaurus gen-api-docs verification",
+    "openapi:generate:tools": "yarn docusaurus gen-api-docs tools",
+    "openapi:generate:governance": "yarn docusaurus gen-api-docs governance"
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",

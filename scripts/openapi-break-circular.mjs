@@ -5,47 +5,11 @@
  * This version ensures 100% deterministic output by eliminating all sources of non-determinism
  */
 
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
-const https = require('https');
-const http = require('http');
-
-function capitalizeLanguageName(lang) {
-    /**Common programming languages and their proper capitalization*/
-    const languageMap = {
-        'python': 'Python',
-        'java': 'Java',
-        'javascript': 'JavaScript',
-        'typescript': 'JavaScript',
-        'go': 'Go',
-        'ruby': 'Ruby',
-        'php': 'PHP',
-        'csharp': 'C#',
-        'cpp': 'C++',
-        'c': 'C',
-        'rust': 'Rust',
-        'swift': 'Swift',
-        'kotlin': 'Kotlin',
-        'dart': 'Dart',
-        'scala': 'Scala',
-        'r': 'R',
-        'matlab': 'MATLAB',
-        'shell': 'Shell',
-        'bash': 'Bash',
-        'powershell': 'PowerShell',
-        'sql': 'SQL',
-        'html': 'HTML',
-        'css': 'CSS',
-        'xml': 'XML',
-        'json': 'JSON',
-        'yaml': 'YAML',
-        'markdown': 'Markdown',
-        'latex': 'LaTeX',
-        'dockerfile': 'Dockerfile',
-    };
-    return languageMap[lang.toLowerCase()] || lang.charAt(0).toUpperCase() + lang.slice(1);
-}
+import fs from 'fs';
+import path from 'path';
+import yaml from 'js-yaml';
+import https from 'https';
+import http from 'http';
 
 function fetchFromUrl(url) {
     /**Fetch content from URL*/
@@ -849,7 +813,13 @@ class DeterministicCircularResolver {
                     if (['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(method.toUpperCase())) {
                         const operationTags = operation.tags || [];
                         if (operationTags.includes(tag)) {
+                            // Copy the entire operation including x-codeSamples and all other properties
                             tagPathItem[method] = operation;
+                            
+                            // Debug log to confirm x-codeSamples are preserved
+                            if (operation['x-codeSamples']) {
+                                console.log(`     ✓ Preserving x-codeSamples for ${method.toUpperCase()} ${pathName}`);
+                            }
                         }
                     }
                 }
@@ -889,6 +859,100 @@ class DeterministicCircularResolver {
             
             console.log(`  Created ${tagFilename} with ${Object.keys(resolvedTagSpec.paths).length} path(s)`);
         }
+        
+        // Create split-info.json index file
+        this.createSplitInfoFile(apiSpec, outputDir, tags);
+    }
+    
+    createSplitInfoFile(apiSpec, outputDir, tags) {
+        /**Create split-info.json with metadata about all split files*/
+        
+        const splitInfo = {
+            tags: []
+        };
+        
+        // Process each tag in sorted order for determinism
+        for (const tag of Array.from(tags).sort()) {
+            // Recreate the tag-specific paths to extract endpoints
+            const taggedPaths = {};
+            const paths = apiSpec.paths || {};
+            
+            for (const [pathName, pathItem] of Object.entries(paths)) {
+                for (const [method, operation] of Object.entries(pathItem)) {
+                    if (['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(method.toUpperCase())) {
+                        const operationTags = operation.tags || [];
+                        if (operationTags.includes(tag)) {
+                            if (!(pathName in taggedPaths)) {
+                                taggedPaths[pathName] = {};
+                            }
+                            taggedPaths[pathName][method] = operation;
+                        }
+                    }
+                }
+            }
+            
+            // Extract tag info
+            const tagDefinition = (apiSpec.tags || []).find(t => t.name === tag) || { name: tag };
+            const displayName = tagDefinition.description || tagDefinition.name;
+            const filename = `${tag.toLowerCase()}-api.yaml`;
+            
+            // Extract endpoints for this tag
+            const endpoints = [];
+            // Process paths in sorted order for determinism
+            for (const [pathName, pathItem] of Object.entries(taggedPaths).sort()) {
+                // Process methods in sorted order for determinism
+                for (const [method, operation] of Object.entries(pathItem).sort()) {
+                    endpoints.push({
+                        method: method.toUpperCase(),
+                        path: pathName,
+                        summary: operation.summary || '',
+                        description: operation.description || '',
+                        operationId: operation.operationId || this.generateOperationId(method, pathName, operation)
+                    });
+                }
+            }
+            
+            // Get schema count for this tag
+            const usedSchemas = this.getSchemasUsedByTag(apiSpec, tag);
+            
+            splitInfo.tags.push({
+                name: tag,
+                displayName: displayName,
+                description: tagDefinition.description || '',
+                file: filename,
+                configId: tag.toLowerCase().replace(/[^a-z0-9]/g, '_'), // Suggested config ID for docusaurus
+                paths: Object.keys(taggedPaths).length,
+                endpoints: endpoints,
+                schemas: Object.keys(usedSchemas).length,
+                fullyInlined: false, // This approach uses selective inlining, not full inlining
+                circularReferencesFixed: true // Circular refs are resolved
+            });
+        }
+        
+        // Write split-info.json
+        const splitInfoPath = path.join(outputDir, 'split-info.json');
+        fs.writeFileSync(
+            splitInfoPath,
+            JSON.stringify(splitInfo, null, 2)
+        );
+        
+        console.log(`\n📄 Created split-info.json with metadata for ${splitInfo.tags.length} tag(s)`);
+    }
+    
+    generateOperationId(method, pathName, operation) {
+        /**Generate a fallback operationId if not provided*/
+        if (operation.summary) {
+            // Use summary to create operationId
+            return operation.summary
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+        }
+        
+        // Fallback to method + path
+        return `${method}${pathName.replace(/[^a-zA-Z0-9]/g, '')}`;
     }
 }
 
@@ -896,7 +960,7 @@ async function main() {
     const args = process.argv.slice(2);
     
     if (args.length !== 2) {
-        console.error('Usage: node script.js <input_file> <output_dir>');
+        console.error('Usage: node script.mjs <input_file> <output_dir>');
         process.exit(1);
     }
     

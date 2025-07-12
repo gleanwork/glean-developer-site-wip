@@ -20,7 +20,11 @@
     "generate:redirects": "tsx scripts/generate-redirects.ts",
     "typecheck": "tsc",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+
+    "openapi:transform": "yarn openapi:transform:client && yarn openapi:transform:indexing",
+    "openapi:transform:client": "node scripts/openapi-capitalize-language.mjs https://gleanwork.github.io/open-api/specs/final/client_rest.yaml openapi/client/client-capitalized.yaml && node scripts/openapi-break-circular.mjs openapi/client/client-capitalized.yaml openapi/client/split-apis",
+    "openapi:transform:indexing": "node scripts/openapi-capitalize-language.mjs https://gleanwork.github.io/open-api/specs/final/indexing.yaml openapi/indexing/indexing-capitalized.yaml"
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",

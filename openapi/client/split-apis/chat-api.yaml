@@ -154,7 +154,7 @@ paths:
       x-speakeasy-name-override: create
       x-speakeasy-usage-example: true
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -178,7 +178,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -206,10 +206,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.Create(ctx, components.ChatRequest{\n        Messages: []components.ChatMessage{\n            components.ChatMessage{\n                Fragments: []components.ChatMessageFragment{\n                    components.ChatMessageFragment{\n                        Text: apiclientgo.String(\"What are the company holidays this year?\"),\n                    },\n                },\n            },\n        },\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ChatResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -268,7 +268,7 @@ paths:
       x-speakeasy-name-override: deleteAll
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -283,7 +283,7 @@ paths:
                 glean.client.chat.delete_all()
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -300,10 +300,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.DeleteAll(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -358,7 +358,7 @@ paths:
       x-speakeasy-name-override: delete
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -373,7 +373,7 @@ paths:
                 glean.client.chat.delete(ids=[])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -392,10 +392,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.Delete(ctx, components.DeleteChatsRequest{\n        Ids: []string{},\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -459,7 +459,7 @@ paths:
       x-speakeasy-name-override: retrieve
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -475,7 +475,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -495,10 +495,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.Retrieve(ctx, components.GetChatRequest{\n        ID: \"<id>\",\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetChatResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -554,7 +554,7 @@ paths:
       x-speakeasy-name-override: list
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -570,7 +570,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -588,10 +588,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.List(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ListChatsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -650,7 +650,7 @@ paths:
       x-speakeasy-name-override: retrieveApplication
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -666,7 +666,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -686,10 +686,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.RetrieveApplication(ctx, components.GetChatApplicationRequest{\n        ID: \"<id>\",\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetChatApplicationResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -753,7 +753,7 @@ paths:
       x-speakeasy-name-override: uploadFiles
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -769,7 +769,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -795,10 +795,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.UploadFiles(ctx, components.UploadChatFilesRequest{\n        Files: []components.File{},\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.UploadChatFilesResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -863,7 +863,7 @@ paths:
       x-speakeasy-name-override: retrieveFiles
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -881,7 +881,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -903,10 +903,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.RetrieveFiles(ctx, components.GetChatFilesRequest{\n        FileIds: []string{\n            \"<value 1>\",\n        },\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetChatFilesResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -967,7 +967,7 @@ paths:
       x-speakeasy-name-override: deleteFiles
       x-speakeasy-group: client.chat
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -986,7 +986,7 @@ paths:
                 ])
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1009,10 +1009,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.DeleteFiles(ctx, components.DeleteChatFilesRequest{\n        FileIds: []string{\n            \"<value 1>\",\n            \"<value 2>\",\n            \"<value 3>\",\n        },\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1182,7 +1182,7 @@ paths:
       x-speakeasy-name-override: createStream
       x-speakeasy-usage-example: true
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -1206,7 +1206,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1234,10 +1234,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Chat.CreateStream(ctx, components.ChatRequest{\n        Messages: []components.ChatMessage{\n            components.ChatMessage{\n                Fragments: []components.ChatMessageFragment{\n                    components.ChatMessageFragment{\n                        Text: apiclientgo.String(\"What are the company holidays this year?\"),\n                    },\n                },\n            },\n        },\n    }, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ChatRequestStream != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

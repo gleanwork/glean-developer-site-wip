@@ -51,7 +51,7 @@ paths:
       x-speakeasy-group: client.governance.data.policies
       x-speakeasy-name-override: retrieve
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -67,7 +67,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -85,10 +85,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Policies.Retrieve(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetDlpReportResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -147,7 +147,7 @@ paths:
       x-speakeasy-group: client.governance.data.policies
       x-speakeasy-name-override: update
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -163,7 +163,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -181,10 +181,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Policies.Update(ctx, \"<id>\", components.UpdateDlpReportRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.UpdateDlpReportResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -248,7 +248,7 @@ paths:
       x-speakeasy-group: client.governance.data.policies
       x-speakeasy-name-override: list
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -264,7 +264,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -282,10 +282,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Policies.List(ctx, nil, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ListDlpReportsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -337,7 +337,7 @@ paths:
       x-speakeasy-group: client.governance.data.policies
       x-speakeasy-name-override: create
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -353,7 +353,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -371,10 +371,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Policies.Create(ctx, components.CreateDlpReportRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.CreateDlpReportResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -434,7 +434,7 @@ paths:
       x-speakeasy-group: client.governance.data.policies
       x-speakeasy-name-override: download
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -450,7 +450,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -468,10 +468,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Policies.Download(ctx, \"<id>\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -525,7 +525,7 @@ paths:
       x-speakeasy-group: client.governance.data.reports
       x-speakeasy-name-override: create
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -541,7 +541,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -559,10 +559,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Reports.Create(ctx, components.UpdateDlpConfigRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.UpdateDlpConfigResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -622,7 +622,7 @@ paths:
       x-speakeasy-group: client.governance.data.reports
       x-speakeasy-name-override: download
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -638,7 +638,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -656,10 +656,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Reports.Download(ctx, \"<id>\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -714,7 +714,7 @@ paths:
       x-speakeasy-group: client.governance.data.reports
       x-speakeasy-name-override: status
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -730,7 +730,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -748,10 +748,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Data.Reports.Status(ctx, \"<id>\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ReportStatusResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -807,7 +807,7 @@ paths:
       x-speakeasy-group: client.governance.documents.visibilityoverrides
       x-speakeasy-name-override: list
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -823,7 +823,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -841,10 +841,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Documents.Visibilityoverrides.List(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetDocumentVisibilityOverridesResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -896,7 +896,7 @@ paths:
       x-speakeasy-group: client.governance.documents.visibilityoverrides
       x-speakeasy-name-override: create
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -912,7 +912,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -930,10 +930,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Governance.Documents.Visibilityoverrides.Create(ctx, components.UpdateDocumentVisibilityOverridesRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.UpdateDocumentVisibilityOverridesResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

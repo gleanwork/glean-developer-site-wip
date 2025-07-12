@@ -49,7 +49,7 @@ paths:
       x-speakeasy-name-override: create
       x-speakeasy-group: client.answers
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -113,7 +113,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -188,10 +188,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Answers.Create(ctx, components.CreateAnswerRequest{\n        Data: components.AnswerCreationData{\n            Question: apiclientgo.String(\"Why is the sky blue?\"),\n            BodyText: apiclientgo.String(\"From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.\"),\n            AudienceFilters: []components.FacetFilter{\n                components.FacetFilter{\n                    FieldName: apiclientgo.String(\"type\"),\n                    Values: []components.FacetFilterValue{\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"Spreadsheet\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"Presentation\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                    },\n                },\n            },\n            AddedRoles: []components.UserRoleSpecification{\n                components.UserRoleSpecification{\n                    Person: &components.Person{\n                        Name: \"George Clooney\",\n                        ObfuscatedID: \"abc123\",\n                    },\n                    Role: components.UserRoleViewer,\n                },\n            },\n            RemovedRoles: []components.UserRoleSpecification{\n                components.UserRoleSpecification{\n                    Person: &components.Person{\n                        Name: \"George Clooney\",\n                        ObfuscatedID: \"abc123\",\n                    },\n                    Role: components.UserRoleAnswerModerator,\n                },\n            },\n            Roles: []components.UserRoleSpecification{\n                components.UserRoleSpecification{\n                    Person: &components.Person{\n                        Name: \"George Clooney\",\n                        ObfuscatedID: \"abc123\",\n                    },\n                    Role: components.UserRoleOwner,\n                },\n            },\n            CombinedAnswerText: &components.StructuredTextMutableProperties{\n                Text: \"From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.\",\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Answer != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -296,7 +296,7 @@ paths:
       x-speakeasy-name-override: delete
       x-speakeasy-group: client.answers
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -311,7 +311,7 @@ paths:
                 glean.client.answers.delete(id=3, doc_id="ANSWERS_answer_3")
 
                 # Use the SDK ...
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -331,10 +331,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Answers.Delete(ctx, components.DeleteAnswerRequest{\n        ID: 3,\n        DocID: apiclientgo.String(\"ANSWERS_answer_3\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -398,7 +398,7 @@ paths:
       x-speakeasy-name-override: update
       x-speakeasy-group: client.answers
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -454,7 +454,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -543,10 +543,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Answers.Update(ctx, components.EditAnswerRequest{\n        ID: 3,\n        DocID: apiclientgo.String(\"ANSWERS_answer_3\"),\n        Question: apiclientgo.String(\"Why is the sky blue?\"),\n        BodyText: apiclientgo.String(\"From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.\"),\n        AudienceFilters: []components.FacetFilter{\n            components.FacetFilter{\n                FieldName: apiclientgo.String(\"type\"),\n                Values: []components.FacetFilterValue{\n                    components.FacetFilterValue{\n                        Value: apiclientgo.String(\"Spreadsheet\"),\n                        RelationType: components.RelationTypeEquals.ToPointer(),\n                    },\n                    components.FacetFilterValue{\n                        Value: apiclientgo.String(\"Presentation\"),\n                        RelationType: components.RelationTypeEquals.ToPointer(),\n                    },\n                },\n            },\n        },\n        AddedRoles: []components.UserRoleSpecification{\n            components.UserRoleSpecification{\n                Person: &components.Person{\n                    Name: \"George Clooney\",\n                    ObfuscatedID: \"abc123\",\n                },\n                Role: components.UserRoleEditor,\n            },\n        },\n        RemovedRoles: []components.UserRoleSpecification{\n            components.UserRoleSpecification{\n                Person: &components.Person{\n                    Name: \"George Clooney\",\n                    ObfuscatedID: \"abc123\",\n                },\n                Role: components.UserRoleOwner,\n            },\n        },\n        Roles: []components.UserRoleSpecification{\n            components.UserRoleSpecification{\n                Person: &components.Person{\n                    Name: \"George Clooney\",\n                    ObfuscatedID: \"abc123\",\n                },\n                Role: components.UserRoleEditor,\n            },\n        },\n        CombinedAnswerText: &components.StructuredTextMutableProperties{\n            Text: \"From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.\",\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Answer != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -655,7 +655,7 @@ paths:
       x-speakeasy-name-override: retrieve
       x-speakeasy-group: client.answers
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -671,7 +671,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -692,10 +692,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Answers.Retrieve(ctx, components.GetAnswerRequest{\n        ID: apiclientgo.Int64(3),\n        DocID: apiclientgo.String(\"ANSWERS_answer_3\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.GetAnswerResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -761,7 +761,7 @@ paths:
       x-speakeasy-name-override: list
       x-speakeasy-group: client.answers
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -777,7 +777,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -795,10 +795,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Answers.List(ctx, components.ListAnswersRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ListAnswersResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

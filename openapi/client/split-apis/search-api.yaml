@@ -61,7 +61,7 @@ paths:
       x-speakeasy-group: client.search
       x-speakeasy-name-override: queryAsAdmin
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -182,7 +182,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -231,10 +231,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Search.QueryAsAdmin(ctx, components.SearchRequest{\n        TrackingToken: apiclientgo.String(\"trackingToken\"),\n        PageSize: apiclientgo.Int64(10),\n        Query: \"vacation policy\",\n        RequestOptions: &components.SearchRequestOptions{\n            FacetFilters: []components.FacetFilter{\n                components.FacetFilter{\n                    FieldName: apiclientgo.String(\"type\"),\n                    Values: []components.FacetFilterValue{\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"article\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"document\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                    },\n                },\n                components.FacetFilter{\n                    FieldName: apiclientgo.String(\"department\"),\n                    Values: []components.FacetFilterValue{\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"engineering\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                    },\n                },\n            },\n            FacetBucketSize: 723824,\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.SearchResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -327,7 +327,7 @@ paths:
       x-speakeasy-group: client.search
       x-speakeasy-name-override: autocomplete
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -351,7 +351,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -374,10 +374,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Search.Autocomplete(ctx, components.AutocompleteRequest{\n        TrackingToken: apiclientgo.String(\"trackingToken\"),\n        Query: apiclientgo.String(\"what is a que\"),\n        Datasource: apiclientgo.String(\"GDRIVE\"),\n        ResultSize: apiclientgo.Int64(10),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.AutocompleteResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -447,7 +447,7 @@ paths:
       x-speakeasy-name-override: retrieveFeed
       x-speakeasy-group: client.search
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -463,7 +463,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -483,10 +483,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Search.RetrieveFeed(ctx, components.FeedRequest{\n        TimeoutMillis: apiclientgo.Int64(5000),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.FeedResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -557,7 +557,7 @@ paths:
       x-speakeasy-group: client.search
       x-speakeasy-name-override: recommendations
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -739,7 +739,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -829,10 +829,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/types\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Search.Recommendations(ctx, components.RecommendationsRequest{\n        SourceDocument: &components.Document{\n            ContainerDocument: &components.Document{\n                Metadata: &components.DocumentMetadata{\n                    Datasource: apiclientgo.String(\"datasource\"),\n                    ObjectType: apiclientgo.String(\"Feature Request\"),\n                    Container: apiclientgo.String(\"container\"),\n                    ParentID: apiclientgo.String(\"JIRA_EN-1337\"),\n                    MimeType: apiclientgo.String(\"mimeType\"),\n                    DocumentID: apiclientgo.String(\"documentId\"),\n                    CreateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                    UpdateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                    Author: &components.Person{\n                        Name: \"name\",\n                        ObfuscatedID: \"<id>\",\n                    },\n                    Components: []string{\n                        \"Backend\",\n                        \"Networking\",\n                    },\n                    Status: apiclientgo.String(\"[\\\"Done\\\"]\"),\n                    CustomData: map[string]components.CustomDataValue{\n                        \"someCustomField\": components.CustomDataValue{},\n                    },\n                },\n            },\n            ParentDocument: &components.Document{\n                Metadata: &components.DocumentMetadata{\n                    Datasource: apiclientgo.String(\"datasource\"),\n                    ObjectType: apiclientgo.String(\"Feature Request\"),\n                    Container: apiclientgo.String(\"container\"),\n                    ParentID: apiclientgo.String(\"JIRA_EN-1337\"),\n                    MimeType: apiclientgo.String(\"mimeType\"),\n                    DocumentID: apiclientgo.String(\"documentId\"),\n                    CreateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                    UpdateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                    Author: &components.Person{\n                        Name: \"name\",\n                        ObfuscatedID: \"<id>\",\n                    },\n                    Components: []string{\n                        \"Backend\",\n                        \"Networking\",\n                    },\n                    Status: apiclientgo.String(\"[\\\"Done\\\"]\"),\n                    CustomData: map[string]components.CustomDataValue{\n                        \"someCustomField\": components.CustomDataValue{},\n                    },\n                },\n            },\n            Metadata: &components.DocumentMetadata{\n                Datasource: apiclientgo.String(\"datasource\"),\n                ObjectType: apiclientgo.String(\"Feature Request\"),\n                Container: apiclientgo.String(\"container\"),\n                ParentID: apiclientgo.String(\"JIRA_EN-1337\"),\n                MimeType: apiclientgo.String(\"mimeType\"),\n                DocumentID: apiclientgo.String(\"documentId\"),\n                CreateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                UpdateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                Author: &components.Person{\n                    Name: \"name\",\n                    ObfuscatedID: \"<id>\",\n                },\n                Components: []string{\n                    \"Backend\",\n                    \"Networking\",\n                },\n                Status: apiclientgo.String(\"[\\\"Done\\\"]\"),\n                CustomData: map[string]components.CustomDataValue{\n                    \"someCustomField\": components.CustomDataValue{},\n                },\n            },\n        },\n        PageSize: apiclientgo.Int64(100),\n        MaxSnippetSize: apiclientgo.Int64(400),\n        RequestOptions: &components.RecommendationsRequestOptions{\n            FacetFilterSets: []components.FacetFilterSet{\n                components.FacetFilterSet{\n                    Filters: []components.FacetFilter{\n                        components.FacetFilter{\n                            FieldName: apiclientgo.String(\"type\"),\n                            Values: []components.FacetFilterValue{\n                                components.FacetFilterValue{\n                                    Value: apiclientgo.String(\"Spreadsheet\"),\n                                    RelationType: components.RelationTypeEquals.ToPointer(),\n                                },\n                                components.FacetFilterValue{\n                                    Value: apiclientgo.String(\"Presentation\"),\n                                    RelationType: components.RelationTypeEquals.ToPointer(),\n                                },\n                            },\n                        },\n                    },\n                },\n            },\n            Context: &components.Document{\n                ContainerDocument: &components.Document{\n                    Metadata: &components.DocumentMetadata{\n                        Datasource: apiclientgo.String(\"datasource\"),\n                        ObjectType: apiclientgo.String(\"Feature Request\"),\n                        Container: apiclientgo.String(\"container\"),\n                        ParentID: apiclientgo.String(\"JIRA_EN-1337\"),\n                        MimeType: apiclientgo.String(\"mimeType\"),\n                        DocumentID: apiclientgo.String(\"documentId\"),\n                        CreateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                        UpdateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                        Author: &components.Person{\n                            Name: \"name\",\n                            ObfuscatedID: \"<id>\",\n                        },\n                        Components: []string{\n                            \"Backend\",\n                            \"Networking\",\n                        },\n                        Status: apiclientgo.String(\"[\\\"Done\\\"]\"),\n                        CustomData: map[string]components.CustomDataValue{\n                            \"someCustomField\": components.CustomDataValue{},\n                        },\n                    },\n                },\n                ParentDocument: &components.Document{\n                    Metadata: &components.DocumentMetadata{\n                        Datasource: apiclientgo.String(\"datasource\"),\n                        ObjectType: apiclientgo.String(\"Feature Request\"),\n                        Container: apiclientgo.String(\"container\"),\n                        ParentID: apiclientgo.String(\"JIRA_EN-1337\"),\n                        MimeType: apiclientgo.String(\"mimeType\"),\n                        DocumentID: apiclientgo.String(\"documentId\"),\n                        CreateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                        UpdateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                        Author: &components.Person{\n                            Name: \"name\",\n                            ObfuscatedID: \"<id>\",\n                        },\n                        Components: []string{\n                            \"Backend\",\n                            \"Networking\",\n                        },\n                        Status: apiclientgo.String(\"[\\\"Done\\\"]\"),\n                        CustomData: map[string]components.CustomDataValue{\n                            \"someCustomField\": components.CustomDataValue{},\n                        },\n                    },\n                },\n                Metadata: &components.DocumentMetadata{\n                    Datasource: apiclientgo.String(\"datasource\"),\n                    ObjectType: apiclientgo.String(\"Feature Request\"),\n                    Container: apiclientgo.String(\"container\"),\n                    ParentID: apiclientgo.String(\"JIRA_EN-1337\"),\n                    MimeType: apiclientgo.String(\"mimeType\"),\n                    DocumentID: apiclientgo.String(\"documentId\"),\n                    CreateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                    UpdateTime: types.MustNewTimeFromString(\"2000-01-23T04:56:07.000Z\"),\n                    Author: &components.Person{\n                        Name: \"name\",\n                        ObfuscatedID: \"<id>\",\n                    },\n                    Components: []string{\n                        \"Backend\",\n                        \"Networking\",\n                    },\n                    Status: apiclientgo.String(\"[\\\"Done\\\"]\"),\n                    CustomData: map[string]components.CustomDataValue{\n                        \"someCustomField\": components.CustomDataValue{},\n                    },\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ResultsResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -1071,7 +1071,7 @@ paths:
       x-speakeasy-group: client.search
       x-speakeasy-name-override: query
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean, models
@@ -1192,7 +1192,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -1241,10 +1241,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Search.Query(ctx, components.SearchRequest{\n        TrackingToken: apiclientgo.String(\"trackingToken\"),\n        PageSize: apiclientgo.Int64(10),\n        Query: \"vacation policy\",\n        RequestOptions: &components.SearchRequestOptions{\n            FacetFilters: []components.FacetFilter{\n                components.FacetFilter{\n                    FieldName: apiclientgo.String(\"type\"),\n                    Values: []components.FacetFilterValue{\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"article\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"document\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                    },\n                },\n                components.FacetFilter{\n                    FieldName: apiclientgo.String(\"department\"),\n                    Values: []components.FacetFilterValue{\n                        components.FacetFilterValue{\n                            Value: apiclientgo.String(\"engineering\"),\n                            RelationType: components.RelationTypeEquals.ToPointer(),\n                        },\n                    },\n                },\n            },\n            FacetBucketSize: 939520,\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.SearchResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;

@@ -51,7 +51,7 @@ paths:
       x-speakeasy-name-override: list
       x-speakeasy-group: client.tools
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -67,7 +67,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -85,10 +85,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Tools.List(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ToolsListResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
@@ -144,7 +144,7 @@ paths:
       x-speakeasy-name-override: run
       x-speakeasy-group: client.tools
       x-codeSamples:
-        - lang: python
+        - lang: Python
           label: Python (API Client)
           source: |-
             from glean.api_client import Glean
@@ -162,7 +162,7 @@ paths:
 
                 # Handle response
                 print(res)
-        - lang: typescript
+        - lang: JavaScript
           label: Typescript (API Client)
           source: |-
             import { Glean } from "@gleanwork/api-client";
@@ -188,10 +188,10 @@ paths:
             }
 
             run();
-        - lang: go
+        - lang: Go
           label: Go (API Client)
           source: "package main\n\nimport(\n\t\"context\"\n\t\"os\"\n\tapiclientgo \"github.com/gleanwork/api-client-go\"\n\t\"github.com/gleanwork/api-client-go/models/components\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := apiclientgo.New(\n        apiclientgo.WithSecurity(os.Getenv(\"GLEAN_API_TOKEN\")),\n        apiclientgo.WithInstance(os.Getenv(\"GLEAN_INSTANCE\")),\n    )\n\n    res, err := s.Client.Tools.Run(ctx, components.ToolsCallRequest{\n        Name: \"<value>\",\n        Parameters: map[string]components.ToolsCallParameter{\n\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.ToolsCallResponse != nil {\n        // handle response\n    }\n}"
-        - lang: java
+        - lang: Java
           label: Java (API Client)
           source: |-
             package hello.world;
